@@ -11,4 +11,8 @@ public class SightingReport
     public required DateOnly DateOfSighting { get; set; }
     public required string? Location { get; set; }
     public int SpeciesId { get; set; }
+
+    public String? Status { get; set; }
+
+    public String? RejectedReason { get; set; }
 }
