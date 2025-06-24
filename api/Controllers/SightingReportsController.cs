@@ -25,12 +25,15 @@ namespace WhaleSpottingBackend.Controllers
                 return BadRequest(ModelState);
             }
 
-            try {
+            try
+            {
                 _sightingReports.CreateReport(newReport);
-            } catch (Exception) {
+            }
+            catch (Exception)
+            {
                 return BadRequest(ModelState);
             }
-                         
+
             return Ok(new { message = "Your sighting report has been sucessfully submitted and is pending review." });
         }
     }

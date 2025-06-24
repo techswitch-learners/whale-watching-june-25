@@ -4,7 +4,7 @@ using WhaleSpottingBackend.Models.Request;
 
 namespace WhaleSpottingBackend.Services;
 
-public interface ISightingReportsService 
+public interface ISightingReportsService
 {
     void CreateReport(CreateSightingReportRequest newReport);
 }
@@ -13,7 +13,7 @@ public class SightingReportsService : ISightingReportsService
 {
     private readonly ISightingReportsRepo _sightingReports;
 
-    public SightingReportsService(ISightingReportsRepo sightingReports) 
+    public SightingReportsService(ISightingReportsRepo sightingReports)
     {
         _sightingReports = sightingReports;
     }
@@ -27,9 +27,9 @@ public class SightingReportsService : ISightingReportsService
             Longitude = newReport.Longitude,
             Latitude = newReport.Latitude,
             SpeciesId = newReport.SpeciesId,
-            Status = "Pending", 
+            Status = "Pending",
             RejectedReason = null
-        };        
+        };
         _sightingReports.CreateReport(report);
     }
 
