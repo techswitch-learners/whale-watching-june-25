@@ -1,10 +1,14 @@
 
 using Microsoft.EntityFrameworkCore;
 using WhaleSpottingBackend.Models.DatabaseModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
+
+
 
 namespace WhaleSpottingBackend.Database;
 
-class WhaleSpottingDbContext : DbContext
+class WhaleSpottingDbContext : IdentityDbContext<UserModel>
 {
     public DbSet<ExampleModel> ExampleModel { get; set; }
     private IConfiguration _configuration;
