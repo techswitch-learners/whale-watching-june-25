@@ -5,7 +5,7 @@ namespace WhaleSpottingBackend.Models.Database;
 public class SightingReport
 {
     public int Id { get; set; }
-    //[Column("ExampleColumn")]
+
     public string? Description { get; set; }
 
     public required DateOnly DateOfSighting { get; set; }
