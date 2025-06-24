@@ -1,10 +1,10 @@
 
 using Microsoft.EntityFrameworkCore;
-using WhaleSpottingBackend.Models.DatabaseModels;
+using WhaleSpottingBackend.Models.Database;
 
 namespace WhaleSpottingBackend.Database;
 
-class WhaleSpottingDbContext : DbContext
+public class WhaleSpottingDbContext : DbContext
 {
     public DbSet<SightingReport> SightingReports { get; set; }
     private IConfiguration _configuration;

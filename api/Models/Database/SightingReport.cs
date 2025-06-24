@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WhaleSpottingBackend.Models.DatabaseModels;
+namespace WhaleSpottingBackend.Models.Database;
 
 public class SightingReport
 {
@@ -9,7 +9,8 @@ public class SightingReport
     public string? Description { get; set; }
 
     public required DateOnly DateOfSighting { get; set; }
-    public required string? Location { get; set; }
+    public required float Longitude {get; set; }
+    public required float Latitude  {get; set; }
     public int SpeciesId { get; set; }
 
     public String? Status { get; set; }
