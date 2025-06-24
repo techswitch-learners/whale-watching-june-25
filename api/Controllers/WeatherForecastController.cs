@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WhaleSpottingBackend.Controllers;
@@ -11,5 +12,12 @@ public class WeatherForecastController : ControllerBase
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
+    }
+
+    [HttpGet("get")]
+    [Authorize]
+    public IActionResult GetCurrentUser()
+    {
+        return Ok();
     }
 }
