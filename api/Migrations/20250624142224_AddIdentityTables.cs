@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace WhaleSpottingBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class AddIdentityTable : Migration
+    public partial class AddIdentityTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

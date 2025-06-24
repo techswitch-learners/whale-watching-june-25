@@ -12,8 +12,8 @@ using WhaleSpottingBackend.Database;
 namespace WhaleSpottingBackend.Migrations
 {
     [DbContext(typeof(WhaleSpottingDbContext))]
-    [Migration("20250624111146_AddIdentityTable")]
-    partial class AddIdentityTable
+    [Migration("20250624142224_AddIdentityTables")]
+    partial class AddIdentityTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

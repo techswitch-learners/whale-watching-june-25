@@ -1,10 +1,11 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WhaleSpottingBackend.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
     private readonly ILogger<WeatherForecastController> _logger;
@@ -14,10 +15,11 @@ public class WeatherForecastController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("get")]
-    [Authorize]
-    public IActionResult GetCurrentUser()
+    
+    [Authorize(Roles = "Admin")]
+    [HttpGet("current_user")]
+    public IActionResult CheckIfCurrrentUserIsAdmin()
     {
-        return Ok();
+        return Ok(new {isAdmin = true});
     }
 }
