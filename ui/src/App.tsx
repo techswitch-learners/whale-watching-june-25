@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { AdvancedImage, responsive, placeholder } from '@cloudinary/react';
 
 import CloudinaryUploadWidget from './components/CloudinaryUploadWidget';
 import './App.scss';
 
-const App = () => {
+  const App = () => {
   // Configuration
   const cloudName = 'hzxyensd5';
   const uploadPreset = 'aoh4fpwm';
 
   // State
-  const [publicId, setPublicId] = useState('');
+  const [publicId, setPublicId] = useState<string|null>('');
 
   // Cloudinary configuration
   const cld = new Cloudinary({
@@ -24,58 +24,85 @@ const App = () => {
   const uwConfig = {
     cloudName,
     uploadPreset,
-    // Uncomment and modify as needed:
-    // cropping: true,
-    // showAdvancedOptions: true,
-    // sources: ['local', 'url'],
-    // multiple: false,
-    // folder: 'user_images',
-    // tags: ['users', 'profile'],
-    // context: { alt: 'user_uploaded' },
-    // clientAllowedFormats: ['images'],
-    // maxImageFileSize: 2000000,
-    // maxImageWidth: 2000,
-    // theme: 'purple',
+
   };
+
+  //function test(public_id: string,cld: { image: (arg0: string) => { (): any; new(): any; toURL: { (): any; new(): any; }; }; }) {
+
+//  export function test(public_id: string) {
+
+//   if (public_id) {
+//   const imageUrl = cld.image(public_id).toURL();
+//  // storeImageUrl(imageUrl);
+  
+
+// //const storeImageUrl = async (url: string) => {
+  
+//     //try {
+//     const response = fetch('/api/store-image-url', {
+
+//   //  const response = await fetch('/api/store-image-url', {
+//        method: 'POST',
+//        headers: {
+//    'Content-Type': 'application/json',
+//  },
+//     body: JSON.stringify({ Public_Id: public_id, Image_URL: imageUrl }),
+//   });
+//   };
+// }
+
+//   if (!response.ok) {
+//    throw new Error('Failed to store image URL');
+//  }
+
+// console.log('Image URL stored successfully');
+//  } catch (error) {
+//    console.error('Error storing image URL:', error);
+// }
+//  };
+//};
+
+// const App = () => {
+//   // Configuration
+//   const cloudName = 'hzxyensd5';
+//   const uploadPreset = 'aoh4fpwm';
+
+//   // State
+//   const [publicId, setPublicId] = useState('');
+
+//   // Cloudinary configuration
+//   const cld = new Cloudinary({
+//     cloud: {
+//       cloudName,
+//     },
+//   });
+
+//   // Upload Widget Configuration
+//   const uwConfig = {
+//     cloudName,
+//     uploadPreset,
+
+//   };
+
+
+  
+// useEffect(() => {
+// if (publicId) {
+//   const imageUrl = cld.image(publicId).toURL();
+//   storeImageUrl(imageUrl);
+// }
+// }, [publicId]);
+
+
+
+
+
 
   return (
     
     <div className="App">
-      <h3>Cloudinary Upload Widget Example</h3>
 
       <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} />
-
-      <div className="documentation-links">
-        <p>
-          <a
-            href="https://cloudinary.com/documentation/upload_widget"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Upload Widget User Guide
-          </a>
-        </p>
-        <p>
-          <a
-            href="https://cloudinary.com/documentation/upload_widget_reference"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Upload Widget Reference
-          </a>
-        </p>
-      </div>
-
-      {publicId && (
-        <div className="image-preview" style={{ width: '800px', margin: '20px auto' }}>
-          <AdvancedImage
-            style={{ maxWidth: '100%' }}
-            cldImg={cld.image(publicId)}
-            
-            plugins={[responsive(), placeholder()]}
-          />
-        </div>
-      )}
     </div>
   );
 
