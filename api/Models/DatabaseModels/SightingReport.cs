@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WhaleSpottingBackend.Models.DatabaseModels;
 
-public class SightingModel
+public class SightingReport
 {
     public int Id { get; set; }
     //[Column("ExampleColumn")]

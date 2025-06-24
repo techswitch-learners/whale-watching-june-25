@@ -6,7 +6,7 @@ namespace WhaleSpottingBackend.Database;
 
 class WhaleSpottingDbContext : DbContext
 {
-    public DbSet<SightingModel> SightingReport { get; set; }
+    public DbSet<SightingReport> SightingReports { get; set; }
     private IConfiguration _configuration;
     public WhaleSpottingDbContext(IConfiguration configuration)
     {
