@@ -17,6 +17,36 @@ public static class RoleSeeder
             }
         }
     }
+    public static async Task CreateFirstAdminUser(IServiceProvider serviceProvider)
+    {
+        var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<UserModel>>();
+
+        var adminEmail = "admin@whalespotting.com";
+        var adminPassword = "Admin@123";
+
+        var userExist = await userManager.FindByEmailAsync(adminEmail);
+
+        if (userExist == null)
+        {
+            var adminUser = new UserModel
+            {
+                UserName = adminEmail,
+                Email = adminEmail,
+                EmailConfirmed = true
+            };
+
+            var adminCreation = await userManager.CreateAsync(adminUser, adminPassword);
+            if (adminCreation.Succeeded)
+            {
+                await userManager.AddToRoleAsync(adminUser, "Admin");
+            }
+            else
+            {
+                throw new Exception("Failed to create the admin user: " + string.Join(", ", adminCreation.Errors));
+            }
+        }
+    }
 
     public static async Task AssignAdminRole(IServiceProvider serviceProvider)
     {
@@ -30,4 +60,4 @@ public static class RoleSeeder
             await UserManager.AddToRoleAsync(user, "Admin");
         }
     }
- }
+}

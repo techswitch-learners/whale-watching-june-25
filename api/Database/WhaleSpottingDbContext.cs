@@ -1,10 +1,6 @@
-
 using Microsoft.EntityFrameworkCore;
 using WhaleSpottingBackend.Models.DatabaseModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
-
-
 
 namespace WhaleSpottingBackend.Database;
 

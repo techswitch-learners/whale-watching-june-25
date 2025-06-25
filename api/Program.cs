@@ -24,7 +24,7 @@ using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider;
     await RoleSeeder.CreateRoles(context);
-    await RoleSeeder.AssignAdminRole(context);
+    await RoleSeeder.CreateFirstAdminUser(context);
 };
 
 // Configure the HTTP request pipeline.
@@ -36,8 +36,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

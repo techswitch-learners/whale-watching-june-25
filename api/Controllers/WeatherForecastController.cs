@@ -1,5 +1,3 @@
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WhaleSpottingBackend.Controllers;
@@ -13,13 +11,5 @@ public class WeatherForecastController : ControllerBase
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
-    }
-
-    
-    [Authorize(Roles = "Admin")]
-    [HttpGet("current_user")]
-    public IActionResult CheckIfCurrrentUserIsAdmin()
-    {
-        return Ok(new {isAdmin = true});
     }
 }
