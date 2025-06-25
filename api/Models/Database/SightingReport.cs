@@ -12,6 +12,7 @@ public class SightingReport
     public required float Longitude { get; set; }
     public required float Latitude { get; set; }
     public int SpeciesId { get; set; }
+    public int UserId { get; set; }
 
     public String? Status { get; set; }
 

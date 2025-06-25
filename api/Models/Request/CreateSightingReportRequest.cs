@@ -8,5 +8,6 @@ public class CreateSightingReportRequest
     public required float Longitude { get; set; }
     public required float Latitude { get; set; }
     public int SpeciesId { get; set; }
+    public int UserId { get; set; } // Assuming you want to include the user ID in the request
 }
 
