@@ -8,8 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "preview": "vite preview",
-    "test": "jest"
+    "preview": "vite preview"    
   },
   "dependencies": {
     "classnames": "^2.5.1",
