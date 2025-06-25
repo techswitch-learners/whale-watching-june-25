@@ -1,36 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.scss'
-import CustomButton from './components/formComponents/customButton/CustomButton'
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+import CloudinaryUploadWidget from './components/CloudinaryUploadWidget';
+import './App.scss';
+
+  const App = () => {
+  // Configuration
+  const cloudName = 'hzxyensd5';
+  const uploadPreset = 'aoh4fpwm';
+
+  // State
+  const [, setPublicId] = useState<string|null>('');
+
+
+  // Upload Widget Configuration
+  const uwConfig = {
+    cloudName,
+    uploadPreset,
+
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <CustomButton onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </CustomButton>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    
+    <div className="App">
 
-export default App
+      <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} />
+    </div>
+  );
+
+};
+
+export default App;

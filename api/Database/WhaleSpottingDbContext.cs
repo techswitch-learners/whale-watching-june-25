@@ -4,9 +4,11 @@ using WhaleSpottingBackend.Models.DatabaseModels;
 
 namespace WhaleSpottingBackend.Database;
 
-class WhaleSpottingDbContext : DbContext
+public class WhaleSpottingDbContext : DbContext
 {
     public DbSet<ExampleModel> ExampleModel { get; set; }
+
+    public DbSet<UploadedImages> UploadedImages { get; set; }
     private IConfiguration _configuration;
     public WhaleSpottingDbContext(IConfiguration configuration)
     {
