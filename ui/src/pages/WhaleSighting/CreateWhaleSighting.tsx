@@ -17,10 +17,10 @@ export function CreateWhaleSightingForm(): JSX.Element {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      date: new Date(),
+      date: new Date().toISOString().split('T')[0],
       location: { latitude: 0, longitude: 0 },
       description: "",
-      species: "",
+      speciesId: 0,
     },
   });
 
@@ -57,14 +57,14 @@ export function CreateWhaleSightingForm(): JSX.Element {
   }, []);
 
   function submitForm(data: {
-    date: Date;
+    date: string;
     location: { latitude: number; longitude: number };
     description: string;
-    species: string;
+    speciesId: number;
   }) {
     const sightingData = {
       ...data,
-      date: data.date,
+      date: new Date(data.date),
     };
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
@@ -148,17 +148,17 @@ export function CreateWhaleSightingForm(): JSX.Element {
 
           <select
             className="form-input"
-            {...register("species", formErrors.species)}
+            {...register("speciesId", formErrors.species)}
           >
             <option value="">Select</option>
             <option value="1">Humpback Whale</option>
             <option value="2">Blue Whale</option>
             {selectedSpecies.map((species) => (
-              <option value={species.id}>{species.species}</option>
+              <option key={species.id} value={species.id}>{species.species}</option>
             ))}
           </select>
-          {errors.species && (
-            <span className="error">{errors.species.message}</span>
+          {errors.speciesId && (
+            <span className="error">{errors.speciesId.message}</span>
           )}
         </label>
       </div>
