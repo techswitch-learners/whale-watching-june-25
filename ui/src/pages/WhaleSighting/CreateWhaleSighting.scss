@@ -1,34 +1,59 @@
-.create-whale-sighting-form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: space-between;
+@import "../../styles/Constants";
+
+h1 {
+    @include header;  
 }
 
-label {
+
+.create-whale-sighting-form {      
     display: flex;
-    align-items: center;
+    flex-flow: column;
+    align-content: flex-start;
+}
+
+label{
+    @include labelFormInput;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 5px;
+    gap: 4px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+     
+}
+
+ .form-input  {
+    @include labelFormInput;
+    display:flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    border-radius: 3px;
+     
+}
+
+.label-text{
+    display: inline-flex;
+}
+
+button {
+    @include primaryButton;
+    display:flex;
+    margin-top: 10px;
+    width: fit-content;
+    padding: 10px 10px;
+            
+}
+
+.error {    
+    @include error;  
+}
+
+.required {
+    color: $errorFontColor;
    
 }
-
-.form-input {   
-      min-width: 300px; 
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-}
-
-
-button[type="submit"] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: gray;    
-}
-
-  

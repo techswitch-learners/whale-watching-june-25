@@ -1,80 +1,51 @@
-// @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
-$color-primary: orange;
-$color-background: #FFFFFF;
-$color-background-darker: darken($color-background, 10%);
-$color-foreground: #111111;
+$orangeBackground: #FF8A5B;
+$blueBackground: #254E70;
+$tealBackground: #22AAA1;
+$whiteBackground: #F8F7F9;
+$lightBlueBackground: #E9F1F7;
 
-// $spacing-small: 10px;
-// $spacing-medium: 20px;
+$fontFamily: 'Lato', sans-serif;
+$fontColor: black;
 
-// $gutter-width: $spacing-medium;
 
-@mixin font($font-size, $line-height: 1.5, $color: $color-foreground) {
-  font-family: "Roboto", sans-serif;
+$buttonBackground: #FF8A5B;
+
+$errorFontColor: red;
+
+@mixin font($font-size, $line-height, $color) {
+  font-family: $fontFamily;
   font-size: $font-size;
   line-height: $line-height;
   color: $color;
   text-decoration: none;
 }
 
-// @mixin navFont() {
-//   @include font(24px, 2, $color-background);
-// }
+@mixin buttonFont($color) {
+ @include font(17px, 1, $color);
+  text-transform: uppercase;
+  font-family: $fontFamily;
+  font-weight: bold;
+}
 
-// @mixin homeLinkFont() {
-//   @include font(28px, 2, $color-background);
-// }
+@mixin primaryButton() {
+  @include buttonFont($whiteBackground);
+  border: none;
+  border-radius: 5px;
+  background-color: $buttonBackground;
+  cursor: pointer; 
+  width: 100%;  
+}
 
-// @mixin footerFont() {
-//   @include font(16px, 2, $color-background);
-// }
+@mixin labelFormInput(){
+  @include font(17px, 1, $fontColor);
+}
 
-// @mixin buttonFont($color) {
-//   @include font(17px, 2, $color);
-//   text-transform: uppercase;
-//   font-weight: bold;
-// }
+@mixin error(){
+  @include font(15px, 1, $errorFontColor);
+}
 
-// @mixin titleFont() {
-//   @include font(32px);
-// }
-
-// @mixin labelFont() {
-//   @include font(14px, 1);
-//   text-transform: uppercase;
-// }
-
-// @mixin bodyFont() {
-//   @include font(20px);
-// }
-
-// @mixin primaryButton() {
-//   @include buttonFont($color-background);
-//   border: none;
-//   background-color: $color-primary;
-//   width: 100%;
-// }
-
-// @mixin secondaryButton() {
-//   @include buttonFont($color-primary);
-//   border: 1px solid;
-//   background-color: transparent;
-//   width: 100%;
-// }
-
-// @mixin formLabel() {
-//   @include labelFont;
-//   display: block;
-//   margin: $spacing-medium 0;
-// }
-
-// @mixin formInput() {
-//   @include bodyFont;
-//   display: block;
-//   width: 100%;
-//   border: none;
-//   border-bottom: 1px solid;
-//   background-color: transparent;
-//   outline: none;
-// }
+@mixin header(){
+     @include font(40px, 1, $fontColor);
+}

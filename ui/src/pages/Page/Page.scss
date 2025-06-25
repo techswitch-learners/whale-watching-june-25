@@ -1,8 +1,20 @@
-// @import "../../Styles/constants";
+@import "../../Styles/constants";
 
 
-// .page {
-//   background-color: $color-background;
+body {
+  background-color: $lightBlueBackground;
+
+ .main {
+    box-sizing: border-box;
+  }  
+}
+
+.page {
+    background-color: $whiteBackground;
+    @include font(17px, 1, $fontColor);
+}
+
+
+
+
   
-
-// }
