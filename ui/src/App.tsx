@@ -11,12 +11,6 @@ import './App.scss';
   // State
   const [, setPublicId] = useState<string|null>('');
 
-  // Cloudinary configuration
-  // const cld = new Cloudinary({
-  //   cloud: {
-  //     cloudName,
-  //   },
-  // });
 
   // Upload Widget Configuration
   const uwConfig = {

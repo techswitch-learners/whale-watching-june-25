@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace WhaleSpottingBackend.Models.DatabaseModels;
 
 public class UploadedImages
