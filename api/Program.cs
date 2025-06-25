@@ -2,6 +2,21 @@ using WhaleSpottingBackend.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    if (builder.Environment.IsDevelopment())
+    {
+        options.AddDefaultPolicy(
+           policy =>
+           {
+               policy.WithOrigins("http://localhost:5173")
+                   .AllowAnyMethod()
+                   .AllowCredentials()
+                   .AllowAnyHeader();
+           });
+    }
+});
+
 // Add services to the container.
 builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
@@ -20,6 +35,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();

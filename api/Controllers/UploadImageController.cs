@@ -15,11 +15,13 @@ public class UploadImageController(WhaleSpottingDbContext context)  : Controller
         [HttpPost("store-image-url")]
         public async Task<IActionResult> StoreImageUrl([FromBody] UploadedImages image)
         {
+        Console.WriteLine("in the controller");
             if (string.IsNullOrEmpty(image.Public_Id) || string.IsNullOrEmpty(image.Image_URL))
-            {
-                return BadRequest(new { error = "Missing public_id or image_url" });
-            }
-
+        {
+             Console.WriteLine("in the controller: bad request");
+            return BadRequest(new { error = "Missing public_id or image_url" });
+        }
+ Console.WriteLine("in the controller: good request");
             _context.UploadedImages.Add(image);
             await _context.SaveChangesAsync();
 
