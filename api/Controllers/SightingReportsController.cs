@@ -3,6 +3,8 @@ using WhaleSpottingBackend.Models.Request;
 
 
 using Microsoft.AspNetCore.Mvc;
+using WhaleSpottingBackend.Models.Database;
+using WhaleSpottingBackend.Models.Response;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -15,6 +17,15 @@ namespace WhaleSpottingBackend.Controllers
         public SightingReportsController(ISightingReportsService sightingReports)
         {
             _sightingReports = sightingReports;
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<ActionResult<List<SightingReportResponse>>> GetAllSightings()
+        {
+            var allSightings = await _sightingReports.GetAllSightingsResponse();
+            if (allSightings.Count == 0) return NotFound(new { message = "No sightings found" });
+            return allSightings;
         }
 
         [HttpPost("create")]
