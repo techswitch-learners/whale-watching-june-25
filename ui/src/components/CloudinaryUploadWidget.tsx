@@ -36,10 +36,11 @@ const CloudinaryUploadWidget = ({
             setPublicId(result.info.public_id);
 
             const imageUrl = `https://res.cloudinary.com/${uwConfig.cloudName}/image/upload/${result.info.public_id}`;
-            fetch('api/Controllers/UploadImageController/store-image-url', {
+            fetch('https://localhost:5067/UploadImage/store-image-url', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
+                //'Access-Control-Allow-Origin': '*'
               },
               body: JSON.stringify({ Public_Id: result.info.public_id, Image_URL: imageUrl }),
             });
