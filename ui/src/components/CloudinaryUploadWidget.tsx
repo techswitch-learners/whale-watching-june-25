@@ -1,11 +1,20 @@
 import { useEffect, useRef } from 'react';
 
+
+interface UploadResult {
+  event: string;
+  info: {
+    public_id: string;
+    secure_url: string;
+};
+}
+
 declare global {
   interface Window {
     cloudinary?: {
       createUploadWidget: (
         config: object,
-        callback: (error: any, result: any) => void
+        callback: (error: string, result:UploadResult ) => void
       ) => {
         open: () => void;
       };
@@ -14,7 +23,7 @@ declare global {
 }
 
 interface CloudinaryUploadWidgetProps {
-  uwConfig: { cloudName: string; [key: string]: any };
+  uwConfig: { cloudName: string; [key: string]: string };
   setPublicId: (id: string) => void;
 }
 
@@ -30,7 +39,7 @@ const CloudinaryUploadWidget = ({
       // Create upload widget
       uploadWidgetRef.current = window.cloudinary.createUploadWidget(
         uwConfig,
-        (error: any, result: any) => {
+        (error: string, result: UploadResult) => {
           if (!error && result && result.event === 'success') {
             console.log('Upload successful:', result.info);
             setPublicId(result.info.public_id);

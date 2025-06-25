@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-import { Cloudinary } from '@cloudinary/url-gen';
-import { AdvancedImage, responsive, placeholder } from '@cloudinary/react';
+import { useState } from 'react';
 
 import CloudinaryUploadWidget from './components/CloudinaryUploadWidget';
 import './App.scss';
@@ -11,14 +9,14 @@ import './App.scss';
   const uploadPreset = 'aoh4fpwm';
 
   // State
-  const [publicId, setPublicId] = useState<string|null>('');
+  const [, setPublicId] = useState<string|null>('');
 
   // Cloudinary configuration
-  const cld = new Cloudinary({
-    cloud: {
-      cloudName,
-    },
-  });
+  // const cld = new Cloudinary({
+  //   cloud: {
+  //     cloudName,
+  //   },
+  // });
 
   // Upload Widget Configuration
   const uwConfig = {
