@@ -2,7 +2,7 @@ using System.Globalization;
 using CsvHelper;
 using WhaleSpottingBackend.Models;
 
-namespace WhaleSpottingBackend.Services
+namespace WhaleSpottingBackend.Helpers
 {
     public class WhaleSpeciesSeeder
     {
