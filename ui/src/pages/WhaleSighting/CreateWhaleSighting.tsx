@@ -164,8 +164,6 @@ export function CreateWhaleSightingForm(): JSX.Element {
             {...register("speciesId", formErrors.species)}
           >
             <option value="">Select</option>
-            {/* <option value="1">Humpback Whale</option>
-            <option value="2">Blue Whale</option> */}
             {selectedSpecies.map((species) => (
               <option key={species.id} value={species.id}>
                 {species.species}
