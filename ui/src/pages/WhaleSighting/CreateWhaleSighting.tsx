@@ -1,6 +1,6 @@
 import { JSX, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import  "./CreateWhaleSighting.scss";
+import "./CreateWhaleSighting.scss";
 import {
   Species,
   createWhaleSighting,
@@ -17,8 +17,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      date: new Date().toISOString().split('T')[0],
-      location: { latitude: 0, longitude: 0 },
+      date: new Date().toISOString().split("T")[0],
+      latitude: 0,
+      longitude: 0,
       description: "",
       speciesId: 0,
     },
@@ -52,16 +53,20 @@ export function CreateWhaleSightingForm(): JSX.Element {
 
   useEffect(() => {
     fetchSpecies()
-      .then((response) => setSelectedSpecies(response.items))
+      .then((response) => {
+        setSelectedSpecies(response.items);
+      })
       .catch((err) => console.error(err));
   }, []);
 
   function submitForm(data: {
     date: string;
-    location: { latitude: number; longitude: number };
+    latitude: number;
+    longitude: number;
     description: string;
     speciesId: number;
   }) {
+    console.log(errors);
     const sightingData = {
       ...data,
       date: new Date(data.date),
@@ -69,6 +74,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));
+    console.log(status);
   }
 
   if (status === "FINISHED") {
@@ -92,6 +98,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
           </span>
           <input
             className="form-input"
+            id="date"
             type="date"
             {...register("date", formErrors.date)}
           />
@@ -106,11 +113,12 @@ export function CreateWhaleSightingForm(): JSX.Element {
           </span>
           <input
             className="form-input"
+            id="latitude"
             type="number"
-            {...register("location.latitude", formErrors.latitude)}
+            {...register("latitude", formErrors.latitude)}
           />
-          {errors.location?.latitude && (
-            <span className="error">{errors.location.latitude.message}</span>
+          {errors.latitude && (
+            <span className="error">{errors.latitude.message}</span>
           )}
         </label>
       </div>
@@ -123,11 +131,12 @@ export function CreateWhaleSightingForm(): JSX.Element {
           </span>
           <input
             className="form-input"
+            id="longitude"
             type="number"
-            {...register("location.longitude", formErrors.longitude)}
+            {...register("longitude", formErrors.longitude)}
           />
-          {errors.location?.longitude && (
-            <span className="error">{errors.location.longitude.message}</span>
+          {errors.longitude && (
+            <span className="error">{errors.longitude.message}</span>
           )}
         </label>
       </div>
@@ -135,7 +144,11 @@ export function CreateWhaleSightingForm(): JSX.Element {
       <div>
         <label className="form-label">
           Description
-          <input className="form-input" {...register("description")} />
+          <input
+            className="form-input"
+            id="description"
+            {...register("description")}
+          />
         </label>
       </div>
 
@@ -151,10 +164,12 @@ export function CreateWhaleSightingForm(): JSX.Element {
             {...register("speciesId", formErrors.species)}
           >
             <option value="">Select</option>
-            <option value="1">Humpback Whale</option>
-            <option value="2">Blue Whale</option>
+            {/* <option value="1">Humpback Whale</option>
+            <option value="2">Blue Whale</option> */}
             {selectedSpecies.map((species) => (
-              <option key={species.id} value={species.id}>{species.species}</option>
+              <option key={species.id} value={species.id}>
+                {species.species}
+              </option>
             ))}
           </select>
           {errors.speciesId && (
