@@ -1,6 +1,6 @@
 using WhaleSpottingBackend.Database;
-using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Helpers;
+using WhaleSpottingBackend.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
