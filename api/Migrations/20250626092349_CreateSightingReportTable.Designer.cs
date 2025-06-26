@@ -12,8 +12,8 @@ using WhaleSpottingBackend.Database;
 namespace WhaleSpottingBackend.Migrations
 {
     [DbContext(typeof(WhaleSpottingDbContext))]
-    [Migration("20250625101433_AddUserId")]
-    partial class AddUserId
+    [Migration("20250626092349_CreateSightingReportTable")]
+    partial class CreateSightingReportTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

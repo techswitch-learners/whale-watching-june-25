@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Identity;
 using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Models.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,21 @@ builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthorization();
+
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+        .AddRoles<IdentityRole>()
+        .AddEntityFrameworkStores<WhaleSpottingDbContext>();
+
+
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider;
+    await RoleSeeder.CreateRoles(context);
+    await RoleSeeder.CreateFirstAdminUser(context);
+};
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -24,8 +40,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapIdentityApi<User>();
 
 app.Run();
