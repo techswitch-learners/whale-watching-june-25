@@ -154,7 +154,7 @@ namespace WhaleSpottingBackend.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WhaleSpottingBackend.Models.DatabaseModels.ExampleModel", b =>
+            modelBuilder.Entity("WhaleSpottingBackend.Models.Database.SightingReport", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,16 +162,36 @@ namespace WhaleSpottingBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ExampleField")
-                        .HasColumnType("text")
-                        .HasColumnName("ExampleColumn");
+                    b.Property<DateOnly>("DateOfSighting")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<float>("Latitude")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Longitude")
+                        .HasColumnType("real");
+
+                    b.Property<string>("RejectedReason")
+                        .HasColumnType("text");
+
+                    b.Property<int>("SpeciesId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ExampleModel");
+                    b.ToTable("SightingReports");
                 });
 
-            modelBuilder.Entity("WhaleSpottingBackend.Models.DatabaseModels.UserModel", b =>
+            modelBuilder.Entity("WhaleSpottingBackend.Models.Database.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -246,7 +266,7 @@ namespace WhaleSpottingBackend.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
+                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -255,7 +275,7 @@ namespace WhaleSpottingBackend.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
+                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -270,7 +290,7 @@ namespace WhaleSpottingBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
+                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -279,7 +299,7 @@ namespace WhaleSpottingBackend.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
+                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

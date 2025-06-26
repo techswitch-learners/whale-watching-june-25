@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Identity;
-using WhaleSpottingBackend.Models.DatabaseModels;
+using WhaleSpottingBackend.Models.Database;
 
 public static class RoleSeeder
 {
@@ -20,7 +20,7 @@ public static class RoleSeeder
     public static async Task CreateFirstAdminUser(IServiceProvider serviceProvider)
     {
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var userManager = serviceProvider.GetRequiredService<UserManager<UserModel>>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
         var adminEmail = "admin@whalespotting.com";
         var adminPassword = "Admin@123";
@@ -29,7 +29,7 @@ public static class RoleSeeder
 
         if (userExist == null)
         {
-            var adminUser = new UserModel
+            var adminUser = new User
             {
                 UserName = adminEmail,
                 Email = adminEmail,
@@ -50,7 +50,7 @@ public static class RoleSeeder
 
     public static async Task AssignAdminRole(IServiceProvider serviceProvider)
     {
-        var UserManager = serviceProvider.GetRequiredService<UserManager<UserModel>>();
+        var UserManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
         var adminEmail = "test@test.com";
         var user = await UserManager.FindByEmailAsync(adminEmail);

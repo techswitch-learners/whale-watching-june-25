@@ -1,19 +1,23 @@
 using Microsoft.AspNetCore.Identity;
 using WhaleSpottingBackend.Database;
-using WhaleSpottingBackend.Models.DatabaseModels;
+using WhaleSpottingBackend.Services;
+using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Models.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
+builder.Services.AddScoped<ISightingReportsRepo, SightingReportsRepo>();
+builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
         .AddRoles<IdentityRole>()
         .AddEntityFrameworkStores<WhaleSpottingDbContext>();
 
@@ -41,6 +45,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapIdentityApi<UserModel>();
+app.MapIdentityApi<User>();
 
 app.Run();
