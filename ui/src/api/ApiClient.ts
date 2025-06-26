@@ -2,7 +2,6 @@ export interface ListResponse<T> {
     items: T[];
 }
 
-
 export type coordinates = {
     latitude: number;
     longitude: number;

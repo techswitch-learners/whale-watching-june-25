@@ -4,7 +4,6 @@ h1 {
   @include header;  
 }
 
-
 .sign-up-form {      
   display: flex;
   flex-flow: column;
@@ -20,9 +19,8 @@ label{
   align-items: flex-start;
   justify-content: space-between;
   gap: 4px;
-  margin-bottom: 5px;
+  margin: 5px 0;
   border-radius: 3px;
-     
 }
 
  .input  {
@@ -32,7 +30,7 @@ label{
   flex-grow: 1;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   border-radius: 3px;
 }
 
@@ -43,15 +41,16 @@ label{
 button {
   @include primaryButton;
   display:flex;
-  margin-top: 10px;
+  margin: 24px auto;
   width: fit-content;
-  padding: 10px 10px;
-            
+  padding: 10px 10px;       
 }
 
 .error-message {    
   @include error;
-  margin-top: 0;
+  margin: 12px 0;
+  width: 200px;
+  font-size: 12px;
 }
 
 .password {

@@ -8,7 +8,6 @@ type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED"
 
 export function SignUpForm(): JSX.Element {
     const [status, setStatus] = useState<FormStatus>("READY");
-
     const [formInput, setFormInput] = useState({
         username: "",
         email: "",
@@ -111,7 +110,7 @@ export function SignUpForm(): JSX.Element {
         if(strength !== "Strong") {
             setFormError({
                 ...inputError,
-                password: "Passwords must be at least 6 characters long, with lowercase and uppercase letters, a number and a special character"
+                password: "Passwords must be at least 6 characters long, have lowercase and uppercase letters, a number and a special character"
             });
             return;
         }
@@ -160,7 +159,6 @@ export function SignUpForm(): JSX.Element {
                 />
                 <p className="error-message">{formError.email}</p>
 
-
                 <label className="label">Password</label>
                 <input
                     value={formInput.password}
@@ -169,7 +167,7 @@ export function SignUpForm(): JSX.Element {
                         setStrength(evaluatePasswordStrength(target.value));
                     }}
                     name="password"
-                    type="text"
+                    type="password"
                     className="input password"
                     placeholder="Enter a secure password"
                 />
@@ -184,7 +182,7 @@ export function SignUpForm(): JSX.Element {
                     </small>
                 <p className="error-message">{formError.password}</p>
 
-                <label className="label">Confirm password</label>
+                <label className="label confirm-pw">Confirm password</label>
                 <input
                     value={formInput.confirmPassword}
                     onChange={({target}) => {
