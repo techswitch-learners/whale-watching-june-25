@@ -7,10 +7,12 @@ import {
   fetchSpecies,
 } from "../../api/ApiClient";
 import { Page } from "../Page/Page";
+import CloudinaryUploadWidget from "../../components/Widgets/CloudinaryUploadWidget";
 
-type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";
+type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
 export function CreateWhaleSightingForm(): JSX.Element {
+  const [url, setUrl] = useState<string>('');
   const {
     register,
     handleSubmit,
@@ -23,9 +25,18 @@ export function CreateWhaleSightingForm(): JSX.Element {
       speciesId: 0,
     },
   });
-
   const [status, setStatus] = useState<FormStatus>("READY");
   const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);
+  const [, setPublicId] = useState<string>('');
+
+  const cloudName = 'hzxyensd5';
+  const uploadPreset = 'aoh4fpwm';
+
+  const uwConfig = {
+    cloudName,
+    uploadPreset,
+
+  };
 
   const formErrors = {
     date: {
@@ -64,8 +75,10 @@ export function CreateWhaleSightingForm(): JSX.Element {
   }) {
     const sightingData = {
       ...data,
+      imageUrl: url,
       date: new Date(data.date),
     };
+
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));
@@ -80,6 +93,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
   }
 
   return (
+    <div>
+    <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} setUrl={setUrl} />
+
     <form
       className="create-whale-sighting-form"
       onSubmit={handleSubmit(submitForm)}
@@ -169,9 +185,10 @@ export function CreateWhaleSightingForm(): JSX.Element {
         type="submit"
       >
         Submit
-      </button>
+      </button >
       {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
     </form>
+    </div>
   );
 }
 

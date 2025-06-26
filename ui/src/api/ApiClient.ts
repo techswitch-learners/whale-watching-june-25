@@ -12,7 +12,8 @@ export interface WhaleSighting {
     date: Date;
     location: coordinates;
     description?: string; 
-    speciesId: number;   
+    speciesId: number; 
+    imageUrl: string;  
 }
 
 export interface Species {
