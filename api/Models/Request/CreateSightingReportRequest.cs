@@ -8,6 +8,7 @@ public class CreateSightingReportRequest
     public required float Longitude { get; set; }
     public required float Latitude { get; set; }
     public int SpeciesId { get; set; }
+    public string? ImageUrl { get; set; }
     public int UserId { get; set; }
 }
 

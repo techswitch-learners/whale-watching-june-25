@@ -28,6 +28,7 @@ public class SightingReportsService : ISightingReportsService
             Latitude = newReport.Latitude,
             SpeciesId = newReport.SpeciesId,
             UserId = newReport.UserId,
+            ImageUrl = newReport.ImageUrl,
             Status = "Pending",
             RejectedReason = null
         };
