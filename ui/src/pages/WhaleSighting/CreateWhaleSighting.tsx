@@ -1,6 +1,6 @@
 import { JSX, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "./CreateWhaleSighting.scss";
+import  "./CreateWhaleSighting.scss";
 import {
   Species,
   createWhaleSighting,
