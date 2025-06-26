@@ -25,5 +25,4 @@ namespace WhaleSpottingBackend.Models
 
         public string? Food { get; set; }
     }
-
 }

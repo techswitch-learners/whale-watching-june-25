@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using WhaleSpottingBackend;
 using WhaleSpottingBackend.Models;
-// using WhaleSpottingBackend.Models.DatabaseModels;
-// using WhaleSpottingBackend;
+
 
 namespace WhaleSpottingBackend.Database
 {

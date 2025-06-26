@@ -1,29 +1,13 @@
 using WhaleSpottingBackend.Database;
-using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddCors(options =>
-{
-    if (builder.Environment.IsDevelopment())
-    {
-        options.AddDefaultPolicy(policy =>
-        {
-            policy
-                .WithOrigins("http://localhost:5173")
-                .AllowAnyMethod()
-                .AllowCredentials()
-                .AllowAnyHeader();
-        });
-    }
-});
 
 // Add services to the container.
 builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IWhaleSpeciesRepository, WhaleSpeciesRepository>();
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
