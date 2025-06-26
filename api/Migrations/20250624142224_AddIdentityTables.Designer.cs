@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpottingBackend.Database;
@@ -11,9 +12,11 @@ using WhaleSpottingBackend.Database;
 namespace WhaleSpottingBackend.Migrations
 {
     [DbContext(typeof(WhaleSpottingDbContext))]
-    partial class WhaleSpottingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250624142224_AddIdentityTables")]
+    partial class AddIdentityTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,7 +157,7 @@ namespace WhaleSpottingBackend.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WhaleSpottingBackend.Models.Database.SightingReport", b =>
+            modelBuilder.Entity("WhaleSpottingBackend.Models.DatabaseModels.ExampleModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,82 +165,16 @@ namespace WhaleSpottingBackend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("DateOfSighting")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("text");
-
-                    b.Property<float>("Latitude")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Longitude")
-                        .HasColumnType("real");
-
-                    b.Property<string>("RejectedReason")
-                        .HasColumnType("text");
-
-                    b.Property<int>("SpeciesId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("ExampleField")
+                        .HasColumnType("text")
+                        .HasColumnName("ExampleColumn");
 
                     b.HasKey("Id");
 
-                    b.ToTable("SightingReports");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateOfSighting = new DateOnly(2022, 6, 13),
-                            Description = "Whales sighting 1",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 1,
-                            Status = "pending",
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateOfSighting = new DateOnly(2000, 6, 10),
-                            Description = "Whales sighting 2",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 1,
-                            Status = "pending",
-                            UserId = 4
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DateOfSighting = new DateOnly(2022, 6, 16),
-                            Description = "Whales sighting 3",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 3,
-                            Status = "pending",
-                            UserId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DateOfSighting = new DateOnly(2025, 6, 18),
-                            Description = "Whales sighting 4",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 2,
-                            Status = "approved",
-                            UserId = 2
-                        });
+                    b.ToTable("ExampleModel");
                 });
 
-            modelBuilder.Entity("WhaleSpottingBackend.Models.Database.User", b =>
+            modelBuilder.Entity("WhaleSpottingBackend.Models.DatabaseModels.UserModel", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -312,7 +249,7 @@ namespace WhaleSpottingBackend.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
+                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -321,7 +258,7 @@ namespace WhaleSpottingBackend.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
+                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -336,7 +273,7 @@ namespace WhaleSpottingBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
+                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -345,7 +282,7 @@ namespace WhaleSpottingBackend.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("WhaleSpottingBackend.Models.Database.User", null)
+                    b.HasOne("WhaleSpottingBackend.Models.DatabaseModels.UserModel", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
