@@ -27,7 +27,7 @@ public class SightingReportsService : ISightingReportsService
             Longitude = newReport.Longitude,
             Latitude = newReport.Latitude,
             SpeciesId = newReport.SpeciesId,
-            UserId = newReport.UserId, // Assuming you want to include the user ID in the report
+            UserId = newReport.UserId,
             Status = "Pending",
             RejectedReason = null
         };

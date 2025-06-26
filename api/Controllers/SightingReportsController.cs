@@ -29,9 +29,9 @@ namespace WhaleSpottingBackend.Controllers
             {
                 _sightingReports.CreateReport(newReport);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return BadRequest(ModelState);
+                return StatusCode(500, ex.Message);
             }
 
             return Ok(new { message = "Your sighting report has been sucessfully submitted and is pending review." });
