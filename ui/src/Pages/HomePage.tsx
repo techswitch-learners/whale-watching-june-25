@@ -1,4 +1,4 @@
-const HomePage = () : any => {
+const HomePage = () => {
     
     return (
         <div>

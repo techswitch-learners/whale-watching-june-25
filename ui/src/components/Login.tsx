@@ -2,7 +2,7 @@ import React, { useState, JSX } from 'react';
 import { useNavigate } from "react-router";
 import {login} from "../API_Client";
 
-const Login: React.FC = ({}): JSX.Element =>  {
+const Login: React.FC = (): JSX.Element =>  {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -39,7 +39,7 @@ const Login: React.FC = ({}): JSX.Element =>  {
         await login(email, password);
         navigate("/home");
         } catch (err) {
-            setError("Login failed, please check your credentials.")
+            setError(`Login failed, please check your credentials. ${err}`)
         }
     }
 
