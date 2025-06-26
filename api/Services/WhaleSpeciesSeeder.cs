@@ -1,11 +1,5 @@
-using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.CompilerServices;
 using CsvHelper;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore.Query;
-using Npgsql;
-using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Models;
 
 namespace WhaleSpottingBackend.Services

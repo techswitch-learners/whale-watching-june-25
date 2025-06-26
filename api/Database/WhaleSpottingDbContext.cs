@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using WhaleSpottingBackend;
 using WhaleSpottingBackend.Models;
 
 

@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.DataProtection.Repositories;
+using Microsoft.EntityFrameworkCore;
 using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace WhaleSpottingBackend.Repositories
 {
