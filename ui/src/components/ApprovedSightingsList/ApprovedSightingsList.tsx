@@ -1,24 +1,32 @@
 import React, {useState, useEffect } from "react";
 import "./ApprovedSightingsList.scss";
-// Update the import path below if your ApiClient file is located elsewhere
+// import {allSightings} from '..api\Controllers\SightingReportsController.cs'
+
 import { fetchSightings, SightingReport } from "../../../api/ApiClient";
 
 export function ApprovedSightingsList() {
 
-    const [approvedSightings, setApprovedSightings] = useState<SightingReport[]>([]);
+    const [sightings, setSightings] = useState<SightingReport[]>([]);
 
     useEffect(() => {
         fetchSightings().then((response) => {
-            setApprovedSightings(response);
+            setSightings(response);
         });
     }, []);
 
+
+const ApprovedSightings = sightings.filter(sighting => sighting.status === 'approved');
+    
     return (
-        <>
-        {approvedSightings && approvedSightings.map((sightingReport: SightingReport) => {
-            console.log(sightingReport.description);
-            return <p>{sightingReport.description}</p>;
-        })}
+     <>
+     {ApprovedSightings.length > 0 ? (
+         ApprovedSightings.map((sightingReport: SightingReport) => (
+        <p key={sightingReport.userId}>{sightingReport.description}</p>
+        ))
+        ) : (
+        <p>No approved sightings</p>
+            )}
         </>
-    )
-}
+        );
+    }
+
