@@ -66,5 +66,4 @@ export async function createUser(newUser: NewUser) {
     if (!response.ok) {
         throw new Error(await response.json())
     }
-
 }

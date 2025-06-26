@@ -1,15 +1,19 @@
 import { FormEvent, JSX, useState} from "react";
 import "./SignUp.scss";
 import { Page } from "../Page/Page";
+import { createUser } from "../../api/ApiClient";
+import { Navigate } from 'react-router-dom';
+
+type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED"
 
 export function SignUp(): JSX.Element {
-    
+    const [status, setStatus] = useState<FormStatus>("READY");
+
     const [formInput, setFormInput] = useState({
         username: "",
         email: "",
         password: "",
-        confirmPassword: "",
-        successMessage: ""
+        confirmPassword: ""
     });
 
     const [formError, setFormError] = useState({
@@ -28,8 +32,8 @@ export function SignUp(): JSX.Element {
     
     const validateForm = (event: FormEvent) => {
         event.preventDefault();
-
-        let inputError = {
+        setStatus("SUBMITTING");
+        const inputError = {
             username: "",
             email: "",
             password: "",
@@ -79,10 +83,19 @@ export function SignUp(): JSX.Element {
         }
 
         setFormError(inputError);
-        setFormInput((prevState) => ({
-            ...prevState,
-            successMessage: "Success!"
-        }));
+
+        const newUser = {
+            username: formInput.username,
+            email: formInput.email,
+            password: formInput.password
+        }
+        createUser(newUser)
+            .then(() => setStatus("FINISHED"))
+            .catch(() => setStatus("ERROR"));
+    }
+
+    if (status === "FINISHED") {
+        return <Navigate to="/add-new-sighting" replace />;
     }
 
     return (
@@ -141,9 +154,9 @@ export function SignUp(): JSX.Element {
                     placeholder="Confirm password"
                 />
                 <p className="error-message">{formError.confirmPassword}</p>
-                <p className="success-message">{formInput.successMessage}</p>
 
                 <button className="submit-button" type="submit" value="Submit">Sign Up</button>
+                {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
             </form>
         </Page>
     );
