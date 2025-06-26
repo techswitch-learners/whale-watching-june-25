@@ -5,7 +5,7 @@
 namespace WhaleSpottingBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class whale_species : Migration
+    public partial class seed_test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

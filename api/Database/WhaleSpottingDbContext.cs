@@ -1,19 +1,23 @@
-
 using Microsoft.EntityFrameworkCore;
-using WhaleSpottingBackend.Models.DatabaseModels;
+using WhaleSpottingBackend.Models;
+// using WhaleSpottingBackend.Models.DatabaseModels;
+// using WhaleSpottingBackend;
 
-namespace WhaleSpottingBackend.Database;
-
-class WhaleSpottingDbContext : DbContext
+namespace WhaleSpottingBackend.Database
 {
-    public DbSet<ExampleModel> ExampleModel { get; set; }
-    private IConfiguration _configuration;
-    public WhaleSpottingDbContext(IConfiguration configuration)
+    public class WhaleSpottingDbContext : DbContext
     {
-        _configuration = configuration;
-    }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseNpgsql(_configuration["ConnectionStrings:WhaleSpottingDb"]);
+        public DbSet<WhaleSpecies> WhaleSpecies { get; set; }
+        private IConfiguration _configuration;
+
+        public WhaleSpottingDbContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql(_configuration["ConnectionStrings:WhaleSpottingDb"]);
+        }
     }
 }
