@@ -6,7 +6,7 @@ import { Navigate } from 'react-router-dom';
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED"
 
-export function SignUp(): JSX.Element {
+export function SignUpForm(): JSX.Element {
     const [status, setStatus] = useState<FormStatus>("READY");
 
     const [formInput, setFormInput] = useState({
@@ -15,13 +15,39 @@ export function SignUp(): JSX.Element {
         password: "",
         confirmPassword: ""
     });
-
+    const [strength, setStrength] = useState<string | undefined>("");
+    const [strengthColor, setStrengthColor] = useState('black');
     const [formError, setFormError] = useState({
         username: "",
         email: "",
         password: "",
         confirmPassword: ""
     })
+
+    function evaluatePasswordStrength(password: string) {
+        let score = 0;
+        if (!password) return '';
+        if (password.length >= 6) score += 1;
+        if (/[a-z]/.test(password)) score += 1;
+        if (/[A-Z]/.test(password)) score += 1;
+        if (/\d/.test(password)) score += 1;
+        if (/[^A-Za-z0-9]/.test(password)) score += 1;
+
+        switch (score) {
+            case 0:
+            case 1:
+            case 2:
+                setStrengthColor("red");
+                return "Weak";
+            case 3:
+            case 4:
+                setStrengthColor("orange");
+                return "Medium";
+            case 5:
+                setStrengthColor("green");
+                return "Strong";
+        }
+    }
 
     const handleUserInput = (name: string, value: string) => {
         setFormInput({
@@ -82,6 +108,14 @@ export function SignUp(): JSX.Element {
             return;
         }
 
+        if(strength !== "Strong") {
+            setFormError({
+                ...inputError,
+                password: "Passwords must be at least 6 characters long, with lowercase and uppercase letters, a number and a special character"
+            });
+            return;
+        }
+        
         setFormError(inputError);
 
         const newUser = {
@@ -94,13 +128,11 @@ export function SignUp(): JSX.Element {
             .catch(() => setStatus("ERROR"));
     }
 
-    if (status === "FINISHED") {
+    if (status === "FINISHED" && strength === "Strong") {
         return <Navigate to="/add-new-sighting" replace />;
     }
 
     return (
-        <Page containerClassName="signup">
-            <h1 className="title">Sign Up</h1>
             <form onSubmit={validateForm}>
                 <label className="label">Username</label>
                 <input
@@ -134,12 +166,22 @@ export function SignUp(): JSX.Element {
                     value={formInput.password}
                     onChange={({target}) => {
                         handleUserInput(target.name, target.value)
+                        setStrength(evaluatePasswordStrength(target.value));
                     }}
                     name="password"
                     type="text"
-                    className="input"
+                    className="input password"
                     placeholder="Enter a secure password"
                 />
+                    <small>
+                        Password strength:{' '}
+                            <span style={{
+                                fontWeight: 'bold',
+                                color: strengthColor,
+                            }}>
+                                {strength}
+                            </span>
+                    </small>
                 <p className="error-message">{formError.password}</p>
 
                 <label className="label">Confirm password</label>
@@ -149,7 +191,7 @@ export function SignUp(): JSX.Element {
                         handleUserInput(target.name, target.value)
                     }}
                     name="confirmPassword"
-                    type="text"
+                    type="password"
                     className="input"
                     placeholder="Confirm password"
                 />
@@ -158,6 +200,14 @@ export function SignUp(): JSX.Element {
                 <button className="submit-button" type="submit" value="Submit">Sign Up</button>
                 {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
             </form>
-        </Page>
     );
+}
+
+export function SignUp(): JSX.Element {
+  return (
+    <Page containerClassName="sign-up-form">
+      <h1 className="title">Sign Up</h1>
+      <SignUpForm />
+    </Page>
+  );
 }

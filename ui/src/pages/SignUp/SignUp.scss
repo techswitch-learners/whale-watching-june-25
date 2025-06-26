@@ -1,15 +1,59 @@
 @import "../../styles/Constants";
 
-
-body {
-  background-color: $lightBlueBackground;
-
- .main {
-    box-sizing: border-box;
-  }  
+h1 {
+  @include header;  
 }
 
-.page {
-    background-color: $whiteBackground;
-    @include font(17px, 1, $fontColor);
+
+.sign-up-form {      
+  display: flex;
+  flex-flow: column;
+  align-content: flex-start;
+  padding: 40px 120px;
+}
+
+label{
+  @include labelFormInput;
+  display:flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 5px;
+  border-radius: 3px;
+     
+}
+
+ .input  {
+  @include labelFormInput;
+  display:flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  border-radius: 3px;
+}
+
+.label{
+  display: inline-flex;
+}
+
+button {
+  @include primaryButton;
+  display:flex;
+  margin-top: 10px;
+  width: fit-content;
+  padding: 10px 10px;
+            
+}
+
+.error-message {    
+  @include error;
+  margin-top: 0;
+}
+
+.password {
+  margin-bottom: 0;
 }
