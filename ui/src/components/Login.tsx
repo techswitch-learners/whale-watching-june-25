@@ -47,13 +47,16 @@ const Login: React.FC = ({}): JSX.Element =>  {
         <div>
             <form className="login-form">
                 <div>
-                    <label>Email:</label><br />
+                    <label>Email:</label>
+                    
                     <input name="email" type='email' value={email} onChange={handleChange} required />
                 </div>
+                <br />
                 <div>
-                    <label>Password:</label><br />
+                    <label>Password:</label>
                     <input name="password" type = 'password' onChange={handleChange} required value = {password} />
                 </div>
+                <br />
                 <button className="submit-button" onClick={handleSubmit} type="submit" >Log In</button>
                 <br />
                     {error && <p className='error'>{error}</p>}
