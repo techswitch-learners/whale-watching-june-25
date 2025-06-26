@@ -54,7 +54,7 @@ export async function fetchSpecies(): Promise<ListResponse<Species>> {
 }
 
 export async function createUser(newUser: NewUser) {
-    const response = await fetch(`http://localhost:5067/users`, {
+    const response = await fetch(`http://localhost:5067/users/create`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
