@@ -3,7 +3,7 @@ export interface ListResponse<T> {
 }
 
 export interface WhaleSighting {
-    date: String;
+    date: string;
     longitude: number;
     latitude: number;
     description?: string; 
