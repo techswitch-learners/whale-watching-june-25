@@ -31,6 +31,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
   const formErrors = {
     date: {
       required: "Date is required",
+      validate: "Date cannot be in the future"
     },
     latitude: {
       required: "Latitude is required",
@@ -100,7 +101,21 @@ export function CreateWhaleSightingForm(): JSX.Element {
             className="form-input"
             id="date"
             type="date"
-            {...register("date", formErrors.date)}
+            {...register("date", {
+              required: formErrors.date.required,
+              validate: ((value) => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const selected = new Date(value);
+                selected.setHours(0, 0, 0, 0);
+
+                return selected <= today || formErrors.date.validate
+              }
+
+              )
+            })
+            }
           />
           {errors.date && <span className="error">{errors.date.message}</span>}
         </label>
