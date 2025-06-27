@@ -2,18 +2,14 @@ export interface ListResponse<T> {
     items: T[];
 }
 
-
-export type coordinates = {
-    latitude: number;
-    longitude: number;
-}
-
 export interface WhaleSighting {
-    date: Date;
-    location: coordinates;
+    date: String;
+    longitude: number;
+    latitude: number;
     description?: string; 
     speciesId: number; 
-    imageUrl: string;  
+    imageUrl: string;
+    userId: number;  
 }
 
 export interface Species {
@@ -30,6 +26,7 @@ export interface Species {
 }
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
+    console.log("WHALE API: ", whaleSighting);
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
         headers: {

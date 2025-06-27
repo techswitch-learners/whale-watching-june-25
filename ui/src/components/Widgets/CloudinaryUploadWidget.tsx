@@ -38,22 +38,17 @@ const CloudinaryUploadWidget = ({
 
   useEffect(() => {
     if (window.cloudinary && uploadButtonRef.current) {
-      // Create upload widget
       uploadWidgetRef.current = window.cloudinary.createUploadWidget(
         uwConfig,
         (error: string, result: UploadResult) => {
           if (!error && result && result.event === 'success') {
-            console.log('Upload successful:', result.info);
             setPublicId(result.info.public_id);
-
-             const imageUrl = `https://res.cloudinary.com/${uwConfig.cloudName}/image/upload/${result.info.public_id}`;
-             setUrl(imageUrl);
+            setUrl(result.info.secure_url);
           }
         }
       );
     }
 
-    // Add click event to open widget
     const handleUploadClick = () => {
       if (uploadWidgetRef.current) {
         uploadWidgetRef.current.open();
@@ -65,7 +60,6 @@ const CloudinaryUploadWidget = ({
       buttonElement.addEventListener('click', handleUploadClick);
     }
 
-    // Cleanup
     return () => {
       if (buttonElement) {
         buttonElement.removeEventListener('click', handleUploadClick);

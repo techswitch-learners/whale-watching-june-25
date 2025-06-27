@@ -20,9 +20,12 @@ export function CreateWhaleSightingForm(): JSX.Element {
   } = useForm({
     defaultValues: {
       date: new Date().toISOString().split('T')[0],
-      location: { latitude: 0, longitude: 0 },
+      longitude: 0,
+      latitude: 0, 
       description: "",
       speciesId: 0,
+      imageUrl: "",
+      userId: 1,
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
@@ -69,16 +72,20 @@ export function CreateWhaleSightingForm(): JSX.Element {
 
   function submitForm(data: {
     date: string;
-    location: { latitude: number; longitude: number };
+   longitude: number;   
+   latitude: number; 
     description: string;
     speciesId: number;
   }) {
     const sightingData = {
       ...data,
       imageUrl: url,
-      date: new Date(data.date),
+      date: new Date(data.date).toISOString().split('T')[0],
+      userId: 1,
     };
 
+    console.log("DATA: ", sightingData);
+    
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));
@@ -123,10 +130,10 @@ export function CreateWhaleSightingForm(): JSX.Element {
           <input
             className="form-input"
             type="number"
-            {...register("location.latitude", formErrors.latitude)}
+             {...register("latitude", formErrors.latitude)}
           />
-          {errors.location?.latitude && (
-            <span className="error">{errors.location.latitude.message}</span>
+          {errors.latitude && (
+            <span className="error">{errors.latitude.message}</span>
           )}
         </label>
       </div>
@@ -140,10 +147,11 @@ export function CreateWhaleSightingForm(): JSX.Element {
           <input
             className="form-input"
             type="number"
-            {...register("location.longitude", formErrors.longitude)}
+             {...register("longitude", formErrors.longitude)}
+
           />
-          {errors.location?.longitude && (
-            <span className="error">{errors.location.longitude.message}</span>
+          {errors.longitude && (
+            <span className="error">{errors.longitude.message}</span>
           )}
         </label>
       </div>
