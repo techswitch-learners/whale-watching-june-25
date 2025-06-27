@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from "react";
 import "./ApprovedSightingsList.scss";
 import { fetchSightings, SightingReport } from "../../../api/ApiClient";
+import {format} from 'date-fns';
 
 export function ApprovedSightingsList() {
 
@@ -8,27 +9,52 @@ export function ApprovedSightingsList() {
 
     useEffect(() => {
         fetchSightings().then((response) => {
-            setSightings(response);
+            const approvedSightings = response.filter(sighting => sighting.status === 'approved')
+            .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
+            setSightings(approvedSightings);
         });
     }, []);
 
 
-const ApprovedSightings = sightings.filter(sighting => sighting.status === 'approved');
+    // const ApprovedSightings = sightings
+    //     .filter(sighting => sighting.status === 'approved')
+    //     .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
     
     return (
      <>
-     {ApprovedSightings.length > 0 ? (
-         ApprovedSightings.map((sightingReport: SightingReport) => (
-      <>
-            <p>Date of sighting: {new Date(sightingReport.dateOfSighting).toString()}</p>
-             <p>Sighting latitude: {sightingReport.latitude} Sighting longitude:{sightingReport.longitude}</p>
-            <p>Sighting description: {sightingReport.description}</p>
-            <p>Whale species:{sightingReport.speciesId}</p></> //need to link species id to whale table for more info?
-            //image to go here 
-        ))
+     <h2 id="sightings-list-header">Sightings</h2>
+    <div className="sighting-list-container">
+     {sightings.length > 0 ? (
+        <>
+            <div className="sighting-container">
+                <table className= "approved-sightings-table">
+                    <thead className="approved-sightings-table-header">
+                        <th>Date of sighting: </th>
+                        <th>Species: </th>
+                        <th>Sighting latitude: </th>
+                        <th>Sighting longitude: </th>
+                        <th>Username: </th>
+                        <th>Description: </th>
+                    </thead>
+                    <tbody>
+                        {sightings.map((sightingReport: SightingReport) => 
+                            <tr>
+                                <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
+                                <td>{sightingReport.speciesId}</td>
+                                <td>{sightingReport.latitude}</td>
+                                <td>{sightingReport.longitude}</td>
+                                <td>{sightingReport.userId}</td>
+                                <td>{sightingReport.description}</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            </div>
+            </> 
         ) : (
         <p>No approved sightings</p>
             )}
+    </div>
         </>
         );
     }
