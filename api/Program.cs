@@ -29,7 +29,9 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider;
     await RoleSeeder.CreateRoles(context);
     await RoleSeeder.CreateFirstAdminUser(context);
-};
+    await SightingSeeder.SeedSightings(context);
+}
+;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

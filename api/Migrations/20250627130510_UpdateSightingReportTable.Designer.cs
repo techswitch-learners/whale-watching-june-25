@@ -12,8 +12,8 @@ using WhaleSpottingBackend.Database;
 namespace WhaleSpottingBackend.Migrations
 {
     [DbContext(typeof(WhaleSpottingDbContext))]
-    [Migration("20250627094154_UpdateSightingReportsTable")]
-    partial class UpdateSightingReportsTable
+    [Migration("20250627130510_UpdateSightingReportTable")]
+    partial class UpdateSightingReportTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -195,52 +195,6 @@ namespace WhaleSpottingBackend.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("SightingReports");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateOfSighting = new DateOnly(2022, 6, 13),
-                            Description = "Whales sighting 1",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 1,
-                            Status = "pending",
-                            UserId = "25597013-217f-4b1b-9232-80b6ccbf3690"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateOfSighting = new DateOnly(2000, 6, 10),
-                            Description = "Whales sighting 2",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 1,
-                            Status = "pending",
-                            UserId = "25597013-217f-4b1b-9232-80b6ccbf3690"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DateOfSighting = new DateOnly(2022, 6, 16),
-                            Description = "Whales sighting 3",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 3,
-                            Status = "pending",
-                            UserId = "25597013-217f-4b1b-9232-80b6ccbf3690"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DateOfSighting = new DateOnly(2025, 6, 18),
-                            Description = "Whales sighting 4",
-                            Latitude = 3.710616f,
-                            Longitude = 34534536f,
-                            SpeciesId = 2,
-                            Status = "approved",
-                            UserId = "25597013-217f-4b1b-9232-80b6ccbf3690"
-                        });
                 });
 
             modelBuilder.Entity("WhaleSpottingBackend.Models.Database.User", b =>

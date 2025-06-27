@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace WhaleSpottingBackend.Models.Database;
 
 public class SightingReport
@@ -13,7 +11,7 @@ public class SightingReport
     public required float Latitude { get; set; }
     public int SpeciesId { get; set; }
     public required string UserId { get; set; }
-    public User User { get; set; }    
+    public User? User { get; set; }
     public String? Status { get; set; }
 
     public String? RejectedReason { get; set; }

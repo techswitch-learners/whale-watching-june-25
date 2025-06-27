@@ -51,7 +51,7 @@ public class SightingReportsService : ISightingReportsService
                     Longitude = sighting.Longitude,
                     Latitude = sighting.Latitude,
                     SpeciesId = sighting.SpeciesId,
-                    UserName = sighting.User.UserName,
+                    UserName = sighting.User?.UserName,
                     Status = sighting.Status
                 };
                 allSightingsResponse.Add(sightingResponse);

@@ -10,8 +10,8 @@ namespace WhaleSpottingBackend.Repositories
     public interface ISightingReportsRepo
     {
         void CreateReport(SightingReport newReport);
-        Task<List<SightingReport>>? GetAllSightings();    
-    }   
+        Task<List<SightingReport>>? GetAllSightings();
+    }
 
     public class SightingReportsRepo : ISightingReportsRepo
     {
