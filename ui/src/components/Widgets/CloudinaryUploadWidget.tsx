@@ -6,6 +6,7 @@ interface UploadResult {
   info: {
     public_id: string;
     secure_url: string;
+    bytes: number;
 };
 }
 
@@ -23,7 +24,9 @@ declare global {
 }
 
 interface CloudinaryUploadWidgetProps {
-  uwConfig: { cloudName: string; [key: string]: string };
+  //uwConfig: { cloudName: string; [key: string]: string; [maxFileSize:number]:10000000 ;};
+    uwConfig: { cloudName: string; maxImageFileSize:number; maxVideoFileSize:number};
+
   setPublicId: (id: string) => void;
   setUrl: (url: string) => void;
 }

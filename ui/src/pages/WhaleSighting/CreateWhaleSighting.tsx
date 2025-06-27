@@ -34,11 +34,15 @@ export function CreateWhaleSightingForm(): JSX.Element {
 
   const cloudName = 'hzxyensd5';
   const uploadPreset = 'aoh4fpwm';
+  const maxImageFileSize = 10000000;
+  const maxVideoFileSize = 100000000;
+
 
   const uwConfig = {
     cloudName,
     uploadPreset,
-
+    maxImageFileSize,
+    maxVideoFileSize
   };
 
   const formErrors = {
