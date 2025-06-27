@@ -31,7 +31,9 @@ namespace WhaleSpottingBackend.Repositories
 
         public async Task<List<SightingReport>>? GetAllSightings()
         {
-            return await _context.SightingReports.ToListAsync();
+            return await _context.SightingReports
+                        .Include(s => s.User)
+                        .ToListAsync();
         }
     }
 }
