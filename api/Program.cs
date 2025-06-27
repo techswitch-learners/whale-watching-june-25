@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using WhaleSpottingBackend.Database;
-using WhaleSpottingBackend.Services;
-using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Models.Database;
+using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,16 +12,25 @@ builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
 builder.Services.AddScoped<ISightingReportsRepo, SightingReportsRepo>();
 builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
-        .AddRoles<IdentityRole>()
-        .AddEntityFrameworkStores<WhaleSpottingDbContext>();
-
+builder
+    .Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<WhaleSpottingDbContext>()
+    .Services.Configure<IdentityOptions>(options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+    });
 
 var app = builder.Build();
 
@@ -29,7 +39,8 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider;
     await RoleSeeder.CreateRoles(context);
     await RoleSeeder.CreateFirstAdminUser(context);
-};
+}
+;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
