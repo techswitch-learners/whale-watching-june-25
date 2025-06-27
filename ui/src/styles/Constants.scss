@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+$orangeBackground: #FF8A5B;
+$blueBackground: #254E70;
+$tealBackground: #22AAA1;
+$whiteBackground: #F8F7F9;
+$lightBlueBackground: #E9F1F7;
+
+$fontFamily: 'Lato', sans-serif;
+$fontColor: black;
+
+
+$buttonBackground: #FF8A5B;
+
+$errorFontColor: red;
+
+@mixin font($font-size, $line-height, $color) {
+  font-family: $fontFamily;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+  text-decoration: none;
+}
+
+@mixin buttonFont($color) {
+ @include font(17px, 1, $color);
+  text-transform: uppercase;
+  font-family: $fontFamily;
+  font-weight: bold;
+}
+
+@mixin primaryButton() {
+  @include buttonFont($whiteBackground);
+  border: none;
+  border-radius: 5px;
+  background-color: $buttonBackground;
+  cursor: pointer; 
+  width: 100%;  
+}
+
+@mixin labelFormInput(){
+  @include font(17px, 1, $fontColor);
+}
+
+@mixin error(){
+  @include font(15px, 1, $errorFontColor);
+}
+
+@mixin header(){
+     @include font(40px, 1, $fontColor);
+}
