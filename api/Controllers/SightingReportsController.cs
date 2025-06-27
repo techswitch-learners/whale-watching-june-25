@@ -1,10 +1,7 @@
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Models.Request;
-
-
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http.HttpResults;
-using System.Globalization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -39,6 +36,7 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Your sighting report has been sucessfully submitted and is pending review." });
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPatch("{id}")]
         public IActionResult ApproveSighting(int id)
         {
