@@ -39,12 +39,12 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Your sighting report has been sucessfully submitted and is pending review." });
         }
 
-        [HttpPatch("approve/{sightingId}")]
-        public IActionResult ApproveSighting(int sightingId)
+        [HttpPatch("{id}")]
+        public IActionResult ApproveSighting(int id)
         {
             try
             {
-                _sightingReports.EditSightingReport(sightingId);
+                _sightingReports.EditSightingReport(id);
             }
             catch (ArgumentException ex)
             {
