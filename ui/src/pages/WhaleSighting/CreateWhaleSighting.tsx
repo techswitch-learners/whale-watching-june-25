@@ -39,14 +39,15 @@ export function CreateWhaleSightingForm(): JSX.Element {
   const maxImageFileSize = 10000000;
   const maxVideoFileSize = 100000000;
   const clientAllowedFormats = ["jpg","jpeg","png"];
-
+  const multiple = false;
 
   const uwConfig = {
     cloudName,
     uploadPreset,
     maxImageFileSize,
     maxVideoFileSize,
-    clientAllowedFormats
+    clientAllowedFormats,
+    multiple
   };
 
   const formErrors = {
@@ -91,8 +92,6 @@ export function CreateWhaleSightingForm(): JSX.Element {
       date: new Date(data.date).toISOString().split('T')[0],
       userId: 1,
     };
-
-    console.log("DATA: ", sightingData);
     
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
