@@ -8,6 +8,7 @@ import {
 } from "../../api/ApiClient";
 import { Page } from "../Page/Page";
 import CloudinaryUploadWidget from "../../components/Widgets/CloudinaryUploadWidget";
+import {CheckCircle} from 'react-bootstrap-icons';
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
@@ -31,18 +32,21 @@ export function CreateWhaleSightingForm(): JSX.Element {
   const [status, setStatus] = useState<FormStatus>("READY");
   const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);
   const [, setPublicId] = useState<string>('');
+  const [imageUploaded, setImageUploaded] = useState<boolean>(false);
 
   const cloudName = 'hzxyensd5';
   const uploadPreset = 'aoh4fpwm';
   const maxImageFileSize = 10000000;
   const maxVideoFileSize = 100000000;
+  const clientAllowedFormats = ["jpg","jpeg","png"];
 
 
   const uwConfig = {
     cloudName,
     uploadPreset,
     maxImageFileSize,
-    maxVideoFileSize
+    maxVideoFileSize,
+    clientAllowedFormats
   };
 
   const formErrors = {
@@ -102,10 +106,16 @@ export function CreateWhaleSightingForm(): JSX.Element {
       </div>
     );
   }
-
   return (
     <div>
-    <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} setUrl={setUrl} />
+          {imageUploaded ? (
+      <div>
+           <CheckCircle size={36}/>
+      <p>Photo Uploaded successfully</p>
+      </div>
+    ) : (
+      <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} setUrl={setUrl} setImageUploaded={setImageUploaded}/>
+    )}
 
     <form
       className="create-whale-sighting-form"
