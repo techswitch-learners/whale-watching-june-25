@@ -4,7 +4,7 @@ using WhaleSpottingBackend.Models;
 
 namespace WhaleSpottingBackend.Helpers
 {
-    public class WhaleSpeciesSeeder
+    public class WhaleSpeciesReader
     {
         public static IEnumerable<WhaleSpecies> ReadWhalesFromCsv(string filePath)
         {
@@ -28,14 +28,14 @@ namespace WhaleSpottingBackend.Helpers
 
                 yield return new WhaleSpecies
                 {
-                    Species_Group = Species_Group,
+                    SpeciesGroup = Species_Group,
                     Species = Species,
-                    Latin_Name = Latin_Name,
+                    LatinName = Latin_Name,
                     Habitat = Habitat,
-                    Max_Length_Meters = Max_Length_Meters,
-                    Max_Weight_Tons = Max_Weight_Tons,
-                    Conservation_Status = Conservation_Status,
-                    Max_Age = Max_Age,
+                    MaxLengthMeters = Max_Length_Meters,
+                    MaxWeightTons = Max_Weight_Tons,
+                    ConservationStatus = Conservation_Status,
+                    MaxAge = Max_Age,
                     Food = Food,
                 };
             }

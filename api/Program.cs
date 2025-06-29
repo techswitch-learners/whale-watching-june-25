@@ -21,8 +21,8 @@ using (var serviceScope = app.Services.CreateScope())
 
     if (!context.WhaleSpecies.Any())
     {
-        var csvFilePath = "../api/Database/Data/Whales Data3.csv";
-        var Whales = WhaleSpeciesSeeder.ReadWhalesFromCsv(csvFilePath);
+        var csvFilePath = "../api/Database/Data/SpeciesData.csv";
+        var Whales = WhaleSpeciesReader.ReadWhalesFromCsv(csvFilePath);
         context.WhaleSpecies.AddRange(Whales);
         context.SaveChanges();
     }
