@@ -1,6 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Helpers;
+using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,25 +11,38 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IWhaleSpeciesRepository, WhaleSpeciesRepository>();
+builder.Services.AddScoped<ISightingReportsRepo, SightingReportsRepo>();
+builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthorization();
+
+builder
+    .Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<WhaleSpottingDbContext>();
+
 var app = builder.Build();
 
 using (var serviceScope = app.Services.CreateScope())
 {
-    var context = serviceScope.ServiceProvider.GetRequiredService<WhaleSpottingDbContext>();
+    var serviceProvider = serviceScope.ServiceProvider;
+    var dbContext = serviceProvider.GetRequiredService<WhaleSpottingDbContext>();
 
-    if (!context.WhaleSpecies.Any())
+    if (!dbContext.WhaleSpecies.Any())
     {
         var csvFilePath = "../api/Database/Data/SpeciesData.csv";
         var Whales = WhaleSpeciesReader.ReadWhalesFromCsv(csvFilePath);
-        context.WhaleSpecies.AddRange(Whales);
-        context.SaveChanges();
+        dbContext.WhaleSpecies.AddRange(Whales);
+        dbContext.SaveChanges();
     }
+    await RoleSeeder.CreateRoles(serviceProvider);
+    await RoleSeeder.CreateFirstAdminUser(serviceProvider);
 }
+;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -37,8 +53,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapIdentityApi<User>();
 
 app.Run();

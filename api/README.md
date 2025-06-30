@@ -20,6 +20,25 @@ $ dotnet ef database update
 
 You can check that this has worked by right clicking on 'Databases' in pgAdmin and then clicking 'refresh'.
 
+# .NET Identity
+The project is already set up to use DotNet Identity. Key packages for Identity are:
+* Microsoft.AspNetCore.Identity.EntityFrameworkCore
+* Microsoft.AspNetCore.Identity.UI
+Running `dotnet restore` should have installed these dependencies but if not, add these packages.
+
+To add the Identity tables to the database, run this command again:
+```
+$ dotnet ef database update
+```
+The `UserModel.cs` inherits from `IdentityUser` and can be modified in the future if new properties are needed.
+
+The project is currently supporting 2 Identity roles: 'User' and 'Admin'. Roles and an initial admin are seeded when the program is run (refer to Helpers/RoleSeeder.cs).
+
+To assign 'admin' role to another user, refer to the 'AssignAdminRole' method (currently in api/Helpers/RoleSeeder.cs)
+
+The [Authorize] attribute is to be used on endpoints where only logged in/authenticated users should have access.
+For admin-only endpoints use this attribute: [Authorize(Roles = "Admin")]
+
 # Running the code
 You can run the code using `dotnet run`.
 
