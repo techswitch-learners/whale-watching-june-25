@@ -1,4 +1,6 @@
-// import {fetchSightings} from "../../../can't find api client?"
+import {fetchSightings} from '../../../ApiClient';
+import React, { useEffect} from 'react';
+
 
 export function Statistics () {
 
@@ -15,3 +17,25 @@ useEffect(() => {
         });  
     }, []);
 }
+
+const uniqueSpeciesCount = new Set(sightings.map(s => s.speciesId)).size;
+
+const totalSightingsToDate = sightings.length;
+
+const mostSightingsPerDay = new Map<string, number> ();
+
+mostSightingsPerDay.forEach(s => {
+    const date = new Date(s.DateOfSighting)
+    mostSightingsPerDay.set(date, (mostSightingsPerDay.get(date) || 0) + 1)
+
+    let busiestDay = '';
+    let maxCount = 0;
+
+    mostSightingsPerDay.forEach((count, date) => {
+        if(count > maxCount) {
+            maxCount = count;
+            busiestDay = date;
+        }
+    })
+    
+})
