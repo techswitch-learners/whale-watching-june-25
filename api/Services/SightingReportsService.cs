@@ -39,7 +39,6 @@ public class SightingReportsService : ISightingReportsService
     public async Task<List<SightingReportResponse>> GetAllSightingsResponse()
     {
         var allSightings = await _sightingReports.GetAllSightings();
-        if (allSightings == null) return new List<SightingReportResponse>();
         return allSightings.Select(sighting => new SightingReportResponse
         {
             Id = sighting.Id,
