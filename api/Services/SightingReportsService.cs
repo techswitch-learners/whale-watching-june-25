@@ -46,6 +46,7 @@ public class SightingReportsService : ISightingReportsService
             {
                 var sightingResponse = new SightingReportResponse()
                 {
+                    Id = sighting.Id,
                     Description = sighting.Description,
                     DateOfSighting = sighting.DateOfSighting,
                     Longitude = sighting.Longitude,
