@@ -12,19 +12,18 @@ namespace WhaleSpottingBackend.Controllers
     [Route("/sightingreports")]
     public class SightingReportsController : ControllerBase
     {
-        private readonly ISightingReportsService _sightingReports;
+        private readonly ISightingReportsService _sightingReportsService;
 
         public SightingReportsController(ISightingReportsService sightingReports)
         {
-            _sightingReports = sightingReports;
+            _sightingReportsService = sightingReports;
         }
 
         [HttpGet]
         [Route("all")]
         public async Task<ActionResult<List<SightingReportResponse>>> GetAllSightings()
         {
-            var allSightings = await _sightingReports.GetAllSightingsResponse();
-            if (allSightings.Count == 0) return NotFound(new { message = "No sightings found" });
+            var allSightings = await _sightingReportsService.GetAllSightingsResponse();
             return allSightings;
         }
 
@@ -38,7 +37,7 @@ namespace WhaleSpottingBackend.Controllers
 
             try
             {
-                _sightingReports.CreateReport(newReport);
+                _sightingReportsService.CreateReport(newReport);
             }
             catch (Exception ex)
             {

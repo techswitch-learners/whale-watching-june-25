@@ -10,7 +10,7 @@ namespace WhaleSpottingBackend.Repositories
     public interface ISightingReportsRepo
     {
         void CreateReport(SightingReport newReport);
-        Task<List<SightingReport>>? GetAllSightings();
+        Task<List<SightingReport>> GetAllSightings();
     }
 
     public class SightingReportsRepo : ISightingReportsRepo
@@ -29,7 +29,7 @@ namespace WhaleSpottingBackend.Repositories
             _context.SaveChanges();
         }
 
-        public async Task<List<SightingReport>>? GetAllSightings()
+        public async Task<List<SightingReport>> GetAllSightings()
         {
             return await _context.SightingReports
                         .Include(s => s.User)

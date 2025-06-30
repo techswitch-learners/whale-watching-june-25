@@ -39,31 +39,18 @@ public class SightingReportsService : ISightingReportsService
     public async Task<List<SightingReportResponse>> GetAllSightingsResponse()
     {
         var allSightings = await _sightingReports.GetAllSightings();
-        var allSightingsResponse = new List<SightingReportResponse>();
-        if (allSightings != null)
+        if (allSightings == null) return new List<SightingReportResponse>();
+        return allSightings.Select(sighting => new SightingReportResponse
         {
-            foreach (SightingReport sighting in allSightings)
-            {
-                var sightingResponse = new SightingReportResponse()
-                {
-                    Id = sighting.Id,
-                    Description = sighting.Description,
-                    DateOfSighting = sighting.DateOfSighting,
-                    Longitude = sighting.Longitude,
-                    Latitude = sighting.Latitude,
-                    SpeciesId = sighting.SpeciesId,
-                    UserName = sighting.User?.UserName,
-                    Status = sighting.Status
-                };
-                allSightingsResponse.Add(sightingResponse);
-
-            }
-        }
-        else
-        {
-            return new List<SightingReportResponse>();
-        }
-        return allSightingsResponse;
+            Id = sighting.Id,
+            Description = sighting.Description,
+            DateOfSighting = sighting.DateOfSighting,
+            Longitude = sighting.Longitude,
+            Latitude = sighting.Latitude,
+            SpeciesId = sighting.SpeciesId,
+            UserName = sighting.User?.UserName,
+            Status = sighting.Status
+        }).ToList();
     }
 
 }
