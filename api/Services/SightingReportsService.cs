@@ -7,6 +7,7 @@ namespace WhaleSpottingBackend.Services;
 public interface ISightingReportsService
 {
     void CreateReport(CreateSightingReportRequest newReport);
+    void DeleteReport(int id);
 }
 
 public class SightingReportsService : ISightingReportsService
@@ -33,5 +34,17 @@ public class SightingReportsService : ISightingReportsService
         };
         _sightingReports.CreateReport(report);
     }
+
+    public void DeleteReport(int id)
+    {
+        var postToDelete = _sightingReports.GetSightingById(id);
+        if (postToDelete.Status == "Pending") { 
+        _sightingReports.DeleteReport(postToDelete);
+        }
+        else {
+            throw new ArgumentException($"Sighting report with id {id} is already approved");
+        }
+    }
+
 
 }
