@@ -1,7 +1,7 @@
 import {ReactElement } from 'react'
 import './App.scss'
-import LoginPage from './Pages/LoginPage'
-import HomePage from './Pages/HomePage'
+import LoginPage from './pages/Login/LoginPage'
+import HomePage from './pages/Home/HomePage'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 
