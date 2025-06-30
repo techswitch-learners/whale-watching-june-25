@@ -6,7 +6,7 @@ import {
   act,
 } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { CreateWhaleSighting } from "./CreateWhaleSighting";
+import { CreateWhaleSightingPage } from "./CreateWhaleSightingPage";
 
 const MOCK_SPECIES = [
   {
@@ -18,6 +18,7 @@ const MOCK_SPECIES = [
     species: "Species2",
   },
 ];
+
 
 const MOCK_WHALESIGHTING_REQUEST = {
   latitude: 100,
@@ -38,7 +39,7 @@ beforeEach(() => {
 });
 
 test("Renders Whale Sighting creation form with list of species", async () => {
-  render(<CreateWhaleSighting />);
+  render(<CreateWhaleSightingPage />);
 
   await waitFor(() => {
     const speciesList = document.querySelector("select") as HTMLSelectElement;
@@ -50,8 +51,8 @@ test("Renders Whale Sighting creation form with list of species", async () => {
 });
 
 test("Submit whale sighting request", async () => {
-  render(<CreateWhaleSighting />);
-
+  render(<CreateWhaleSightingPage />);
+    console.log(document.documentElement.outerHTML);
   await waitFor(() => {
     const latitude = screen.getByLabelText(/Latitude/, {
       selector: "input",
@@ -90,4 +91,5 @@ test("Submit whale sighting request", async () => {
       /Your Whale Sighting Has Been Submitted And Is Pending Approval!/
     )
   ).toBeVisible();
+  
 });

@@ -1,12 +1,12 @@
 import { JSX, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import "./CreateWhaleSighting.scss";
+import "../WhaleSighting/CreateWhaleSightingForm.scss";
 import {
   Species,
   createWhaleSighting,
   fetchSpecies,
-} from "../../api/ApiClient";
-import { Page } from "../Page/Page";
+} from "../../../api/ApiClient.ts";
+
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";
 
@@ -67,7 +67,6 @@ export function CreateWhaleSightingForm(): JSX.Element {
     description: string;
     speciesId: number;
   }) {
-    console.log(errors);
     const sightingData = {
       ...data,
       date: new Date(data.date),
@@ -75,8 +74,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));
-    console.log(status);
-  }
+    }
 
   if (status === "FINISHED") {
     return (
@@ -200,14 +198,5 @@ export function CreateWhaleSightingForm(): JSX.Element {
       </button>
       {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
     </form>
-  );
-}
-
-export function CreateWhaleSighting(): JSX.Element {
-  return (
-    <Page containerClassName="create-whale-sighting-page">
-      <h1 className="title">Submit Whale Sighting</h1>
-      <CreateWhaleSightingForm />
-    </Page>
   );
 }
