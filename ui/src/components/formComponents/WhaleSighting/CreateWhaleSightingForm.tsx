@@ -8,7 +8,7 @@ import {
 } from "../../../api/ApiClient.ts";
 import CloudinaryUploadWidget from "../../../components/Widgets/CloudinaryUploadWidget";
 import {CheckCircle} from 'react-bootstrap-icons';
-import { uwConfig, setImageUploaded, setPublicId, imageUploaded } from "./CloudinaryConfig";
+import { uwConfig, useCloudinaryUpload } from "./CloudinaryConfig";
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
@@ -31,6 +31,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
   });
   const [status, setStatus] = useState<FormStatus>("READY");
   const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);
+  const { imageUploaded, setPublicId, setImageUploaded } = useCloudinaryUpload();
 
   const formErrors = {
     date: {
