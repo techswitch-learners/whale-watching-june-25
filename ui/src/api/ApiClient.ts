@@ -1,5 +1,5 @@
 export interface ListResponse<T> {
-    items: T[];
+  items: T[];
 }
 
 export interface WhaleSighting {
@@ -13,16 +13,16 @@ export interface WhaleSighting {
 }
 
 export interface Species {
-    id: number;
-    speciesGroup: string;
-    species: string;
-    latinName: string;
-    habitat: string;
-    maxLengthMeters: number;
-    maxWeightTons: number;
-    conservationStatus: string;
-    maxAge: number;
-    food: string;
+  id: number;
+  speciesGroup: string;
+  species: string;
+  latinName: string;
+  habitat: string;
+  maxLengthMeters: number;
+  maxWeightTons: number;
+  conservationStatus: string;
+  maxAge: number;
+  food: string;
 }
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
@@ -42,6 +42,6 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
 }
 
 export async function fetchSpecies(): Promise<ListResponse<Species>> {
-    const response = await fetch(`https://localhost:5067/species`);
-    return await response.json();
-} 
+  const response = await fetch(`https://localhost:5067/species`);
+  return await response.json();
+}

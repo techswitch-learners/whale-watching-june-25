@@ -1,14 +1,14 @@
 import { JSX, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import  "./CreateWhaleSighting.scss";
+import "../WhaleSighting/CreateWhaleSightingForm.scss";
 import {
   Species,
   createWhaleSighting,
   fetchSpecies,
-} from "../../api/ApiClient";
-import { Page } from "../Page/Page";
-import CloudinaryUploadWidget from "../../components/Widgets/CloudinaryUploadWidget";
+} from "../../../api/ApiClient.ts";
+import CloudinaryUploadWidget from "../../../components/Widgets/CloudinaryUploadWidget";
 import {CheckCircle} from 'react-bootstrap-icons';
+
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
@@ -20,9 +20,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toISOString().split("T")[0],
+      latitude: 0,
       longitude: 0,
-      latitude: 0, 
       description: "",
       speciesId: 0,
       imageUrl: "",
@@ -53,6 +53,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
   const formErrors = {
     date: {
       required: "Date is required",
+      validate: "Date cannot be in the future"
     },
     latitude: {
       required: "Latitude is required",
@@ -75,14 +76,16 @@ export function CreateWhaleSightingForm(): JSX.Element {
 
   useEffect(() => {
     fetchSpecies()
-      .then((response) => setSelectedSpecies(response.items))
+      .then((response) => {
+        setSelectedSpecies(response.items);
+      })
       .catch((err) => console.error(err));
   }, []);
 
   function submitForm(data: {
     date: string;
-   longitude: number;   
-   latitude: number; 
+    latitude: number;
+    longitude: number;
     description: string;
     speciesId: number;
   }) {
@@ -96,7 +99,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));
-  }
+    }
 
   if (status === "FINISHED") {
     return (
@@ -128,8 +131,23 @@ export function CreateWhaleSightingForm(): JSX.Element {
           </span>
           <input
             className="form-input"
+            id="date"
             type="date"
-            {...register("date", formErrors.date)}
+            {...register("date", {
+              required: formErrors.date.required,
+              validate: ((value) => {
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                const selected = new Date(value);
+                selected.setHours(0, 0, 0, 0);
+
+                return selected <= today || formErrors.date.validate
+              }
+
+              )
+            })
+            }
           />
           {errors.date && <span className="error">{errors.date.message}</span>}
         </label>
@@ -142,8 +160,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
           </span>
           <input
             className="form-input"
+            id="latitude"
             type="number"
-             {...register("latitude", formErrors.latitude)}
+            {...register("latitude", formErrors.latitude)}
           />
           {errors.latitude && (
             <span className="error">{errors.latitude.message}</span>
@@ -159,9 +178,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
           </span>
           <input
             className="form-input"
+            id="longitude"
             type="number"
-             {...register("longitude", formErrors.longitude)}
-
+            {...register("longitude", formErrors.longitude)}
           />
           {errors.longitude && (
             <span className="error">{errors.longitude.message}</span>
@@ -172,7 +191,11 @@ export function CreateWhaleSightingForm(): JSX.Element {
       <div>
         <label className="form-label">
           Description
-          <input className="form-input" {...register("description")} />
+          <input
+            className="form-input"
+            id="description"
+            {...register("description")}
+          />
         </label>
       </div>
 
@@ -188,10 +211,10 @@ export function CreateWhaleSightingForm(): JSX.Element {
             {...register("speciesId", formErrors.species)}
           >
             <option value="">Select</option>
-            <option value="1">Humpback Whale</option>
-            <option value="2">Blue Whale</option>
             {selectedSpecies.map((species) => (
-              <option key={species.id} value={species.id}>{species.species}</option>
+              <option key={species.id} value={species.id}>
+                {species.species}
+              </option>
             ))}
           </select>
           {errors.speciesId && (
@@ -210,14 +233,5 @@ export function CreateWhaleSightingForm(): JSX.Element {
       {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
     </form>
     </div>
-  );
-}
-
-export function CreateWhaleSighting(): JSX.Element {
-  return (
-    <Page containerClassName="create-whale-sighting-page">
-      <h1 className="title">Submit Whale Sighting</h1>
-      <CreateWhaleSightingForm />
-    </Page>
   );
 }
