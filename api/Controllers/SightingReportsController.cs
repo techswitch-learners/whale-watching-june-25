@@ -36,7 +36,7 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Your sighting report has been sucessfully submitted and is pending review." });
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPatch("{id}")]
         public IActionResult ApproveSighting(int id)
         {
