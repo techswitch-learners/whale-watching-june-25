@@ -24,8 +24,7 @@ declare global {
 }
 
 interface CloudinaryUploadWidgetProps {
-  //uwConfig: { cloudName: string; [key: string]: string; [maxFileSize:number]:10000000 ;};
-    uwConfig: { cloudName: string; maxImageFileSize:number; maxVideoFileSize:number; clientAllowedFormats: string[]; multiple:boolean};
+  uwConfig: { cloudName: string; maxImageFileSize:number; maxVideoFileSize:number; clientAllowedFormats: string[]; multiple:boolean};
 
   setPublicId: (id: string) => void;
   setUrl: (url: string) => void;
@@ -71,7 +70,7 @@ const CloudinaryUploadWidget = ({
         buttonElement.removeEventListener('click', handleUploadClick);
       }
     };
-  }, [uwConfig, setPublicId, setUrl]);
+  }, [uwConfig, setPublicId, setUrl, setImageUploaded]);
 
   return (
     <button

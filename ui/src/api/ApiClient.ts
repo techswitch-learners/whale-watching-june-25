@@ -26,7 +26,6 @@ export interface Species {
 }
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
-    console.log("WHALE API: ", whaleSighting);
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
         headers: {

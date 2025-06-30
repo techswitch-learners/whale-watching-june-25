@@ -22,13 +22,13 @@ public class SightingReportsService : ISightingReportsService
     {
         SightingReport report = new SightingReport
         {
-            Description = newReport.description,
-            DateOfSighting = newReport.date,
-            Longitude = newReport.longitude,
-            Latitude = newReport.latitude,
-            SpeciesId = Convert.ToInt32(newReport.speciesId),
-            UserId = newReport.userId,
-            ImageUrl = newReport.imageUrl,
+            Description = newReport.Description,
+            DateOfSighting = newReport.Date,
+            Longitude = newReport.Longitude,
+            Latitude = newReport.Latitude,
+            SpeciesId = Convert.ToInt32(newReport.SpeciesId),
+            UserId = newReport.UserId,
+            ImageUrl = newReport.ImageUrl,
             Status = "Pending",
             RejectedReason = null
         };
