@@ -38,7 +38,7 @@ public class SightingReportsService : ISightingReportsService
     public void DeleteReport(int id)
     {
         var postToDelete = _sightingReports.GetSightingById(id);
-        if (postToDelete.Status == "Pending") { 
+        if (postToDelete.Status != null && postToDelete.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase)) { 
         _sightingReports.DeleteReport(postToDelete);
         }
         else {
