@@ -5,8 +5,9 @@ import {login} from "../API_Client";
 const Login: React.FC = (): JSX.Element =>  {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const [UIError, setUIError] = useState("");
+    const [BEError, setBEError] = useState("");
+    const emailRegex = /^[^\s]+@[^\s]+.[^\s]{3,}$/;
     const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,10 +15,10 @@ const Login: React.FC = (): JSX.Element =>  {
         if (name === 'email'){
             
             if (!emailRegex.test(value)){
-                setError("Please enter a valid email address");
+                setUIError("Please enter a valid email address");
             }
             else {
-                setError("");
+                setUIError("");
             }
         setEmail(value);
 
@@ -28,18 +29,12 @@ const Login: React.FC = (): JSX.Element =>  {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!emailRegex.test(email)){
-            setError("Please enter a valid email address");
-            return;
-        }
-        setEmail(email);
-        setPassword(password);
-
+        setBEError("");
         try{
         await login(email, password);
         navigate("/home");
         } catch (err) {
-            setError(`Login failed, please check your credentials. ${err}`)
+            setBEError(`Login failed. ${err}`)
         }
     }
 
@@ -50,6 +45,7 @@ const Login: React.FC = (): JSX.Element =>  {
                     <label>Email:</label>
                     
                     <input name="email" type='email' value={email} onChange={handleChange} required />
+                    {UIError && <p className='error'>{UIError}</p>}
                 </div>
                 <br />
                 <div>
@@ -58,9 +54,8 @@ const Login: React.FC = (): JSX.Element =>  {
                 </div>
                 <br />
                 <button className="submit-button" onClick={handleSubmit} type="submit" >Log In</button>
-                <br />
-                    {error && <p className='error'>{error}</p>}
             </form>
+            {BEError && <p className='error'>{BEError}</p>}
         </div>
     );
 };
