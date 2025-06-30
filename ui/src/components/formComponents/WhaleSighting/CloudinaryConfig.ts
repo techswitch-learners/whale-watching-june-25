@@ -6,8 +6,6 @@ import {useState } from "react";
   const maxVideoFileSize = 100000000;
   const clientAllowedFormats = ["jpg","jpeg","png"];
   const multiple = false;
-//   export const [, setPublicId] = useState<string>('');
-//   export const [imageUploaded, setImageUploaded] = useState<boolean>(false);
 
 export function useCloudinaryUpload() {
     const [publicId, setPublicId] = useState<string>('');
