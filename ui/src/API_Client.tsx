@@ -13,7 +13,7 @@ export async function login(email: string, password: string) {
     })
     
     if (!response.ok) {
-        var errorMessage = "Login Failed";
+        let errorMessage = "Login Failed";
 
         console.log("response is ok");
 
