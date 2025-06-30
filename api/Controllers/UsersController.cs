@@ -11,6 +11,7 @@ using WhaleSpottingBackend.Models.Request;
 namespace WhaleSpottingBackend.Controllers
 {
     [ApiController]
+    [Route("/users")]
     public class UsersController : ControllerBase
     {
         private UserManager<User> _userManager;
@@ -28,8 +29,8 @@ namespace WhaleSpottingBackend.Controllers
             _context = context;
         }
 
-        [HttpPost("/users")]
-        public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest newUser)
+        [HttpPost()]
+        public async Task<ActionResult> Create([FromBody] CreateUserRequest newUser)
         {
             if (!ModelState.IsValid)
             {
@@ -40,13 +41,19 @@ namespace WhaleSpottingBackend.Controllers
             {
                 var user = new User { UserName = newUser.UserName, Email = newUser.Email };
 
-                if (await _userManager.FindByEmailAsync(newUser.Email!) != null ||
-                 await _userManager.FindByNameAsync(newUser.UserName!) != null)
+                if (await _userManager.FindByNameAsync(newUser.UserName!) != null)
                 {
-                    return BadRequest("User is already registered.");
-                }
 
-                var result = await _userManager.CreateAsync(user, newUser.Password!);
+                    return BadRequest("Username is taken.");
+                }
+                else if (await _userManager.FindByEmailAsync(newUser.Email!) != null)
+                {
+                    return BadRequest("Email already exists in the system.");
+
+                }
+              
+                    var result = await _userManager.CreateAsync(user, newUser.Password!);      
+
 
                 if (result.Succeeded == false)
                 {
