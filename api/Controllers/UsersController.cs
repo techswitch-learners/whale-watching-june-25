@@ -17,8 +17,6 @@ namespace WhaleSpottingBackend.Controllers
         private RoleManager<IdentityRole> _roleManager;
         private readonly WhaleSpottingDbContext _context;
 
-        // private IdentityOptions _identityOptions;
-
         public UsersController(
             UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
@@ -29,7 +27,6 @@ namespace WhaleSpottingBackend.Controllers
             _roleManager = roleManager;
             _context = context;
         }
-
 
         [HttpPost("/users")]
         public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest newUser)
@@ -43,13 +40,11 @@ namespace WhaleSpottingBackend.Controllers
             {
                 var user = new User { UserName = newUser.UserName, Email = newUser.Email };
 
-
                 if (await _userManager.FindByEmailAsync(newUser.Email!) != null ||
                  await _userManager.FindByNameAsync(newUser.UserName!) != null)
                 {
                     return BadRequest("User is already registered.");
                 }
-
 
                 var result = await _userManager.CreateAsync(user, newUser.Password!);
 
@@ -60,7 +55,6 @@ namespace WhaleSpottingBackend.Controllers
                 }
 
                 if (result.Succeeded && !string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase))
-
                 {
                     await _userManager.AddToRoleAsync(user, "User");
                 }
