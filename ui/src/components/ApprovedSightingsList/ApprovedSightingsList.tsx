@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import "./ApprovedSightingsList.scss";
 import { fetchSightings, SightingReport, fetchSeaLocation } from "../../../api/ApiClient";
 import {format} from 'date-fns';
