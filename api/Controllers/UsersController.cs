@@ -1,3 +1,5 @@
+using System.Net;
+using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,13 +12,13 @@ namespace WhaleSpottingBackend.Controllers
 {
     public class UsersController : ControllerBase
     {
-        private UserManager<IdentityUser> _userManager;
-        private RoleManager<IdentityUser> _roleManager;
+        private UserManager<User> _userManager;
+        private RoleManager<IdentityRole> _roleManager;
         private readonly WhaleSpottingDbContext _context;
 
         public UsersController(
-            UserManager<IdentityUser> userManager,
-            RoleManager<IdentityUser> roleManager,
+            UserManager<User> userManager,
+            RoleManager<IdentityRole> roleManager,
             WhaleSpottingDbContext context
         )
         {
@@ -27,7 +29,7 @@ namespace WhaleSpottingBackend.Controllers
 
         // [ApiController]
         [HttpPost("/users")]
-        public async Task<ActionResult> CreateUser(CreateUserRequest newUser)
+        public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest newUser)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +38,8 @@ namespace WhaleSpottingBackend.Controllers
 
             try
             {
-                var user = new IdentityUser { UserName = newUser.UserName, Email = newUser.Email };
+                var user = new User { UserName = newUser.UserName, Email = newUser.Email };
+
 
                 if (await _userManager.FindByEmailAsync(newUser.Email) != null)
                 {
@@ -45,11 +48,13 @@ namespace WhaleSpottingBackend.Controllers
 
                 var result = await _userManager.CreateAsync(user, newUser.Password);
 
-                if (result.Succeeded && newUser.Role != "Admin")
+
+                if (result.Succeeded && !string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase))
+
                 {
                     await _userManager.AddToRoleAsync(user, "User");
                 }
-                else if (result.Succeeded && newUser.Role == "Admin")
+                else if (result.Succeeded && string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase))
                 {
                     await _userManager.AddToRoleAsync(user, "Admin");
                 }
@@ -59,7 +64,7 @@ namespace WhaleSpottingBackend.Controllers
                 return StatusCode(500, ex.Message);
             }
 
-            return Ok(new { message = "" });
+            return StatusCode(StatusCodes.Status201Created, "User created successfully");
         }
     }
 }
