@@ -19,7 +19,7 @@ public class CreateUserRequest
 
     [Required]
     [DataType(DataType.Password)]
-    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+    [Compare("Password", ErrorMessage = "The password and confirm passwords do not match.")]
     public string? ConfirmPassword { get; set; }
 
     [System.ComponentModel.DefaultValue("User")]

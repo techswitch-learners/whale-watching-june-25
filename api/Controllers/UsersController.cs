@@ -10,11 +10,14 @@ using WhaleSpottingBackend.Models.Request;
 
 namespace WhaleSpottingBackend.Controllers
 {
+    [ApiController]
     public class UsersController : ControllerBase
     {
         private UserManager<User> _userManager;
         private RoleManager<IdentityRole> _roleManager;
         private readonly WhaleSpottingDbContext _context;
+
+        // private IdentityOptions _identityOptions;
 
         public UsersController(
             UserManager<User> userManager,
@@ -27,7 +30,7 @@ namespace WhaleSpottingBackend.Controllers
             _context = context;
         }
 
-        // [ApiController]
+
         [HttpPost("/users")]
         public async Task<ActionResult> CreateUser([FromBody] CreateUserRequest newUser)
         {
@@ -41,13 +44,20 @@ namespace WhaleSpottingBackend.Controllers
                 var user = new User { UserName = newUser.UserName, Email = newUser.Email };
 
 
-                if (await _userManager.FindByEmailAsync(newUser.Email) != null)
+                if (await _userManager.FindByEmailAsync(newUser.Email!) != null ||
+                 await _userManager.FindByNameAsync(newUser.UserName!) != null)
                 {
                     return BadRequest("User is already registered.");
                 }
 
-                var result = await _userManager.CreateAsync(user, newUser.Password);
 
+                var result = await _userManager.CreateAsync(user, newUser.Password!);
+
+                if (result.Succeeded == false)
+                {
+                    return BadRequest
+                    ("Password rules do not comply - Should contain 6 characters with atleast 1 uppercase, 1 lowercase, 1 non-alphanumeric and 1 number ");
+                }
 
                 if (result.Succeeded && !string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase))
 
