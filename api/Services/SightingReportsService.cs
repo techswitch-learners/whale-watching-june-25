@@ -7,7 +7,7 @@ namespace WhaleSpottingBackend.Services;
 public interface ISightingReportsService
 {
     void CreateReport(CreateSightingReportRequest newReport);
-    void EditSightingReport(int sightingId);
+    void EditSightingReportStatus(int sightingId);
 }
 
 public class SightingReportsService : ISightingReportsService
@@ -35,7 +35,7 @@ public class SightingReportsService : ISightingReportsService
         _sightingReports.CreateReport(report);
     }
 
-    public void EditSightingReport(int sightingId)
+    public void EditSightingReportStatus(int sightingId)
     {
         SightingReport sightingData = _sightingReports.GetSightingById(sightingId);
         if (sightingData.Status != null && sightingData.Status.Equals("Approved", StringComparison.OrdinalIgnoreCase))

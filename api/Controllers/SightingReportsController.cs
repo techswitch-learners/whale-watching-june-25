@@ -42,7 +42,7 @@ namespace WhaleSpottingBackend.Controllers
         {
             try
             {
-                _sightingReports.EditSightingReport(id);
+                _sightingReports.EditSightingReportStatus(id);
             }
             catch (ArgumentException ex)
             {
