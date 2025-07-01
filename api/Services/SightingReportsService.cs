@@ -24,11 +24,12 @@ public class SightingReportsService : ISightingReportsService
         SightingReport report = new SightingReport
         {
             Description = newReport.Description,
-            DateOfSighting = newReport.DateOfSighting,
+            DateOfSighting = newReport.Date,
             Longitude = newReport.Longitude,
             Latitude = newReport.Latitude,
-            SpeciesId = newReport.SpeciesId,
+            SpeciesId = Convert.ToInt32(newReport.SpeciesId),
             UserId = newReport.UserId,
+            ImageUrl = newReport.ImageUrl,
             Status = "Pending",
             RejectedReason = null
         };
