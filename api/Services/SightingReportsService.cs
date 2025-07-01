@@ -43,7 +43,7 @@ public class SightingReportsService : ISightingReportsService
         _sightingReports.DeleteReport(postToDelete);
         }
         else {
-            throw new ArgumentException($"Sighting report with id {id} is already approved");
+            throw new ArgumentException($"Sighting {id} has already been approved");
         }
     }
 

@@ -1,5 +1,7 @@
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Models.Request;
+using WhaleSpottingBackend.Exceptions;
+
 
 
 using Microsoft.AspNetCore.Mvc;
@@ -41,10 +43,14 @@ namespace WhaleSpottingBackend.Controllers
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id) {
-            
-            try 
+
+            try
             {
                 _sightingReports.DeleteReport(id);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (ArgumentException ex)
             {
