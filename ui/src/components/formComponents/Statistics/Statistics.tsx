@@ -26,6 +26,7 @@ const mostSightingsPerDay = new Map<string, number> ();
 
 mostSightingsPerDay.forEach(s => {
     const date = new Date(s.DateOfSighting)
+    //convert date to string 
     mostSightingsPerDay.set(date, (mostSightingsPerDay.get(date) || 0) + 1)
 
     let busiestDay = '';
