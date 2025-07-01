@@ -1,8 +1,6 @@
-using WhaleSpottingBackend.Services;
-using WhaleSpottingBackend.Models.Request;
-
-
 using Microsoft.AspNetCore.Mvc;
+using WhaleSpottingBackend.Models.Request;
+using WhaleSpottingBackend.Services;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -34,7 +32,12 @@ namespace WhaleSpottingBackend.Controllers
                 return StatusCode(500, ex.Message);
             }
 
-            return Ok(new { message = "Your sighting report has been sucessfully submitted and is pending review." });
+            return Ok(
+                new
+                {
+                    message = "Your sighting report has been sucessfully submitted and is pending review.",
+                }
+            );
         }
     }
 }

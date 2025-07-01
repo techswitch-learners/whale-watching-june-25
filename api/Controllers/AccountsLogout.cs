@@ -1,17 +1,12 @@
-using System.Net;
-using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Models.Database;
-using WhaleSpottingBackend.Models.Request;
 
 namespace WhaleSpottingBackend.Controllers
 {
     [ApiController]
-
+    [Route("/users")]
     public class AccountsLogoutController : ControllerBase
     {
         private readonly SignInManager<User> _signInManager;
@@ -23,12 +18,18 @@ namespace WhaleSpottingBackend.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("/logout")]
-        [ValidateAntiForgeryToken]
+        [Route("logout")]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
-            return Ok("User logged out");
+            try
+            {
+                await _signInManager.SignOutAsync();
+                return Ok("User logged out");
+            }
+            catch
+            {
+                return Unauthorized("User is not logged in");
+            }
         }
     }
 }
