@@ -42,7 +42,7 @@
     "jest": "^30.0.3",
     "jest-environment-jsdom": "^30.0.2",
     "node-fetch": "^3.3.2",
-    "sass-embedded": "^1.86.0",
+    "sass-embedded": "^1.89.2",
     "ts-jest": "^29.4.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
