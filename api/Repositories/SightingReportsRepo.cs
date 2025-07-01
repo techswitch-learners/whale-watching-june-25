@@ -2,6 +2,7 @@
 using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Exceptions;
 using WhaleSpottingBackend.Models.Database;
+using WhaleSpottingBackend.Exceptions;
 
 namespace WhaleSpottingBackend.Repositories
 {
@@ -9,7 +10,8 @@ namespace WhaleSpottingBackend.Repositories
     {
         void CreateReport(SightingReport newReport);
         SightingReport GetSightingById(int sightingId);
-        void UpdateSighting(SightingReport sightingData);
+        void DeleteReport(SightingReport report);
+
     }
 
     public class SightingReportsRepo : ISightingReportsRepo
@@ -39,9 +41,9 @@ namespace WhaleSpottingBackend.Repositories
             return sightingReport;
         }
 
-        public void UpdateSighting(SightingReport sightingData)
+        public void DeleteReport(SightingReport report)
         {
-            _context.Update(sightingData);
+            _context.SightingReports.Remove(report);
             _context.SaveChanges();
         }
     }
