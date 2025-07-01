@@ -34,7 +34,7 @@ namespace WhaleSpottingBackend.Controllers
                 return StatusCode(500, ex.Message);
             }
 
-            return Ok(new { message = "Your sighting report has been sucessfully submitted and is pending review." });
+            return Ok(new { message = "Your sighting report has been successfully submitted and is pending review." });
         }
     }
 }

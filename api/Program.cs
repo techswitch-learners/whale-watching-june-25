@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using WhaleSpottingBackend.Database;
-using WhaleSpottingBackend.Services;
-using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Helpers;
 using WhaleSpottingBackend.Models.Database;
+using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,27 +25,39 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
+builder.Services.AddScoped<IWhaleSpeciesRepository, WhaleSpeciesRepository>();
 builder.Services.AddScoped<ISightingReportsRepo, SightingReportsRepo>();
 builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthorization();
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
-        .AddRoles<IdentityRole>()
-        .AddEntityFrameworkStores<WhaleSpottingDbContext>();
-
+builder
+    .Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<WhaleSpottingDbContext>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+using (var serviceScope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider;
-    await RoleSeeder.CreateRoles(context);
-    await RoleSeeder.CreateFirstAdminUser(context);
-};
+    var serviceProvider = serviceScope.ServiceProvider;
+    var dbContext = serviceProvider.GetRequiredService<WhaleSpottingDbContext>();
+
+    if (!dbContext.WhaleSpecies.Any())
+    {
+        var csvFilePath = "../api/Database/Data/SpeciesData.csv";
+        var Whales = WhaleSpeciesReader.ReadWhalesFromCsv(csvFilePath);
+        dbContext.WhaleSpecies.AddRange(Whales);
+        dbContext.SaveChanges();
+    }
+    await RoleSeeder.CreateRoles(serviceProvider);
+    await RoleSeeder.CreateFirstAdminUser(serviceProvider);
+}
+;
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
