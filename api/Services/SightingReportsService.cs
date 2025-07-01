@@ -9,6 +9,7 @@ public interface ISightingReportsService
 {
     void CreateReport(CreateSightingReportRequest newReport);
     Task<List<SightingReportResponse>> GetAllSightingsResponse();
+    void DeleteReport(int id);
 }
 
 public class SightingReportsService : ISightingReportsService
@@ -52,5 +53,17 @@ public class SightingReportsService : ISightingReportsService
             Status = sighting.Status
         }).ToList();
     }
+
+    public void DeleteReport(int id)
+    {
+        var postToDelete = _sightingReports.GetSightingById(id);
+        if (postToDelete.Status != null && postToDelete.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase)) { 
+        _sightingReports.DeleteReport(postToDelete);
+        }
+        else {
+            throw new ArgumentException($"Sighting {id} has already been approved");
+        }
+    }
+
 
 }

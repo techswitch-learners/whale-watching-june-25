@@ -1,10 +1,9 @@
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Models.Request;
-
-
 using Microsoft.AspNetCore.Mvc;
-using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Models.Response;
+using Microsoft.AspNetCore.Authorization;
+using WhaleSpottingBackend.Exceptions;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -45,6 +44,29 @@ namespace WhaleSpottingBackend.Controllers
             }
 
             return Ok(new { message = "Your sighting report has been successfully submitted and is pending review." });
+        }
+
+        // [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public IActionResult DeleteById(int id) {
+
+            try
+            {
+                _sightingReportsService.DeleteReport(id);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            return Ok(new { message = "Your report has been sucessfully rejected and deleted from the table." });
         }
     }
 }

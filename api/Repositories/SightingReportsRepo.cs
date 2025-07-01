@@ -2,7 +2,9 @@
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
 using WhaleSpottingBackend.Database;
+using WhaleSpottingBackend.Exceptions;
 using WhaleSpottingBackend.Models.Database;
+using WhaleSpottingBackend.Exceptions;
 
 
 namespace WhaleSpottingBackend.Repositories
@@ -11,6 +13,9 @@ namespace WhaleSpottingBackend.Repositories
     {
         void CreateReport(SightingReport newReport);
         Task<List<SightingReport>> GetAllSightings();
+        SightingReport GetSightingById(int sightingId);
+        void DeleteReport(SightingReport report);
+
     }
 
     public class SightingReportsRepo : ISightingReportsRepo
@@ -35,6 +40,22 @@ namespace WhaleSpottingBackend.Repositories
                         .Include(s => s.User)
                         .Include(s => s.WhaleSpecies)
                         .ToListAsync();
+        }
+        public SightingReport GetSightingById(int sightingId)
+        {
+            var sightingReport = _context.SightingReports
+                                    .FirstOrDefault(sighting => sighting.Id == sightingId);
+            if (sightingReport == null)
+            {
+                throw new NotFoundException($"Sighting report with id {sightingId} not found");
+            }
+            return sightingReport;
+        }
+
+        public void DeleteReport(SightingReport report)
+        {
+            _context.SightingReports.Remove(report);
+            _context.SaveChanges();
         }
     }
 }
