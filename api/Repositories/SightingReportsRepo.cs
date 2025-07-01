@@ -1,5 +1,6 @@
 
 using WhaleSpottingBackend.Database;
+using WhaleSpottingBackend.Exceptions;
 using WhaleSpottingBackend.Models.Database;
 
 namespace WhaleSpottingBackend.Repositories
@@ -33,7 +34,7 @@ namespace WhaleSpottingBackend.Repositories
                                     .FirstOrDefault(sighting => sighting.Id == sightingId);
             if (sightingReport == null)
             {
-                throw new ArgumentException($"Sighting report with id {sightingId} not found");
+                throw new NotFoundException($"Sighting report with id {sightingId} not found");
             }
             return sightingReport;
         }

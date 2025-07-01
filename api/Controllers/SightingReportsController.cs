@@ -2,6 +2,7 @@ using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using WhaleSpottingBackend.Exceptions;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -44,7 +45,7 @@ namespace WhaleSpottingBackend.Controllers
             {
                 _sightingReports.EditSightingReportStatus(id);
             }
-            catch (ArgumentException ex)
+            catch (NotFoundException ex)
             {
                 return NotFound(new { error = ex.Message });
             }

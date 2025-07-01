@@ -38,10 +38,6 @@ public class SightingReportsService : ISightingReportsService
     public void EditSightingReportStatus(int sightingId)
     {
         SightingReport sightingData = _sightingReports.GetSightingById(sightingId);
-        if (sightingData.Status != null && sightingData.Status.Equals("Approved", StringComparison.OrdinalIgnoreCase))
-        {
-            throw new ArgumentException($"Sighting report with id {sightingId} is already approved");
-        }
         sightingData.Status = "Approved";
         _sightingReports.UpdateSighting(sightingData);
     }
