@@ -1,5 +1,5 @@
 import './App.scss'
-import { ApprovedSightingsList } from './components/ApprovedSightingsList/ApprovedSightingsList'
+import CustomButton from './components/formComponents/customButton/CustomButton'
 
 function App() {
 
@@ -9,5 +9,3 @@ function App() {
     </>
   )
 }
-
-export default App

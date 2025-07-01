@@ -5,19 +5,13 @@
 namespace WhaleSpottingBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class AddStatusNReason : Migration
+    public partial class AddImageUrlColumn : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
-                name: "RejectedReason",
-                table: "SightingReports",
-                type: "text",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "Status",
+                name: "ImageUrl",
                 table: "SightingReports",
                 type: "text",
                 nullable: true);
@@ -27,11 +21,7 @@ namespace WhaleSpottingBackend.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "RejectedReason",
-                table: "SightingReports");
-
-            migrationBuilder.DropColumn(
-                name: "Status",
+                name: "ImageUrl",
                 table: "SightingReports");
         }
     }

@@ -9,6 +9,8 @@ public interface ISightingReportsService
 {
     void CreateReport(CreateSightingReportRequest newReport);
     Task<List<SightingReportResponse>> GetAllSightingsResponse();
+    void EditSightingReportStatus(int sightingId);
+    void DeleteReport(int id);
 }
 
 public class SightingReportsService : ISightingReportsService
@@ -25,11 +27,12 @@ public class SightingReportsService : ISightingReportsService
         SightingReport report = new SightingReport
         {
             Description = newReport.Description,
-            DateOfSighting = newReport.DateOfSighting,
+            DateOfSighting = newReport.Date,
             Longitude = newReport.Longitude,
             Latitude = newReport.Latitude,
-            SpeciesId = newReport.SpeciesId,
-            UserId = newReport.UserId, // Assuming you want to include the user ID in the report
+            WhaleSpeciesId = Convert.ToInt32(newReport.WhaleSpeciesId),
+            UserId = newReport.UserId,
+            ImageUrl = newReport.ImageUrl,
             Status = "Pending",
             RejectedReason = null
         };
@@ -39,31 +42,39 @@ public class SightingReportsService : ISightingReportsService
     public async Task<List<SightingReportResponse>> GetAllSightingsResponse()
     {
         var allSightings = await _sightingReports.GetAllSightings();
-        var allSightingsResponse = new List<SightingReportResponse>();
-        if (allSightings != null)
+        return allSightings.Select(sighting => new SightingReportResponse
         {
-            foreach (SightingReport sighting in allSightings)
-            {
-                var sightingResponse = new SightingReportResponse()
-                {
-                    Id = sighting.Id,
-                    Description = sighting.Description,
-                    DateOfSighting = sighting.DateOfSighting,
-                    Longitude = sighting.Longitude,
-                    Latitude = sighting.Latitude,
-                    SpeciesId = sighting.SpeciesId,
-                    UserId = sighting.SpeciesId,
-                    Status = sighting.Status
-                };
-                allSightingsResponse.Add(sightingResponse);
+            Id = sighting.Id,
+            Description = sighting.Description,
+            DateOfSighting = sighting.DateOfSighting,
+            Longitude = sighting.Longitude,
+            Latitude = sighting.Latitude,
+            Species = sighting.WhaleSpecies?.Species,
+            UserName = sighting.User?.UserName,
+            ImageUrl = sighting.ImageUrl,
+            Status = sighting.Status
+        }).ToList();
+    }
+    
+    public void EditSightingReportStatus(int sightingId)
+    {
+        SightingReport sightingData = _sightingReports.GetSightingById(sightingId);
+        sightingData.Status = "Approved";
+        _sightingReports.UpdateSighting(sightingData);
+    }
 
-            }
+    public void DeleteReport(int id)
+    {
+        var postToDelete = _sightingReports.GetSightingById(id);
+        if (postToDelete.Status != null && postToDelete.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
+        {
+            _sightingReports.DeleteReport(postToDelete);
         }
         else
         {
-            return new List<SightingReportResponse>();
+            throw new ArgumentException($"Sighting {id} has already been approved");
         }
-        return allSightingsResponse;
     }
+
 
 }
