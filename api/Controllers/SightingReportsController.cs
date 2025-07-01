@@ -1,6 +1,7 @@
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Models.Request;
 using Microsoft.AspNetCore.Mvc;
+using WhaleSpottingBackend.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
 
@@ -10,11 +11,19 @@ namespace WhaleSpottingBackend.Controllers
     [Route("/sightingreports")]
     public class SightingReportsController : ControllerBase
     {
-        private readonly ISightingReportsService _sightingReports;
+        private readonly ISightingReportsService _sightingReportsService;
 
         public SightingReportsController(ISightingReportsService sightingReports)
         {
-            _sightingReports = sightingReports;
+            _sightingReportsService = sightingReports;
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<ActionResult<List<SightingReportResponse>>> GetAllSightings()
+        {
+            var allSightings = await _sightingReportsService.GetAllSightingsResponse();
+            return allSightings;
         }
 
         [HttpPost("create")]
@@ -27,7 +36,7 @@ namespace WhaleSpottingBackend.Controllers
 
             try
             {
-                _sightingReports.CreateReport(newReport);
+                _sightingReportsService.CreateReport(newReport);
             }
             catch (Exception ex)
             {
@@ -63,7 +72,7 @@ namespace WhaleSpottingBackend.Controllers
 
             try
             {
-                _sightingReports.DeleteReport(id);
+                _sightingReportsService.DeleteReport(id);
             }
             catch (NotFoundException ex)
             {
