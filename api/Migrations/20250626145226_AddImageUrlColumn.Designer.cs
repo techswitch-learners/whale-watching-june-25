@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpottingBackend.Database;
@@ -11,9 +12,11 @@ using WhaleSpottingBackend.Database;
 namespace WhaleSpottingBackend.Migrations
 {
     [DbContext(typeof(WhaleSpottingDbContext))]
-    partial class WhaleSpottingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250626145226_AddImageUrlColumn")]
+    partial class AddImageUrlColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,47 +259,6 @@ namespace WhaleSpottingBackend.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("WhaleSpottingBackend.Models.WhaleSpecies", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("Id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ConservationStatus")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Food")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Habitat")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LatinName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("MaxAge")
-                        .HasColumnType("integer");
-
-                    b.Property<double>("MaxLengthMeters")
-                        .HasColumnType("double precision");
-
-                    b.Property<double>("MaxWeightTons")
-                        .HasColumnType("double precision");
-
-                    b.Property<string>("Species")
-                        .HasColumnType("text");
-
-                    b.Property<string>("SpeciesGroup")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WhaleSpecies");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
