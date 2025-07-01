@@ -50,6 +50,7 @@ public class SightingReportsService : ISightingReportsService
             Latitude = sighting.Latitude,
             Species = sighting.WhaleSpecies?.Species,
             UserName = sighting.User?.UserName,
+            ImageUrl = sighting.ImageUrl,
             Status = sighting.Status
         }).ToList();
     }

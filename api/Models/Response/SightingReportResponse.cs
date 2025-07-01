@@ -10,6 +10,7 @@ public class SightingReportResponse
     public required float Latitude { get; set; }
     public string? Species { get; set; }
     public string? UserName { get; set; }
+    public string? ImageUrl { get; set; }
     public String? Status { get; set; }
 
 }
