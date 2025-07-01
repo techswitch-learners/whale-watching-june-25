@@ -1,4 +1,5 @@
 export interface ListResponse<T> {
+
     items: T[];
 }
 
@@ -49,6 +50,7 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
 }
 
 export async function fetchSpecies(): Promise<ListResponse<Species>> {
+
     const response = await fetch(`https://localhost:5067/species`);
     return await response.json();
 }
