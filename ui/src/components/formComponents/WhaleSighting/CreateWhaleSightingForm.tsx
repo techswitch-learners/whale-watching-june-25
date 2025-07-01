@@ -8,7 +8,7 @@ import {
 } from "../../../api/ApiClient.ts";
 import CloudinaryUploadWidget from "../../../components/Widgets/CloudinaryUploadWidget";
 import {CheckCircle} from 'react-bootstrap-icons';
-import { uwConfig, useCloudinaryUpload } from "./CloudinaryConfig";
+import { uwConfig, useCloudinaryUpload } from "../../Widgets/CloudinaryConfig.ts";
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
