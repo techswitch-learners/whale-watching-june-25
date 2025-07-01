@@ -1,13 +1,23 @@
 import { FormEvent, JSX, useState} from "react";
 import "./SignUp.scss";
-import { Page } from "../Page/Page";
 import { createUser } from "../../api/ApiClient";
 import { Navigate } from 'react-router-dom';
 
-type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED"
+
+enum FormStatusEnum 
+
+{
+    Ready = "READY", 
+    Submitting = "SUBMITTING", 
+    Error = "ERROR", 
+    Finished = "FINISHED"
+
+}
+
 
 export function SignUpForm(): JSX.Element {
-    const [status, setStatus] = useState<FormStatus>("READY");
+
+    const [status, setStatus] = useState<FormStatusEnum>(FormStatusEnum.Ready);
     const [formInput, setFormInput] = useState({
         username: "",
         email: "",
@@ -58,7 +68,7 @@ export function SignUpForm(): JSX.Element {
     
     const validateForm = (event: FormEvent) => {
         event.preventDefault();
-        setStatus("SUBMITTING");
+        setStatus(FormStatusEnum.Submitting);
         const inputError = {
             username: "",
             email: "",
@@ -71,7 +81,7 @@ export function SignUpForm(): JSX.Element {
                 ...inputError,
                 username: "Usernames must be between 2 and 15 characters and can include full stops and underscores"
             });
-            setStatus("READY");
+            setStatus(FormStatusEnum.Error);
             return;
         }
 
@@ -80,7 +90,7 @@ export function SignUpForm(): JSX.Element {
                 ...inputError,
                 email: "Enter a valid email"
             });
-            setStatus("READY");
+            setStatus(FormStatusEnum.Ready);
             return;
         }
 
@@ -90,7 +100,7 @@ export function SignUpForm(): JSX.Element {
                 password: "Password cannot be empty",
                 confirmPassword: "Please confirm password"
             });
-            setStatus("READY");
+            setStatus(FormStatusEnum.Ready);
             return;
         }
 
@@ -99,7 +109,7 @@ export function SignUpForm(): JSX.Element {
                 ...inputError,
                 confirmPassword: "Passwords must match"
             });
-            setStatus("READY");
+            setStatus(FormStatusEnum.Ready);
             return;
         }
 
@@ -108,7 +118,7 @@ export function SignUpForm(): JSX.Element {
                 ...inputError,
                 password: "Passwords must be at least 6 characters long, have lowercase and uppercase letters, a number and a special character"
             });
-            setStatus("READY");
+            setStatus(FormStatusEnum.Ready);
             return;
         }
         
@@ -120,17 +130,17 @@ export function SignUpForm(): JSX.Element {
             password: formInput.password
         }
         createUser(newUser)
-            .then(() => setStatus("FINISHED"))
-            .catch(() => setStatus("ERROR"));
+            .then(() => setStatus(FormStatusEnum.Finished))
+            .catch(() => setStatus(FormStatusEnum.Error));
     }
 
-    if (status === "FINISHED" && strength === "Strong") {
+    if (status === "FINISHED") {
         return <Navigate to="/add-new-sighting" replace />;
     }
 
     return (
             <form onSubmit={validateForm}>
-                <label className="label" htmlFor="username">Username</label>
+                <label className="label" htmlFor="username">Username
                 <input
                     value={formInput.username}
                     onChange={({target}) => {
@@ -143,8 +153,9 @@ export function SignUpForm(): JSX.Element {
                     placeholder="Enter username"
                 />
                 <p className="error-message">{formError.username}</p>
+                  </label>
 
-                <label className="label" htmlFor="email">Email</label>
+                <label className="label" htmlFor="email">Email
                 <input
                     value={formInput.email}
                     onChange={({target}) => {
@@ -158,8 +169,9 @@ export function SignUpForm(): JSX.Element {
                     
                 />
                 <p className="error-message">{formError.email}</p>
+                  </label>
 
-                <label className="label" htmlFor="password">Password</label>
+                <label className="label" htmlFor="password">Password
                 <input
                     value={formInput.password}
                     onChange={({target}) => {
@@ -172,6 +184,7 @@ export function SignUpForm(): JSX.Element {
                     className="input password"
                     placeholder="Enter a secure password"
                 />
+
                     <small>
                         Password strength:{' '}
                             <span style={{
@@ -182,8 +195,9 @@ export function SignUpForm(): JSX.Element {
                             </span>
                     </small>
                 <p className="error-message">{formError.password}</p>
+                  </label>
 
-                <label className="label confirm-pw" htmlFor="confirmPassword">Confirm password</label>
+                <label className="label confirm-pw" htmlFor="confirmPassword">Confirm password
                 <input
                     value={formInput.confirmPassword}
                     onChange={({target}) => {
@@ -196,19 +210,13 @@ export function SignUpForm(): JSX.Element {
                     placeholder="Confirm password"
                 />
                 <p className="error-message">{formError.confirmPassword}</p>
+                  </label>
 
+                <label className="label" htmlFor="submit">
                 <button className="submit-button" type="submit" value="Submit" disabled={status === "SUBMITTING"}>Sign Up</button>
                 {status === "SUBMITTING" && <p className="info-message">Hold tight your details are surfing the waves!</p>}
                 {status === "ERROR" && <p className="error-message">Something went wrong! Please try again.</p>}
+                </label>
             </form>
     );
-}
-
-export function SignUp(): JSX.Element {
-  return (
-    <Page containerClassName="sign-up-form">
-      <h1 className="title">Sign Up</h1>
-      <SignUpForm />
-    </Page>
-  );
 }

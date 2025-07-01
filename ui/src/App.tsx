@@ -2,7 +2,7 @@ import './App.scss'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSighting } from './pages/WhaleSighting/CreateWhaleSighting'
 import { ReactElement } from 'react';
-import { SignUp } from './pages/SignUp/SignUp';
+import { SignUp } from './pages/SignUp/SignUpPage';
  
 
 
