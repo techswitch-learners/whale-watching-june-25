@@ -7,6 +7,7 @@ namespace WhaleSpottingBackend.Services;
 public interface ISightingReportsService
 {
     void CreateReport(CreateSightingReportRequest newReport);
+    void EditSightingReportStatus(int sightingId);
     void DeleteReport(int id);
 }
 
@@ -36,13 +37,22 @@ public class SightingReportsService : ISightingReportsService
         _sightingReports.CreateReport(report);
     }
 
+    public void EditSightingReportStatus(int sightingId)
+    {
+        SightingReport sightingData = _sightingReports.GetSightingById(sightingId);
+        sightingData.Status = "Approved";
+        _sightingReports.UpdateSighting(sightingData);
+    }
+
     public void DeleteReport(int id)
     {
         var postToDelete = _sightingReports.GetSightingById(id);
-        if (postToDelete.Status != null && postToDelete.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase)) { 
-        _sightingReports.DeleteReport(postToDelete);
+        if (postToDelete.Status != null && postToDelete.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
+        {
+            _sightingReports.DeleteReport(postToDelete);
         }
-        else {
+        else
+        {
             throw new ArgumentException($"Sighting {id} has already been approved");
         }
     }

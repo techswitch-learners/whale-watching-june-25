@@ -10,7 +10,8 @@ namespace WhaleSpottingBackend.Repositories
     {
         void CreateReport(SightingReport newReport);
         SightingReport GetSightingById(int sightingId);
-        void DeleteReport(SightingReport report);
+        void UpdateSighting(SightingReport sightingData);
+        void DeleteReport(SightingReport report); 
 
     }
 
@@ -39,6 +40,12 @@ namespace WhaleSpottingBackend.Repositories
                 throw new NotFoundException($"Sighting report with id {sightingId} not found");
             }
             return sightingReport;
+        }
+
+        public void UpdateSighting(SightingReport sightingData)
+        {
+            _context.Update(sightingData);
+            _context.SaveChanges();
         }
 
         public void DeleteReport(SightingReport report)
