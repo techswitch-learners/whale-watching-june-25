@@ -38,24 +38,26 @@ namespace WhaleSpottingBackend.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPatch("{id}")]
-        public IActionResult ApproveSighting(int id)
-        {
+        [HttpDelete("{id}")]
+        public IActionResult DeleteById(int id) {
+
             try
             {
-                _sightingReports.EditSightingReportStatus(id);
+                _sightingReports.DeleteReport(id);
             }
             catch (NotFoundException ex)
             {
-                return NotFound(new { error = ex.Message });
+                return NotFound(ex.Message);
             }
-            catch (Exception)
+            catch (ArgumentException ex)
             {
-                return StatusCode(500, new { error = "Something went wrong!!! Please try again later" });
+                return NotFound(ex.Message);
             }
-            return Ok(new { message = "Sighting Report Approved" });
-
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            return Ok(new { message = "Your report has been sucessfully rejected and deleted from the table." });
         }
-
     }
 }
