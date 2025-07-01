@@ -3,18 +3,16 @@ export interface ListResponse<T> {
     items: T[];
 }
 
-export type coordinates = {
-    latitude: number;
-    longitude: number;
-}
 
 export interface WhaleSighting {
-    date: Date;
-    location: coordinates;
+    date: string;
+    longitude: number;
+    latitude: number;
     description?: string; 
-    species: string;   
+    speciesId: number; 
+    imageUrl: string;
+    userId: number;  
 }
-
 export interface Species {
     id: number;
     speciesGroup: string;
@@ -54,6 +52,7 @@ export async function fetchSpecies(): Promise<ListResponse<Species>> {
     const response = await fetch(`https://localhost:5067/species`);
     return await response.json();
 }
+
 
 export async function createUser(newUser: NewUser) {
     const response = await fetch(`http://localhost:5067/users/create`, {
