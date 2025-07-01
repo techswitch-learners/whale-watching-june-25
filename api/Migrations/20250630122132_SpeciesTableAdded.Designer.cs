@@ -12,8 +12,8 @@ using WhaleSpottingBackend.Database;
 namespace WhaleSpottingBackend.Migrations
 {
     [DbContext(typeof(WhaleSpottingDbContext))]
-    [Migration("20250627130510_UpdateSightingReportTable")]
-    partial class UpdateSightingReportTable
+    [Migration("20250630122132_SpeciesTableAdded")]
+    partial class SpeciesTableAdded
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -186,13 +186,10 @@ namespace WhaleSpottingBackend.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("SightingReports");
                 });
@@ -261,6 +258,47 @@ namespace WhaleSpottingBackend.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("WhaleSpottingBackend.Models.WhaleSpecies", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("Id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConservationStatus")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Food")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Habitat")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LatinName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("MaxAge")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("MaxLengthMeters")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("MaxWeightTons")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Species")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SpeciesGroup")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WhaleSpecies");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -310,17 +348,6 @@ namespace WhaleSpottingBackend.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WhaleSpottingBackend.Models.Database.SightingReport", b =>
-                {
-                    b.HasOne("WhaleSpottingBackend.Models.Database.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

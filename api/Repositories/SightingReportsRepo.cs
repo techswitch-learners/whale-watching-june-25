@@ -33,6 +33,7 @@ namespace WhaleSpottingBackend.Repositories
         {
             return await _context.SightingReports
                         .Include(s => s.User)
+                        .Include(s => s.WhaleSpecies)
                         .ToListAsync();
         }
     }

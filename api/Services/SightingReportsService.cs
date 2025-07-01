@@ -25,11 +25,12 @@ public class SightingReportsService : ISightingReportsService
         SightingReport report = new SightingReport
         {
             Description = newReport.Description,
-            DateOfSighting = newReport.DateOfSighting,
+            DateOfSighting = newReport.Date,
             Longitude = newReport.Longitude,
             Latitude = newReport.Latitude,
-            SpeciesId = newReport.SpeciesId,
+            WhaleSpeciesId = Convert.ToInt32(newReport.WhaleSpeciesId),
             UserId = newReport.UserId,
+            ImageUrl = newReport.ImageUrl,
             Status = "Pending",
             RejectedReason = null
         };
@@ -46,7 +47,7 @@ public class SightingReportsService : ISightingReportsService
             DateOfSighting = sighting.DateOfSighting,
             Longitude = sighting.Longitude,
             Latitude = sighting.Latitude,
-            SpeciesId = sighting.SpeciesId,
+            Species = sighting.WhaleSpecies?.Species,
             UserName = sighting.User?.UserName,
             Status = sighting.Status
         }).ToList();

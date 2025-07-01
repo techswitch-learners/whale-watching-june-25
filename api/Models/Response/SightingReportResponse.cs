@@ -8,7 +8,7 @@ public class SightingReportResponse
     public required DateOnly DateOfSighting { get; set; }
     public required float Longitude { get; set; }
     public required float Latitude { get; set; }
-    public int SpeciesId { get; set; }
+    public string? Species { get; set; }
     public string? UserName { get; set; }
     public String? Status { get; set; }
 
