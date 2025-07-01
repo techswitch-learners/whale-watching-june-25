@@ -1,5 +1,6 @@
 
 using WhaleSpottingBackend.Database;
+using WhaleSpottingBackend.Exceptions;
 using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Exceptions;
 

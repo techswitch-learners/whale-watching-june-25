@@ -1,11 +1,8 @@
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Models.Request;
-using WhaleSpottingBackend.Exceptions;
-
-
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using WhaleSpottingBackend.Exceptions;
 
 namespace WhaleSpottingBackend.Controllers
 {
