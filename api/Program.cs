@@ -56,6 +56,7 @@ using (var serviceScope = app.Services.CreateScope())
     }
     await RoleSeeder.CreateRoles(serviceProvider);
     await RoleSeeder.CreateFirstAdminUser(serviceProvider);
+    await SightingSeeder.SeedSightings(serviceProvider);
 }
 ;
 
