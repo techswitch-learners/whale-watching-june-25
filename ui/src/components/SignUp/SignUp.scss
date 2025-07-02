@@ -1,0 +1,64 @@
+@import "../../styles/Constants";
+
+h1 {
+  @include header;  
+}
+
+.sign-up-form {      
+  display: flex;
+  flex-flow: column;
+  align-content: flex-start;
+  padding: 40px 120px;
+}
+
+label{
+  @include labelFormInput;
+  display:flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 5px 0;
+  border-radius: 3px;
+}
+
+ .input  {
+  @include labelFormInput;
+  display:flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  border-radius: 3px;
+}
+
+.label{
+  display: inline-flex;
+}
+
+button {
+  @include primaryButton;
+  display:flex;
+  margin: 24px auto;
+  width: fit-content;
+  padding: 10px 10px;       
+}
+
+.error-message {    
+  @include error;
+  margin: 12px 0;
+  width: 200px;
+  font-size: 12px;
+}
+
+.info-message {    
+  margin: 12px 0;
+  width: 200px;
+  font-size: 12px;
+}
+
+.password {
+  margin-bottom: 0;
+}
