@@ -1,0 +1,27 @@
+.pop-up-section {
+    display: flex;
+    flex-direction: column;
+    background-color: darkgreen;
+    width: 80%;
+    justify-self: center;
+    justify-content: center;
+}
+
+.general-tips-list{
+    padding-left: 1.5rem;
+    margin: 0;
+}
+
+.general-tips-list li{
+    margin-bottom: 1rem;
+    list-style-position: 'outside';
+}
+
+.standard-inline-image-of-whale{
+    display: flex;
+    align-items: flex-start;
+    width: 50px;
+    height: 20px;
+    margin-left:  1rem;
+    margin-top: 0.5rem;
+}
