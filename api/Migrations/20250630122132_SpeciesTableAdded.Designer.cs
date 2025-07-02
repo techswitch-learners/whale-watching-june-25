@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WhaleSpottingBackend.Database;
@@ -11,9 +12,11 @@ using WhaleSpottingBackend.Database;
 namespace WhaleSpottingBackend.Migrations
 {
     [DbContext(typeof(WhaleSpottingDbContext))]
-    partial class WhaleSpottingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250630122132_SpeciesTableAdded")]
+    partial class SpeciesTableAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -168,9 +171,6 @@ namespace WhaleSpottingBackend.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("text");
-
                     b.Property<float>("Latitude")
                         .HasColumnType("real");
 
@@ -180,21 +180,16 @@ namespace WhaleSpottingBackend.Migrations
                     b.Property<string>("RejectedReason")
                         .HasColumnType("text");
 
+                    b.Property<int>("SpeciesId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Status")
                         .HasColumnType("text");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("WhaleSpeciesId")
+                    b.Property<int>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.HasIndex("WhaleSpeciesId");
 
                     b.ToTable("SightingReports");
                 });
@@ -353,25 +348,6 @@ namespace WhaleSpottingBackend.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WhaleSpottingBackend.Models.Database.SightingReport", b =>
-                {
-                    b.HasOne("WhaleSpottingBackend.Models.Database.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WhaleSpottingBackend.Models.WhaleSpecies", "WhaleSpecies")
-                        .WithMany()
-                        .HasForeignKey("WhaleSpeciesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-
-                    b.Navigation("WhaleSpecies");
                 });
 #pragma warning restore 612, 618
         }
