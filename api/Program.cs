@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using WhaleSpottingBackend.Database;
-using WhaleSpottingBackend.Helpers;
 using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Services;
-using WhaleSpottingBackend.Repositories;
-using WhaleSpottingBackend.Services;
+using WhaleSpottingBackend.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,14 +12,14 @@ builder.Services.AddCors(options =>
 {
     if (builder.Environment.IsDevelopment())
     {
-        options.AddDefaultPolicy(
-           policy =>
-           {
-               policy.WithOrigins("http://localhost:5173")
-                   .AllowAnyMethod()
-                   .AllowCredentials()
-                   .AllowAnyHeader();
-           });
+        options.AddDefaultPolicy(policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:5173")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .AllowAnyHeader();
+        });
     }
 });
 
@@ -103,4 +101,3 @@ app.MapControllers();
 //app.MapIdentityApi<User>();
 
 app.Run();
-
