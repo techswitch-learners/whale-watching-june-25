@@ -9,9 +9,9 @@ export interface WhaleSighting {
     longitude: number;
     latitude: number;
     description?: string; 
-    speciesId: number; 
+    whaleSpeciesId: number; 
     imageUrl: string;
-    userId: number;  
+    userId: string;  
 }
 export interface Species {
     id: number;
@@ -32,7 +32,10 @@ export interface NewUser {
     password: string;
 }
 
+
+
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
+
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
         headers: {
@@ -47,9 +50,9 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
 
 }
 
-export async function fetchSpecies(): Promise<ListResponse<Species>> {
+export async function fetchSpecies(): Promise<Species[]> {
 
-    const response = await fetch(`https://localhost:5067/species`);
+    const response = await fetch(`http://localhost:5067/species`);
     return await response.json();
 }
 

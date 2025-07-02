@@ -24,9 +24,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
       latitude: 0,
       longitude: 0,
       description: "",
-      speciesId: 0,
+      whaleSpeciesId: 0,
       imageUrl: "",
-      userId: 1,
+      userId: "",
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
@@ -60,7 +60,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
   useEffect(() => {
     fetchSpecies()
       .then((response) => {
-        setSelectedSpecies(response.items);
+        setSelectedSpecies(response);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -70,15 +70,14 @@ export function CreateWhaleSightingForm(): JSX.Element {
     latitude: number;
     longitude: number;
     description: string;
-    speciesId: number;
+    whaleSpeciesId: number;
   }) {
     const sightingData = {
       ...data,
       imageUrl: url,
       date: new Date(data.date).toISOString().split('T')[0],
-      userId: 1,
+      userId: "",
     };
-    
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));
@@ -191,20 +190,18 @@ export function CreateWhaleSightingForm(): JSX.Element {
 
           <select
             className="form-input"
-            {...register("speciesId", formErrors.species)}
+            {...register("whaleSpeciesId", formErrors.species)}
           >
             {/* For testing form works for now ... species hardcoded in */}
 
             <option value="">Select</option>
-            <option value="1">Humpback Whale</option>
-            <option value="2">Blue Whale</option>
             {selectedSpecies.map((species) => (
               <option key={species.id} value={species.id}>{species.species}</option>
             ))}
 
           </select>
-          {errors.speciesId && (
-            <span className="error">{errors.speciesId.message}</span>
+          {errors.whaleSpeciesId && (
+            <span className="error">{errors.whaleSpeciesId.message}</span>
           )}
         </label>
       </div>
