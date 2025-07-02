@@ -52,7 +52,7 @@ namespace WhaleSpottingBackend.Controllers
         {
             try
             {
-                _sightingReports.EditSightingReportStatus(id);
+                _sightingReportsService.EditSightingReportStatus(id);
             }
             catch (NotFoundException ex)
             {

@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Helpers;
 using WhaleSpottingBackend.Models.Database;
+using WhaleSpottingBackend.Repositories;
+using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Services;
 
@@ -38,7 +41,15 @@ builder.Services.AddAuthorization();
 builder
     .Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<WhaleSpottingDbContext>();
+    .AddEntityFrameworkStores<WhaleSpottingDbContext>()
+    .Services.Configure<IdentityOptions>(options =>
+    {
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+    });
 
 var app = builder.Build();
 
@@ -75,6 +86,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapIdentityApi<User>();
+//app.MapIdentityApi<User>();
 
 app.Run();
+
