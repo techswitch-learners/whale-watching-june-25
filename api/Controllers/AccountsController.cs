@@ -1,10 +1,8 @@
-using WhaleSpottingBackend.Services;
-using WhaleSpottingBackend.Models.Request;
-using WhaleSpottingBackend.Database;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using WhaleSpottingBackend.Models.Database;
-using Microsoft.AspNetCore.Identity.Data;
 
 namespace WhaleSpottingBackend.Controllers;
 
@@ -31,7 +29,12 @@ public class AccountsLoginController : ControllerBase
             return Unauthorized("Invalid Email");
         }
 
-        var result = await _signInManager.PasswordSignInAsync(user, request.Password, isPersistent: false, lockoutOnFailure: false);
+        var result = await _signInManager.PasswordSignInAsync(
+            user,
+            request.Password,
+            isPersistent: false,
+            lockoutOnFailure: false
+        );
         if (!result.Succeeded)
         {
             return Unauthorized("Invalid Password");
@@ -41,5 +44,13 @@ public class AccountsLoginController : ControllerBase
             isAdmin = true;
         }
         return Ok(new { message = "Login successful", isAdmin });
+    }
+
+    [HttpPost("logout")]
+    [Authorize]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return Ok("User logged out");
     }
 }
