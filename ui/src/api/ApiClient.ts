@@ -25,6 +25,23 @@ export interface Species {
   food: string;
 }
 
+export interface SightingReport {
+    id: number;
+    description: string;
+    dateOfSighting: Date;
+    longitude: number;
+    latitude: number;
+    species: string;
+    userName: string;  
+    status: string;
+}
+
+export async function fetchSightings(): Promise<SightingReport[]> {
+    const response = await fetch(`http://localhost:5067/sightingreports/all`);
+    const data = await response.json();
+    return data;
+}
+
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
