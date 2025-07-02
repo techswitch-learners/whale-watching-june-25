@@ -6,6 +6,7 @@ using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Helpers;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
