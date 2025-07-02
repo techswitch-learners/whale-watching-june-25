@@ -1,3 +1,5 @@
+// import { setIsAdmin } from "../components/Login/LoginManager/LoginManager";
+
 export interface SightingReport {
     id: number;
     description: string;
@@ -121,6 +123,8 @@ export async function login(email: string, password: string) {
         } catch {
             errorMessage = response.statusText || errorMessage;
         }
+        // if user is admin
+        // setIsAdmin(true)
         throw new Error(errorMessage);
     }
     
