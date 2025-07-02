@@ -1,3 +1,48 @@
-.navbar{
-    background-color: aqua;
+@import "../../styles/Constants.scss";
+body, #root {
+  all: unset;
+  padding: 0;
 }
+
+.header {
+  @include header();    
+  background-color: $tealBackground;
+  text-align: center;
+  padding: 10px 0;
+  color: $whiteBackground;
+  font-weight: 800; 
+  width: auto;  
+  .home-link {    
+    text-decoration: none;
+    color: $whiteBackground;
+    font-weight: bold;       
+  }  
+}
+
+.navbar {
+  background-color: $tealBackground;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: auto;
+  padding: 5px 40px 15px 40px;
+
+  .nav-link {
+    @include navFont();
+    color: $whiteBackground;
+    margin: 0 $spacing-small;
+    font-weight: bold;
+  }
+}
+  
+  
+
+  button {
+  all: unset;
+  cursor: pointer;
+}
+
+
