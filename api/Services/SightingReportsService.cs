@@ -1,7 +1,7 @@
-using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Models.Request;
 using WhaleSpottingBackend.Models.Response;
+using WhaleSpottingBackend.Repositories;
 
 namespace WhaleSpottingBackend.Services;
 
@@ -34,7 +34,7 @@ public class SightingReportsService : ISightingReportsService
             UserId = newReport.UserId,
             ImageUrl = newReport.ImageUrl,
             Status = "Pending",
-            RejectedReason = null
+            RejectedReason = null,
         };
         _sightingReports.CreateReport(report);
     }
@@ -42,20 +42,22 @@ public class SightingReportsService : ISightingReportsService
     public async Task<List<SightingReportResponse>> GetAllSightingsResponse()
     {
         var allSightings = await _sightingReports.GetAllSightings();
-        return allSightings.Select(sighting => new SightingReportResponse
-        {
-            Id = sighting.Id,
-            Description = sighting.Description,
-            DateOfSighting = sighting.DateOfSighting,
-            Longitude = sighting.Longitude,
-            Latitude = sighting.Latitude,
-            Species = sighting.WhaleSpecies?.Species,
-            UserName = sighting.User?.UserName,
-            ImageUrl = sighting.ImageUrl,
-            Status = sighting.Status
-        }).ToList();
+        return allSightings
+            .Select(sighting => new SightingReportResponse
+            {
+                Id = sighting.Id,
+                Description = sighting.Description,
+                DateOfSighting = sighting.DateOfSighting,
+                Longitude = sighting.Longitude,
+                Latitude = sighting.Latitude,
+                Species = sighting.WhaleSpecies?.Species,
+                UserName = sighting.User?.UserName,
+                ImageUrl = sighting.ImageUrl,
+                Status = sighting.Status,
+            })
+            .ToList();
     }
-    
+
     public void EditSightingReportStatus(int sightingId)
     {
         SightingReport sightingData = _sightingReports.GetSightingById(sightingId);
@@ -66,7 +68,10 @@ public class SightingReportsService : ISightingReportsService
     public void DeleteReport(int id)
     {
         var postToDelete = _sightingReports.GetSightingById(id);
-        if (postToDelete.Status != null && postToDelete.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase))
+        if (
+            postToDelete.Status != null
+            && postToDelete.Status.Equals("Pending", StringComparison.OrdinalIgnoreCase)
+        )
         {
             _sightingReports.DeleteReport(postToDelete);
         }
@@ -75,6 +80,4 @@ public class SightingReportsService : ISightingReportsService
             throw new ArgumentException($"Sighting {id} has already been approved");
         }
     }
-
-
 }
