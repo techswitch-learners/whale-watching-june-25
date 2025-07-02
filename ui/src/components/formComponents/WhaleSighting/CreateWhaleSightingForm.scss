@@ -1,14 +1,15 @@
 @import "../../../styles/Constants.scss";
 
-// h1 {
-//     @include header;  
-// }
+h1 {
+    @include h1font;
+}
 
 .create-whale-sighting-form {      
     display: flex;
     flex-flow: column;    
     align-content: center;
-    justify-content: center 
+    justify-content: center;
+    align-items: center
 }
 
 label{
