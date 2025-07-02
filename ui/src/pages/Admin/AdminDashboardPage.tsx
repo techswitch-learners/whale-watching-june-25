@@ -1,6 +1,7 @@
 import { JSX} from "react";
 import { Page } from "../Page/Page";
 import {ListPendingSightings  } from "../../components/Admin/ListPendingSightings";
+import { useEffect, useState } from "react";
 
 // Dummy implementation; replace with the actual admin authentication logic
 function isAdminLoggedIn(): boolean {
@@ -8,8 +9,12 @@ function isAdminLoggedIn(): boolean {
   return true;
 }
  
+// Example: Fetch admin status from an API endpoint that checks .NET Identity roles
+
+
 
 export function AdminDashboardPage(): JSX.Element | null {
+ // useAdminStatus();
   if (isAdminLoggedIn() ) {
   return (
     <Page containerClassName="admin-dashboard-page">

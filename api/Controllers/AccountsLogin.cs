@@ -24,6 +24,7 @@ public class AccountsLoginController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
+        bool isAdmin = false;
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null)
         {
@@ -35,6 +36,10 @@ public class AccountsLoginController : ControllerBase
         {
             return Unauthorized("Invalid Password");
         }
-        return Ok(new { message = "Login successful" });
+        if (await _userManager.IsInRoleAsync(user, "Admin"))
+        {
+            isAdmin = true;
+        }
+        return Ok(new { message = "Login successful", isAdmin });
     }
 }
