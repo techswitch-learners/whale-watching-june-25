@@ -1,6 +1,7 @@
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Models.Request;
 using Microsoft.AspNetCore.Mvc;
+using WhaleSpottingBackend.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
 
@@ -10,11 +11,19 @@ namespace WhaleSpottingBackend.Controllers
     [Route("/sightingreports")]
     public class SightingReportsController : ControllerBase
     {
-        private readonly ISightingReportsService _sightingReports;
+        private readonly ISightingReportsService _sightingReportsService;
 
         public SightingReportsController(ISightingReportsService sightingReports)
         {
-            _sightingReports = sightingReports;
+            _sightingReportsService = sightingReports;
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public async Task<ActionResult<List<SightingReportResponse>>> GetAllSightings()
+        {
+            var allSightings = await _sightingReportsService.GetAllSightingsResponse();
+            return allSightings;
         }
 
         [HttpPost("create")]
@@ -27,7 +36,7 @@ namespace WhaleSpottingBackend.Controllers
 
             try
             {
-                _sightingReports.CreateReport(newReport);
+                _sightingReportsService.CreateReport(newReport);
             }
             catch (Exception ex)
             {
@@ -38,12 +47,32 @@ namespace WhaleSpottingBackend.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        [HttpPatch("{id}")]
+        public IActionResult ApproveSighting(int id)
+        {
+            try
+            {
+                _sightingReportsService.EditSightingReportStatus(id);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Something went wrong!!! Please try again later" });
+            }
+            return Ok(new { message = "Sighting Report Approved" });
+
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id) {
 
             try
             {
-                _sightingReports.DeleteReport(id);
+                _sightingReportsService.DeleteReport(id);
             }
             catch (NotFoundException ex)
             {
