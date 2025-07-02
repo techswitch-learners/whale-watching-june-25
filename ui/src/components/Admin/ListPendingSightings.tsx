@@ -1,6 +1,6 @@
 import {useState, useEffect } from "react";
 import "./ListPendingSightings.scss";
-import { fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting } from "../../api/ApiClient";
+import { fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting } from "../../api/ApiClient";
 import {format} from 'date-fns';
 
 export function ListPendingSightings() {
@@ -42,7 +42,7 @@ export function ListPendingSightings() {
     }
 
     async function handleAcceptSubmit(id: number) {
-        await deleteWhaleSighting(id);
+        await approveWhaleSighting(id);
         const response = await fetchSightings();
         const pendingSightings = response
             .filter(sighting => sighting.status.toLowerCase() === 'pending')

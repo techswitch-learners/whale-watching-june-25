@@ -107,3 +107,13 @@ export async function deleteWhaleSighting(id: number): Promise<void> {
         throw new Error(await response.text());
     }
 }
+
+export async function approveWhaleSighting(id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
+        method: "PATCH"
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
