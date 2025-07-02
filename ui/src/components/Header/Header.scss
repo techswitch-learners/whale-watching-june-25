@@ -5,44 +5,107 @@ body, #root {
 }
 
 .header {
-  @include header();    
+    
   background-color: $tealBackground;
+  height: 80px;
+  padding: 15px 30px;  
   text-align: center;
   padding: 10px 0;
   color: $whiteBackground;
   font-weight: 800; 
-  width: auto;  
-  .home-link {    
-    text-decoration: none;
-    color: $whiteBackground;
-    font-weight: bold;       
-  }  
-}
-
-.navbar {
-  background-color: $tealBackground;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  width: auto;
-  padding: 5px 40px 15px 40px;
-
-  .nav-link {
-    @include navFont();
-    color: $whiteBackground;
-    margin: 0 $spacing-small;
-    font-weight: bold;
+  width: auto;   
+  .home-link {
+    @include header();
   }
 }
-  
-  
 
-  button {
-  all: unset;
-  cursor: pointer;
+
+
+
+.navbar {
+  height: 60px;
+  background-color: $tealBackground;
+  position: relative;
 }
 
 
+
+.menu-icon {
+  display: none;
+}
+
+
+.nav-elements ul {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+}
+
+.nav-elements ul li:not(:last-child) {
+  margin-right: 60px;
+}
+
+.nav-elements ul a {
+  @include navFont();
+  
+}
+
+.nav-elements ul a.active {
+  color: $blueBackground;
+  font-weight: 500;
+  position: relative;
+}
+
+.nav-elements ul a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  // background-color: #574c4c;
+}
+
+@media (max-width: 768px) {
+  .nav-elements ul li:not(:last-child) {
+    margin-right: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+    width: 50px;
+    border: none;
+     aspect-ratio: 1;
+    background:
+        radial-gradient(closest-side at 12.5% 25%, $blueBackground 100%, #0000) 0 0/80% 40%,
+        linear-gradient($blueBackground 50%, #dcdcdc 0) top/80% 40% repeat-y;
+  }
+
+  .nav-elements {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: $tealBackground;
+    width: 0px;
+    height: calc(100vh - 60px);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+  }
+
+  .nav-elements.active {
+    width: 270px;
+  }
+
+  .nav-elements ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-elements ul li {
+    margin-right: unset;
+    margin-top: 22px;
+  }
+}
