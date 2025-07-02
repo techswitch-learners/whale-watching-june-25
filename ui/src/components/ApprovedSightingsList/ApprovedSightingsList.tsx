@@ -1,6 +1,6 @@
 import {useState, useEffect } from "react";
 import "./ApprovedSightingsList.scss";
-import { fetchSightings, SightingReport, fetchSeaLocation } from "../../../api/ApiClient";
+import { fetchSightings, SightingReport, fetchSeaLocation } from "../../api/ApiClient";
 import {format} from 'date-fns';
 
 
@@ -8,6 +8,8 @@ export function ApprovedSightingsList() {
 
     const [sightings, setSightings] = useState<SightingReport[]>([]);
     const [seaData, setSeaData] = useState<Map<number, string>>(new Map());
+    const [ sightingImage, setsightingImage ] = useState<string>();
+    const [ showSightingImage, setShowSightingImage ] = useState(false);
 
     useEffect(() => {
         fetchSightings().then((response) => {
@@ -31,6 +33,15 @@ export function ApprovedSightingsList() {
         );
         })
     }, [sightings]);
+
+    function handleClickShowImage(imageUrl: string) {
+        setsightingImage(imageUrl);
+        setShowSightingImage(true);
+    }
+
+    function handleClickHideImage(){
+        setShowSightingImage(false);
+    }
     
     return (
      <>
@@ -49,6 +60,7 @@ export function ApprovedSightingsList() {
                             <th>Longitude: </th>
                             <th>Username: </th>
                             <th>Description: </th>
+                            <th>Photo: </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,11 +73,18 @@ export function ApprovedSightingsList() {
                                 <td>{sightingReport.longitude}</td>
                                 <td>{sightingReport.userName}</td>
                                 <td>{sightingReport.description}</td>
+                                <td>{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View photo</button> : <p>No photo available</p>}</td>
                             </tr>
                         )}
                     </tbody>
                 </table>
             </div>
+            {showSightingImage && <div className="sighting-report-photo-container"> 
+                <div className="sighting-report-photo-wrapper">
+                <img className="sighting-report-photo" src={sightingImage}/>
+                <button className="sighting-report-photo-exit-button" onClick={() => handleClickHideImage()}>X</button>
+                </div>
+            </div>}
             </> 
         ) : (
         <h3 className="no-results-header">No approved sightings</h3>
