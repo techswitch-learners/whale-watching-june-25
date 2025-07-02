@@ -1,6 +1,6 @@
 import React, { useState, JSX } from 'react';
 import { useNavigate } from "react-router-dom";
-import {login} from "../ApiClient";
+import {login} from "../../api/ApiClient"
 
 const Login: React.FC = (): JSX.Element =>  {
     const [email, setEmail] = useState("");
