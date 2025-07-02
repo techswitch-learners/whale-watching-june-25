@@ -1,8 +1,10 @@
+
+
 @import "../../styles/Constants";
 
 body {
     background-color: $whiteBackground;
-    font: $fontFamily;
+    font-family: $fontFamily;
 }
 
 #root {
@@ -56,10 +58,10 @@ td {
 }
 
 .view-photo-button {
-    background-color: $tealBackground;
+    @include primaryButton;
+    width: fit-content;
+    background-color: $blueBackground;
     cursor: pointer;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: whitesmoke;
 }
 
@@ -98,4 +100,50 @@ td {
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
+}
+
+
+// Media queries 
+
+@media (max-width: 1440px) {
+    .approved-sightings-table {
+        width: 75vw;
+    }
+}
+
+@media (max-width: 1024px) {
+    .sighting-list-container {
+        font-size: 0.85rem;
+    }
+    th {
+    // background-color: $tealBackground;
+    padding: 10px 10px;
+    }
+}
+
+@media (max-width: 974px) {
+    .sighting-list-container {
+        font-size: 0.8rem;
+    }
+    .approved-sightings-table {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .sighting-list-container {
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 532px) {
+    .sighting-list-container {
+        font-size: 0.7rem;
+    }
+    .approved-sightings-table {
+        width: 90vw;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
 }

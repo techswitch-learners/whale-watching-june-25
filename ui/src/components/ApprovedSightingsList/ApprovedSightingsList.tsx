@@ -56,11 +56,11 @@ export function ApprovedSightingsList() {
                             <th>Date: </th>
                             <th>Species: </th>
                             <th>Location: </th>
-                            <th>Latitude: </th>
-                            <th>Longitude: </th>
-                            <th>Username: </th>
-                            <th>Description: </th>
-                            <th>Photo: </th>
+                            <th className="hide-on-mobile">Latitude: </th>
+                            <th className="hide-on-mobile">Longitude: </th>
+                            <th>Username:  </th>
+                            <th className="hide-on-mobile">Description: </th>
+                            <th className="hide-on-mobile">Photo: </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,11 +69,11 @@ export function ApprovedSightingsList() {
                                 <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
                                 <td>{sightingReport.species}</td>
                                 <td>{seaData.get(sightingReport.id)}</td>
-                                <td>{sightingReport.latitude}</td>
-                                <td>{sightingReport.longitude}</td>
+                                <td className="hide-on-mobile">{sightingReport.latitude}</td>
+                                <td className="hide-on-mobile">{sightingReport.longitude}</td>
                                 <td>{sightingReport.userName}</td>
-                                <td>{sightingReport.description}</td>
-                                <td>{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View photo</button> : <p>No photo available</p>}</td>
+                                <td className="hide-on-mobile">{sightingReport.description}</td>
+                                <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View photo</button> : <p>No photo available</p>}</td>
                             </tr>
                         )}
                     </tbody>
