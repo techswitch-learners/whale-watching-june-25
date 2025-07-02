@@ -1,19 +1,21 @@
 import { useState, useEffect } from "react";
 import "./ApprovedSightingsList.scss";
-
-import { ApprovedSightingsList } from "../ApprovedSightingsList/ApprovedSightingsList";
-import { fetchSightings } from "../../api/ApiClient";
+import { fetchSightings, SightingReport } from "../../api/ApiClient";
 
 export default function LeaderBoard() {
   return <div className="leaderBoard">Leaderboard</div>;
 }
 
 async function TopUsers() {
-  const rawApprovedList = await fetchSightings();
-  const uniqueUserNames = rawApprovedList.filter(
-    (obj, index, self) =>
-      index === self.findIndex((t) => t.userName === obj.userName)
-  );
+  const rawApprovedList: SightingReport[] = await fetchSightings();
+      const topUserMap = new Map();
+    rawApprovedList.forEach(({ userName }) => {
+      topUserMap.set(userName, (topUserMap.get(userName) || 0) + 1);
+    });
+  }
+
+
+
 
   return (
     <>
