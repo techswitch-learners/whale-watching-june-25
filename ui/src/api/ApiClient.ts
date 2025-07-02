@@ -67,3 +67,31 @@ export async function createUser(newUser: NewUser) {
         throw new Error(await response.json())
     }
 }
+
+export async function login(email: string, password: string) {
+
+    if (!email || !password) {
+        throw new Error("Email and password are required");
+    }
+
+     const response = await fetch('http://localhost:5067/accounts/login', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'},
+        credentials: "include",
+        body: JSON.stringify( {email, password})
+    })
+    
+    if (!response.ok) {
+        let errorMessage = "Login Failed";
+        try {
+             const errorData = await response.json();
+             errorMessage = errorData.message || errorMessage;
+        } catch {
+            errorMessage = response.statusText || errorMessage;
+        }
+        throw new Error(errorMessage);
+    }
+    
+    return response.json();
+}

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using WhaleSpottingBackend.Database;
-using WhaleSpottingBackend.Helpers;
 using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Services;
+using WhaleSpottingBackend.Helpers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,14 +13,14 @@ builder.Services.AddCors(options =>
 {
     if (builder.Environment.IsDevelopment())
     {
-        options.AddDefaultPolicy(
-           policy =>
-           {
-               policy.WithOrigins("http://localhost:5173")
-                   .AllowAnyMethod()
-                   .AllowCredentials()
-                   .AllowAnyHeader();
-           });
+        options.AddDefaultPolicy(policy =>
+        {
+            policy
+                .WithOrigins("http://localhost:5173")
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .AllowAnyHeader();
+        });
     }
 });
 
@@ -49,6 +49,17 @@ builder
         options.Password.RequireUppercase = true;
         options.Password.RequireLowercase = true;
     });
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+        policy
+            .WithOrigins("http://localhost:5173", "https://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials());
+});
 
 var app = builder.Build();
 
@@ -79,13 +90,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors();
+app.UseCors("AllowFrontend");
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllers();
 
 //app.MapIdentityApi<User>();
 
 app.Run();
-
