@@ -33,7 +33,7 @@ export function ListPendingSightings() {
     
     return (
      <>
-     <h2 id="pending-list-header">Pending Sightings</h2>
+     <h2 id="pendinglist-header" className="list-header">Pending Sightings</h2>
     <div className="pending-list-container">
      {sightings.length > 0 ? (
         <>
@@ -69,7 +69,7 @@ export function ListPendingSightings() {
             </div>
             </> 
         ) : (
-        <h3 className="no-results-header">No pending sightings</h3>
+        <h3 className="list-header">No pending sightings</h3>
             )}
     </div>
         </>

@@ -12,7 +12,7 @@ function isAdminLoggedIn(): boolean {
 export function AdminDashboardPage(): JSX.Element | null {
   if (isAdminLoggedIn() ) {
   return (
-    <Page containerClassName="admin-dashboard-page">
+    <Page>
       <h1 className="title">Admin Dashboard</h1>
       <ListPendingSightings />
     </Page>

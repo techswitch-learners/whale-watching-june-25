@@ -1,46 +1,39 @@
+@import "../../styles/Constants.scss";
+
 body {
-    background-color: whitesmoke;
+    background-color: $lightBlueBackground;
 }
 
-#pending-list-header{
-    color: #254e70;
-}
-
-.no-results-header {
-        color: #254e70;
+.list-header{
+    color: $blueBackground;
 }
 
 .pending-sightings-table {
     width: 60vw;
     border-collapse: collapse;
     margin: 20px 0;
-    background-color: #f8f7f9;
+    background-color: $whiteBackground;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
-        // text-align: left;
-
-
 }
 
 .pending-sightings-table-header {
-    background-color: #ff8a5b;
+    background-color: $orangeBackground;
     padding: 5px 0;
 }
 
 th {
-    background-color: #ff8a5b;
-    padding: 10px 0;
-    border: 1pt solid #f8f7f9;
-    // font: ;
+    background-color: $orangeBackground;
+    padding: 10px 20px;
+    border: 1pt solid $whiteBackground;
 }
 
 td {
-    border: 1pt solid #f8f7f9;
-    padding: 5px 0;
-    color: black;
+    border: 1pt solid $whiteBackground;
+    padding: 5px 0
 
 }
 
 .pending-sightings-table tr:nth-of-type(even) {
-    background-color:  #E9F1F7;
+    background-color:  $whiteBackground;
 }
 
