@@ -75,6 +75,10 @@ function WhaleInfo(): JSX.Element {
                     <p></p>
                 </div>
                 <div>
+                    <h3>Description</h3>
+                    <div>{selectedSpecies.Description}</div>
+                    <h3>How to find</h3>
+                    <div>{selectedSpecies.HowToFind}</div>
                     <h3>The best time and places to find a {selectedSpecies.Species}</h3>
                                         {selectedSpecies.WhenNWhereToSee.map((place, idx) => (
                                             <div key={idx}>
