@@ -37,7 +37,6 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     if (!response.ok) {
         throw new Error(await response.json())
     }
-
 }
 
 export async function fetchSpecies(): Promise<ListResponse<Species>> {

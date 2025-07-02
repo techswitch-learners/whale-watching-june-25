@@ -4,8 +4,8 @@ export interface SightingReport {
     dateOfSighting: Date;
     longitude: number;
     latitude: number;
-    speciesId: number;
-    userId: number;  
+    species: string;
+    userName: string;  
     status: string;
 }
 

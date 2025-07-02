@@ -2,12 +2,24 @@ body {
     background-color: whitesmoke;
 }
 
+#root {
+    all: unset;
+}
+
 #sightings-list-header{
     color: #254e70;
 }
 
 .no-results-header {
         color: #254e70;
+}
+
+.sighting-list-container {
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .approved-sightings-table {
@@ -17,8 +29,6 @@ body {
     background-color: #f8f7f9;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
         // text-align: left;
-
-
 }
 
 .approved-sightings-table-header {
@@ -35,9 +45,9 @@ th {
 
 td {
     border: 1pt solid #f8f7f9;
-    padding: 5px 0;
+    padding: 5px 5px 5px 0;
     color: black;
-
+    text-align: center;
 }
 
 .approved-sightings-table tr:nth-of-type(even) {

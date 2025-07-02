@@ -34,15 +34,15 @@ export function ApprovedSightingsList() {
     
     return (
      <>
-     <h2 id="sightings-list-header">Sightings</h2>
     <div className="sighting-list-container">
+    <h2 id="sightings-list-header">Sightings</h2>
      {sightings.length > 0 ? (
         <>
             <div className="sighting-container">
                 <table className= "approved-sightings-table">
                     <thead className="approved-sightings-table-header">
                         <tr>
-                            <th>Date of sighting: </th>
+                            <th>Date: </th>
                             <th>Species: </th>
                             <th>Location: </th>
                             <th>Latitude: </th>
@@ -55,11 +55,11 @@ export function ApprovedSightingsList() {
                         {sightings.map((sightingReport: SightingReport) => 
                             <tr key={sightingReport.id}>
                                 <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
-                                <td>{sightingReport.speciesId}</td>
+                                <td>{sightingReport.species}</td>
                                 <td>{seaData.get(sightingReport.id)}</td>
                                 <td>{sightingReport.latitude}</td>
                                 <td>{sightingReport.longitude}</td>
-                                <td>{sightingReport.userId}</td>
+                                <td>{sightingReport.userName}</td>
                                 <td>{sightingReport.description}</td>
                             </tr>
                         )}
