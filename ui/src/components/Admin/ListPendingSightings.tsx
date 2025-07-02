@@ -53,16 +53,44 @@ export function ListPendingSightings() {
                     </thead>
                     <tbody>
                         {sightings.map((sightingReport: SightingReport) => 
-                            <tr key={sightingReport.id}>
-                                <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
-                                <td>{sightingReport.speciesId}</td>
-                                <td>{seaData.get(sightingReport.id)}</td>
-                                <td>{sightingReport.latitude}</td>
-                                <td>{sightingReport.longitude}</td>
-                                <td>{sightingReport.userId}</td>
-                                <td>{sightingReport.description}</td>
-                                <td><img src={sightingReport.imageUrl} alt="Sighting" width="500" height="auto"/></td>
-                            </tr>
+                            <>
+                                <tr key={sightingReport.id}>
+                                    <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
+                                    <td>{sightingReport.speciesId}</td>
+                                    <td>{seaData.get(sightingReport.id)}</td>
+                                    <td>{sightingReport.latitude}</td>
+                                    <td>{sightingReport.longitude}</td>
+                                    <td>{sightingReport.userId}</td>
+                                    <td>{sightingReport.description}</td>
+                                    <td><img src={sightingReport.imageUrl} alt="Sighting" width="500" height="auto"/></td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={6} style={{ textAlign: "center" }}>
+                                        <button
+                                            className="delete-sighting-btn"
+                                            // onClick={() => {
+                                            //     setSightings(prev =>
+                                            //         prev.filter(s => s.id !== sightingReport.id)
+                                            //     );
+                                            // }}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                    <td colSpan={6} style={{ textAlign: "center" }}>
+                                        <button
+                                            className="accept-sighting-btn"
+                                            // onClick={() => {
+                                            //     setSightings(prev =>
+                                            //         prev.filter(s => s.id !== sightingReport.id)
+                                            //     );
+                                            // }}
+                                        >
+                                            Accept
+                                        </button>
+                                    </td>
+                                </tr>
+                            </>
                         )}
                     </tbody>
                 </table>
