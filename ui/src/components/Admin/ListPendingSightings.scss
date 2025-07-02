@@ -40,7 +40,7 @@ td {
 
 }
 
-.pending-sightings-table tr:nth-of-type(even) {
-    background-color:  #E9F1F7;
+.pending-sightings-table tr:nth-child(4n+1) td, 
+.pending-sightings-table tr:nth-child(4n+2) td {
+ background-color: #E9F1F7;
 }
-
