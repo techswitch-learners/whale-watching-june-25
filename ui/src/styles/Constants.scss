@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap');
+
+$orangeBackground: #FF8A5B;
+$blueBackground: #254E70;
+$tealBackground: #22AAA1;
+$whiteBackground: #F8F7F9;
+$lightBlueBackground: #E9F1F7;  
+
+$fontFamily: 'Lato', sans-serif;
+$fontColor: black;
+$headerFontFamily: 'Sniglet' ;
+
+
+$buttonBackground: #FF8A5B;
+
+$errorFontColor: red;
+
+$spacing-small: 10px;
+$spacing-medium: 20px;
+
+@mixin font($font-size, $line-height, $color) {
+  font-family: $fontFamily;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+  text-decoration: none;
+}
+
+@mixin headerFont($font-size, $line-height, $color) {
+  font-family: $headerFontFamily;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+  text-decoration: none;
+}
+
+@mixin buttonFont($color) {
+ @include font(17px, 1, $color);
+  text-transform: uppercase;
+  font-family: $fontFamily;
+  font-weight: bold;
+}
+
+@mixin primaryButton() {
+  @include buttonFont($whiteBackground);
+  border: none;
+  border-radius: 5px;
+  background-color: $buttonBackground;
+  cursor: pointer; 
+  width: 100%;  
+}
+
+@mixin labelFormInput(){
+  @include font(17px, 1, $fontColor);
+}
+
+@mixin error(){
+  @include font(15px, 1, $errorFontColor);
+}
+
+@mixin header(){
+     @include headerFont(40px, 1.5, $whiteBackground);
+}
+
+@mixin homeLinkFont() {
+  @include font(40px, 2, $whiteBackground);
+}
+
+@mixin navFont() {
+  @include font(24px, 2, $whiteBackground);
+}
