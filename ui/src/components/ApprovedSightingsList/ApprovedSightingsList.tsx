@@ -73,7 +73,7 @@ export function ApprovedSightingsList() {
                                 <td className="hide-on-mobile">{sightingReport.longitude}</td>
                                 <td>{sightingReport.userName}</td>
                                 <td className="hide-on-mobile">{sightingReport.description}</td>
-                                <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View photo</button> : <p>No photo available</p>}</td>
+                                <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
                             </tr>
                         )}
                     </tbody>
