@@ -40,7 +40,6 @@ namespace WhaleSpottingBackend.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.InnerException);
                 return StatusCode(500, ex.Message);
             }
 
