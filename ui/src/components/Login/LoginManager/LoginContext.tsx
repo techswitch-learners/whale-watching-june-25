@@ -1,5 +1,5 @@
-import React, {JSX, createContext, ReactNode, useState} from "react";
-
+import React, {JSX, createContext, ReactNode, useState, useEffect} from "react";
+import {useSessionStorage} from 'hooks-ts';
 
 interface LoginContextType {
     isLoggedIn: boolean;
@@ -22,6 +22,10 @@ interface LoginManagerProps {
 export function LoginManager(props: LoginManagerProps): JSX.Element {
     const [loggedIn, setLoggedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
+    const [name, setName, removeName] = useSessionStorage<string>(
+    'name',
+    'Guest',
+  );
     
     function logIn() {
         var stringLoggedIn = sessionStorage.getItem("loggedIn");
