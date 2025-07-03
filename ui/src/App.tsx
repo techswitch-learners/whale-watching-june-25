@@ -1,36 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.scss'
-import CustomButton from './components/formComponents/customButton/CustomButton'
+import LoginPage from './pages/Login/LoginPage'
+import HomePage from './pages/Home/HomePage'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
+import { ReactElement } from 'react';
+import { SignUp } from './pages/SignUp/SignUpPage';
+ 
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <CustomButton onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </CustomButton>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+export default function App(): ReactElement {
+    return (
+        <Router>
+            <Routes>
+                <Route path='/' element={<LoginPage/>}/>
+                <Route path='/login' element={<LoginPage/>}/>
+                <Route path='/home' element={<HomePage/>}/>
+                <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
+                <Route path="/sign-up" element={<SignUp/>}/>            
+            </Routes>
+        </Router>
+    );
 }
-
-export default App
