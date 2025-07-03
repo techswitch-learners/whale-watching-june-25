@@ -17,69 +17,21 @@ public static class SightingSeeder
             {
                 UserName = "WhaleFan",
                 Email = userEmail,
-                EmailConfirmed = true,
+                EmailConfirmed = true
             };
             await userManager.CreateAsync(newUser, userPassword);
             user = await userManager.FindByEmailAsync(userEmail);
             if (user != null)
             {
+
+
                 if (!context.Set<SightingReport>().Any())
                 {
-                    List<SightingReport> sightings =
-                    [
-                        new SightingReport
-                        {
-                            Id = 1,
-                            Description = "Whales sighting 1",
-                            DateOfSighting = new DateOnly(2022, 06, 13),
-                            WhaleSpeciesId = 1,
-                            Longitude = 34534534,
-                            Latitude = 3.710616f,
-                            User = user,
-                            UserId = user.Id,
-                            Status = "pending",
-                            RejectedReason = null,
-                        },
-                        new SightingReport
-                        {
-                            Id = 3,
-                            Description = "Whales sighting 3",
-                            DateOfSighting = new DateOnly(2022, 06, 16),
-                            WhaleSpeciesId = 3,
-                            Longitude = 34534534,
-                            Latitude = 3.710616f,
-                            User = user,
-                            UserId = user.Id,
-                            Status = "pending",
-                            RejectedReason = null,
-                        },
-                        new SightingReport
-                        {
-                            Id = 4,
-                            Description = "Whales sighting 4",
-                            DateOfSighting = new DateOnly(2025, 06, 18),
-                            WhaleSpeciesId = 2,
-                            Longitude = 34534534,
-                            Latitude = 3.710616f,
-                            User = user,
-                            UserId = user.Id,
-                            Status = "approved",
-                            RejectedReason = null,
-                        },
-                        new SightingReport
-                        {
-                            Id = 2,
-                            Description = "Whales sighting 2",
-                            DateOfSighting = new DateOnly(2000, 06, 10),
-                            WhaleSpeciesId = 1,
-                            Longitude = 34534534,
-                            Latitude = 3.710616f,
-                            User = user,
-                            UserId = user.Id,
-                            Status = "pending",
-                            RejectedReason = null,
-                        },
-                    ];
+                    List<SightingReport> sightings = [
+                    new SightingReport { Id = 1, Description = "Whales sighting 1", DateOfSighting = new DateOnly(2022, 06, 13), WhaleSpeciesId = 1, Longitude = 34534534, Latitude = 3.710616f, User = user, UserId = user.Id, Status = "pending", RejectedReason = null },
+                    new SightingReport { Id = 3, Description = "Whales sighting 3", DateOfSighting = new DateOnly(2022, 06, 16), WhaleSpeciesId = 3, Longitude = 34534534, Latitude = 3.710616f, User = user, UserId = user.Id, Status = "pending", RejectedReason = null },
+                    new SightingReport { Id = 4, Description = "Whales sighting 4", DateOfSighting = new DateOnly(2025, 06, 18), WhaleSpeciesId = 2, Longitude = 34534534, Latitude = 3.710616f, User = user, UserId = user.Id, Status = "approved", RejectedReason = null },
+                    new SightingReport { Id = 2, Description = "Whales sighting 2", DateOfSighting = new DateOnly(2000, 06, 10), WhaleSpeciesId = 1, Longitude = 34534534, Latitude = 3.710616f, User = user, UserId = user.Id, Status = "pending", RejectedReason = null }];
                     await context.Set<SightingReport>().AddRangeAsync(sightings);
                 }
             }

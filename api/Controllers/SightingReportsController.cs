@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using WhaleSpottingBackend.Exceptions;
-using WhaleSpottingBackend.Models.Request;
-using WhaleSpottingBackend.Models.Response;
 using WhaleSpottingBackend.Services;
+using WhaleSpottingBackend.Models.Request;
+using Microsoft.AspNetCore.Mvc;
+using WhaleSpottingBackend.Models.Response;
+using Microsoft.AspNetCore.Authorization;
+using WhaleSpottingBackend.Exceptions;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -43,12 +43,7 @@ namespace WhaleSpottingBackend.Controllers
                 return StatusCode(500, ex.Message);
             }
 
-            return Ok(
-                new
-                {
-                    message = "Your sighting report has been successfully submitted and is pending review.",
-                }
-            );
+            return Ok(new { message = "Your sighting report has been successfully submitted and is pending review." });
         }
 
         [Authorize(Roles = "Admin")]
@@ -65,18 +60,16 @@ namespace WhaleSpottingBackend.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(
-                    500,
-                    new { error = "Something went wrong!!! Please try again later" }
-                );
+                return StatusCode(500, new { error = "Something went wrong!!! Please try again later" });
             }
             return Ok(new { message = "Sighting Report Approved" });
+
         }
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public IActionResult DeleteById(int id)
-        {
+        public IActionResult DeleteById(int id) {
+
             try
             {
                 _sightingReportsService.DeleteReport(id);
@@ -93,12 +86,7 @@ namespace WhaleSpottingBackend.Controllers
             {
                 return StatusCode(500, ex.Message);
             }
-            return Ok(
-                new
-                {
-                    message = "Your report has been sucessfully rejected and deleted from the table.",
-                }
-            );
+            return Ok(new { message = "Your report has been sucessfully rejected and deleted from the table." });
         }
     }
 }
