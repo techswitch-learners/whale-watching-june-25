@@ -25,7 +25,7 @@ export function Statistics () {
 
     const sightingsPerDay = sightings.reduce((acc: Record<string, number>, sighting) => {
         const date = new Date(sighting.dateOfSighting).toLocaleDateString();
-        acc[date] = (acc[date] || 0) + 1;cd 
+        acc[date] = (acc[date] || 0) + 1;
         return acc;
     }, {});
     let busiestDay = '';
