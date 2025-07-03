@@ -17,8 +17,9 @@ export function Statistics () {
         });  
     }, []);
 
-   
+    console.log(sightings[0]);
     const uniqueSpeciesCount = new Set(sightings.map(s => s.speciesId)).size;
+    console.log(sightings.map(s => s.speciesId));
 
     const totalSightingsToDate = sightings.length;
 
@@ -38,7 +39,10 @@ export function Statistics () {
 
     return (
         <div className="statistics-card">
-            <h2 className="statistics-title">Whale Watching Stats</h2>
+            <div className='title-container'>
+                <h2 className="statistics-title">Whale Watching Stats</h2>
+                <img src='https://png.pngtree.com/png-clipart/20221117/ourmid/pngtree-cute-cartoon-whale-png-image_6461281.png' alt='caroon whale image'/>
+            </div>
             <div className="statistics-bubbles">
                 <div className="stat-bubble">
                     <p>
