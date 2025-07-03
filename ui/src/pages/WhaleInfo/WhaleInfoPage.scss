@@ -56,3 +56,9 @@ margin-left: 20px;
 #choose-a-species-label{
     align-items: center;
 }
+
+@media (max-width: 768px){
+    .general-container{
+        flex-direction: column;
+    }
+}
