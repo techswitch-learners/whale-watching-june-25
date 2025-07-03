@@ -14,14 +14,15 @@ export function Header() {
 export function Navbar() {
    
     const [showNavbar, setShowNavbar] = useState(false);
-    async function handleShowNavbar() {
+     function handleShowNavbar() {
         setShowNavbar(!showNavbar);
-        await setMenu("active");
+        setMenu("active");
         }
+
     
     const [active, setActive] = useState("active");
-      async function setMenu (state: string){        
-       await setActive(state); 
+       function setMenu (state: string){        
+        setActive(state); 
        }
 
             return (
@@ -30,14 +31,14 @@ export function Navbar() {
              </div>
             <div className={`nav-elements  ${showNavbar && active}`}>
             <ul>
-            <li><NavLink className="nav-link" to="/" onClick={() => setMenu("inactive")}>Home</NavLink></li>
+            <li><NavLink className="nav-link" to="/" onClick={handleShowNavbar}>Home</NavLink></li>
             {/* variable.includes("Admin") && <NavLink className="nav-link" to="/managesightings">Dashboard</NavLink> */}
-            <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={() =>setMenu("inactive")} >Report Sighting</NavLink></li>
-            <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")} >Info</NavLink></li>
-            <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")} >Login</NavLink></li>
-             <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")} >Register</NavLink></li>
-             <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")}>Logout</NavLink></li>
-            <li><NavLink className="nav-link" to="/" onClick={() =>setMenu("inactive")}>Logout</NavLink></li>
+            <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={handleShowNavbar} >Report Sighting</NavLink></li>
+            <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Info</NavLink></li>
+            <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Login</NavLink></li>
+             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Register</NavLink></li>
+             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar}>Logout</NavLink></li>
+            <li><NavLink className="nav-link" to="/" onClick={handleShowNavbar}>Logout</NavLink></li>
             </ul>
             </div>
         </nav>
