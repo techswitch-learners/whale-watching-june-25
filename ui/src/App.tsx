@@ -1,7 +1,6 @@
 
 import './App.scss'
 import LoginPage from './pages/Login/LoginPage'
-import HomePage from './pages/Home/HomePage'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
 import { ReactElement } from 'react'; 

@@ -68,7 +68,7 @@ $spacing-medium: 20px;
 }
 
 @mixin navFont() {
-  @include font(24px, 2, $whiteBackground);
+  @include font(21px, 2, $whiteBackground);
 }
 
 @mixin h1font() {
