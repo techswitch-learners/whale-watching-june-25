@@ -65,7 +65,7 @@ export function SignUpForm(): JSX.Element {
             [name]: value,
         })
     }
-    
+
     const validateForm = (event: FormEvent) => {
         event.preventDefault();
         setStatus(FormStatusEnum.Submitting);
@@ -184,7 +184,6 @@ export function SignUpForm(): JSX.Element {
                     className="input password"
                     placeholder="Enter a secure password"
                 />
-
                     <small>
                         Password strength:{' '}
                             <span style={{
@@ -213,7 +212,7 @@ export function SignUpForm(): JSX.Element {
                   </label>
 
                 <label className="label" htmlFor="submit">
-                <button className="submit-button" type="submit" value="Submit" disabled={status === "SUBMITTING"}>Sign Up</button>
+                <button className="submit-button" type="submit" value="Submit" id="submit" disabled={status === "SUBMITTING"}>Sign Up</button>
                 {status === "SUBMITTING" && <p className="info-message">Hold tight your details are surfing the waves!</p>}
                 {status === "ERROR" && <p className="error-message">Something went wrong! Please try again.</p>}
                 </label>

@@ -1,9 +1,5 @@
 @import "../../styles/Constants";
 
-#root, main {
-  background-color: $lightBlueBackground;
-}
-
 h1 {
   @include header;  
 }
@@ -22,10 +18,16 @@ input {
   width: 200px;
 }
 
+input:focus {
+    outline: 3px solid $tealBackground;
+    box-shadow: 0 0 10px $tealBackground;
+  }
+
 button {
   margin: 24px auto;
   justify-content: center;
-  width: 100%;    
+  width: 100%;
+  background-color: $blueBackground;    
 }
 
 .error-message {    
