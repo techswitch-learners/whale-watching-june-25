@@ -95,3 +95,10 @@ export async function login(email: string, password: string) {
     
     return response.json();
 }
+
+export async function checkIfAdmin() {
+    console.log("In check if admin API client")
+
+     const response = await fetch('http://localhost:5067/accounts/check-admin') 
+     return await response.json();
+}

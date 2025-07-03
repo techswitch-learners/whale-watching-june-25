@@ -1,6 +1,7 @@
-import React, { useState, JSX } from 'react';
+import React, { useContext, useState, JSX } from 'react';
 import { useNavigate } from "react-router-dom";
-import {login} from "../../api/ApiClient"
+import {checkIfAdmin,login} from "../../api/ApiClient"
+import { LoginContext } from './LoginManager/LoginContext';
 
 const Login: React.FC = (): JSX.Element =>  {
     const [email, setEmail] = useState("");
@@ -9,6 +10,7 @@ const Login: React.FC = (): JSX.Element =>  {
     const [apiError, setapiError] = useState("");
     const emailRegex = /^[^\s]+@[^\s]+.[^\s]{3,}$/;
     const navigate = useNavigate();
+    const loginContext = useContext(LoginContext);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -31,7 +33,24 @@ const Login: React.FC = (): JSX.Element =>  {
         e.preventDefault();
         setapiError("");
         try{
-        await login(email, password);
+        var isAdmin = await login(email, password);
+        if (isAdmin.isAdmin == true){
+            console.log("IsAdmin should be true:", isAdmin.isAdmin);
+            sessionStorage.setItem('isAdmin', "true");
+           // console.log("From session stroage", sessionStorage.getItem("isAdmin"));
+        }
+        else {
+            console.log("IsAdmin should be false:", isAdmin.isAdmin)
+            sessionStorage.setItem('isAdmin', "false")
+        }
+        sessionStorage.setItem('loggedIn', "true");
+  
+
+        // for log out
+        //sessionStorage.removeItem('key');
+       // const isAdmin:boolean = await checkIfAdmin();
+        // loginContext.logIn(isAdmin.isAdmin);
+       loginContext.logIn();
         navigate("/home");
         } catch (err) {
             setapiError(`Login failed. ${err}`)
