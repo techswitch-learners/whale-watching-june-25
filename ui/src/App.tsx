@@ -7,7 +7,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
 import { ReactElement } from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
-import WhaleInfoPage from './page/WhaleInfo/WhaleInfoPage'
+import WhaleInfoPage from './pages/WhaleInfo/WhaleInfoPage'
 
 
 export default function App(): ReactElement {
