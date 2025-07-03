@@ -1,6 +1,5 @@
-import React, { useState, JSX, useEffect } from 'react';
+import { useState, JSX, useEffect } from 'react';
 import species from '../assets/species.json';
-import Collapsible from '../helpers/CollapsibleShowHide';
 import "../page/WhaleInfo/WhaleInfoPage.scss";
 
 type WhenNWhere = {
@@ -32,22 +31,7 @@ function WhaleInfo(): JSX.Element {
     }, []);
 
     return (
-        <div className="whale-info">
-            <h1>How to find a whale</h1>
-            
-            <div>
-                <h3>If you’ve never seen a whale before, it can be hard to know what to look for. Here are some general and specific tips that may help you see and identify specific species.</h3>
-                <h2>General Tips:</h2>
-                    <ul className='general-tips-list'>
-                        <li> Scan from left to right, slowly, and then back again. Look close to shore, and look out across the horizon. Watch for anything that breaks the surface of the water.</li>
-                        <li> Look for boats, especially if they are stopped. Sometimes the best way to find marine mammals is to find the other people who are watching them. </li>
-                        <li> Don't get fooled by driftwood or logs that look like animals, floating on the surface of the water. </li>
-                    </ul>
-                <div className='standard-inline-image-of-whale'>
-                <img src="https://www.sailorsforthesea.org/sites/default/files/Whale2.jpg" alt="general image of whale" />
-            </div>
-            </div>
-            
+
             <div className="species-info">
                 <h2>Tips for finding whales by Species:</h2>
                 <label htmlFor="species">Choose a species: </label>
@@ -65,7 +49,6 @@ function WhaleInfo(): JSX.Element {
                         </option>
                     ))}
                 </select>
-            </div>
 
             {showPopUp && (
             <div className='pop-up-section'>
@@ -82,7 +65,7 @@ function WhaleInfo(): JSX.Element {
                     <h3>The best time and places to find a {selectedSpecies.Species}</h3>
                                         {selectedSpecies.WhenNWhereToSee.map((place, idx) => (
                                             <div key={idx}>
-                                                {place.Where} in {place.When}
+                                                {place.Where} ({place.When})
                                             </div>
                                         ))}
                     
