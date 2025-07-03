@@ -22,7 +22,6 @@ public class AccountsLoginController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
-        bool isAdmin = false;
         var user = await _userManager.FindByEmailAsync(request.Email);
         if (user == null)
         {
@@ -39,11 +38,9 @@ public class AccountsLoginController : ControllerBase
         {
             return Unauthorized("Invalid Password");
         }
-        if (await _userManager.IsInRoleAsync(user, "Admin"))
-        {
-            isAdmin = true;
-        }
-        return Ok(new { message = "Login successful", isAdmin });
+        
+
+        return Ok(new { message = "Login successful"});
     }
 
     [HttpPost("logout")]
@@ -53,4 +50,18 @@ public class AccountsLoginController : ControllerBase
         await _signInManager.SignOutAsync();
         return Ok("User logged out");
     }
+
+    [HttpGet("check-admin")]
+        public async Task<IActionResult> CheckIfAdmin()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+        {
+            return Unauthorized("User not found");
+        }
+        var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
+        return Ok(isAdmin);
+    }
+
+
 }

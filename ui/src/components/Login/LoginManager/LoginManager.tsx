@@ -1,10 +1,18 @@
 import React, {JSX, createContext, ReactNode, useState} from "react";
-//import {fetchUserDetails, GetUserInputHashed} from "../../Api/apiClient";
 
 
-export const LoginContext = createContext({
+interface LoginContextType {
+    isLoggedIn: boolean;
+    isAdmin: boolean;
+    logIn: (userAdmin: boolean) => void;
+    logOut: () => void;
+}
+
+export const LoginContext = createContext<LoginContextType>({
     isLoggedIn: false,
     isAdmin: false,
+    logIn: () => {},
+    logOut: () => {},
 });
 
 interface LoginManagerProps {
@@ -15,18 +23,24 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
     const [loggedIn, setLoggedIn] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     
-    function logIn() {
+    function logIn(userAdmin: boolean) {
         setLoggedIn(true);
+        if (userAdmin == true) {
+            setIsAdmin(true);
+        }
         
     }
 
     function logOut() {
         setLoggedIn(false);
+        setIsAdmin(false);
     }
 
     const context = {
         isLoggedIn: loggedIn,
         isAdmin: isAdmin,
+        logIn: logIn,
+        logOut: logOut,
     };
     
     return (

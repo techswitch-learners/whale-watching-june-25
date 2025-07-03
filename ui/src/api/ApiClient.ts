@@ -123,12 +123,17 @@ export async function login(email: string, password: string) {
         } catch {
             errorMessage = response.statusText || errorMessage;
         }
-        // if user is admin
-        // setIsAdmin(true)
+
         throw new Error(errorMessage);
     }
     
     return response.json();
+}
+
+export async function checkIfAdmin() {
+
+     const response = await fetch('http://localhost:5067/accounts/check-admin') 
+     return await response.json();
 }
 
 export async function deleteWhaleSighting(id: number): Promise<void> {
