@@ -1,9 +1,7 @@
 import {NavLink} from "react-router-dom";
 import './Header.scss';
 import "../../styles/Constants.scss";
-import { useContext, useState } from "react";
-import { LoginContext } from "../LoginManager/LoginManager";
-
+import { useState } from "react";
 
 export function Header() {
     return (
@@ -14,53 +12,36 @@ export function Header() {
 }
 
 export function Navbar() {
-    const loginContext = useContext(LoginContext);
+   
     const [showNavbar, setShowNavbar] = useState(false);
-    const handleShowNavbar = () => {
+    async function handleShowNavbar() {
         setShowNavbar(!showNavbar);
-    }
+        await setMenu("active");
+        }
     
-     loginContext.isLoggedIn = false;
-     loginContext.isAdmin = false;
-        if (loginContext.isLoggedIn && !loginContext.isAdmin) {
+    const [active, setActive] = useState("active");
+      async function setMenu (state: string){        
+       await setActive(state); 
+       }
+
             return (
             <nav className="navbar">
             <div className="menu-icon" onClick={handleShowNavbar}>
-                 {/* ☰ */}
-            </div>
-            <div className={`nav-elements  ${showNavbar && 'active'}`}>
+             </div>
+            <div className={`nav-elements  ${showNavbar && active}`}>
             <ul>
-                <li><NavLink className="nav-link" to="/" >Home</NavLink></li>
+            <li><NavLink className="nav-link" to="/" onClick={() => setMenu("inactive")}>Home</NavLink></li>
             {/* variable.includes("Admin") && <NavLink className="nav-link" to="/managesightings">Dashboard</NavLink> */}
-            <li> <NavLink className="nav-link" to="/add-new-sighting" >Report Sighting</NavLink></li>
-           <li> <NavLink className="nav-link" to="/info" >Info</NavLink></li>
-            <li><NavLink className="nav-link" to="/">Logout</NavLink></li>
+            <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={() =>setMenu("inactive")} >Report Sighting</NavLink></li>
+            <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")} >Info</NavLink></li>
+            <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")} >Login</NavLink></li>
+             <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")} >Register</NavLink></li>
+             <li> <NavLink className="nav-link" to="/info" onClick={() =>setMenu("inactive")}>Logout</NavLink></li>
+            <li><NavLink className="nav-link" to="/" onClick={() =>setMenu("inactive")}>Logout</NavLink></li>
             </ul>
             </div>
         </nav>
             )
-        }   
+        
 
-    return (
-        <>
-       
-        <nav className="navbar">
-            <div className="menu-icon" onClick={handleShowNavbar}>
-                 {/* ☰ */}
-            </div>
-            <div className={`nav-elements  ${showNavbar && 'active'}`}>
-            <ul>
-                <li><NavLink className="nav-link" to="/" >Home</NavLink></li>
-            {/* variable.includes("Admin") && <NavLink className="nav-link" to="/managesightings">Dashboard</NavLink> */}
-            <li> <NavLink className="nav-link" to="/add-new-sighting" >Report Sighting</NavLink></li>
-           <li> <NavLink className="nav-link" to="/info" >Info</NavLink></li>           
-           <li> <NavLink className="nav-link" to="/login" >Login</NavLink></li>
-           <li> <NavLink className="nav-link" to="/sign-up" >Register</NavLink></li>
-            </ul>
-            </div>
-
-        </nav>
-       
-        </>
-    )
 }

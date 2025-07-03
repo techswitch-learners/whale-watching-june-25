@@ -4,10 +4,9 @@ import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
-import { ReactElement, useContext } from 'react'; 
+import { ReactElement } from 'react'; 
 import { SignUp } from './pages/SignUp/SignUpPage';
 import { Header, Navbar } from './components/Header/Header';
-import { LoginContext, LoginManager } from './components/LoginManager/LoginManager';
 
 
 export default function App(): ReactElement {
