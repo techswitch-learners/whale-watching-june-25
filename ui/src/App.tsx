@@ -14,14 +14,14 @@ import { SignUp } from './pages/SignUp/SignUpPage';
 export default function App(): ReactElement {
     return (
         <Router>
-          <Routes>
-            <Route path='/' element={<LoginPage/>}/>
-            <Route path='/login' element={<LoginPage/>}/>
-            <Route path='/home' element={<HomePage/>}/>
-           <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
-           <Route path="/admin" element={<AdminDashboardPage />}/>
-           <Route path="/sign-up" element={<SignUp/>}/>      
-           </Routes>        
+            <Routes>
+                <Route path='/' element={<LoginPage/>}/>
+                <Route path='/login' element={<LoginPage/>}/>
+                <Route path='/home' element={<HomePage/>}/>
+                <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
+                <Route path="/sign-up" element={<SignUp/>}/>  
+                <Route path="/admin" element={<AdminDashboardPage />}/>          
+            </Routes>
         </Router>
     );
 }
