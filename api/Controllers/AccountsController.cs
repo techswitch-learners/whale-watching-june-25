@@ -38,8 +38,6 @@ public class AccountsLoginController : ControllerBase
         {
             return Unauthorized("Invalid Password");
         }
-        
-
         return Ok(new { message = "Login successful"});
     }
 
@@ -50,18 +48,4 @@ public class AccountsLoginController : ControllerBase
         await _signInManager.SignOutAsync();
         return Ok("User logged out");
     }
-
-    [HttpGet("check-admin")]
-        public async Task<IActionResult> CheckIfAdmin()
-    {
-        var user = await _userManager.GetUserAsync(User);
-        if (user == null)
-        {
-            return Unauthorized("User not found");
-        }
-        var isAdmin = await _userManager.IsInRoleAsync(user, "Admin");
-        return Ok(isAdmin);
-    }
-
-
 }

@@ -1,7 +1,6 @@
 import React, { useState, JSX, useContext, } from 'react';
 import { useNavigate } from "react-router-dom";
-import {checkIfAdmin, login} from "../../api/ApiClient"
-import { LoginContext } from './LoginManager/LoginManager';
+import {login} from "../../api/ApiClient"
 
 
 const Login: React.FC = (): JSX.Element =>  {
@@ -11,8 +10,6 @@ const Login: React.FC = (): JSX.Element =>  {
     const [apiError, setapiError] = useState("");
     const emailRegex = /^[^\s]+@[^\s]+.[^\s]{3,}$/;
     const navigate = useNavigate();
-    const loginContext = useContext(LoginContext);
-
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -36,10 +33,6 @@ const Login: React.FC = (): JSX.Element =>  {
         setapiError("");
         try{
         await login(email, password);
-        const isAdmin:boolean = await checkIfAdmin();
-        loginContext.logIn(isAdmin);
-        console.log("admin? " ,loginContext.isAdmin);
-        console.log("logged in: ", loginContext.isLoggedIn)
         navigate("/home");
         } catch (err) {
             setapiError(`Login failed. ${err}`)
