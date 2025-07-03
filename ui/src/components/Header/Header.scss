@@ -3,13 +3,15 @@ body, #root {
   all: unset;
   padding: 0;
 }
+ .menu-text {
+  display: none;
+ }
 
 .header {    
   background-color: $tealBackground;
   height: 80px;
-  padding: 15px 30px;  
   text-align: center;
-  padding: 10px 0;
+  padding-top: 25px;
   color: $whiteBackground;
   font-weight: 800; 
   width: auto;   
@@ -21,45 +23,52 @@ body, #root {
 .navbar {
   height: 60px;
   background-color: $tealBackground;
-  position: relative;
-}
-
-.menu-icon {
-  display: none;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav-elements ul {
+  all: unset;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   list-style-type: none;
+  border-top: solid 2px $whiteBackground;
+  padding-top: 2px
 }
 
 .nav-elements ul a {
   @include navFont();  
+   font-weight: bold;
 }
 
 .nav-elements ul a.active {
-  color: $blueBackground;
-  font-weight: 500;
   position: relative;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+  .header {
+    display: none;
+  }
   .nav-elements ul li:not(:last-child) {
     margin-right: 30px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .menu-icon {
+    position: absolute;
+    z-index: 100;
+    top: 15px;
+    right: 15px;
     display: block;
     cursor: pointer;
-    width: 50px;
+    width: 30px;
     border: none;
-     aspect-ratio: 1;
+    aspect-ratio: 1;
     background:
         radial-gradient(closest-side at 12.5% 25%, $blueBackground 100%, #0000) 0 0/80% 40%,
-        linear-gradient($blueBackground 50%, #dcdcdc 0) top/80% 40% repeat-y;
+        linear-gradient($blueBackground 50%, transparent 0) top/80% 40% repeat-y;
   }
 
   .nav-elements {
@@ -71,10 +80,24 @@ body, #root {
     height: calc(100vh - 60px);
     transition: all 0.3s ease-in;
     overflow: hidden;
+    height: 100vh;
   }
 
   .nav-elements.active {
-    width: 270px;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .menu-text {
+    display: block;
+    @include header();
+    font-size: 1.5rem;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    margin-block-start:0;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 
   .nav-elements ul {
@@ -83,7 +106,8 @@ body, #root {
   }
 
   .nav-elements ul li {
-    margin-right: unset;
     margin-top: 22px;
+    padding-left: 20px;
+    padding-top: 30px;
   }
 }
