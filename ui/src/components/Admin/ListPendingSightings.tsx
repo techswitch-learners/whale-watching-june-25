@@ -1,6 +1,6 @@
-import {useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import "./ListPendingSightings.scss";
-import { fetchSightings, SightingReport, fetchSeaLocation } from "../../api/ApiClient";
+import { fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting } from "../../api/ApiClient";
 import {format} from 'date-fns';
 
 export function ListPendingSightings() {
@@ -10,8 +10,9 @@ export function ListPendingSightings() {
 
     useEffect(() => {
         fetchSightings().then((response) => {
-            const pendingSightings = response.filter(sighting => sighting.status.toLowerCase() === 'pending')
-            .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
+            const pendingSightings = response
+                .filter(sighting => sighting.status.toLowerCase() === 'pending')
+                .sort((a, b) => new Date(a.dateOfSighting).getTime() - new Date(b.dateOfSighting).getTime());
             setSightings(pendingSightings); 
         });  
     }, []);
@@ -30,6 +31,24 @@ export function ListPendingSightings() {
         );
         })
     }, [sightings]);
+
+    async function handleDeleteSubmit(id: number) {
+        await deleteWhaleSighting(id);
+        const response = await fetchSightings();
+        const pendingSightings = response
+            .filter(sighting => sighting.status.toLowerCase() === 'pending')
+            .sort((a, b) => new Date(a.dateOfSighting).getTime() - new Date(b.dateOfSighting).getTime());
+        setSightings(pendingSightings);
+    }
+
+    async function handleAcceptSubmit(id: number) {
+        await approveWhaleSighting(id);
+        const response = await fetchSightings();
+        const pendingSightings = response
+            .filter(sighting => sighting.status.toLowerCase() === 'pending')
+            .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
+        setSightings(pendingSightings);
+    }
     
     return (
      <>
@@ -53,16 +72,38 @@ export function ListPendingSightings() {
                     </thead>
                     <tbody>
                         {sightings.map((sightingReport: SightingReport) => 
-                            <tr key={sightingReport.id}>
-                                <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
-                                <td>{sightingReport.speciesId}</td>
-                                <td>{seaData.get(sightingReport.id)}</td>
-                                <td>{sightingReport.latitude}</td>
-                                <td>{sightingReport.longitude}</td>
-                                <td>{sightingReport.userId}</td>
-                                <td>{sightingReport.description}</td>
-                                <td><img src={sightingReport.imageUrl} alt="Sighting" width="500" height="auto"/></td>
-                            </tr>
+                        <React.Fragment key={sightingReport.id}>
+                            <>
+                                <tr key={sightingReport.id}>
+                                    <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
+                                    <td>{sightingReport.speciesId}</td>
+                                    <td>{seaData.get(sightingReport.id)}</td>
+                                    <td>{sightingReport.latitude}</td>
+                                    <td>{sightingReport.longitude}</td>
+                                    <td>{sightingReport.userId}</td>
+                                    <td>{sightingReport.description}</td>
+                                    <td><img src={sightingReport.imageUrl} alt="Sighting" width="500" height="auto"/></td>
+                                </tr>
+                                <tr>
+                                    <td colSpan={6} style={{ textAlign: "center" }}>
+                                        <button
+                                            className="delete-sighting-btn"
+                                            onClick={() => handleDeleteSubmit(sightingReport.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                    <td colSpan={6} style={{ textAlign: "center" }}>
+                                        <button
+                                            className="accept-sighting-btn"
+                                            onClick={() => handleAcceptSubmit(sightingReport.id)}
+                                        >
+                                            Accept
+                                        </button>
+                                    </td>
+                                </tr>
+                            </>
+                        </React.Fragment>
                         )}
                     </tbody>
                 </table>

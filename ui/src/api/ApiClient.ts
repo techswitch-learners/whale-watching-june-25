@@ -120,8 +120,28 @@ export async function login(email: string, password: string) {
         } catch {
             errorMessage = response.statusText || errorMessage;
         }
+
         throw new Error(errorMessage);
     }
     
     return response.json();
 }
+
+export async function deleteWhaleSighting(id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
+export async function approveWhaleSighting(id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
+        method: "PATCH"
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
