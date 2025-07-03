@@ -8,12 +8,24 @@ body {
     color: $blueBackground;
 }
 
+.pending-list-container {
+    width: 100%;
+}
+
+.sighting-container {
+    max-width: 100%;
+     overflow-x: auto;
+}
+
+
+
 .pending-sightings-table {
-    width: 60vw;
+    max-width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: #ffe8de;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+   
 }
 
 .pending-sightings-table-header {
@@ -30,7 +42,6 @@ th {
 td {
     border: 1pt solid #ffe8de;
     padding: 5px 0;
-
 }
 
 .pending-sightings-table tr:nth-child(4n+1) td, 

@@ -1,4 +1,4 @@
-import {useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import "./ListPendingSightings.scss";
 import { fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting } from "../../api/ApiClient";
 import {format} from 'date-fns';
@@ -72,6 +72,7 @@ export function ListPendingSightings() {
                     </thead>
                     <tbody>
                         {sightings.map((sightingReport: SightingReport) => 
+                        <React.Fragment key={sightingReport.id}>
                             <>
                                 <tr key={sightingReport.id}>
                                     <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
@@ -102,6 +103,7 @@ export function ListPendingSightings() {
                                     </td>
                                 </tr>
                             </>
+                        </React.Fragment>
                         )}
                     </tbody>
                 </table>
