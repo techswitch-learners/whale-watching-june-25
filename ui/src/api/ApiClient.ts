@@ -1,3 +1,5 @@
+const geonamesUsername = import.meta.env.VITE_GEONAMES_USERNAMES;
+
 export interface ListResponse<T> {
 
     items: T[];
@@ -85,7 +87,7 @@ export async function fetchSightings(): Promise<SightingReport[]> {
     return data;
 }
 
-const geonamesUsername = import.meta.env.VITE_GEONAMES_USERNAMES;
+
 
 export async function fetchSeaLocation(latitude: number, longitude:number){
     const response = await fetch(`http://api.geonames.org/oceanJSON?lat=${latitude}&lng=${longitude}&username=${geonamesUsername}`);

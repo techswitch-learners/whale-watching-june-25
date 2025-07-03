@@ -13,7 +13,7 @@ export function ApprovedSightingsList() {
 
     useEffect(() => {
         fetchSightings().then((response) => {
-            const approvedSightings = response.filter(sighting => sighting.status === 'approved')
+            const approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
             .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
             setSightings(approvedSightings); 
         });  

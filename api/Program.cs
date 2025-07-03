@@ -35,20 +35,6 @@ builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCors(options =>
-{
-    if (builder.Environment.IsDevelopment())
-    {
-        options.AddDefaultPolicy(
-           policy =>
-           {
-               policy.WithOrigins("http://localhost:5173")
-                   .AllowAnyMethod()
-                   .AllowCredentials()
-                   .AllowAnyHeader();
-           });
-    }
-});
 
 builder.Services.AddAuthorization();
 
