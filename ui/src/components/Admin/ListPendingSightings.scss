@@ -12,7 +12,7 @@ body {
     width: 60vw;
     border-collapse: collapse;
     margin: 20px 0;
-    background-color: $whiteBackground;
+    background-color: #ffe8de;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -24,15 +24,17 @@ body {
 th {
     background-color: $orangeBackground;
     padding: 10px 20px;
-    border: 1pt solid $whiteBackground;
+    border: 1pt solid $orangeBackground;
 }
 
 td {
-    border: 1pt solid $whiteBackground;
-    padding: 5px 0
+    border: 1pt solid #ffe8de;
+    padding: 5px 0;
 
 }
 
-.pending-sightings-table tr:nth-of-type(even) {
-    background-color:  $whiteBackground;
+.pending-sightings-table tr:nth-child(4n+1) td, 
+.pending-sightings-table tr:nth-child(4n+2) td {
+ background-color: $whiteBackground;
+ border: 1pt solid $whiteBackground;
 }
