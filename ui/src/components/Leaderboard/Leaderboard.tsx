@@ -1,66 +1,65 @@
 import { useState, useEffect } from "react";
-import "./ApprovedSightingsList.scss";
 import { fetchSightings, SightingReport } from "../../api/ApiClient";
 
 export function Leaderboard() {
-
-    const [sightings, setSightings] = useState<SightingReport[]>([]);
- 
+  const [sightings, setSightings] = useState<SightingReport[]>([]);
+  const [topUsers, setTopUsers] = useState<{name: string, value: number}[]>([]);
 
     useEffect(() => {
         fetchSightings().then((response) => {
-            const approvedSightings = response.filter(sighting => sighting.status === 'approved');
+            const approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved');
             setSightings(approvedSightings); 
         });  
     }, []);
 
-    const userSightingsMap = new Map();
-    sightings.forEach(({ userName }) => {
-      userSightingsMap.set(userName, (userSightingsMap.get(userName) || 0) + 1);
-    });
+    useEffect(() => {
+      const usersMap = new Map();
+      sightings.forEach(({ userName }) => {
+        usersMap.set(userName, (usersMap.get(userName) || 0) + 1);
+      });
 
-    const userSightingsArray = Array.from(userSightingsMap, ([name, value]) => ({name, value})).sort((a,b) => (a.value > b.value ? 1: b.value > a.value ? -1 : 0)).slice(0, 3);
-    console.log(userSightingsArray[0] + "\n" + userSightingsArray[1] + "\n" + userSightingsArray[2]);    
+      const usersArray = Array.from(usersMap, ([name, value]) => ({name, value})).sort((a,b) => (a.value > b.value ? -1: b.value > a.value ? 1 : 0));
+      const topUsersArray = usersArray.length < 3 ? usersArray.slice(0, usersArray.length) : usersArray.slice(0, 3);
+      setTopUsers(topUsersArray);
+    }, [sightings]);
+       
 
-  return (
-    
-      <div>
-        <h2 className="leaderBoard">Leaderboard</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              position
-            </th>
-            <th> 
-              username
-            </th>
-            <th> 
-              sightings
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {userSightingsArray.length === 0 ? <h3>No one's seen any whales!</h3> :
-          userSightingsArray.map((user) => 
+    return (
+        <div>
+          <h2 className="leaderBoard">Leaderboard</h2>
+        <table>
+          <thead>
             <tr>
-              <td>
-                {userSightingsArray.indexOf(user) + 1}
-              </td>
-              <td>
-                {user.name}
-              </td>
-              <td>
-                {user.value}
-              </td>
-
+              <th>
+                position
+              </th>
+              <th> 
+                username
+              </th>
+              <th> 
+                sightings
+              </th>
             </tr>
-          )
-          }
-        </tbody>
-
-      </table>
-      </div>
-      )
+          </thead>
+          <tbody>
+            {topUsers.length === 0 ? <p>Whale, isn't this fin-teresting? Looks like no one&#8217;s seen any whales yet...</p> :
+            topUsers.map((user) => 
+              <tr key={user.name}>
+                <td>
+                  {topUsers.indexOf(user) + 1}
+                </td>
+                <td>
+                  {user.name}
+                </td>
+                <td>
+                  {user.value}
+                </td>
+              </tr>
+            )
+            }
+          </tbody>
+        </table>
+        </div>
+        )
 
     }
