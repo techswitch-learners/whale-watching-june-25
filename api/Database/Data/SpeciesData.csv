@@ -1,25 +1,29 @@
 Species_Group,Species,Latin_Name,Habitat,Max_Length_Meters,Max_Weight_Tons,Conservation_Status,Max_Age,Food
+Baleen Whales,Antarctic minke whale,B. bonaerensis,Southern Hemisphere,10,10,Near Threatened,50,Krill
 Baleen Whales,Blue whale,Balaenoptera musculus,Global oceans,30,180,Endangered (IUCN),90,Krill (especially Euphausia superba)
-Baleen Whales,Fin whale,Balaenoptera physalus,Global temperate,27,80,Vulnerable,90,"Krill, small schooling fish"
-Baleen Whales,Sei whale,Balaenoptera borealis,Global temperate,19,30,Endangered,65,"Copepods, krill, small fish"
+Baleen Whales,Bowhead whale,Balaena mysticetus,Arctic/sub-Arctic,18,100,Least Concern,200,"Zooplankton (copepods, krill)"
 Baleen Whales,Bryde’s whale,Balaenoptera edeni ,Warm temperate & tropical,16,25,Least Concern,50,"Fish (e.g. sardines), krill"
-Baleen Whales,Omura’s whale,Balaenoptera omurai,W. Pacific & Indian,11,11,Data Deficient,50,"Small fish, zooplankton"
+Baleen Whales,Fin whale,Balaenoptera physalus,Global temperate,27,80,Vulnerable,90,"Krill, small schooling fish"
+Baleen Whales,Gray whale,Eschrichtius robustus,NE/NW Pacific,15,41,Least Concern (NE); Endangered (NW),80,"Amphipods, benthic crustaceans"
 Baleen Whales,Humpback whale,Megaptera novaeangliae,Global,16,36,Least Concern,95,"Krill, small schooling fish"
 Baleen Whales,Minke whale (common),B. acutorostrata,Global,10,9,Least Concern,50,"Fish, krill, squid"
-Baleen Whales,Antarctic minke whale,B. bonaerensis,Southern Hemisphere,10,10,Near Threatened,50,Krill
-Baleen Whales,Gray whale,Eschrichtius robustus,NE/NW Pacific,15,41,Least Concern (NE); Endangered (NW),80,"Amphipods, benthic crustaceans"
-Baleen Whales,Bowhead whale,Balaena mysticetus,Arctic/sub-Arctic,18,100,Least Concern,200,"Zooplankton (copepods, krill)"
 Baleen Whales,North Atlantic right whale,Eubalaena glacialis,NW Atlantic,17,70,Critically Endangered,70,Copepods (esp. Calanus spp.)
 Baleen Whales,North Pacific right whale,Eubalaena japonica,N Pacific,17,70,Endangered,70,Zooplankton
-Baleen Whales,Southern right whale,Eubalaena australis,S Hemisphere,17,70,Least Concern,70,"Copepods, krill"
+Baleen Whales,Omura’s whale,Balaenoptera omurai,W. Pacific & Indian,11,11,Data Deficient,50,"Small fish, zooplankton"
 Baleen Whales,Pygmy right whale,Caperea marginata,Southern Oceans,6,4,Data Deficient,50,"Copepods, small crustaceans"
-Toothed Whales,Sperm whale,Physeter macrocephalus,Global deep seas,18,57,Vulnerable,70,"Large squid (e.g. Architeuthis), fish"
-Toothed Whales,Pygmy sperm whale,Kogia breviceps,Warm oceans,3.5,0.4,Data Deficient,30,"Squid, crustaceans, fish"
-Toothed Whales,Dwarf sperm whale,Kogia sima,Warm oceans,2.7,0.3,Data Deficient,30,"Cephalopods, small fish"
-Toothed Whales,Cuvier’s beaked whale,Ziphius cavirostris,Global deep oceans,7,3,Least Concern,60,"Deep-sea squid, fish"
-Toothed Whales,Baird’s beaked whale,Berardius bairdii,North Pacific,12,12,Near Threatened,70,Deep-sea fish and squid
+Baleen Whales,Sei whale,Balaenoptera borealis,Global temperate,19,30,Endangered,65,"Copepods, krill, small fish"
+Baleen Whales,Southern right whale,Eubalaena australis,S Hemisphere,17,70,Least Concern,70,"Copepods, krill"
 Toothed Whales,Arnoux’s beaked whale,Berardius arnuxii,Southern Ocean,9,10,Data Deficient,70,Squid and fish
-Toothed Whales,Strap-toothed whale,Mesoplodon layardii,Southern Hemisphere,6,1.5,Data Deficient,50,Squid
-Toothed Whales,Spade-toothed whale,Mesoplodon traversii,South Pacific,5,1.5,Data Deficient,50,Likely squid
+Toothed Whales,Baird’s beaked whale,Berardius bairdii,North Pacific,12,12,Near Threatened,70,Deep-sea fish and squid
 Toothed Whales,Beluga whale,Delphinapterus leucas,Arctic/sub‑Arctic,5,1.5,Near Threatened,60,"Fish, shrimp, cephalopods"
+Toothed Whales,Cuvier’s beaked whale,Ziphius cavirostris,Global deep oceans,7,3,Least Concern,60,"Deep-sea squid, fish"
+Toothed Whales,Dwarf sperm whale,Kogia sima,Warm oceans,2.7,0.3,Data Deficient,30,"Cephalopods, small fish"
+Toothed Whales,Long Finned Pilot Whale,G. melas ,temperate to subpolar oceanic waters ,7.6,4.5,Least Concern,60,Squid
+Toothed Whales,Melon-Headed Whale,Peponocephala electra ,Tropical/Sub Tropical,2.75,0.2,Least Concern,45,"Squid, small fish"
 Toothed Whales,Narwhal,Monodon monoceros,Arctic,5,1.5,Near Threatened,50,"Greenland halibut, squid"
+Toothed Whales,Orca,Orcinus orca ,Global,9.8,6.6,Data Deficient,90,"Fish, Sharks, Rays and Marine Mammals"
+Toothed Whales,Pygmy sperm whale,Kogia breviceps,Warm oceans,3.5,0.4,Data Deficient,30,"Squid, crustaceans, fish"
+Toothed Whales,Short Finned Pilot Whale,G. macrorhynchus ,Tropical/Sub Tropical,7.2,3.6,Least Concern,60,"Squid, Octopus, Fish"
+Toothed Whales,Spade-toothed whale,Mesoplodon traversii,South Pacific,5,1.5,Data Deficient,50,Likely squid
+Toothed Whales,Sperm whale,Physeter macrocephalus,Global deep seas,18,57,Vulnerable,70,"Large squid (e.g. Architeuthis), fish"
+Toothed Whales,Strap-toothed whale,Mesoplodon layardii,Southern Hemisphere,6,1.5,Data Deficient,50,Squid
