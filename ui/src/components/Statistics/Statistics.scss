@@ -1,0 +1,71 @@
+.statistics-card {
+  background: #f8f7f9;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(37, 78, 112, 0.10);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  margin: 2.5rem auto;
+  max-width: 420px;
+  text-align: center;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+}
+
+.statistics-title {
+  font-family: 'Pacifico', cursive, 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  font-size: 2.2rem;
+  color: #254e70;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  text-shadow: 1px 2px 8px #b2c9e2;
+}
+
+.statistics-card p {
+  font-size: 1.15rem;
+  color: #254e70;
+  margin: 1.1rem 0;
+  font-weight: 500;
+  align-items: center;
+}
+
+.stat-number {
+  font-weight: bold;
+  color: #1a2a40; 
+}
+
+.statistics-bubbles {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  justify-content: center;
+  // align-items: stretch;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .statistics-card {
+
+  }
+}
+
+@media (min-width: 1023px){
+  .statistics-bubbles{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.stat-bubble {
+  background: #e9f1f7;
+  border-radius: 2rem;
+  padding: 1.1rem 1.5rem;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(37, 78, 112, 0.08);
+  font-size: 1.1rem;
+  min-width: 0;
+  flex: 1 1 220px;
+  max-width: 100%;
+}
