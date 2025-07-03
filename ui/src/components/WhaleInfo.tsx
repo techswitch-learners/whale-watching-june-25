@@ -33,8 +33,8 @@ function WhaleInfo(): JSX.Element {
     return (
 
             <div className="species-info">
-                <h2>Tips for finding whales by Species:</h2>
-                <label htmlFor="species">Choose a species: </label>
+                <h2 className="subtitle">Tips for finding whales by Species:</h2>
+                <label className="choose-a-species-label" htmlFor="species">Choose a species: </label>
                 <select
                     id="species"
                     onChange={(e) => {
@@ -58,11 +58,11 @@ function WhaleInfo(): JSX.Element {
                     <p></p>
                 </div>
                 <div>
-                    <h3>Description</h3>
+                    <h3>Description:</h3>
                     <div>{selectedSpecies.Description}</div>
-                    <h3>How to find</h3>
+                    <h3>Tips to spot this species:</h3>
                     <div>{selectedSpecies.HowToFind}</div>
-                    <h3>The best time and places to find a {selectedSpecies.Species}</h3>
+                    <h3>The best time and places to find a {selectedSpecies.Species}:</h3>
                                         {selectedSpecies.WhenNWhereToSee.map((place, idx) => (
                                             <div key={idx}>
                                                 {place.Where} ({place.When})

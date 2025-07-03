@@ -1,3 +1,8 @@
+body{
+    background-color: #E9F1F7;
+    color: black;
+}
+
 .pop-up-section {
     display: flex;
     flex-direction: column;
@@ -5,20 +10,36 @@
     width: 80%;
     justify-self: center;
     justify-content: center;
+    color: black;
+    background-color: white;
+    margin-top: 20px;
+    padding: 50px;
 }
 
-
+.title{
+    margin-bottom: 50px;
+}
+.subtitle{
+    margin-bottom: 50px;
+}
 
 .general-container{
-
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-bottom: 50px;
 }
 
 .text-container{
-
+margin-right: 20px;
+margin-left: 20px;
 }
 
-.image-container{
-
+.image-container{ 
+ max-width: 50%;
+ img{
+    max-width: 90%;
+ }
 }
 
 
