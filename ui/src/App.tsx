@@ -20,5 +20,7 @@ export default function App(): ReactElement {
                 <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
                 <Route path="/sign-up" element={<SignUp/>}/> 
                 <Route path="/leaderboard" element={<Leaderboard/>}/>
+            </Routes>
+        </Router>
     );
 }
