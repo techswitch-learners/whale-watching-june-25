@@ -1,40 +1,66 @@
 import { useState, useEffect } from "react";
 import "./ApprovedSightingsList.scss";
+import { fetchSightings, SightingReport } from "../../api/ApiClient";
 
-import { ApprovedSightingsList } from "../ApprovedSightingsList/ApprovedSightingsList";
-import { fetchSightings } from "../../api/ApiClient";
+export function Leaderboard() {
 
-export default function LeaderBoard() {
-  return <div className="leaderBoard">Leaderboard</div>;
-}
+    const [sightings, setSightings] = useState<SightingReport[]>([]);
+ 
 
-async function TopUsers() {
-  const rawApprovedList = await fetchSightings();
-  const uniqueUserNames = rawApprovedList.filter(
-    (obj, index, self) =>
-      index === self.findIndex((t) => t.userName === obj.userName)
-  );
+    useEffect(() => {
+        fetchSightings().then((response) => {
+            const approvedSightings = response.filter(sighting => sighting.status === 'approved');
+            setSightings(approvedSightings); 
+        });  
+    }, []);
+
+    const userSightingsMap = new Map();
+    sightings.forEach(({ userName }) => {
+      userSightingsMap.set(userName, (userSightingsMap.get(userName) || 0) + 1);
+    });
+
+    const userSightingsArray = Array.from(userSightingsMap, ([name, value]) => ({name, value})).sort((a,b) => (a.value > b.value ? 1: b.value > a.value ? -1 : 0)).slice(0, 3);
+    console.log(userSightingsArray[0] + "\n" + userSightingsArray[1] + "\n" + userSightingsArray[2]);    
 
   return (
-    <>
-      {data.map((User, index) => (
-        <div className="flex" key={index}>
-          <div className="topUser">
-            {/* <img src={value.img} alt="" /> */}
-            <div className="info">
-              <h3 className="name text-dark">{Rank}</h3>
-            </div>
-            <div className="info">
-              <h3 className="name text-dark">{topUser.userName}</h3>
-            </div>
-          </div>
-          <div className="item">
-            <span>{spottingTotal}</span>
-          </div>
+    
+      <div>
+        <h2 className="leaderBoard">Leaderboard</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              position
+            </th>
+            <th> 
+              username
+            </th>
+            <th> 
+              sightings
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {userSightingsArray.length === 0 ? <h3>No one's seen any whales!</h3> :
+          userSightingsArray.map((user) => 
+            <tr>
+              <td>
+                {userSightingsArray.indexOf(user) + 1}
+              </td>
+              <td>
+                {user.name}
+              </td>
+              <td>
+                {user.value}
+              </td>
 
-          {/* most recent spot? */}
-        </div>
-      ))}
-    </>
-  );
-}
+            </tr>
+          )
+          }
+        </tbody>
+
+      </table>
+      </div>
+      )
+
+    }
