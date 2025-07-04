@@ -48,7 +48,7 @@ export function ListPendingSightings() {
         const response = await fetchSightings();
         const pendingSightings = response
             .filter(sighting => sighting.status.toLowerCase() === 'pending')
-            .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
+            .sort((a, b) => new Date(b.dateOfSighting).getTime() - new Date(a.dateOfSighting).getTime());
         setSightings(pendingSightings);
     }
 
@@ -70,16 +70,17 @@ export function ListPendingSightings() {
             <div className="sighting-container">
                 <table className= "pending-sightings-table">
                     <thead className="pending-sightings-table-header">
-                        <tr>
-                            <th>Date of sighting: </th>
+                         <tr>
+                            <th>Date: </th>
                             <th>Species: </th>
                             <th>Location: </th>
-                            <th>Latitude: </th>
-                            <th>Longitude: </th>
-                            <th>Username: </th>
-                            <th>Description: </th>
-                            <th>Image:</th>
+                            <th className="hide-on-mobile">Latitude: </th>
+                            <th className="hide-on-mobile">Longitude: </th>
+                            <th>Username:  </th>
+                            <th className="hide-on-mobile">Description: </th>
+                            <th className="hide-on-mobile">Photo: </th>
                         </tr>
+
                     </thead>
                     <tbody>
                         {sightings.map((sightingReport: SightingReport) => 
@@ -87,16 +88,16 @@ export function ListPendingSightings() {
                             <>
                                 <tr key={sightingReport.id}>
                                     <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
-                                    <td>{sightingReport.speciesId}</td>
+                                    <td>{sightingReport.species}</td>
                                     <td>{seaData.get(sightingReport.id)}</td>
-                                    <td>{sightingReport.latitude}</td>
-                                    <td>{sightingReport.longitude}</td>
-                                    <td>{sightingReport.userId}</td>
-                                    <td>{sightingReport.description}</td>
-                                    <td>{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
+                                    <td className="hide-on-mobile">{sightingReport.latitude}</td>
+                                    <td className="hide-on-mobile">{sightingReport.longitude}</td>
+                                    <td>{sightingReport.userName}</td>
+                                    <td className="hide-on-mobile">{sightingReport.description}</td>
+                                    <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan={4} style={{ textAlign: "center" }}>
+                                    <td className="accept-delete-button hide-on-mobile" colSpan={4} >
                                         <button
                                             className="delete-sighting-btn"
                                             onClick={() => handleDeleteSubmit(sightingReport.id)}
@@ -104,10 +105,26 @@ export function ListPendingSightings() {
                                             Delete
                                         </button>
                                     </td>
-                                    <td colSpan={4} style={{ textAlign: "center" }}>
+                                    <td className="accept-delete-button-mobile show-on-mobile" colSpan={2} >
+                                        <button
+                                            className="delete-sighting-btn-mobile"
+                                            onClick={() => handleDeleteSubmit(sightingReport.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                    <td className="accept-delete-button hide-on-mobile" colSpan={4} >
                                         <button
                                             className="accept-sighting-btn"
                                             onClick={() => handleAcceptSubmit(sightingReport.id)}
+                                        >
+                                            Accept
+                                        </button>
+                                    </td>
+                                    <td className="accept-delete-button-mobile show-on-mobile" colSpan={2} >
+                                        <button
+                                            className="accept-sighting-btn-mobile"
+                                            onClick={() => handleDeleteSubmit(sightingReport.id)}
                                         >
                                             Accept
                                         </button>
