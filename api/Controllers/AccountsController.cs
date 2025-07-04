@@ -38,7 +38,7 @@ public class AccountsLoginController : ControllerBase
         {
             return Unauthorized("Invalid Password");
         }
-        return Ok(new { message = "Login successful" });
+        return Ok(new { message = "Login successful"});
     }
 
     [HttpPost("logout")]
