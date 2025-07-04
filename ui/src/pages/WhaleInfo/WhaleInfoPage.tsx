@@ -1,4 +1,4 @@
-import WhaleInfo from "../../components/WhaleInfo";
+import WhaleInfo from "../../components/WhaleInfo/WhaleInfo";
 import "./WhaleInfoPage.scss";
 import React from "react";
 

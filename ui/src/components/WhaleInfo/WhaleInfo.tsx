@@ -1,6 +1,6 @@
 import { useState, JSX, useEffect } from 'react';
-import species from '../assets/species.json';
-import "../page/WhaleInfo/WhaleInfoPage.scss";
+import species from '../../assets/species.json';
+import "../../pages/WhaleInfo/WhaleInfoPage.scss";
 
 type WhenNWhere = {
     When: string;
@@ -34,7 +34,7 @@ function WhaleInfo(): JSX.Element {
 
             <div className="species-info">
                 <h2 className="subtitle">Tips for finding whales by Species:</h2>
-                <label className="choose-a-species-label" htmlFor="species">Choose a species: </label>
+                <label id='choose-a-species-label' htmlFor="species">Choose a species: </label>
                 <select
                     id="species"
                     onChange={(e) => {
@@ -62,7 +62,7 @@ function WhaleInfo(): JSX.Element {
                     <div>{selectedSpecies.Description}</div>
                     <h3>Tips to spot this species:</h3>
                     <div>{selectedSpecies.HowToFind}</div>
-                    <h3>The best time and places to find {selectedSpecies.Species}'s:</h3>
+                    <h3>The best time and places to find {selectedSpecies.Species}s:</h3>
                                         {selectedSpecies.WhenNWhereToSee.map((place, idx) => (
                                             <div key={idx}>
                                                 {place.Where} ({place.When})

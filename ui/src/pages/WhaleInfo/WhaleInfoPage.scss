@@ -52,3 +52,15 @@ margin-left: 20px;
     list-style-position: 'outside';
 }
 
+<<<<<<< HEAD:ui/src/page/WhaleInfo/WhaleInfoPage.scss
+=======
+#choose-a-species-label{
+    align-items: center;
+}
+
+@media (max-width: 768px){
+    .general-container{
+        flex-direction: column;
+    }
+}
+>>>>>>> 01e5d290a2ddc9a2e721ea9506995298242d18dc:ui/src/pages/WhaleInfo/WhaleInfoPage.scss
