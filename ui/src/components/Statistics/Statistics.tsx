@@ -1,4 +1,4 @@
-import {fetchSightings, SightingReport} from '../../ApiClient';
+import {fetchSightings, SightingReport} from '../../api/ApiClient';
 import React, { useEffect, useState } from 'react';
 import './Statistics.scss'; 
 
@@ -17,10 +17,10 @@ export function Statistics () {
         });  
     }, []);
 
-    console.log(sightings[0]);
-    const uniqueSpeciesCount = new Set(sightings.map(s => s.speciesId)).size;
-    console.log(sightings.map(s => s.speciesId));
-
+    console.log('Sightings full data:', sightings)
+    const uniqueSpeciesCount = new Set(sightings.map(s => s.species)).size;
+    console.log(sightings.map(s => s.species));
+    
     const totalSightingsToDate = sightings.length;
 
     const sightingsPerDay = sightings.reduce((acc: Record<string, number>, sighting) => {
@@ -40,8 +40,7 @@ export function Statistics () {
     return (
         <div className="statistics-card">
             <div className='title-container'>
-                <h2 className="statistics-title">Whale Watching Stats</h2>
-                <img src='https://png.pngtree.com/png-clipart/20221117/ourmid/pngtree-cute-cartoon-whale-png-image_6461281.png' alt='caroon whale image'/>
+                <h2 className="statistics-title">Fun Statistics</h2>
             </div>
             <div className="statistics-bubbles">
                 <div className="stat-bubble">

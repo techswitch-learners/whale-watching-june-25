@@ -23,7 +23,7 @@
   }
 }
 .statistics-title {
-  font-family: 'Sniglet', cursive;
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
   font-size: 2.5rem;
   color: $blueBackground;
   margin-bottom: 1.5rem;
@@ -46,10 +46,8 @@
 
 .statistics-bubbles {
   display: flex;
-  // flex-direction: column;
   gap: 1.2rem;
   justify-content: center;
-  // align-items: stretch;
   margin-bottom: 1.5rem;
   width: 100%;
 }
@@ -65,8 +63,8 @@
 }
 
 .stat-bubble {
-  background: $lightBlueBackground;
-  border-radius: 2rem;
+  background: white;
+  // border-radius: 2rem;
   padding: 1.1rem 1.5rem;
   margin: 0;
   display: flex;
