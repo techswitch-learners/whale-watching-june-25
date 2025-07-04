@@ -4,13 +4,16 @@ import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
-import { ReactElement } from 'react';
+import { ReactElement} from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
+import {LoginManager } from './components/Login/LoginManager/LoginContext'
  
 
 
 export default function App(): ReactElement {
+
     return (
+    <LoginManager>
         <Router>
             <Routes>
                 <Route path='/' element={<LoginPage/>}/>
@@ -20,5 +23,8 @@ export default function App(): ReactElement {
                 <Route path="/sign-up" element={<SignUp/>}/>            
             </Routes>
         </Router>
+    </LoginManager>
     );
 }
+
+
