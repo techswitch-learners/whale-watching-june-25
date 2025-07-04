@@ -1,14 +1,15 @@
 @import "../../../styles/Constants.scss";
 
 h1 {
-    @include header;  
+    @include h1font;
 }
-
 
 .create-whale-sighting-form {      
     display: flex;
-    flex-flow: column;
-    align-content: flex-start;
+    flex-flow: column;    
+    align-content: center;
+    justify-content: center;
+    align-items: center
 }
 
 label{
@@ -16,7 +17,7 @@ label{
     display:flex;
     flex-direction: column;
     flex-grow: 1;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 4px;
     margin-bottom: 5px;
@@ -29,7 +30,7 @@ label{
     display:flex;
     flex-direction: column;
     flex-grow: 1;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
     border-radius: 3px;
@@ -40,9 +41,9 @@ label{
     display: inline-flex;
 }
 
-button {
-    @include primaryButton;
-    display:flex;
+.submit-button {
+    @include primaryButton;    
+    align-self: center;
     margin-top: 10px;
     width: fit-content;
     padding: 10px 10px;

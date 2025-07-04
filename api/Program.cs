@@ -61,6 +61,7 @@ builder.Services.AddCors(options =>
             .AllowCredentials());
 });
 
+
 var app = builder.Build();
 
 using (var serviceScope = app.Services.CreateScope())
