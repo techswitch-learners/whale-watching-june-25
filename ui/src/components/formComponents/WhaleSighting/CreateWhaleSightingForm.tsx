@@ -190,8 +190,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
             className="form-input"
             {...register("whaleSpeciesId", formErrors.species)}
           >
-            {/* For testing form works for now ... species hardcoded in */}
-
+            
             <option value="">Select</option>
             {selectedSpecies.map((species) => (
               <option key={species.id} value={species.id}>{species.species}</option>
