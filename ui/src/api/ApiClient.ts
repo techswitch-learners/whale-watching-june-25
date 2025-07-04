@@ -11,8 +11,8 @@ export interface WhaleSighting {
     description?: string; 
     whaleSpeciesId: number; 
     imageUrl: string;
-    userId: string;  
 }
+
 export interface Species {
     id: number;
     speciesGroup: string;

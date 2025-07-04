@@ -25,8 +25,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
       longitude: 0,
       description: "",
       whaleSpeciesId: 0,
-      imageUrl: "",
-      userId: "",
+      imageUrl: ""
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
@@ -75,8 +74,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
     const sightingData = {
       ...data,
       imageUrl: url,
-      date: new Date(data.date).toISOString().split('T')[0],
-      userId: "",
+      date: new Date(data.date).toISOString().split('T')[0]
     };
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))

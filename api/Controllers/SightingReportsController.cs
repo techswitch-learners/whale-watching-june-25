@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WhaleSpottingBackend.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
+using System.Security.Claims;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -26,6 +27,7 @@ namespace WhaleSpottingBackend.Controllers
             return allSightings;
         }
 
+        [Authorize]
         [HttpPost("create")]
         public IActionResult Create([FromBody] CreateSightingReportRequest newReport)
         {
@@ -33,9 +35,10 @@ namespace WhaleSpottingBackend.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             try
             {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                newReport.UserId = userId;
                 _sightingReportsService.CreateReport(newReport);
             }
             catch (Exception ex)
