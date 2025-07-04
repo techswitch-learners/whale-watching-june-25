@@ -7,8 +7,10 @@ export function Leaderboard() {
   const [topUsers, setTopUsers] = useState<{ name: string; value: number }[]>(
     []
   );
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    setLoading(true);
     fetchSightings().then((response) => {
       const approvedSightings = response.filter(
         (sighting) => sighting.status.toLowerCase() === "approved"
@@ -32,8 +34,8 @@ export function Leaderboard() {
         ? usersArray.slice(0, usersArray.length)
         : usersArray.slice(0, 3);
     setTopUsers(topUsersArray);
+    setLoading(false);
   }, [sightings]);
-
   if (topUsers.length === 0) {
     return (
       <div className="leaderboard">
@@ -62,6 +64,7 @@ export function Leaderboard() {
           </tr>
         </thead>
         <tbody>
+          {loading ? <p className="info-message">Loading...</p> : null}
           {topUsers.map((user) => (
             <tr key={user.name}>
               <td>{topUsers.indexOf(user) + 1}</td>
