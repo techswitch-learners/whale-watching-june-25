@@ -5,14 +5,10 @@ import { CreateWhaleSightingForm } from "../../components/formComponents/WhaleSi
 
 
 export function CreateWhaleSightingPage(): JSX.Element {
-  if (sessionStorage.getItem("isAdmin") == "true"){
     return (
       <Page containerClassName="create-whale-sighting-page">
         <h1 className="title">Submit Whale Sighting</h1>
         <CreateWhaleSightingForm />
       </Page>
     );
-  } else {
-    return (<></>)
-  }
 }

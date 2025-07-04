@@ -33,15 +33,14 @@ const Login: React.FC = (): JSX.Element =>  {
         e.preventDefault();
         setapiError("");
         try{
-        var isAdmin = await login(email, password);
-        var userAdmin;
+        const isAdmin = await login(email, password);
+        let userAdmin;
         if (isAdmin.isAdmin == true){
              userAdmin = "true";
         }
         else {
              userAdmin = "false";
         }
-        console.log("USER ADMIN: ", userAdmin);
         loginContext.logIn(userAdmin);
 
         navigate("/home");
