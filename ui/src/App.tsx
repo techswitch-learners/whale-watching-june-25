@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { CreateWhaleSightingPage } from "./pages/WhaleSighting/CreateWhaleSightingPage";
 import { ReactElement } from "react";
 import { SignUp } from "./pages/SignUp/SignUpPage";
+import { Leaderboard } from "./components/Leaderboard/Leaderboard";
 
 export default function App(): ReactElement {
   return (
@@ -12,7 +13,7 @@ export default function App(): ReactElement {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<> <HomePage /> <Leaderboard /> </>}/>
         <Route path="/add-new-sighting" element={<CreateWhaleSightingPage />} />
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
