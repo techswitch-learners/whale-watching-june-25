@@ -7,6 +7,8 @@ export function ListPendingSightings() {
 
     const [sightings, setSightings] = useState<SightingReport[]>([]);
     const [seaData, setSeaData] = useState<Map<number, string>>(new Map());
+    const [ sightingImage, setsightingImage ] = useState<string>();
+    const [ showSightingImage, setShowSightingImage ] = useState(false)
 
     useEffect(() => {
         fetchSightings().then((response) => {
@@ -49,10 +51,19 @@ export function ListPendingSightings() {
             .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
         setSightings(pendingSightings);
     }
+
+     function handleClickShowImage(imageUrl: string) {
+        setsightingImage(imageUrl);
+        setShowSightingImage(true);
+    }
+
+    function handleClickHideImage(){
+        setShowSightingImage(false);
+    }
     
     return (
      <>
-     <h2 id="pendinglist-header" className="list-header">Pending Sightings</h2>
+     <h2 className="list-header">Pending Sightings</h2>
     <div className="pending-list-container">
      {sightings.length > 0 ? (
         <>
@@ -82,7 +93,7 @@ export function ListPendingSightings() {
                                     <td>{sightingReport.longitude}</td>
                                     <td>{sightingReport.userId}</td>
                                     <td>{sightingReport.description}</td>
-                                    <td><img src={sightingReport.imageUrl} alt="Sighting" width="500" height="auto"/></td>
+                                    <td>{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
                                 </tr>
                                 <tr>
                                     <td colSpan={6} style={{ textAlign: "center" }}>
@@ -107,7 +118,13 @@ export function ListPendingSightings() {
                         )}
                     </tbody>
                 </table>
-            </div>
+                </div>
+            {showSightingImage && <div className="sighting-report-photo-container"> 
+                <div className="sighting-report-photo-wrapper">
+                <img className="sighting-report-photo" src={sightingImage}/>
+                <button className="sighting-report-photo-exit-button" onClick={() => handleClickHideImage()}>X</button>
+                </div>
+            </div>}
             </> 
         ) : (
         <h3 className="list-header">No pending sightings</h3>
