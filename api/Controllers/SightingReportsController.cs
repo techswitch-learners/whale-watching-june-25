@@ -47,7 +47,7 @@ namespace WhaleSpottingBackend.Controllers
         }
 
         //To include when fixed 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPatch("{id}")]
         public IActionResult ApproveSighting(int id)
         {
@@ -69,7 +69,7 @@ namespace WhaleSpottingBackend.Controllers
         
         //To include when fixed 
 
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id) {
 

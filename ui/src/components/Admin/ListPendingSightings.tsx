@@ -96,7 +96,7 @@ export function ListPendingSightings() {
                                     <td>{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
                                 </tr>
                                 <tr>
-                                    <td colSpan={6} style={{ textAlign: "center" }}>
+                                    <td colSpan={4} style={{ textAlign: "center" }}>
                                         <button
                                             className="delete-sighting-btn"
                                             onClick={() => handleDeleteSubmit(sightingReport.id)}
@@ -104,7 +104,7 @@ export function ListPendingSightings() {
                                             Delete
                                         </button>
                                     </td>
-                                    <td colSpan={6} style={{ textAlign: "center" }}>
+                                    <td colSpan={4} style={{ textAlign: "center" }}>
                                         <button
                                             className="accept-sighting-btn"
                                             onClick={() => handleAcceptSubmit(sightingReport.id)}
