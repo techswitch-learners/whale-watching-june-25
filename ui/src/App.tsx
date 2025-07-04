@@ -4,17 +4,13 @@ import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
-import { ReactElement, useContext } from 'react';
+import { ReactElement} from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
-import { LoginContext, LoginManager } from './components/Login/LoginManager/LoginContext'
+import {LoginManager } from './components/Login/LoginManager/LoginContext'
  
 
 
 export default function App(): ReactElement {
-    //const loginContext = useContext(LoginContext);
-    // if (!loginContext.isLoggedIn) {
-    //     return <Route path='/login' element={<LoginPage/>}/>
-    // }
 
     return (
     <LoginManager>

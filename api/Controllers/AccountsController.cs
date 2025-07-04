@@ -56,15 +56,16 @@ public class AccountsLoginController : ControllerBase
 
     
     [HttpGet("check-admin")]
-        public async Task<IActionResult> CheckIfAdmin()
+    public async Task<IActionResult> CheckIfAdmin()
     {
-        Console.WriteLine("In check if admin");
         bool isAdmin = false;
         var user = await _userManager.GetUserAsync(User);
-        Console.WriteLine(User);
-        var roles = await _userManager.GetRolesAsync(user);
-        if (roles.Contains("Admin")) {
-            isAdmin = true;
+        if (user != null)
+        {
+            var roles = await _userManager.GetRolesAsync(user);
+            if (roles.Contains("Admin")) {
+                isAdmin = true;
+            }
         }
         
         return Ok(isAdmin);

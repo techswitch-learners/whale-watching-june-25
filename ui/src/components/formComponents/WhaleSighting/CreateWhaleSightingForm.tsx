@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState, useContext } from "react";
+import { JSX, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../WhaleSighting/CreateWhaleSightingForm.scss";
 import {
@@ -9,7 +9,7 @@ import {
 import CloudinaryUploadWidget from "../../../components/Widgets/CloudinaryUploadWidget";
 import {CheckCircle} from 'react-bootstrap-icons';
 import { uwConfig, useCloudinaryUpload } from "../../Widgets/CloudinaryConfig.ts";
-import { LoginContext } from "../../Login/LoginManager/LoginContext.tsx";
+
 
 
 

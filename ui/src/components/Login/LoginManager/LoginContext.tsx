@@ -1,17 +1,16 @@
-import React, {JSX, createContext, ReactNode, useState, useEffect} from "react";
-import {useSessionStorage} from 'hooks-ts';
+import {JSX, createContext, ReactNode} from "react";
 
 interface LoginContextType {
     isLoggedIn: boolean;
     isUserAdmin: boolean;
-     logIn: () => void;
-    // logOut: () => void;
+    logIn: (userAdmin: string) => void;
+    // logOut?: () => void;
 }
 
 export const LoginContext = createContext<LoginContextType>({
     isLoggedIn: false,
     isUserAdmin: false,
-     logIn: () => {},
+    logIn: () => {},
     // logOut: () => {},
 });
 
@@ -20,38 +19,36 @@ interface LoginManagerProps {
 }
 
 export function LoginManager(props: LoginManagerProps): JSX.Element {
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [name, setName, removeName] = useSessionStorage<string>(
-    'name',
-    'Guest',
-  );
     
-    function logIn() {
-        var stringLoggedIn = sessionStorage.getItem("loggedIn");
-        var boolLoggedIn = (stringLoggedIn =="true");
-        setLoggedIn(boolLoggedIn);
+    function logIn(userAdmin:string) {
+        console.log("in logIn() - user Admin: ", userAdmin);
 
-        var stringisAdmin = sessionStorage.getItem("isAdmin");
-        var boolisAdmin = (stringisAdmin =="true");
-        setIsAdmin(boolisAdmin);
+        sessionStorage.setItem("loggedIn","true")
+        console.log("in logIn() - logged in Bool: ", sessionStorage.getItem("loggedIn")=="true");
+        if (userAdmin == "true") {
+            console.log("in true if for admin")
+            sessionStorage.setItem("isAdmin","true")
+        }
+        else {
+            sessionStorage.setItem("isAdmin","false")
+        }
+        console.log("in logIn() - is Admin Bool: ", sessionStorage.getItem("isAdmin")=="true");
     }
 
 
     // function logOut() {
-    //     setLoggedIn(false);
-    //    // setIsAdmin(false);
+            // sessionStorage.setItem("loggedIn","false");
+            // sessionStorage.setItem("loggedIn","false");
     // }
 
     const context = {
-        isLoggedIn: loggedIn,
-        isUserAdmin: isAdmin,
+        isLoggedIn: (sessionStorage.getItem("loggedIn")=="true"),
+        isUserAdmin: (sessionStorage.getItem("isAdmin")=="true"),
          logIn: logIn,
         // logOut: logOut,
     };
 
     function testFunction() {
-        console.log("TEST")
         console.log({ isUserAdmin: context.isUserAdmin })
         console.log({context})
         return (<></>)

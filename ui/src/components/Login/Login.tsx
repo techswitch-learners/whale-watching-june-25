@@ -1,6 +1,6 @@
 import React, { useContext, useState, JSX } from 'react';
 import { useNavigate } from "react-router-dom";
-import {checkIfAdmin,login} from "../../api/ApiClient"
+import {login} from "../../api/ApiClient"
 import { LoginContext } from './LoginManager/LoginContext';
 
 const Login: React.FC = (): JSX.Element =>  {
@@ -34,23 +34,16 @@ const Login: React.FC = (): JSX.Element =>  {
         setapiError("");
         try{
         var isAdmin = await login(email, password);
+        var userAdmin;
         if (isAdmin.isAdmin == true){
-            console.log("IsAdmin should be true:", isAdmin.isAdmin);
-            sessionStorage.setItem('isAdmin', "true");
-           // console.log("From session stroage", sessionStorage.getItem("isAdmin"));
+             userAdmin = "true";
         }
         else {
-            console.log("IsAdmin should be false:", isAdmin.isAdmin)
-            sessionStorage.setItem('isAdmin', "false")
+             userAdmin = "false";
         }
-        sessionStorage.setItem('loggedIn', "true");
-  
+        console.log("USER ADMIN: ", userAdmin);
+        loginContext.logIn(userAdmin);
 
-        // for log out
-        //sessionStorage.removeItem('key');
-       // const isAdmin:boolean = await checkIfAdmin();
-        // loginContext.logIn(isAdmin.isAdmin);
-       loginContext.logIn();
         navigate("/home");
         } catch (err) {
             setapiError(`Login failed. ${err}`)
