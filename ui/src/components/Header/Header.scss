@@ -8,16 +8,27 @@ body, #root {
  }
 
 .header {    
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: $tealBackground;
   height: 80px;
   text-align: center;
   padding-top: 25px;
+  padding-bottom: 25px;
   color: $whiteBackground;
   font-weight: 800; 
   width: auto;   
   .home-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
     @include header();
   }
+}
+
+#whale-museum-logo{
+  height: 85px;
 }
 
 .navbar {
@@ -46,30 +57,49 @@ body, #root {
   position: relative;
 }
 
+.menu-icon {
+  display: none;
+}
+
+#whale-museum-logo-navbar{
+  display: none;
+}
+
 @media (max-width: 767px) {
   .header {
     display: none;
-  }
-  .nav-elements ul li:not(:last-child) {
-    margin-right: 30px;
   }
 }
 
 @media (max-width: 767px) {
   .menu-icon {
-    position: absolute;
-    z-index: 100;
-    top: 15px;
-    right: 15px;
-    display: block;
-    cursor: pointer;
-    width: 30px;
-    border: none;
-    aspect-ratio: 1;
-    background:
-        radial-gradient(closest-side at 12.5% 25%, $blueBackground 100%, #0000) 0 0/80% 40%,
-        linear-gradient($blueBackground 50%, transparent 0) top/80% 40% repeat-y;
+      position: absolute;
+      z-index: 100;
+      top: 13px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border: none;
+      color: $blueBackground;
+      background: none;
   }
+
+    .icon-x {
+      color: $blueBackground;
+      font-size: 1.6rem;
+      font-weight: 900;
+    }
+
+    .icon-bars {
+      color: $blueBackground;
+      padding-top: 3px;
+      font-size: 2.6rem;
+      font-weight: 900;
+    }
 
   .nav-elements {
     position: absolute;
@@ -106,8 +136,17 @@ body, #root {
   }
 
   .nav-elements ul li {
-    margin-top: 22px;
-    padding-left: 20px;
+    margin: 22px 20px 0 20px;
+    padding-left: 2px;
     padding-top: 30px;
+    border-bottom: 1px solid $whiteBackground;
+  }
+
+  #whale-museum-logo-navbar{
+    display: block;
+    position: absolute;
+    width: 60px;
+    left: 20px;
+    bottom: 80px;
   }
 }
