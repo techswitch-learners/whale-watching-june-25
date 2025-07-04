@@ -38,6 +38,7 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
 
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json"
         },
