@@ -65,7 +65,7 @@ export function SignUpForm(): JSX.Element {
             [name]: value,
         })
     }
-    
+
     const validateForm = (event: FormEvent) => {
         event.preventDefault();
         setStatus(FormStatusEnum.Submitting);
@@ -81,7 +81,7 @@ export function SignUpForm(): JSX.Element {
                 ...inputError,
                 username: "Usernames must be between 2 and 15 characters and can include full stops and underscores"
             });
-            setStatus(FormStatusEnum.Error);
+            setStatus(FormStatusEnum.Ready);
             return;
         }
 
@@ -140,7 +140,7 @@ export function SignUpForm(): JSX.Element {
 
     return (
             <form onSubmit={validateForm}>
-                <label className="label" htmlFor="username">Username
+                <label className="label" htmlFor="username">Username*
                 <input
                     value={formInput.username}
                     onChange={({target}) => {
@@ -155,7 +155,7 @@ export function SignUpForm(): JSX.Element {
                 <p className="error-message">{formError.username}</p>
                   </label>
 
-                <label className="label" htmlFor="email">Email
+                <label className="label" htmlFor="email">Email*
                 <input
                     value={formInput.email}
                     onChange={({target}) => {
@@ -171,7 +171,7 @@ export function SignUpForm(): JSX.Element {
                 <p className="error-message">{formError.email}</p>
                   </label>
 
-                <label className="label" htmlFor="password">Password
+                <label className="label" htmlFor="password">Password*
                 <input
                     value={formInput.password}
                     onChange={({target}) => {
@@ -184,7 +184,6 @@ export function SignUpForm(): JSX.Element {
                     className="input password"
                     placeholder="Enter a secure password"
                 />
-
                     <small>
                         Password strength:{' '}
                             <span style={{
@@ -197,7 +196,7 @@ export function SignUpForm(): JSX.Element {
                 <p className="error-message">{formError.password}</p>
                   </label>
 
-                <label className="label confirm-pw" htmlFor="confirmPassword">Confirm password
+                <label className="label confirm-pw" htmlFor="confirmPassword">Confirm password*
                 <input
                     value={formInput.confirmPassword}
                     onChange={({target}) => {
@@ -213,7 +212,7 @@ export function SignUpForm(): JSX.Element {
                   </label>
 
                 <label className="label" htmlFor="submit">
-                <button className="submit-button" type="submit" value="Submit" disabled={status === "SUBMITTING"}>Sign Up</button>
+                <button className="submit-button" type="submit" value="Submit" id="submit" disabled={status === "SUBMITTING"}>Sign Up</button>
                 {status === "SUBMITTING" && <p className="info-message">Hold tight your details are surfing the waves!</p>}
                 {status === "ERROR" && <p className="error-message">Something went wrong! Please try again.</p>}
                 </label>
