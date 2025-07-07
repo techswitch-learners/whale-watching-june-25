@@ -5,13 +5,9 @@ body {
     font-family: $fontFamily;
 }
 
-// #root {
-//     all: unset;
-// }
-
 #sightings-list-header {
+    width: 75vw;
     color: $blueBackground;
-    justify-items: center;
     text-align: center;
 }
 
@@ -21,15 +17,20 @@ body {
 }
 
 .sighting-list-container {
-    width: 100vw;
+    width: 75vw;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    justify-content: center;
+}
+
+.sighting-container {
+    margin: 0 auto;
+
 }
 
 .approved-sightings-table {
-    width: 60vw;
+    width: 75vw;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: $whiteBackground;
@@ -129,7 +130,7 @@ td {
     .sighting-list-container {
         font-size: 0.8rem;
     }
-    .approved-sightings-table {
+    .approved-sightings-table, .sighting-list-container, .sighting-container, #sightings-list-header {
         width: 90vw;
     }
     .input-filter {
