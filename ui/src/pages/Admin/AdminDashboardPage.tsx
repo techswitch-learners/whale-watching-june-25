@@ -1,6 +1,7 @@
 import { JSX} from "react";
 import { Page } from "../Page/Page";
 import {ListPendingSightings  } from "../../components/Admin/ListPendingSightings";
+import "./AdminDashboardPage.scss"
 
 
 export function AdminDashboardPage(): JSX.Element | null {
