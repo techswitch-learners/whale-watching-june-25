@@ -14,3 +14,16 @@
         transform: translateY(10px);
     }
 }
+
+@media (max-width: 767px) {
+
+.footer {
+    height: 40px;
+    img {
+        height: 20px;
+        transform: translateY(5px);
+    }
+
+}
+
+}
