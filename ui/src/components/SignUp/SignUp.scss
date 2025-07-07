@@ -11,13 +11,8 @@ label {
 
 input {
   margin: 0;
-  width: 200px;
+  width: 100%;
 }
-
-input:focus {
-    outline: 3px solid $tealBackground;
-    box-shadow: 0 0 10px $tealBackground;
-  }
 
 button {
   margin: 20px auto;
