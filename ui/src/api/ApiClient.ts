@@ -3,7 +3,6 @@ export interface ListResponse<T> {
     items: T[];
 }
 
-
 export interface WhaleSighting {
     date: string;
     longitude: number;
@@ -32,6 +31,35 @@ export interface NewUser {
     password: string;
 }
 
+
+export interface UserSighting {
+    id: number;
+    description?: string;
+    dateOfSighting: string;
+    longitude: number;
+    latitude: number;
+    whaleSpeciesId: number
+    whaleSpecies: {
+        id: number;
+        speciesGroup: string,
+        species: string;
+        latinName: string;
+        habitat: string;
+        maxLengthMeters: number;
+        maxWeightTons: number;
+        conservationStatus: string;
+        maxAge: number;
+        food: string;
+    }
+    userId: string;
+    user:{
+        username: string;
+    }
+    imageUrl?: string
+    status: "approved" | "pending" | "rejected";
+    rejectedReason?: string;
+}
+
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
@@ -45,6 +73,24 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
         throw new Error(await response.json())
     }
 
+}
+
+export async function getUserSightings() : Promise<UserSighting[]> {
+    const response = await fetch(`http://localhost:5067/sightingreports/my-posts`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    
+    })
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Failed to fetch user sightings")
+    }
+    const data: UserSighting[] = await response.json();
+    console.log("fetched data:", data)
+    return data;
 }
 
 export async function fetchSpecies(): Promise<ListResponse<Species>> {
