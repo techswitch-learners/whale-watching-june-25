@@ -2,7 +2,6 @@
 import './App.scss'
 import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
-//import CustomButton from './components/formComponents/customButton/CustomButton'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
 import { ReactElement } from 'react';

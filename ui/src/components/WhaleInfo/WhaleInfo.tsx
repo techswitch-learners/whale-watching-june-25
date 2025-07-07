@@ -9,7 +9,7 @@ type WhenNWhere = {
 
 export type WhaleInfoProps = {
     Species: string;
-    img: string;
+    Img: string;
     Description: string;
     WhenNWhereToSee: WhenNWhere[];
     HowToFind: string;
@@ -24,11 +24,6 @@ function WhaleInfo(): JSX.Element {
         setSelectedSpecies(species);
         setShowPopUp(true);
     };
-
-    useEffect(() => {
-        // Set the first species as the default selected species
-        
-    }, []);
 
     return (
 
@@ -54,7 +49,7 @@ function WhaleInfo(): JSX.Element {
             <div className='pop-up-section'>
                 <h2>Tips on how to find a {selectedSpecies.Species}</h2>
                 <div className='image-of-species'>
-                    <img src={selectedSpecies.img} alt={selectedSpecies.Species} />
+                    <img src={selectedSpecies.Img} alt={selectedSpecies.Species} />
                     <p></p>
                 </div>
                 <div>
