@@ -14,7 +14,7 @@ export function ApprovedSightingsList() {
     const [userNameFilter, setUserNameFilter] = useState("");
     const [dateFilter, setDateFilter] = useState("");
     const [oceanFilter, setOceanFilter] = useState("");
-    
+
 
     useEffect(() => {
         fetchSightings().then((response) => {
@@ -69,7 +69,6 @@ export function ApprovedSightingsList() {
                                 />
                                 <input
                                     type="date"
-                                    placeholder="Filter by Date"
                                     value={dateFilter}
                                     onChange={(e) => setDateFilter(e.target.value)}
                                 />
@@ -79,10 +78,44 @@ export function ApprovedSightingsList() {
                                     value={oceanFilter}
                                     onChange={(e) => setOceanFilter(e.target.value)}
                                 />
-                                
+
                             </div>
                             <table className="approved-sightings-table">
                                 <thead className="approved-sightings-table-header">
+                                    <tr>
+                                        <th>
+                                            <input
+                                                type="date"
+                                                value={dateFilter}
+                                                onChange={(e) => setDateFilter(e.target.value)}
+                                            />
+                                        </th>
+                                        <th>
+                                            <input
+                                                type="text"
+                                                placeholder="Species Filter"
+                                                value={speciesFilter}
+                                                onChange={(e) => setSpeciesFilter(e.target.value)}
+                                            />
+                                        </th>
+                                        <th><input
+                                            type="text"
+                                            placeholder="Ocean Filter"
+                                            value={oceanFilter}
+                                            onChange={(e) => setOceanFilter(e.target.value)}
+                                        /></th>
+                                        <th className="hide-on-mobile"></th>
+                                        <th className="hide-on-mobile"></th>
+                                        <th><input
+                                            type="text"
+                                            placeholder="User Name Filter"
+                                            value={userNameFilter}
+                                            onChange={(e) => setUserNameFilter(e.target.value)}
+                                        />  </th>
+                                        <th className="hide-on-mobile"> </th>
+                                        <th className="hide-on-mobile"> </th>
+
+                                    </tr>
                                     <tr>
                                         <th>Date: </th>
                                         <th>Species: </th>
@@ -96,9 +129,9 @@ export function ApprovedSightingsList() {
                                 </thead>
                                 <tbody>
                                     {sightings.filter((sightings) => sightings.species.toLowerCase().includes(speciesFilter.toLowerCase()) &&
-                                                                     sightings.userName.toLowerCase().includes(userNameFilter.toLowerCase()) &&
-                                                                     (!dateFilter || format(new Date(sightings.dateOfSighting), 'dd-MM-yyyy') == format(new Date(dateFilter),"dd-MM-yyyy")) &&
-                                                                     seaData.get(sightings.id)?.toLowerCase().includes(oceanFilter.toLowerCase())
+                                        sightings.userName.toLowerCase().includes(userNameFilter.toLowerCase()) &&
+                                        (!dateFilter || format(new Date(sightings.dateOfSighting), 'dd-MM-yyyy') == format(new Date(dateFilter), "dd-MM-yyyy")) &&
+                                        seaData.get(sightings.id)?.toLowerCase().includes(oceanFilter.toLowerCase())
                                     ).map((sightingReport: SightingReport) =>
                                         <tr key={sightingReport.id}>
                                             <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
