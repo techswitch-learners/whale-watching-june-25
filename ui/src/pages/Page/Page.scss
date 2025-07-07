@@ -10,9 +10,17 @@ body {
 }
 
 .page {
-    background-color: $whiteBackground;
     @include font(17px, 1, $fontColor);
 }
+
+input {
+  border: 1px solid grey;
+}
+
+input:focus {
+    outline: 3px solid $tealBackground;
+    box-shadow: 0 0 10px $tealBackground;
+  }
 
 
 

@@ -20,10 +20,9 @@ input:focus {
   }
 
 button {
-  margin: 24px auto;
+  margin: 20px auto;
   justify-content: center;
   width: 100%;
-  background-color: $blueBackground;    
 }
 
 .error-message {    
@@ -43,7 +42,7 @@ button {
   margin-bottom: 0;
 }
 
-@media (max-width: 425px) {
+@media (max-width: 525px) {
   form {
     padding: 0;
   }
