@@ -1,11 +1,13 @@
+import {ApprovedSightingsList} from "../../components/ApprovedSightingsList/ApprovedSightingsList";
 import { Statistics } from "../../components/Statistics/Statistics";
 
 const HomePage = () => {
     
     return (
         <div>
-            <h1 className="title">Whale Watching</h1>
-              <Statistics />
+            <h1 className="title">Home Page</h1>
+            <ApprovedSightingsList />
+            <Statistics />
         </div>
         );
 }
