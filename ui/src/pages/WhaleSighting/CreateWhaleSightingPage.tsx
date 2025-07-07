@@ -7,7 +7,6 @@ import { CreateWhaleSightingForm } from "../../components/formComponents/WhaleSi
 export function CreateWhaleSightingPage(): JSX.Element {
   return (
     <Page containerClassName="create-whale-sighting-page">
-      <h1 className="title">Submit Whale Sighting</h1>
       <CreateWhaleSightingForm />
     </Page>
   );

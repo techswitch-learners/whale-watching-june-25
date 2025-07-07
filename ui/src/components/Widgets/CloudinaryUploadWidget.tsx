@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import "../../pages/WhaleSighting/CreateWhaleSightingPage.scss"
 
 
 interface UploadResult {
@@ -74,11 +75,13 @@ const CloudinaryUploadWidget = ({
 
   return (
     <button
+      type = "button"
+      formAction=""
       ref={uploadButtonRef}
       id="upload_widget"
-      className="cloudinary-button"
+      className="report-sighting-button"
     >
-      Upload Whale Photo
+      Upload photo
     </button>
   );
 };

@@ -1,4 +1,4 @@
-import { useMapEvents, Marker, Popup } from 'react-leaflet'
+import { useMapEvents, Marker, Tooltip } from 'react-leaflet'
 import { LatLng, LeafletMouseEvent  } from 'leaflet'
 import { UseFormSetValue } from "react-hook-form";
 
@@ -10,7 +10,7 @@ type LocationMarkerProps = {
     latitude: number;
     longitude: number;
     description: string;
-    speciesId: number;
+    whaleSpeciesId: number;
     imageUrl: string;
     userId: string;}>;
 }
@@ -27,7 +27,7 @@ export function LocationMarker( locationMarkerProps: LocationMarkerProps) {
 
   return locationMarkerProps.position === null ? null : (
     <Marker position={locationMarkerProps.position}>
-      <Popup>Is this where you saw your Whale?</Popup>
+      <Tooltip direction="right" offset={[4, -3]} opacity={1} permanent>Click the location of your whale sighting</Tooltip>
     </Marker>
   )
 }

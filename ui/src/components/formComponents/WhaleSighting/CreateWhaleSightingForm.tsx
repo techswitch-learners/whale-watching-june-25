@@ -9,7 +9,7 @@ import {
 import CloudinaryUploadWidget from "../../../components/Widgets/CloudinaryUploadWidget";
 import {CheckCircle} from 'react-bootstrap-icons';
 import { uwConfig, useCloudinaryUpload } from "../../Widgets/CloudinaryConfig.ts";
-import { LocationMarker } from "../../MapLocationSelect/MapLocationSelect.tsx";
+import { LocationMarker } from "../../LocationMarker/LocationMarker.tsx";
 import { MapContainer, TileLayer } from 'react-leaflet'
 import { latLng, LatLng } from 'leaflet'
 import "leaflet/dist/leaflet.css";
@@ -32,9 +32,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
       latitude: 0,
       longitude: 0,
       description: "",
-      speciesId: 0,
+      whaleSpeciesId: 1,
       imageUrl: "",
-      userId: "2da87a06-beba-4e77-a244-30e72d89a3ec",
+      userId: "7627a0c2-3af2-4bdb-8939-8cd85b53bc2c",
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
@@ -50,19 +50,19 @@ export function CreateWhaleSightingForm(): JSX.Element {
     },
     latitude: {
       required: "Latitude is required",
-      // pattern: {
-      //   value: /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/,
-      //   message: "Latitude should be in decimal degree format",
-      // },
+      pattern: {
+        value: /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/,
+        message: "Latitude should be in decimal degree format",
+      },
     },
     longitude: {
       required: "Longitude is required",
-      // pattern: {
-      //   value: /^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)/,
-      //   message: "Longitude should be in decimal degree format",
-      // },
+      pattern: {
+        value: /^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)/,
+        message: "Longitude should be in decimal degree format",
+      },
     },
-    species: {
+    whaleSpeciesId: {
       required: "Species is required",
     },
   };
@@ -80,13 +80,13 @@ export function CreateWhaleSightingForm(): JSX.Element {
     latitude: number;
     longitude: number;
     description: string;
-    speciesId: number;
+    whaleSpeciesId: number;
   }) {
     const sightingData = {
       ...data,
       imageUrl: url,
       date: new Date(data.date).toISOString().split('T')[0],
-      userId: 1,
+      userId: "7627a0c2-3af2-4bdb-8939-8cd85b53bc2c",
     };
     
     createWhaleSighting(sightingData)
@@ -97,27 +97,16 @@ export function CreateWhaleSightingForm(): JSX.Element {
   if (status === "FINISHED") {
     return (
       <div>
+        <h2 className="report-sighting-header">Report Sighting</h2>
         <p>Your Whale Sighting Has Been Submitted And Is Pending Approval!</p>
       </div>
     );
   }
   return (
     <>
-      <div>
-        {imageUploaded ? (
-          <div>
-            <CheckCircle size={36} />
-            <p>Photo Uploaded successfully</p>
-          </div>
-        ) : (
-          <CloudinaryUploadWidget
-            uwConfig={uwConfig}
-            setPublicId={setPublicId}
-            setUrl={setUrl}
-            setImageUploaded={setImageUploaded}
-          />
-        )}
-
+      <div className="report-sighting-form-container">
+        <h2 className="report-sighting-header">Report Sighting</h2>
+        
         <form
           className="create-whale-sighting-form"
           onSubmit={handleSubmit(submitForm)}>
@@ -181,10 +170,13 @@ export function CreateWhaleSightingForm(): JSX.Element {
               )}
             </label>
           </div>
-          <div className="map-container">
+<div className="map-container">
             <MapContainer
               center={{ lat: 51.553124, lng: -0.142594 }}
+              maxBounds={[[-90,-180],[90,180]]}
+              maxBoundsViscosity={1.0}
               zoom={1}
+              minZoom={1}
               scrollWheelZoom={true}>
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -210,29 +202,36 @@ export function CreateWhaleSightingForm(): JSX.Element {
                 Species
                 <span className="required">*</span>
               </span>
-
               <select
-                className="form-input"
-                {...register("speciesId", formErrors.species)}>
-                {/* For testing form works for now ... species hardcoded in */}
-
-                {/* <option value="">Select</option>
-                <option value="1">Humpback Whale</option>
-                <option value="2">Blue Whale</option> */}
+                className="form-input-select-species"
+                {...register("whaleSpeciesId", formErrors.whaleSpeciesId)}>
+                <option value="">Select</option>
                 {selectedSpecies.map((species) => (
                   <option key={species.id} value={species.id}>
                     {species.species}
                   </option>
                 ))}
               </select>
-              {errors.speciesId && (
-                <span className="error">{errors.speciesId.message}</span>
+              {errors.whaleSpeciesId && (
+                <span className="error">{errors.whaleSpeciesId.message}</span>
               )}
             </label>
           </div>
-
+              {imageUploaded ? (
+          <div>
+            <CheckCircle size={36} />
+            <p>Photo Uploaded successfully</p>
+          </div>
+        ) : (
+          <CloudinaryUploadWidget 
+            uwConfig={uwConfig}
+            setPublicId={setPublicId}
+            setUrl={setUrl}
+            setImageUploaded={setImageUploaded}
+          />
+        )}
           <button
-            className="submit-button"
+            className="report-sighting-button"
             disabled={status === "SUBMITTING"}
             type="submit">
             Submit

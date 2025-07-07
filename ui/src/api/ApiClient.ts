@@ -9,9 +9,9 @@ export interface WhaleSighting {
     longitude: number;
     latitude: number;
     description?: string; 
-    speciesId: number; 
+    whaleSpeciesId: number; 
     imageUrl: string;
-    userId: number;  
+    userId: string;  
 }
 export interface Species {
     id: number;
@@ -42,6 +42,7 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     });
     
     if (!response.ok) {
+        console.log(whaleSighting)
         throw new Error(await response.json())
     }
 
