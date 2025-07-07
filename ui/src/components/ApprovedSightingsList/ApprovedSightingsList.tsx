@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect } from "react";
 import "./ApprovedSightingsList.scss";
 import { fetchSightings, SightingReport, fetchSeaLocation } from "../../api/ApiClient";
-import { format } from 'date-fns';
+import {format} from 'date-fns';
 
 
 export function ApprovedSightingsList() {
@@ -19,22 +19,23 @@ export function ApprovedSightingsList() {
     useEffect(() => {
         fetchSightings().then((response) => {
             const approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
-                .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
-            setSightings(approvedSightings);
-        });
+            .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
+            setSightings(approvedSightings); 
+        });  
     }, []);
 
     useEffect(() => {
         if (!sightings) return;
         sightings.forEach(sighting => {
-            fetchSeaLocation(sighting.latitude, sighting.longitude).then(response => {
-                setSeaData(prev => {
-                    const updated = new Map(prev);
-                    updated.set(sighting.id, response);
-                    return updated;
-                })
-            }
-            );
+        fetchSeaLocation(sighting.latitude, sighting.longitude).then(response =>
+        {
+            setSeaData(prev => {
+                const updated = new Map(prev);
+                updated.set(sighting.id, response);
+                return updated;
+            })
+        }
+        );
         })
     }, [sightings]);
 
