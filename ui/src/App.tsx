@@ -6,7 +6,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
 import { ReactElement} from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
-import {LoginManager } from './components/Login/LoginManager/LoginContext'
+import {LoginManager } from './components/Login/LoginManager/LoginManager'
  
 
 
