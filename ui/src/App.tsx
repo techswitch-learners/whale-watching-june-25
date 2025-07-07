@@ -1,4 +1,3 @@
-
 import './App.scss'
 import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
@@ -8,6 +7,7 @@ import { ReactElement } from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
 import UserProfilePage from './pages/UserProfile/UserProfilePage';
  
+import { Sightings } from './pages/Sightings/Sightings'
 
 
 export default function App(): ReactElement {
@@ -19,7 +19,8 @@ export default function App(): ReactElement {
                 <Route path='/profile' element={<UserProfilePage/>}/>
                 <Route path='/home' element={<HomePage/>}/>
                 <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
-                <Route path="/sign-up" element={<SignUp/>}/>            
+                <Route path="/sightings" element={<Sightings/>}/>
+                <Route path="/sign-up" element={<SignUp/>}/>   
             </Routes>
         </Router>
     );
