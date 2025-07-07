@@ -1,0 +1,16 @@
+@import "../../styles/Constants.scss";
+
+.footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0;
+    width: 100%;
+    background-color: $tealBackground;
+    @include navFont();
+    font-size: small;
+    text-align: center;  
+    img {
+        height: 40px;
+        transform: translateY(10px);
+    }
+}

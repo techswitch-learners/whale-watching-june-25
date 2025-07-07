@@ -6,6 +6,7 @@ import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSighti
 import { ReactElement } from 'react'; 
 import { SignUp } from './pages/SignUp/SignUpPage';
 import { Header, Navbar } from './components/Header/Header';
+import {Footer} from './components/Footer/Footer';
 
 
 export default function App(): ReactElement {
@@ -20,7 +21,8 @@ export default function App(): ReactElement {
             <Route path='/login' element={<LoginPage/>}/>
            <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>  
            <Route path="/sign-up" element={<SignUp/>}/>    
-           </Routes>        
+           </Routes>     
+        <Footer />      
         </BrowserRouter>
     );
 
