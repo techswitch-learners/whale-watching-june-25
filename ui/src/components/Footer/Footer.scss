@@ -1,29 +1,14 @@
 @import "../../styles/Constants.scss";
 
 .footer {
-    position: fixed;
-    left: 0px;
-    bottom: 0;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $tealBackground;
     @include navFont();
     font-size: small;
-    text-align: center;  
-    img {
-        height: 40px;
-        transform: translateY(10px);
-    }
-}
-
-@media (max-width: 767px) {
-
-.footer {
-    height: 40px;
-    img {
-        height: 20px;
-        transform: translateY(5px);
-    }
-
-}
-
+        img {
+         align-items: center;
+        height: 40px;       
+     }
 }

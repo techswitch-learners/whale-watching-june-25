@@ -11,7 +11,8 @@ body {
     text-align: center;
     box-sizing: border-box;
     min-height: calc(100vh - #{$header-height} - #{$nav-height} - #{$footer-height});
-  }  
+    padding-bottom: 60px;
+    }  
 }
 
 .page {
