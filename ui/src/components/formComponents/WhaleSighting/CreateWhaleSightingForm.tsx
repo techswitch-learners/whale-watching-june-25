@@ -10,14 +10,9 @@ import CloudinaryUploadWidget from "../../../components/Widgets/CloudinaryUpload
 import {CheckCircle} from 'react-bootstrap-icons';
 import { uwConfig, useCloudinaryUpload } from "../../Widgets/CloudinaryConfig.ts";
 
-
-
-
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
 export function CreateWhaleSightingForm(): JSX.Element {
-
-
   const [url, setUrl] = useState<string>('');
   const {
     register,

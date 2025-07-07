@@ -32,7 +32,6 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
         }
     }
 
-
     // function logOut() {
             // sessionStorage.setItem("loggedIn","false");
             // sessionStorage.setItem("isAdmin","false");
@@ -45,7 +44,6 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
         // logOut: logOut,
     };
 
-      
     return (
         <LoginContext.Provider value={context}>
             {props.children}

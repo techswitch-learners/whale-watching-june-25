@@ -54,20 +54,5 @@ public class AccountsLoginController : ControllerBase
         return Ok("User logged out");
     }
 
-    
-    [HttpGet("check-admin")]
-    public async Task<IActionResult> CheckIfAdmin()
-    {
-        bool isAdmin = false;
-        var user = await _userManager.GetUserAsync(User);
-        if (user != null)
-        {
-            var roles = await _userManager.GetRolesAsync(user);
-            if (roles.Contains("Admin")) {
-                isAdmin = true;
-            }
-        }
-        
-        return Ok(isAdmin);
-    }
+
 }
