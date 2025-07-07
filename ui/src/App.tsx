@@ -1,4 +1,3 @@
-
 import './App.scss'
 import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
@@ -6,7 +5,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
 import { ReactElement } from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
- 
+import { Sightings } from './pages/Sightings/Sightings'
 
 
 export default function App(): ReactElement {
@@ -15,9 +14,10 @@ export default function App(): ReactElement {
             <Routes>
                 <Route path='/' element={<LoginPage/>}/>
                 <Route path='/login' element={<LoginPage/>}/>
-                <Route path='/home' element={<HomePage/>}/>
+                <Route path='/home' element={<HomePage />}/>
                 <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
-                <Route path="/sign-up" element={<SignUp/>}/>            
+                <Route path="/sightings" element={<Sightings/>}/>
+                <Route path="/sign-up" element={<SignUp/>}/>   
             </Routes>
         </Router>
     );
