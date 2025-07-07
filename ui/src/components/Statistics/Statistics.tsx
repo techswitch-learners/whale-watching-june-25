@@ -7,8 +7,6 @@ export function Statistics () {
 
     const [sightings, setSightings] = useState<SightingReport[]>([]);
 
-    //we can import the approved sightings list from the approved sightings component instead of fetching once its merged in
-
     useEffect(() => {
         fetchSightings().then((response) => {
             const approvedSightings = response.filter(sighting => sighting.status === 'approved')
@@ -17,9 +15,7 @@ export function Statistics () {
         });  
     }, []);
 
-    console.log('Sightings full data:', sightings)
     const uniqueSpeciesCount = new Set(sightings.map(s => s.species)).size;
-    console.log(sightings.map(s => s.species));
     
     const totalSightingsToDate = sightings.length;
 
