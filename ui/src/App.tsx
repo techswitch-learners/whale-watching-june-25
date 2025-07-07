@@ -5,7 +5,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
 import { ReactElement } from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
-import SightingsMap from './components/SightingsMap/SightingsMap'
+import { Sightings } from './pages/Sightings/Sightings'
 
 
 export default function App(): ReactElement {
@@ -14,8 +14,9 @@ export default function App(): ReactElement {
             <Routes>
                 <Route path='/' element={<LoginPage/>}/>
                 <Route path='/login' element={<LoginPage/>}/>
-                <Route path='/home' element={<> <HomePage /> <SightingsMap/> </>}/>
+                <Route path='/home' element={<HomePage />}/>
                 <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
+                <Route path="/sightings" element={<Sightings/>}/>
                 <Route path="/sign-up" element={<SignUp/>}/>   
             </Routes>
         </Router>
