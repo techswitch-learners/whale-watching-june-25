@@ -1,4 +1,3 @@
-import React from 'react';
 import UserSightings from "../../components/UserSightings/UserSightings"
 import './UserProfilePage.scss';
 
