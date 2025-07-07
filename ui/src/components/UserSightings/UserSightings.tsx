@@ -1,4 +1,4 @@
-import React, { useState, JSX, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getUserSightings, UserSighting } from "../../api/ApiClient"
 import "./UserSightings.scss";
 const UserSightings:React.FC = () =>  {
@@ -16,7 +16,8 @@ const UserSightings:React.FC = () =>  {
                 const data = await getUserSightings();
                 setApprovedSightings(data.filter(sighting =>sighting.status.toLowerCase() === 'approved'));
                 setPendingSightings(data.filter(sighting =>sighting.status.toLowerCase() === 'pending'));
-            } catch (error: any) {
+            } catch (e) {
+                const error = e as Error;
                 setError(error.message || "Failed to fetch")
             } finally {
             setLoading(false)
