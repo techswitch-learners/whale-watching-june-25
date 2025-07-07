@@ -39,6 +39,10 @@ body {
     background-color: $tealBackground;
     padding: 5px 0;
 }
+.input-filter {
+    width: 100%;
+    font-size: 12px;
+}
 
 th {
     background-color: $tealBackground;
@@ -127,15 +131,21 @@ td {
     .approved-sightings-table {
         width: 90vw;
     }
+    .input-filter {
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 768px) {
     .sighting-list-container {
         font-size: 0.72rem;
     }
+        .input-filter {
+        font-size: 8px;
+    }
 }
 
-@media (max-width: 532px) {
+@media (max-width: 675px) {
     .sighting-list-container {
         font-size: 0.7rem;
     }

@@ -14,7 +14,7 @@ export function ApprovedSightingsList() {
     const [userNameFilter, setUserNameFilter] = useState("");
     const [dateFilter, setDateFilter] = useState("");
     const [oceanFilter, setOceanFilter] = useState("");
-
+    const [headerMessage, setHeaderMessage] = useState("No approved sightings");
 
     useEffect(() => {
         fetchSightings().then((response) => {
@@ -55,75 +55,44 @@ export function ApprovedSightingsList() {
                 {sightings.length > 0 ? (
                     <>
                         <div className="sighting-container">
-                            <div className="sighting-filters">
-                                <input
-                                    type="text"
-                                    placeholder="Filter by species"
-                                    value={speciesFilter}
-                                    onChange={(e) => setSpeciesFilter(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Filter by User Name"
-                                    value={userNameFilter}
-                                    onChange={(e) => setUserNameFilter(e.target.value)}
-                                />
-                                <input
-                                    type="date"
-                                    value={dateFilter}
-                                    onChange={(e) => setDateFilter(e.target.value)}
-                                />
-                                <input
-                                    type="text"
-                                    placeholder="Filter by Ocean"
-                                    value={oceanFilter}
-                                    onChange={(e) => setOceanFilter(e.target.value)}
-                                />
-
-                            </div>
                             <table className="approved-sightings-table">
                                 <thead className="approved-sightings-table-header">
                                     <tr>
+                                        <th>                                         
+                                            <input
+                                            className="input-filter hide-on-mobile"
+                                            type="date"
+                                            value={dateFilter}
+                                            onChange={(e) => setDateFilter(e.target.value)}
+                                            />Date: </th>
+                                        <th>                                            
+                                            <input
+                                            className="input-filter hide-on-mobile"
+                                            type="text"
+                                            placeholder="Species Filter"
+                                            value={speciesFilter}
+                                            onChange={(e) => setSpeciesFilter(e.target.value)}
+                                            />Species: </th>
                                         <th>
                                             <input
-                                                type="date"
-                                                value={dateFilter}
-                                                onChange={(e) => setDateFilter(e.target.value)}
-                                            />
-                                        </th>
-                                        <th>
-                                            <input
-                                                type="text"
-                                                placeholder="Species Filter"
-                                                value={speciesFilter}
-                                                onChange={(e) => setSpeciesFilter(e.target.value)}
-                                            />
-                                        </th>
-                                        <th><input
+                                            className="input-filter hide-on-mobile"
                                             type="text"
                                             placeholder="Ocean Filter"
                                             value={oceanFilter}
                                             onChange={(e) => setOceanFilter(e.target.value)}
-                                        /></th>
-                                        <th className="hide-on-mobile"></th>
-                                        <th className="hide-on-mobile"></th>
-                                        <th><input
+                                            />Location: 
+                                        </th>
+                                        <th className="hide-on-mobile">Latitude: </th>
+                                        <th className="hide-on-mobile">Longitude: </th>
+                                        <th>
+                                            <input
+                                            className="input-filter hide-on-mobile"
                                             type="text"
                                             placeholder="User Name Filter"
                                             value={userNameFilter}
                                             onChange={(e) => setUserNameFilter(e.target.value)}
-                                        />  </th>
-                                        <th className="hide-on-mobile"> </th>
-                                        <th className="hide-on-mobile"> </th>
-
-                                    </tr>
-                                    <tr>
-                                        <th>Date: </th>
-                                        <th>Species: </th>
-                                        <th>Location: </th>
-                                        <th className="hide-on-mobile">Latitude: </th>
-                                        <th className="hide-on-mobile">Longitude: </th>
-                                        <th>Username:  </th>
+                                            /> Username:  
+                                        </th>
                                         <th className="hide-on-mobile">Description: </th>
                                         <th className="hide-on-mobile">Photo: </th>
                                     </tr>
