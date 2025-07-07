@@ -10,17 +10,6 @@
     padding: 10px;
 }
 
-label{
-    @include labelFormInput;
-    margin-bottom: 5px;
-}
-
-input  {
-    @include labelFormInput;
-    margin: 0;
-    border-radius: 3px;
-}
-
 .label-text{
     display: inline-flex;
 }

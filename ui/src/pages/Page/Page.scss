@@ -11,6 +11,23 @@ body {
 
 .page {
     @include font(17px, 1, $fontColor);
+    border-radius: 20px;
+}
+
+.title {
+    padding: 0;
+}
+
+
+label{
+    @include labelFormInput;
+    margin-bottom: 5px;
+}
+
+input  {
+    @include labelFormInput;
+    margin: 0;
+    border-radius: 3px;
 }
 
 input {
@@ -22,6 +39,29 @@ input:focus {
     box-shadow: 0 0 10px $tealBackground;
   }
 
+  form {      
+  padding: 0 80px;
+}
+
+label {
+  @include labelFormInput;
+  margin: 10px 0;
+}
+
+input {
+  margin: 0;
+  width: 100%;
+}
+
+@media (max-width: 525px) {
+  form {
+    padding: 0;
+  }
+
+  input {
+    height: 32px;
+  }
+}
 
 
 
