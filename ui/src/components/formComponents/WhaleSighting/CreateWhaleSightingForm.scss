@@ -4,10 +4,15 @@ h1 {
     @include header;  
 }
 
+.page {
+    background-color: transparent;
+}
+
 .report-sighting-header {
     padding-top: 20px;
     padding-bottom: 10px;
     font-size: 1.5rem;
+    color: black;
 }
 
 .report-sighting-form-container {
@@ -15,6 +20,7 @@ h1 {
     background-color: white;
     border-radius: 11px;
     margin: 50px 0;
+    overflow: hidden;
 }
 
 
@@ -24,7 +30,7 @@ h1 {
     align-content: flex-start;
     padding: 0 30px;
     font-family: $fontFamily;
-    color: white;
+    // color: white;
     max-width: 800px;
 }
 
@@ -112,11 +118,19 @@ label{
     font-size: 0.9rem;
     text-transform: none;
     padding: 12px 0;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 
 #upload_widget{
     background-color: $tealBackground;
+}
+
+.image-upload-sucessful-container {
+    padding: 25px 0 10px 0;
+}
+
+.image-upload-sucessful-container p {
+    margin-top: 10px 0 0 0;
 }
 
 @media (max-width: 755px) {    
@@ -143,6 +157,10 @@ label{
     .form-input {
         width: 95.1%;
         padding-bottom: 1px;
+    }
+
+    .image-upload-sucessful-container p {
+    font-size: 0.8rem;
     }
 
     .leaflet-container {

@@ -98,7 +98,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
     return (
       <div>
         <h2 className="report-sighting-header">Report Sighting</h2>
-        <p>Your Whale Sighting Has Been Submitted And Is Pending Approval!</p>
+        <p>Your whale sighting has been submitted and is pending approval!</p>
       </div>
     );
   }
@@ -170,7 +170,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
               )}
             </label>
           </div>
-<div className="map-container">
+          <div className="map-container">
             <MapContainer
               center={{ lat: 51.553124, lng: -0.142594 }}
               maxBounds={[[-90,-180],[90,180]]}
@@ -218,9 +218,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
             </label>
           </div>
               {imageUploaded ? (
-          <div>
+          <div className="image-upload-sucessful-container">
             <CheckCircle size={36} />
-            <p>Photo Uploaded successfully</p>
+            <p>Photo uploaded successfully</p>
           </div>
         ) : (
           <CloudinaryUploadWidget 
