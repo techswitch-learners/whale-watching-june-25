@@ -55,7 +55,7 @@ export interface UserSighting {
     user:{
         username: string;
     }
-    imageUrl?: string
+    imageUrl: string
     status: "approved" | "pending" | "rejected";
     rejectedReason?: string;
 }
