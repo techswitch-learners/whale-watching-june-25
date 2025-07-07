@@ -40,8 +40,8 @@ export function ApprovedSightingsList() {
         })
     }, [sightings]);
 
-    useEffect(() => {
-        const filtered = sightings.filter(
+     useEffect(() => {
+        const filteredResults = sightings.filter(
         (sighting) =>
             sighting.species.toLowerCase().includes(speciesFilter.toLowerCase()) &&
             sighting.userName.toLowerCase().includes(userNameFilter.toLowerCase()) &&
@@ -50,11 +50,11 @@ export function ApprovedSightingsList() {
                     format(new Date(dateFilter), 'dd-MM-yyyy')) &&
             seaData.get(sighting.id)?.toLowerCase().includes(oceanFilter.toLowerCase())
     );
-    setFiltered(filtered);
+    setFiltered(filteredResults);
     if (filtered.length == 0 && sightings.length > 0) {
         setHeaderMessage("No matches")
     }
-    })
+     },[sightings, speciesFilter, userNameFilter, dateFilter, oceanFilter, seaData])
 
     function handleClickShowImage(imageUrl: string) {
         setsightingImage(imageUrl);
@@ -129,7 +129,9 @@ export function ApprovedSightingsList() {
                                         </tr>
                                     )
                                 ) : (
+                                    <tr>
                                     <td className="no-results-header" colSpan={8}>{headerMessage}</td>
+                                    </tr>
                                 )}
                                 </tbody>
                                     
