@@ -9,6 +9,13 @@ import {
 import CloudinaryUploadWidget from "../../../components/Widgets/CloudinaryUploadWidget";
 import {CheckCircle} from 'react-bootstrap-icons';
 import { uwConfig, useCloudinaryUpload } from "../../Widgets/CloudinaryConfig.ts";
+import { LocationMarker } from "../../MapLocationSelect/MapLocationSelect.tsx";
+import { MapContainer, TileLayer } from 'react-leaflet'
+import { latLng, LatLng } from 'leaflet'
+import "leaflet/dist/leaflet.css";
+
+
+
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
@@ -32,6 +39,8 @@ export function CreateWhaleSightingForm(): JSX.Element {
   const [status, setStatus] = useState<FormStatus>("READY");
   const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);
   const { imageUploaded, setPublicId, setImageUploaded } = useCloudinaryUpload();
+  const [position, setPosition] = useState<LatLng | null>(null)
+  
 
   const formErrors = {
     date: {
@@ -84,6 +93,10 @@ export function CreateWhaleSightingForm(): JSX.Element {
       .catch(() => setStatus("ERROR"));
     }
 
+    // const handlePositionChange = (newPosition: LatLng) => {
+    //   setPosition(newPosition);
+    // }
+
   if (status === "FINISHED") {
     return (
       <div>
@@ -92,132 +105,147 @@ export function CreateWhaleSightingForm(): JSX.Element {
     );
   }
   return (
-    <div>
+    <>
+      <div>
         {imageUploaded ? (
           <div>
-            <CheckCircle size={36}/>
+            <CheckCircle size={36} />
             <p>Photo Uploaded successfully</p>
           </div>
-          ) : (
-          <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={setPublicId} setUrl={setUrl} setImageUploaded={setImageUploaded}/>
+        ) : (
+          <CloudinaryUploadWidget
+            uwConfig={uwConfig}
+            setPublicId={setPublicId}
+            setUrl={setUrl}
+            setImageUploaded={setImageUploaded}
+          />
         )}
 
-    <form
-      className="create-whale-sighting-form"
-      onSubmit={handleSubmit(submitForm)}
-    >
-      <div>
-        <label className="form-label">
-          <span className="label-text">
-            Date
-            <span className="required">*</span>
-          </span>
-          <input
-            className="form-input"
-            id="date"
-            type="date"
-            {...register("date", {
-              required: formErrors.date.required,
-              validate: ((value) => {
-                const today = new Date();
-                today.setHours(0, 0, 0, 0);
+        <form
+          className="create-whale-sighting-form"
+          onSubmit={handleSubmit(submitForm)}>
+          <div>
+            <label className="form-label">
+              <span className="label-text">
+                Date
+                <span className="required">*</span>
+              </span>
+              <input
+                className="form-input"
+                id="date"
+                type="date"
+                {...register("date", {
+                  required: formErrors.date.required,
+                  validate: (value) => {
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
 
-                const selected = new Date(value);
-                selected.setHours(0, 0, 0, 0);
+                    const selected = new Date(value);
+                    selected.setHours(0, 0, 0, 0);
 
-                return selected <= today || formErrors.date.validate
-              }
+                    return selected <= today || formErrors.date.validate;
+                  },
+                })}
+              />
+              {errors.date && (
+                <span className="error">{errors.date.message}</span>
+              )}
+            </label>
+          </div>
+          <div>
+            <label className="form-label">
+              <span className="label-text">
+                Latitude
+                <span className="required">*</span>
+              </span>
+              <input
+                className="form-input"
+                id="latitude"
+                type="number"
+                {...register("latitude", formErrors.latitude)}
+              />
+              {errors.latitude && (
+                <span className="error">{errors.latitude.message}</span>
+              )}
+            </label>
+            <label className="form-label">
+              <span className="label-text">
+                Longitude
+                <span className="required">*</span>
+              </span>
+              <input
+                className="form-input"
+                id="longitude"
+                type="number"
+                {...register("longitude", formErrors.longitude)}
+              />
+              {errors.longitude && (
+                <span className="error">{errors.longitude.message}</span>
+              )}
+            </label>
+          </div>
+          <div>
+            <label className="form-label">
+              Description
+              <input
+                className="form-input"
+                id="description"
+                {...register("description")}
+              />
+            </label>
+          </div>
 
-              )
-            })
-            }
+          <div>
+            <label className="form-label">
+              <span className="label-text">
+                Species
+                <span className="required">*</span>
+              </span>
+
+              <select
+                className="form-input"
+                {...register("speciesId", formErrors.species)}>
+                {/* For testing form works for now ... species hardcoded in */}
+
+                <option value="">Select</option>
+                <option value="1">Humpback Whale</option>
+                <option value="2">Blue Whale</option>
+                {selectedSpecies.map((species) => (
+                  <option key={species.id} value={species.id}>
+                    {species.species}
+                  </option>
+                ))}
+              </select>
+              {errors.speciesId && (
+                <span className="error">{errors.speciesId.message}</span>
+              )}
+            </label>
+          </div>
+
+          <button
+            className="submit-button"
+            disabled={status === "SUBMITTING"}
+            type="submit">
+            Submit
+          </button>
+          {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
+        </form>
+      </div>
+              
+      <div className="map-container">
+        <MapContainer
+          center={{ lat: 51.553124, lng: -0.142594 }}
+          zoom={13}
+          scrollWheelZoom={true}>
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {errors.date && <span className="error">{errors.date.message}</span>}
-        </label>
+          <LocationMarker position={position} setPosition={setPosition} />
+        </MapContainer>
       </div>
-      <div>
-        <label className="form-label">
-          <span className="label-text">
-            Latitude
-            <span className="required">*</span>
-          </span>
-          <input
-            className="form-input"
-            id="latitude"
-            type="number"
-            {...register("latitude", formErrors.latitude)}
-          />
-          {errors.latitude && (
-            <span className="error">{errors.latitude.message}</span>
-          )}
-        </label>
-      </div>
+      
+      </>
 
-      <div>
-        <label className="form-label">
-          <span className="label-text">
-            Longitude
-            <span className="required">*</span>
-          </span>
-          <input
-            className="form-input"
-            id="longitude"
-            type="number"
-            {...register("longitude", formErrors.longitude)}
-          />
-          {errors.longitude && (
-            <span className="error">{errors.longitude.message}</span>
-          )}
-        </label>
-      </div>
-
-      <div>
-        <label className="form-label">
-          Description
-          <input
-            className="form-input"
-            id="description"
-            {...register("description")}
-          />
-        </label>
-      </div>
-
-      <div>
-        <label className="form-label">
-          <span className="label-text">
-            Species
-            <span className="required">*</span>
-          </span>
-
-          <select
-            className="form-input"
-            {...register("speciesId", formErrors.species)}
-          >
-            {/* For testing form works for now ... species hardcoded in */}
-
-            <option value="">Select</option>
-            <option value="1">Humpback Whale</option>
-            <option value="2">Blue Whale</option>
-            {selectedSpecies.map((species) => (
-              <option key={species.id} value={species.id}>{species.species}</option>
-            ))}
-
-          </select>
-          {errors.speciesId && (
-            <span className="error">{errors.speciesId.message}</span>
-          )}
-        </label>
-      </div>
-
-      <button
-        className="submit-button"
-        disabled={status === "SUBMITTING"}
-        type="submit"
-      >
-        Submit
-      </button >
-      {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
-    </form>
-    </div>
   );
 }
