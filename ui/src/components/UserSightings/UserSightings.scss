@@ -6,11 +6,6 @@ body {
     color: $fontColor;
 }
 
-#root {
-    width: 100vw;
-    padding: 0;
-}
-
 .header {
     color: $blueBackground;
     padding-top: 20px;
@@ -67,6 +62,55 @@ table tr:nth-of-type(even) {
     font-size: 1.25em;
     width: 50vw;
 }
+
+
+.view-photo-button {
+    @include primaryButton;
+    width: fit-content;
+    background-color: $blueBackground;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+
+.user-sighting-photo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-sighting-photo-wrapper {
+    position: relative;
+}
+
+.user-sighting-photo {
+    display: block;
+    width: 40vw;
+    max-width: 40vw;
+    height: auto;
+    border: 30px solid white;
+}
+
+.user-sighting-photo-exit-button {
+    all: unset;
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    color: black;
+    z-index: 20;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
 
 @media (max-width: 750px) {
     .narrow-col {
