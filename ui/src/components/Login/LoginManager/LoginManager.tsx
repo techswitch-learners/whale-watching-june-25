@@ -6,17 +6,19 @@ interface LoginManagerProps {
 }
 
 export function LoginManager(props: LoginManagerProps): JSX.Element {
-    function logIn(userAdmin: string) {
+    function logIn(userAdmin: boolean) {
         sessionStorage.setItem("loggedIn", "true");
-        if (userAdmin === "true") {
-            sessionStorage.setItem("isAdmin", "true");
-        } else {
-            sessionStorage.setItem("isAdmin", "false");
-        }
+        sessionStorage.setItem("isAdmin",JSON.stringify(userAdmin));
+    }
+
+    function logOut() {
+        sessionStorage.setItem("loggedIn", "false");
+        sessionStorage.setItem("isAdmin","false");
     }
 
     const context = {
-        isLoggedIn: sessionStorage.getItem("loggedIn") === "true",
+       // isLoggedIn: sessionStorage.getItem("loggedIn") === "true",
+        isLoggedIn: JSON.parse(sessionStorage.getItem("loggedIn")),
         isUserAdmin: sessionStorage.getItem("isAdmin") === "true",
         logIn: logIn,
     };

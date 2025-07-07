@@ -3,7 +3,7 @@ import { createContext } from "react";
 export interface LoginContextType {
     isLoggedIn: boolean;
     isUserAdmin: boolean;
-    logIn: (userAdmin: string) => void;
+    logIn: (userAdmin: boolean) => void;
     // logOut?: () => void;
 }
 
