@@ -77,5 +77,6 @@ namespace WhaleSpottingBackend.Controllers
 
             return StatusCode(StatusCodes.Status201Created, "User created successfully");
         }
+        
     }
 }

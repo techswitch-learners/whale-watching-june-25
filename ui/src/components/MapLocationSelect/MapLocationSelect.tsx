@@ -12,14 +12,14 @@ type LocationMarkerProps = {
     description: string;
     speciesId: number;
     imageUrl: string;
-    userId: number;}>;
+    userId: string;}>;
 }
 
 export function LocationMarker( locationMarkerProps: LocationMarkerProps) {
   useMapEvents({
     click(e: LeafletMouseEvent) {
-      locationMarkerProps.setValue("latitude", e.latlng.lat);
-      locationMarkerProps.setValue("longitude", e.latlng.lng);
+      locationMarkerProps.setValue("latitude", parseFloat(e.latlng.lat.toFixed(5)));
+    locationMarkerProps.setValue("longitude", parseFloat(e.latlng.lng.toFixed(5)));
       locationMarkerProps.setPosition(e.latlng)
     }
   })

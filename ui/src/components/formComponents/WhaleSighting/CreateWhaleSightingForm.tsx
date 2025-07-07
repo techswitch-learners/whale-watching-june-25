@@ -34,7 +34,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
       description: "",
       speciesId: 0,
       imageUrl: "",
-      userId: 1,
+      userId: "2da87a06-beba-4e77-a244-30e72d89a3ec",
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
@@ -50,17 +50,17 @@ export function CreateWhaleSightingForm(): JSX.Element {
     },
     latitude: {
       required: "Latitude is required",
-      pattern: {
-        value: /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/,
-        message: "Latitude should be in decimal degree format",
-      },
+      // pattern: {
+      //   value: /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)/,
+      //   message: "Latitude should be in decimal degree format",
+      // },
     },
     longitude: {
       required: "Longitude is required",
-      pattern: {
-        value: /^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)/,
-        message: "Longitude should be in decimal degree format",
-      },
+      // pattern: {
+      //   value: /^[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)/,
+      //   message: "Longitude should be in decimal degree format",
+      // },
     },
     species: {
       required: "Species is required",
