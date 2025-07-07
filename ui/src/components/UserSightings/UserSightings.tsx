@@ -1,7 +1,6 @@
 import React, { useState, JSX, useEffect } from 'react';
 import { getUserSightings, UserSighting } from "../../api/ApiClient"
-
-
+import "./UserSightings.scss";
 const UserSightings:React.FC = () =>  {
     const [approvedSightings, setApprovedSightings] = useState<UserSighting[]>([]);
     const [pendingSightings, setPendingSightings] = useState<UserSighting[]>([]);
@@ -28,11 +27,16 @@ const UserSightings:React.FC = () =>  {
     if (loading) return <p> Loading sightings...</p>
 
     return (
-        <div>
-            <h2>Pending Sightings:</h2>
+        <div className='user-sightings-board'>
+            <h2 className='header'>Pending Sightings:</h2>
             {pendingSightings.length ===0 ? ( <p>There are no sightings pending approval.</p>) :(
-                <table>
-                    <thead>
+                <table className='user-sightings-table'>
+                    {/* <colgroup>
+                        <col className="narrow-col" />
+                        <col className="wide-col" />
+                        <col className="narrow-col" />
+                    </colgroup> */}
+                    <thead className='table-header'>
                         <tr>
                             <th>Date</th>
                             <th>Description</th>
@@ -58,10 +62,10 @@ const UserSightings:React.FC = () =>  {
             )}
 
 
-            <h2> Approved Sightings:</h2>
+            <h2 className='header'> Approved Sightings:</h2>
             {approvedSightings.length ===0 ? ( <p>No approved sightings yet.</p>) :(
-                <table>
-                    <thead>
+                <table className='user-sightings-table'>
+                    <thead className='table-header'>
                         <tr>
                             <th>Date</th>
                             <th>Description</th>
