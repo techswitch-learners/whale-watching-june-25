@@ -15,6 +15,7 @@ export function ApprovedSightingsList() {
     const [dateFilter, setDateFilter] = useState("");
     const [oceanFilter, setOceanFilter] = useState("");
     const [headerMessage, setHeaderMessage] = useState("No approved sightings");
+    const[filtered, setFiltered] = useState<SightingReport[]>([])
 
     useEffect(() => {
         fetchSightings().then((response) => {
@@ -38,6 +39,22 @@ export function ApprovedSightingsList() {
         );
         })
     }, [sightings]);
+
+    useEffect(() => {
+        const filtered = sightings.filter(
+        (sighting) =>
+            sighting.species.toLowerCase().includes(speciesFilter.toLowerCase()) &&
+            sighting.userName.toLowerCase().includes(userNameFilter.toLowerCase()) &&
+            (!dateFilter ||
+                format(new Date(sighting.dateOfSighting), 'dd-MM-yyyy') ===
+                    format(new Date(dateFilter), 'dd-MM-yyyy')) &&
+            seaData.get(sighting.id)?.toLowerCase().includes(oceanFilter.toLowerCase())
+    );
+    setFiltered(filtered);
+    if (filtered.length == 0 && sightings.length > 0) {
+        setHeaderMessage("No matches")
+    }
+    })
 
     function handleClickShowImage(imageUrl: string) {
         setsightingImage(imageUrl);
@@ -98,11 +115,8 @@ export function ApprovedSightingsList() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {sightings.filter((sightings) => sightings.species.toLowerCase().includes(speciesFilter.toLowerCase()) &&
-                                        sightings.userName.toLowerCase().includes(userNameFilter.toLowerCase()) &&
-                                        (!dateFilter || format(new Date(sightings.dateOfSighting), 'dd-MM-yyyy') == format(new Date(dateFilter), "dd-MM-yyyy")) &&
-                                        seaData.get(sightings.id)?.toLowerCase().includes(oceanFilter.toLowerCase())
-                                    ).map((sightingReport: SightingReport) =>
+                                    {filtered.length > 0 ? (
+                                    filtered.map((sightingReport: SightingReport) =>
                                         <tr key={sightingReport.id}>
                                             <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
                                             <td>{sightingReport.species}</td>
@@ -113,8 +127,12 @@ export function ApprovedSightingsList() {
                                             <td className="hide-on-mobile">{sightingReport.description}</td>
                                             <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
                                         </tr>
-                                    )}
+                                    )
+                                ) : (
+                                    <td className="no-results-header" colSpan={8}>{headerMessage}</td>
+                                )}
                                 </tbody>
+                                    
                             </table>
                         </div>
                         {showSightingImage && <div className="sighting-report-photo-container">
@@ -125,7 +143,8 @@ export function ApprovedSightingsList() {
                         </div>}
                     </>
                 ) : (
-                    <h3 className="no-results-header">No approved sightings</h3>
+                    //<h3 className="no-results-header">No approved sightings</h3>
+                    <h3 className="no-results-header">{headerMessage}</h3>
                 )}
             </div>
         </>
