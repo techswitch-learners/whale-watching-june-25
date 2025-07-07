@@ -51,22 +51,22 @@ const UserSightings:React.FC = () =>  {
                     <thead className='table-header'>
                         <tr>
                             <th>Date</th>
-                            <th>Description</th>
+                            <th className='hide-on-mobile'>Description</th>
                             <th>Location (Lat, Long)</th>
                             <th>Species</th>
                             <th>Image</th>
-                            <th>Status</th>
+                            <th className='hide-on-mobile'>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {pendingSightings.map(sighting => (
                             <tr key={sighting.id}>
                                 <td>{sighting.dateOfSighting}</td>
-                                <td>{sighting.description ?? "N/A"}</td>
+                                <td className='hide-on-mobile'>{sighting.description ?? "N/A"}</td>
                                 <td>{sighting.latitude}, {sighting.longitude}</td>
                                 <td>{sighting.whaleSpecies.species}</td>
                                 <td>{sighting.imageUrl ? <button className="view-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
-                                <td>{sighting.status}</td>
+                                <td className='hide-on-mobile'>{sighting.status}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -79,22 +79,22 @@ const UserSightings:React.FC = () =>  {
                     <thead className='table-header'>
                         <tr>
                             <th>Date</th>
-                            <th>Description</th>
+                            <th className='hide-on-mobile'>Description</th>
                             <th>Location (Lat, Long)</th>
                             <th>Species</th>
                             <th>Image</th>
-                            <th>Status</th>
+                            <th className='hide-on-mobile'>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {approvedSightings.map(sighting => (
                             <tr key={sighting.id}>
                                 <td>{sighting.dateOfSighting}</td>
-                                <td>{sighting.description ?? "N/A"}</td>
+                                <td className='hide-on-mobile'>{sighting.description ?? "N/A"}</td>
                                 <td>{sighting.latitude}, {sighting.longitude}</td>
                                 <td>{sighting.whaleSpecies.species}</td>
                                 <td>{sighting.imageUrl ? <button className="view-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
-                                <td>{sighting.status}</td>
+                                <td className='hide-on-mobile'>{sighting.status}</td>
                             </tr>
                         ))}
                     </tbody>

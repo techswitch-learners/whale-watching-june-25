@@ -6,6 +6,11 @@ body {
     color: $fontColor;
 }
 
+#root {
+    width: 100vw;
+    padding: 0;
+}
+
 .header {
     color: $blueBackground;
     padding-top: 20px;
@@ -139,6 +144,9 @@ table tr:nth-of-type(even) {
     }
     .header {
         padding-top: 0;
+    }
+    .hide-on-mobile {
+        display: none;
     }
 }
 
