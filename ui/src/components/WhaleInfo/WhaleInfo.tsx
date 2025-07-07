@@ -1,4 +1,4 @@
-import { useState, JSX, useEffect } from 'react';
+import { useState, JSX } from 'react';
 import species from '../../assets/species.json';
 import "../../pages/WhaleInfo/WhaleInfoPage.scss";
 
