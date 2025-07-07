@@ -47,9 +47,9 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
 
 }
 
-export async function fetchSpecies(): Promise<ListResponse<Species>> {
+export async function fetchSpecies(): Promise<Species[]> {
 
-    const response = await fetch(`https://localhost:5067/species`);
+    const response = await fetch(`http://localhost:5067/species`);
     return await response.json();
 }
 

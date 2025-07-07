@@ -25,6 +25,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm({
     defaultValues: {
       date: new Date().toISOString().split("T")[0],
@@ -39,7 +40,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
   const [status, setStatus] = useState<FormStatus>("READY");
   const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);
   const { imageUploaded, setPublicId, setImageUploaded } = useCloudinaryUpload();
-  const [position, setPosition] = useState<LatLng | null>(null)
+  const [position, setPosition] = useState<LatLng>(latLng(51.553124, -0.142594));
   
 
   const formErrors = {
@@ -69,7 +70,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
   useEffect(() => {
     fetchSpecies()
       .then((response) => {
-        setSelectedSpecies(response.items);
+        setSelectedSpecies(response);
       })
       .catch((err) => console.error(err));
   }, []);
@@ -92,10 +93,6 @@ export function CreateWhaleSightingForm(): JSX.Element {
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));
     }
-
-    // const handlePositionChange = (newPosition: LatLng) => {
-    //   setPosition(newPosition);
-    // }
 
   if (status === "FINISHED") {
     return (
@@ -158,7 +155,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
                 Latitude
                 <span className="required">*</span>
               </span>
-              <input
+              <input readOnly
                 className="form-input"
                 id="latitude"
                 type="number"
@@ -173,7 +170,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
                 Longitude
                 <span className="required">*</span>
               </span>
-              <input
+              <input readOnly
                 className="form-input"
                 id="longitude"
                 type="number"
@@ -183,6 +180,18 @@ export function CreateWhaleSightingForm(): JSX.Element {
                 <span className="error">{errors.longitude.message}</span>
               )}
             </label>
+          </div>
+          <div className="map-container">
+            <MapContainer
+              center={{ lat: 51.553124, lng: -0.142594 }}
+              zoom={1}
+              scrollWheelZoom={true}>
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <LocationMarker position={position} setPosition={setPosition} setValue={setValue}/>
+            </MapContainer>
           </div>
           <div>
             <label className="form-label">
@@ -207,9 +216,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
                 {...register("speciesId", formErrors.species)}>
                 {/* For testing form works for now ... species hardcoded in */}
 
-                <option value="">Select</option>
+                {/* <option value="">Select</option>
                 <option value="1">Humpback Whale</option>
-                <option value="2">Blue Whale</option>
+                <option value="2">Blue Whale</option> */}
                 {selectedSpecies.map((species) => (
                   <option key={species.id} value={species.id}>
                     {species.species}
@@ -230,21 +239,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
           </button>
           {status === "ERROR" && <p>Something went wrong! Please try again.</p>}
         </form>
-      </div>
-              
-      <div className="map-container">
-        <MapContainer
-          center={{ lat: 51.553124, lng: -0.142594 }}
-          zoom={13}
-          scrollWheelZoom={true}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <LocationMarker position={position} setPosition={setPosition} />
-        </MapContainer>
-      </div>
-      
+      </div>      
       </>
 
   );
