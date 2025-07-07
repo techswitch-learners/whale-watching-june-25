@@ -1,12 +1,13 @@
 import React, { useState, JSX, useEffect } from 'react';
 import { getUserSightings, UserSighting } from "../../api/ApiClient"
-
-
+import "./UserSightings.scss";
 const UserSightings:React.FC = () =>  {
     const [approvedSightings, setApprovedSightings] = useState<UserSighting[]>([]);
     const [pendingSightings, setPendingSightings] = useState<UserSighting[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [ sightingImage, setsightingImage ] = useState<string>();
+    const [ showSightingImage, setShowSightingImage ] = useState(false);
 
     useEffect(() => {
         
@@ -27,12 +28,26 @@ const UserSightings:React.FC = () =>  {
     if (error) return <p> Error: {error}</p>
     if (loading) return <p> Loading sightings...</p>
 
+    function handleClickShowImage(imageUrl: string) {
+        setsightingImage(imageUrl);
+        setShowSightingImage(true);
+    }
+
+    function handleClickHideImage(){
+        setShowSightingImage(false);
+    }
+
     return (
-        <div>
-            <h2>Pending Sightings:</h2>
+        <div className='user-sightings-board'>
+            <h2 className='header'>Pending Sightings:</h2>
             {pendingSightings.length ===0 ? ( <p>There are no sightings pending approval.</p>) :(
-                <table>
-                    <thead>
+                <table className='user-sightings-table'>
+                    {/* <colgroup>
+                        <col className="narrow-col" />
+                        <col className="wide-col" />
+                        <col className="narrow-col" />
+                    </colgroup> */}
+                    <thead className='table-header'>
                         <tr>
                             <th>Date</th>
                             <th>Description</th>
@@ -49,7 +64,7 @@ const UserSightings:React.FC = () =>  {
                                 <td>{sighting.description ?? "N/A"}</td>
                                 <td>{sighting.latitude}, {sighting.longitude}</td>
                                 <td>{sighting.whaleSpecies.species}</td>
-                                <td>{sighting.imageUrl ? <img src= {sighting.imageUrl} alt= {sighting.whaleSpecies.species}/> : <p>No Image Available</p>}</td>
+                                <td>{sighting.imageUrl ? <button className="view-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
                                 <td>{sighting.status}</td>
                             </tr>
                         ))}
@@ -57,11 +72,10 @@ const UserSightings:React.FC = () =>  {
                 </table>
             )}
 
-
-            <h2> Approved Sightings:</h2>
+            <h2 className='header'> Approved Sightings:</h2>
             {approvedSightings.length ===0 ? ( <p>No approved sightings yet.</p>) :(
-                <table>
-                    <thead>
+                <table className='user-sightings-table'>
+                    <thead className='table-header'>
                         <tr>
                             <th>Date</th>
                             <th>Description</th>
@@ -78,13 +92,21 @@ const UserSightings:React.FC = () =>  {
                                 <td>{sighting.description ?? "N/A"}</td>
                                 <td>{sighting.latitude}, {sighting.longitude}</td>
                                 <td>{sighting.whaleSpecies.species}</td>
-                                <td>{sighting.imageUrl ? <img src= {sighting.imageUrl} alt= {sighting.whaleSpecies.species}/> : <p>No Image Available</p>}</td>
+                                <td>{sighting.imageUrl ? <button className="view-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
                                 <td>{sighting.status}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             )}
+
+            {showSightingImage && <div className="user-sighting-photo-container"> 
+                <div className="user-sighting-photo-wrapper">
+                <img className="user-sighting-photo" src={sightingImage}/>
+                <button className="user-sighting-photo-exit-button" onClick={() => handleClickHideImage()}>X</button>
+                </div>
+            </div>
+            }
         </div>
     )
 }

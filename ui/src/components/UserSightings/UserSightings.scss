@@ -1,0 +1,149 @@
+@import "../../styles/Constants";
+
+body {
+    background-color: $whiteBackground;
+    font-family: $fontFamily;
+    color: $fontColor;
+}
+
+.header {
+    color: $blueBackground;
+    padding-top: 20px;
+}
+
+.user-sightings-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $lightBlueBackground;
+    padding: 30px;
+}
+
+.user-sightings-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px 0 40px;
+    background-color: $whiteBackground;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-header {
+    background-color: $blueBackground;
+    padding: 5px 0;
+    color: whitesmoke;
+}
+
+.narrow-col {
+    width: 20%;
+}
+
+.wide-col {
+    width: 60%;
+}
+
+th {
+    padding: 10px 0;
+    border: 1pt solid whitesmoke;
+}
+
+td {
+    border: 1pt solid whitesmoke;
+    padding: 10px;
+    text-align: center;
+}
+
+table tr:nth-of-type(even) {
+    background-color: $lightBlueBackground;
+}
+
+.info-message {
+    color: $blueBackground;
+    font-size: 1.25em;
+    width: 50vw;
+}
+
+
+.view-photo-button {
+    @include primaryButton;
+    width: fit-content;
+    background-color: $blueBackground;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+
+.user-sighting-photo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-sighting-photo-wrapper {
+    position: relative;
+}
+
+.user-sighting-photo {
+    display: block;
+    width: 40vw;
+    max-width: 40vw;
+    height: auto;
+    border: 30px solid white;
+}
+
+.user-sighting-photo-exit-button {
+    all: unset;
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    color: black;
+    z-index: 20;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 750px) {
+    .narrow-col {
+        width: 25%;
+    }
+
+    .wide-col {
+        width: 50%;
+    }
+}
+
+@media (max-width: 600px) {
+    .leaderboard {
+        width: 100vw;
+    }
+
+    table {
+        width: 90vw;
+    }
+
+}
+
+@media (max-width: 430px) {
+    .info-message {
+        font-size: 1em;
+    }
+    .header {
+        padding-top: 0;
+    }
+}
+
+@media (max-height: 600px) {
+    .leaderboard {
+        height: 100vh;
+    }
+}
