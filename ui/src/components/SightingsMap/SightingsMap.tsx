@@ -14,18 +14,16 @@ export default function SightingsMap() {
         });  
     }, []);
     
-    const coordinatesArray = sightings.map(({latitude, longitude}) => ({latitude, longitude}));
-    const coordinates : LatLngExpression[]  = coordinatesArray.map(coordinates => [coordinates.latitude, coordinates.longitude]);
-       
+    const coordinates: LatLngExpression[] = sightings.map(({latitude, longitude}) => [latitude, longitude]);
   return (
      <div className="map">
    <MapContainer
-      center={[0, 0]} 
+      center={[25, 0]} 
       zoom={2}    
     >
       {coordinates.map((pos, index) => (
       <Marker key={index} position={pos}>
-        <Popup>Marker {index + 1}</Popup>
+        <Popup>Whale sighting {index + 1}</Popup>
       </Marker>
     ))}
 
@@ -37,5 +35,3 @@ export default function SightingsMap() {
     </div>
   );
 };
-
-
