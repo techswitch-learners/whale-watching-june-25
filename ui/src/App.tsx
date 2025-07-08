@@ -16,9 +16,8 @@ export default function App(): ReactElement {
     <LoginManager>
         <Router>
             <Routes>
-                <Route path='/' element={<LoginPage/>}/>
+                <Route path='/' element={<HomePage/>}/>
                 <Route path='/login' element={<LoginPage/>}/>
-                <Route path='/home' element={<HomePage />}/>
                 <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
                 <Route path="/sign-up" element={<SignUp/>}/>            
                 <Route path='/info' element={<WhaleInfoPage />}></Route>
