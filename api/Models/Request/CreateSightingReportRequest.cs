@@ -8,7 +8,6 @@ public class CreateSightingReportRequest
     public string? Description { get; set; }
     public int WhaleSpeciesId { get; set; }
     public string? ImageUrl { get; set; }
-    public string? UserId { get; set; }
 }
 
 

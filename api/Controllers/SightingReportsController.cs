@@ -38,8 +38,10 @@ namespace WhaleSpottingBackend.Controllers
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                newReport.UserId = userId;
-                _sightingReportsService.CreateReport(newReport);
+                if (userId != null)
+                {
+                    _sightingReportsService.CreateReport(newReport, userId);
+                }
             }
             catch (Exception ex)
             {
