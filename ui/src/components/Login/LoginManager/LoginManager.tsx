@@ -6,8 +6,8 @@ interface LoginManagerProps {
 }
 
 export function LoginManager(props: LoginManagerProps): JSX.Element {
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [isUserAdmin, setIsUserAdmin] = useState(false)
+    const [, setIsLoggedIn] = useState(false)
+    const [, setIsUserAdmin] = useState(false)
 
     function logIn(userAdmin: boolean) {
         sessionStorage.setItem("loggedIn", "true");
