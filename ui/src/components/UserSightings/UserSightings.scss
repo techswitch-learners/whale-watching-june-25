@@ -31,12 +31,17 @@ body {
     margin: 20px 0 40px;
     background-color: $whiteBackground;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+    table-layout: fixed;
 }
 
 .table-header {
     background-color: $blueBackground;
     padding: 5px 0;
     color: whitesmoke;
+    white-space: normal;
+    td{
+        white-space: normal;
+    }
 }
 
 .narrow-col {
