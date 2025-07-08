@@ -19,7 +19,7 @@ body {
     background-color: $whiteBackground;
 }
 
-label{
+label {
     @include labelFormInput;
     display:flex;
     flex-direction: column;

@@ -5,8 +5,6 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: $lightBlueBackground;
-  
   
 }
 
@@ -43,4 +41,9 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.leaflet-container {
+  height: 60vh;
+  width: 100wh;
 }

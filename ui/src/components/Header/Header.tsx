@@ -8,7 +8,7 @@ import logo from "../../assets/Images/wm-logo-sm.webp";
 export function Header() {
     return (
         <header className="header">           
-                <NavLink className="home-link" to="/"><img id="whale-museum-logo" src={logo} alt="The Whale Museum logo with an image of a black whale fin." />Whale Watching</NavLink>      
+                <NavLink className="home-link" to="/"><img id="whale-museum-logo" src={logo} alt="whale-museum-logo" />Whale Watching</NavLink>      
         </header>
     );
 }
@@ -21,7 +21,7 @@ export function Navbar() {
         setShowNavbar(!showNavbar);
         }
 
-             return (
+            return (
             <>
             <nav className="navbar">
             <p className="menu-text">Whale Watching</p>
