@@ -9,7 +9,7 @@ export default function SightingsMap() {
   const [sightings, setSightings] = useState<SightingReport[]>([]);
   const [dropDownList,setDropDownList] = useState([""]);
   const [species, setSpecies] = useState("");
-   
+     
   useEffect(() => {
         fetchSightings().then((response) => {
            var approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
@@ -24,34 +24,33 @@ export default function SightingsMap() {
           })}, [species]);
        
     const coordinates: LatLngExpression[] = sightings.map(({latitude, longitude}) => [latitude, longitude]);
-    const speciesDropDown = [...new Set(dropDownList)];
-      
+    const speciesDropDown = [...new Set(dropDownList)];    
+        
 
-     return (
+    return (
       <div className="map-container">
-      <div className="map">
-   <MapContainer
-      center={[25, 0]} 
-      zoom={window.innerWidth < 768 ? 0.20 : 2}    
-    >
-      {coordinates.map((pos, index) => (
-      <Marker key={index} position={pos}>
-        <Popup>Whale sighting {index + 1}</Popup>               
-      </Marker>
-    ))}
-
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-    </MapContainer>
-    <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
-      <option value="" disabled>Select a species</option>
-      {speciesDropDown.map((element, index) => (
-              <option key = {index} value={element}>{element}</option>
+        <div className="map">
+          <MapContainer
+           center={[25, 0]} 
+           zoom={window.innerWidth < 768 ? 1 : 2}    
+           >
+           {coordinates.map((pos, index) => (
+             <Marker key={index} position={pos}>
+             <Popup>Whale sighting {index + 1}</Popup>               
+             </Marker>
             ))}
-    </select>
-    </div>
-    </div>
+              <TileLayer
+               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+          </MapContainer>
+          <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
+          <option value="" disabled>Select a species</option>
+          {speciesDropDown.map((element, index) => (
+            <option key = {index} value={element}>{element}</option>
+          ))}
+          </select>
+       </div>
+     </div>
   );
 };
