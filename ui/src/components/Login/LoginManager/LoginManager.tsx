@@ -1,4 +1,4 @@
-import { JSX, ReactNode } from "react";
+import { JSX, ReactNode, useState } from "react";
 import { LoginContext } from "./LoginContext";
 
 interface LoginManagerProps {
@@ -6,15 +6,23 @@ interface LoginManagerProps {
 }
 
 export function LoginManager(props: LoginManagerProps): JSX.Element {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isUserAdmin, setIsUserAdmin] = useState(false)
+
     function logIn(userAdmin: boolean) {
         sessionStorage.setItem("loggedIn", "true");
         sessionStorage.setItem("isAdmin",JSON.stringify(userAdmin));
+        setIsLoggedIn(true);
+        setIsUserAdmin(userAdmin);
     }
 
-    // function logOut() {
-    //     sessionStorage.setItem("loggedIn", "false");
-    //     sessionStorage.setItem("isAdmin","false");
-    // }
+    function logOut() {
+        sessionStorage.setItem("loggedIn", "false");
+        sessionStorage.setItem("isAdmin","false");
+        setIsLoggedIn(false);
+        setIsUserAdmin(false);
+        
+    }
 
     function generateContextObject() {
         const isLoggedIn = sessionStorage.getItem("loggedIn");
@@ -24,6 +32,7 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
         isLoggedIn: isLoggedIn ? JSON.parse(isLoggedIn) : false,
         isUserAdmin: isAdmin ? JSON.parse(isAdmin) : false,
         logIn: logIn,
+        logOut: logOut,
         };
     }
 
