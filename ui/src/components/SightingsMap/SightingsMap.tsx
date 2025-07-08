@@ -46,8 +46,8 @@ export default function SightingsMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
     </MapContainer>
-    <select className="species-filter" onChange = {(event) => setSpecies(event.target.value)}>
-      <option value="" disabled selected>Select a species</option>
+    <select id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
+      <option value="" disabled>Select a species</option>
       {speciesDropDown.map((element, index) => (
               <option key = {index} value={element}>{element}</option>
             ))}
