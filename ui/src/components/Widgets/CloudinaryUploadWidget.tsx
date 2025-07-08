@@ -76,7 +76,6 @@ const CloudinaryUploadWidget = ({
   return (
     <button
       type = "button"
-      formAction=""
       ref={uploadButtonRef}
       id="upload_widget"
       className="report-sighting-button"

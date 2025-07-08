@@ -42,7 +42,6 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     });
     
     if (!response.ok) {
-        console.log(whaleSighting)
         throw new Error(await response.json())
     }
 

@@ -70,7 +70,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
   useEffect(() => {
     fetchSpecies()
       .then((response) => {
-        setSelectedSpecies(response);
+        setSelectedSpecies(response.sort((a: Species, b: Species) => a.species.localeCompare(b.species)));
       })
       .catch((err) => console.error(err));
   }, []);
