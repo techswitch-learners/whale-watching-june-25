@@ -1,5 +1,8 @@
 @import "../../styles/Constants.scss";
-
+body, #root {
+  all: unset;
+  padding: 0;
+}
  .menu-text {
   display: none;
  }
@@ -140,10 +143,6 @@
   }
 
   #whale-museum-logo-navbar{
-    display: block;
-    position: absolute;
-    width: 60px;
-    left: 20px;
-    bottom: 80px;
+    display: none;
   }
 }
