@@ -35,17 +35,13 @@ export function ListPendingSightings() {
     }, [sightings]);
 
     async function handleDeleteSubmit(id: number) {
-        try{
+
         await deleteWhaleSighting(id);
         const response = await fetchSightings();
         const pendingSightings = response
             .filter(sighting => sighting.status.toLowerCase() === 'pending')
             .sort((a, b) => new Date(a.dateOfSighting).getTime() - new Date(b.dateOfSighting).getTime());
         setSightings(pendingSightings);
-        }
-        catch (error) {
-            console.log("This is an error: " , error)
-        }
     }
 
     async function handleAcceptSubmit(id: number) {
