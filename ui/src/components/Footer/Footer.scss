@@ -1,0 +1,14 @@
+@import "../../styles/Constants.scss";
+
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $tealBackground;
+    @include navFont();
+    font-size: small;
+        img {
+         align-items: center;
+        height: 40px;       
+     }
+}
