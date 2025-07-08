@@ -4,7 +4,6 @@ export interface ListResponse<T> {
 
     items: T[];
 }
-
 export interface SightingReport {
     id: number;
     description: string;
@@ -45,6 +44,19 @@ export interface NewUser {
     email: string;
     password: string;
 }
+
+export interface SightingReport {
+    id: number;
+    description: string;
+    dateOfSighting: Date;
+    longitude: number;
+    latitude: number;
+    species: string;
+    userId: number;  
+    status: string;
+}
+
+
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
