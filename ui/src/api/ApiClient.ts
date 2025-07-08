@@ -4,7 +4,6 @@ export interface ListResponse<T> {
 
     items: T[];
 }
-
 export interface SightingReport {
     id: number;
     description: string;
@@ -46,6 +45,19 @@ export interface NewUser {
     password: string;
 }
 
+export interface SightingReport {
+    id: number;
+    description: string;
+    dateOfSighting: Date;
+    longitude: number;
+    latitude: number;
+    species: string;
+    userId: number;  
+    status: string;
+}
+
+
+
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
@@ -65,7 +77,6 @@ export async function fetchSpecies(): Promise<ListResponse<Species>> {
     const response = await fetch(`https://localhost:5067/species`);
     return await response.json();
 }
-
 
 export async function createUser(newUser: NewUser) {
     const response = await fetch(`http://localhost:5067/users`, {
@@ -121,8 +132,28 @@ export async function login(email: string, password: string) {
         } catch {
             errorMessage = response.statusText || errorMessage;
         }
+
         throw new Error(errorMessage);
     }
     
     return response.json();
 }
+
+export async function deleteWhaleSighting(id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
+export async function approveWhaleSighting(id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
+        method: "PATCH"
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
