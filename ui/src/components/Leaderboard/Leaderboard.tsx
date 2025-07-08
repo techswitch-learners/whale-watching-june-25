@@ -2,6 +2,18 @@ import { useState, useEffect } from "react";
 import { fetchSightings, SightingReport } from "../../api/ApiClient";
 import "./Leaderboard.scss";
 
+function orderTopThreeUsers(usersMap: Map<string, number>) {
+  const usersArray = Array.from(usersMap, ([name, value]) => ({
+      name,
+      value,
+    })).sort((a, b) => (a.value > b.value ? -1 : b.value > a.value ? 1 : 0));
+    const topUsersArray =
+      usersArray.length < 3
+        ? usersArray.slice(0, usersArray.length)
+        : usersArray.slice(0, 3);
+    return topUsersArray;
+}
+
 export function Leaderboard() {
   const [sightings, setSightings] = useState<SightingReport[]>([]);
   const [topUsers, setTopUsers] = useState<{ name: string; value: number }[]>(
@@ -25,17 +37,11 @@ export function Leaderboard() {
       usersMap.set(userName, (usersMap.get(userName) || 0) + 1);
     });
 
-    const usersArray = Array.from(usersMap, ([name, value]) => ({
-      name,
-      value,
-    })).sort((a, b) => (a.value > b.value ? -1 : b.value > a.value ? 1 : 0));
-    const topUsersArray =
-      usersArray.length < 3
-        ? usersArray.slice(0, usersArray.length)
-        : usersArray.slice(0, 3);
+    const topUsersArray = orderTopThreeUsers(usersMap);
     setTopUsers(topUsersArray);
     setLoading(false);
   }, [sightings]);
+
   if (topUsers.length === 0) {
     return (
       <div className="leaderboard">
