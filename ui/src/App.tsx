@@ -3,7 +3,8 @@ import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSightingPage'
-import { ReactElement} from 'react';
+import { ReactElement } from 'react';
+import {AdminDashboardPage} from './pages/Admin/AdminDashboardPage'
 import { SignUp } from './pages/SignUp/SignUpPage';
 import {LoginManager } from './components/Login/LoginManager/LoginManager'
 import WhaleInfoPage from './pages/WhaleInfo/WhaleInfoPage'
@@ -23,6 +24,7 @@ export default function App(): ReactElement {
                 <Route path='/info' element={<WhaleInfoPage />}></Route>
                 <Route path="/sightings" element={<Sightings/>}/>
                 <Route path="/sign-up" element={<SignUp/>}/>   
+                <Route path="/admin" element={<AdminDashboardPage />}/>
             </Routes>
         </Router>
     </LoginManager>

@@ -1,0 +1,169 @@
+@import "../../styles/Constants.scss";
+
+
+html, body {
+background-color: $lightBlueBackground;
+width: 100%;
+}
+
+#root {
+    all: unset;
+}
+
+.list-header{
+    color: $blueBackground;
+    text-align: center;
+}
+
+.pending-list-container {
+    width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sighting-container {
+    max-width: 100%;
+     overflow-x: auto;
+}
+
+.pending-sightings-table {
+    width: 60vw;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: $whiteBackground;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+   
+}
+
+.pending-sightings-table-header {
+    background-color: $orangeBackground;
+    padding: 5px 0;
+}
+
+th {
+    background-color: $tealBackground;
+    padding: 10px 20px;
+    border: 1pt solid $tealBackground;
+}
+
+td {
+    border: 1pt solid #e6faf9;
+    background-color: #e6faf9;
+    padding: 5px 5px 5px 0;
+    color: black;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.pending-sightings-table tr:nth-child(4n+1) td, 
+.pending-sightings-table tr:nth-child(4n+2) td {
+ background-color: $whiteBackground;
+ border: 1pt solid $whiteBackground;
+}
+
+
+.sighting-report-photo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sighting-report-photo-wrapper {
+    position: relative;
+}
+
+.sighting-report-photo {
+    display: block;
+    width: 40vw;
+    max-width: 40vw;
+    height: auto;
+    border: 30px solid $whiteBackground;
+}
+
+.sighting-report-photo-exit-button {
+    all: unset;
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    z-index: 20;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.show-on-mobile {
+    display: none;
+}
+
+.delete-sighting-btn {
+    margin-left: auto;
+    margin-right: 50px;
+    width: 220px;
+}
+
+.accept-sighting-btn {
+    margin-left: 50px;
+    margin-right: auto;
+    width: 220px;
+}
+
+@media (max-width: 1440px) {
+    .pending-sightings-table {
+        width: 75vw;
+    }
+}
+
+@media (max-width: 1024px) {
+    .pending-list-container {
+        font-size: 0.85rem;
+    }
+    th {
+    padding: 10px 10px;
+    }
+}
+
+@media (max-width: 974px) {
+    .pending-list-container {
+        font-size: 0.8rem;
+    }
+    .pending-sightings-table {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .pending-list-container {
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 625px) {
+    .pending-list-container {
+        font-size: 0.7rem;
+    }
+    .pending-sightings-table {
+        width: 90vw;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+    .accept-delete-button {
+        column-span: 1;
+        border: 1px red solid;
+    }
+    .show-on-mobile {
+        display: table-cell;
+    }
+    .accept-delete-button {
+        width: 50%;
+    }
+}
+

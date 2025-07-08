@@ -8,15 +8,8 @@ Run `npm install` to install the app dependencies, then run `npm run dev` to get
 - `npm run lint-fix` - runs the linter and fixes the problems that it can
 - `npm run test` - runs the tests
 
-### Using login context for admin/user privilidges
--in the page you want to use it:
+### Using the Location API to get ocean for list of sightings
+- create a geonames account, and confirm account via email at https://www.geonames.org
+- go onto account and enable free web services https://www.geonames.org/manageaccount
+- Create a .env file in the UI directory with `VITE_GEONAMES_USERNAMES = "yourUserName"`
 
-   `import {LoginContext} from "path to LoginManager";`
-   
-   `const loginContext = useContext(LoginContext);`
-
--e.g. if you want only admins to see this page
-
-   `if (logincontext.isUserAdmin == true)
-   { return (CODE)}`
-   
