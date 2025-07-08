@@ -158,7 +158,9 @@ export function CreateWhaleSightingForm(): JSX.Element {
               <span className="label-text">
                 Longitude
                 <span className="required">*</span>
+                
               </span>
+              
               <input readOnly
                 className="form-input"
                 id="longitude"
@@ -170,6 +172,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
               )}
             </label>
           </div>
+          
           <div className="map-container">
             <MapContainer
               center={{ lat: 51.553124, lng: -0.142594 }}

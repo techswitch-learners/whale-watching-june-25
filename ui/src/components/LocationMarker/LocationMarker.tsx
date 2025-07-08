@@ -2,6 +2,7 @@ import { useMapEvents, Marker, Tooltip } from 'react-leaflet'
 import { LatLng, LeafletMouseEvent  } from 'leaflet'
 import { UseFormSetValue } from "react-hook-form";
 
+
 type LocationMarkerProps = {
   position: LatLng;
   setPosition: (position: LatLng) => void;
@@ -27,7 +28,7 @@ export function LocationMarker( locationMarkerProps: LocationMarkerProps) {
 
   return locationMarkerProps.position === null ? null : (
     <Marker position={locationMarkerProps.position}>
-      <Tooltip direction="top" offset={[-13, -20]} opacity={1} permanent>Select the location of your whale sighting</Tooltip>
+      <Tooltip direction="top" offset={[-13, -20]} opacity={1} permanent>Select sighting location</Tooltip>
     </Marker>
   )
 }
