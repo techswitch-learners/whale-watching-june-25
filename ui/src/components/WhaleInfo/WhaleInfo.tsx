@@ -47,10 +47,10 @@ function WhaleInfo(): JSX.Element {
 
             {showPopUp && (
                 <>
-                    <div className='image-of-species-container'>
-                        <img src={selectedSpecies.Img} alt={selectedSpecies.Species} />
-                    </div>
                     <div className='pop-up-section'>
+                                                <div className='image-of-species-container'>
+                            <img src={selectedSpecies.Img} alt={selectedSpecies.Species} />
+                        </div>
                         <h2 className="species-subtitle">Tips on how to find a {selectedSpecies.Species}</h2>
                         <div>
                             <h3 className='species-info-header'>Description:</h3>
