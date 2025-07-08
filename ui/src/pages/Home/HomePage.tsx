@@ -1,11 +1,14 @@
-import {ApprovedSightingsList} from "../../components/ApprovedSightingsList/ApprovedSightingsList";
+import SightingsMap from "../../components/SightingsMap/SightingsMap";
+import { Page } from "../Page/Page";
 
 const HomePage = () => {
     return (
+        <Page>
         <div>
             <h1 className="title">Home Page</h1>
-            <ApprovedSightingsList />
+            <SightingsMap/>
         </div>
+        </Page>
         );
 }
 export default HomePage;
