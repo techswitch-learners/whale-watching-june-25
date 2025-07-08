@@ -9,9 +9,7 @@ export default function SightingsMap() {
   const [sightings, setSightings] = useState<SightingReport[]>([]);
   const [dropDownList,setDropDownList] = useState([""]);
   const [species, setSpecies] = useState("");
-
-  
-  
+   
   useEffect(() => {
         fetchSightings().then((response) => {
            var approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
@@ -30,10 +28,10 @@ export default function SightingsMap() {
       
 
      return (
-     <div className="map">
+      <div className="map">
    <MapContainer
       center={[25, 0]} 
-      zoom={2}    
+      zoom={window.innerWidth < 768 ? 0.20 : 2}    
     >
       {coordinates.map((pos, index) => (
       <Marker key={index} position={pos}>
@@ -46,13 +44,12 @@ export default function SightingsMap() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
     </MapContainer>
-    <select id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
+    <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
       <option value="" disabled>Select a species</option>
       {speciesDropDown.map((element, index) => (
               <option key = {index} value={element}>{element}</option>
             ))}
     </select>
-    </div>
-    
+    </div>  
   );
 };
