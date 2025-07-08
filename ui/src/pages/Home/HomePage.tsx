@@ -4,7 +4,7 @@ import { Page } from "../Page/Page";
 const HomePage = () => {
     return (
         <Page>
-        <div className="home-page">
+        <div>
             <h1 className="title">Home Page</h1>
             <SightingsMap/>
         </div>

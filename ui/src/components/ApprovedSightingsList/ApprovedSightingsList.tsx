@@ -14,7 +14,8 @@ export function ApprovedSightingsList() {
     const [userNameFilter, setUserNameFilter] = useState("");
     const [dateFilter, setDateFilter] = useState("");
     const [oceanFilter, setOceanFilter] = useState("");
-    const [headerMessage, setHeaderMessage] = useState("No approved sightings");
+  // const [headerMessage, setHeaderMessage] = useState("No approved sightings");
+    const [headerMessage, setHeaderMessage] = useState("Sightings loading . . .");
     const[filtered, setFiltered] = useState<SightingReport[]>([])
 
     useEffect(() => {
@@ -22,6 +23,9 @@ export function ApprovedSightingsList() {
             const approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
             .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
             setSightings(approvedSightings); 
+            if (approvedSightings.length === 0) {
+                setHeaderMessage("No approved sightings");
+            }
         });  
     }, []);
 
@@ -51,10 +55,10 @@ export function ApprovedSightingsList() {
             seaData.get(sighting.id)?.toLowerCase().includes(oceanFilter.toLowerCase())
     );
     setFiltered(filteredResults);
-    if (filtered.length == 0 && sightings.length > 0) {
+    if (filtered.length === 0 && sightings.length > 0) {
         setHeaderMessage("No matches")
     }
-     },[sightings, speciesFilter, userNameFilter, dateFilter, oceanFilter, seaData])
+     },[sightings, speciesFilter, userNameFilter, dateFilter, oceanFilter, seaData, filtered])
 
     function handleClickShowImage(imageUrl: string) {
         setsightingImage(imageUrl);
@@ -145,7 +149,6 @@ export function ApprovedSightingsList() {
                         </div>}
                     </>
                 ) : (
-                    //<h3 className="no-results-header">No approved sightings</h3>
                     <h3 className="no-results-header">{headerMessage}</h3>
                 )}
             </div>
