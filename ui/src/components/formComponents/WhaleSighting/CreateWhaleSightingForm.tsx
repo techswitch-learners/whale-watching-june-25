@@ -34,7 +34,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
       description: "",
       whaleSpeciesId: 1,
       imageUrl: "",
-      userId: "7627a0c2-3af2-4bdb-8939-8cd85b53bc2c",
+      userId: "1de3e0a8-b72e-4445-aa07-e681df22d168",
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
