@@ -1,0 +1,73 @@
+
+#QuizBgImage {
+    background-size: auto; /* Ensures the image covers the entire element */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    width: 100%; /* Full width */
+    height: 100vh; /* Full viewport height */
+    position: absolute; /* Ensures it covers the entire screen */
+    z-index: -1; /* Sends it behind other elements */
+    left:0px;
+  }
+  
+  .QuizSubtitle {
+    margin: 0 auto;
+    font-size: 35px;
+    text-align: center;
+    padding: 20px 0 10px;
+    color: black;
+  }
+  
+  .QuizTitle{
+    margin: 0 auto;
+    font-size: 45px;
+    text-align: center;
+    padding: 30px 0 10px;
+    color: black;
+  }
+
+  @media (max-width: 1100px) {
+    .QuizSubtitle {
+        font-size: 30px;
+        padding: 20px 0 10px;
+    }
+
+    .QuizTitle {
+      font-size: 40px;
+      padding: 30px 0 10px;
+  }
+  }
+
+  @media (max-width: 770px) {
+    .QuizSubtitle {
+        font-size: 25px;
+        padding: 20px 0 10px;
+    }
+
+    .QuizTitle {
+      font-size: 30px;
+      padding: 30px 0 10px;
+  }
+  }
+  
+  @media (max-width: 430px) {
+    .QuizSubtitle {
+        font-size: 18px;
+        padding: 10px 0 5px;
+    }
+    .QuizTitle {
+      font-size: 20px;
+      padding: 20px 0 5px;
+  }
+  }
+  
+  @media (max-width: 330px) {
+    .QuizSubtitle {
+        font-size: 15px;
+        padding: 10px 0 5px;
+    }
+    .QuizTitle {
+      font-size: 18px;
+      padding: 20px 0 5px;
+  }
+  }

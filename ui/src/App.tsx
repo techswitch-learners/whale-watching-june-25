@@ -7,6 +7,7 @@ import { ReactElement } from 'react';
 import { SignUp } from './pages/SignUp/SignUpPage';
 import WhaleInfoPage from './pages/WhaleInfo/WhaleInfoPage'
 import { Sightings } from './pages/Sightings/Sightings'
+import Quiz from './pages/Quiz/Quiz'
 
 
 export default function App(): ReactElement {
@@ -21,6 +22,7 @@ export default function App(): ReactElement {
                 <Route path='/info' element={<WhaleInfoPage />}></Route>
                 <Route path="/sightings" element={<Sightings/>}/>
                 <Route path="/sign-up" element={<SignUp/>}/>   
+                <Route path="/quiz" element={<Quiz/>}/>   
             </Routes>
         </Router>
     );
