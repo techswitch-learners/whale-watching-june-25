@@ -1,4 +1,3 @@
-
 import './App.scss'
 import LoginPage from './pages/Login/LoginPage'
 import HomePage from './pages/Home/HomePage'
@@ -7,21 +6,30 @@ import { CreateWhaleSightingPage } from './pages/WhaleSighting/CreateWhaleSighti
 import { ReactElement } from 'react';
 import {AdminDashboardPage} from './pages/Admin/AdminDashboardPage'
 import { SignUp } from './pages/SignUp/SignUpPage';
- 
-
+import {LoginManager } from './components/Login/LoginManager/LoginManager'
+import WhaleInfoPage from './pages/WhaleInfo/WhaleInfoPage'
+import { Sightings } from './pages/Sightings/Sightings'
 
 
 export default function App(): ReactElement {
+
     return (
+    <LoginManager>
         <Router>
             <Routes>
                 <Route path='/' element={<LoginPage/>}/>
                 <Route path='/login' element={<LoginPage/>}/>
-                <Route path='/home' element={<HomePage/>}/>
+                <Route path='/home' element={<HomePage />}/>
                 <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
-                <Route path="/sign-up" element={<SignUp/>}/>  
-                <Route path="/admin" element={<AdminDashboardPage />}/>          
+                <Route path="/sign-up" element={<SignUp/>}/>            
+                <Route path='/info' element={<WhaleInfoPage />}></Route>
+                <Route path="/sightings" element={<Sightings/>}/>
+                <Route path="/sign-up" element={<SignUp/>}/>   
+                <Route path="/admin" element={<AdminDashboardPage />}/>
             </Routes>
         </Router>
+    </LoginManager>
     );
 }
+
+

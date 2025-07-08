@@ -38,7 +38,12 @@ public class AccountsLoginController : ControllerBase
         {
             return Unauthorized("Invalid Password");
         }
-        return Ok(new { message = "Login successful"});
+        bool isAdmin = false;
+        var roles = await _userManager.GetRolesAsync(user);
+        if (roles.Contains("Admin")) {
+            isAdmin = true;
+        }
+        return Ok(new { message = "Login successful", isAdmin });
     }
 
     [HttpPost("logout")]
@@ -48,4 +53,6 @@ public class AccountsLoginController : ControllerBase
         await _signInManager.SignOutAsync();
         return Ok("User logged out");
     }
+
+
 }
