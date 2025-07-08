@@ -12,7 +12,7 @@ export default function SightingsMap() {
      
   useEffect(() => {
         fetchSightings().then((response) => {
-           var approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
+           const approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
              setDropDownList(approvedSightings.map(({species}) => species));            
           if (species != "") {
             const filteredSpeciesSightings = response.filter(sighting => sighting.species === species)
@@ -29,22 +29,22 @@ export default function SightingsMap() {
     
 
   function ResponsiveZoom() {
-    const map = useMap();   
+    const map = useMap();   
     const [zoom, setZoom] = useState(window.innerWidth < 768 ? 1 : 2);
 
-    useEffect(() => {
+    useEffect(() => {
       map.setZoom(zoom);
 
-      const handleResize = () => {
-        const newZoom = window.innerWidth < 768 ? 1 : 2;  
-        setZoom(newZoom);
-       };
+        const handleResize = () => {
+     const newZoom = window.innerWidth < 768 ? 1 : 2;
+        setZoom(newZoom); 
+         };
 
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-      }, [map, zoom]);
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+    }, [map, zoom]);
 
-   return null;
+  return null;
   }     
   
   return (
