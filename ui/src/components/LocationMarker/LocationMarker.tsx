@@ -27,7 +27,7 @@ export function LocationMarker( locationMarkerProps: LocationMarkerProps) {
 
   return locationMarkerProps.position === null ? null : (
     <Marker position={locationMarkerProps.position}>
-      <Tooltip direction="right" offset={[4, -3]} opacity={1} permanent>Click the location of your whale sighting</Tooltip>
+      <Tooltip direction="top" offset={[-13, -20]} opacity={1} permanent>Select the location of your whale sighting</Tooltip>
     </Marker>
   )
 }

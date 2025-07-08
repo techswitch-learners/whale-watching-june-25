@@ -30,7 +30,6 @@ h1 {
     align-content: flex-start;
     padding: 0 30px;
     font-family: $fontFamily;
-    // color: white;
     max-width: 800px;
 }
 
@@ -39,10 +38,8 @@ input {
 }
 
 label{
-    // @include labelFormInput;
     display:flex;
     flex-direction: column;
-    // flex-grow: 1;
     align-items: flex-start;
     justify-content: space-between;
     gap: 4px;
@@ -51,10 +48,8 @@ label{
 }
 
  .form-input  {
-    // @include labelFormInput;
     display:flex;
     flex-direction: column;
-    // flex-grow: 1;
     align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 5px;
@@ -66,7 +61,7 @@ label{
 }
 
     .form-input:focus {
-        outline: 2px solid #68A9A1;
+        outline: 2px solid $tealBackground;
     }
 
 .form-label {
@@ -103,8 +98,6 @@ label{
 .leaflet-container {
   width: 600px;
   height: 350px;
-//   width: 98.5vw;
-//   height: 57.55vh;
   display: flex;
   margin: 10px 1px;
   border-radius: 5px;
@@ -144,7 +137,6 @@ label{
 
     .report-sighting-form-container{
         width: 70vw;
-        // font-size: 1rem;
     }
 
     .form-label, .form-input{
