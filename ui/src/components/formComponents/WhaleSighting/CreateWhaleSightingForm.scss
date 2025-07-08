@@ -84,11 +84,13 @@ label{
     border-radius: 5px;
     padding: 6px 3px;
     border: 2px solid rgb(226, 226, 226);
-
-    .form-input-select-species:focus {
-        border: 2px solid $tealBackground;
-    }
+    appearance: none;
 }
+
+.form-input-select-species:focus {
+  outline: 2px solid $tealBackground;
+}
+
 
 
 .error {    
