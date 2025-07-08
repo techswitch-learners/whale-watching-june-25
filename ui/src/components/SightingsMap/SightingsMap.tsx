@@ -28,6 +28,7 @@ export default function SightingsMap() {
       
 
      return (
+      <div className="map-container">
       <div className="map">
    <MapContainer
       center={[25, 0]} 
@@ -50,6 +51,7 @@ export default function SightingsMap() {
               <option key = {index} value={element}>{element}</option>
             ))}
     </select>
-    </div>  
+    </div>
+    </div>
   );
 };
