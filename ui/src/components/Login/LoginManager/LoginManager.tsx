@@ -16,15 +16,19 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
         sessionStorage.setItem("isAdmin","false");
     }
 
-    const context = {
-       // isLoggedIn: sessionStorage.getItem("loggedIn") === "true",
-        isLoggedIn: JSON.parse(sessionStorage.getItem("loggedIn")),
-        isUserAdmin: sessionStorage.getItem("isAdmin") === "true",
+    function generateContextObject() {
+        var isLoggedIn = sessionStorage.getItem("loggedIn");
+        var isAdmin = sessionStorage.getItem("isAdmin");
+
+        return {
+        isLoggedIn: isLoggedIn ? JSON.parse(isLoggedIn) : false,
+        isUserAdmin: isAdmin ? JSON.parse(isAdmin) : false,
         logIn: logIn,
-    };
+        };
+    }
 
     return (
-        <LoginContext.Provider value={context}>
+        <LoginContext.Provider value={generateContextObject()}>
             {props.children}
         </LoginContext.Provider>
     );
