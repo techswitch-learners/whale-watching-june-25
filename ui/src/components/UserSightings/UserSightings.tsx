@@ -40,61 +40,56 @@ const UserSightings:React.FC = () =>  {
 
     return (
         <div className='user-sightings-board'>
-            <h2 className='header'>Pending Sightings:</h2>
+            <h2 className='table-name-header'>Pending Sightings:</h2>
             {pendingSightings.length ===0 ? ( <p>There are no sightings pending approval.</p>) :(
                 <table className='user-sightings-table'>
-                    {/* <colgroup>
-                        <col className="narrow-col" />
-                        <col className="wide-col" />
-                        <col className="narrow-col" />
-                    </colgroup> */}
                     <thead className='table-header'>
                         <tr>
-                            <th>Date</th>
-                            <th className='hide-on-mobile'>Description</th>
-                            <th>Location (Lat, Long)</th>
-                            <th>Species</th>
-                            <th>Image</th>
-                            <th className='hide-on-mobile'>Status</th>
+                            <th className='header-th'>Date</th>
+                            <th className='hide-on-mobile header-th'>Description</th>
+                            <th className='hide-on-mobile header-th'>Location (Lat, Long)</th>
+                            <th className='header-th'>Species</th>
+                            <th className='hide-on-small-mobile header-th'>Image</th>
+                            <th className='hide-on-mobile header-th'>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {pendingSightings.map(sighting => (
                             <tr key={sighting.id}>
-                                <td>{sighting.dateOfSighting}</td>
-                                <td className='hide-on-mobile'>{sighting.description ?? "N/A"}</td>
-                                <td>{sighting.latitude}, {sighting.longitude}</td>
-                                <td>{sighting.whaleSpecies.species}</td>
-                                <td>{sighting.imageUrl ? <button className="view-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
-                                <td className='hide-on-mobile'>{sighting.status}</td>
+                                <td className='info-td'>{sighting.dateOfSighting}</td>
+                                <td className='hide-on-mobile info-td'>{sighting.description ?? "N/A"}</td>
+                                <td className='hide-on-mobile info-td'>{sighting.latitude}, {sighting.longitude}</td>
+                                <td className='info-td'>{sighting.whaleSpecies.species}</td>
+                                <td className='hide-on-small-mobile info-td'>{sighting.imageUrl ? <button className="view-user-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
+                                <td className='hide-on-mobile info-td'>{sighting.status}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             )}
 
-            <h2 className='header'> Approved Sightings:</h2>
+            <h2 className='table-name-header'> Approved Sightings:</h2>
             {approvedSightings.length ===0 ? ( <p>No approved sightings yet.</p>) :(
                 <table className='user-sightings-table'>
                     <thead className='table-header'>
                         <tr>
-                            <th>Date</th>
-                            <th className='hide-on-mobile'>Description</th>
-                            <th>Location (Lat, Long)</th>
-                            <th>Species</th>
-                            <th>Image</th>
-                            <th className='hide-on-mobile'>Status</th>
+                            <th className='header-th'>Date</th>
+                            <th className='hide-on-mobile header-th'>Description</th>
+                            <th className='hide-on-mobile header-th'>Location (Lat, Long)</th>
+                            <th className='header-th'>Species</th>
+                            <th className='hide-on-small-mobile header-th'>Image</th>
+                            <th className='hide-on-mobile header-th'>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {approvedSightings.map(sighting => (
                             <tr key={sighting.id}>
-                                <td>{sighting.dateOfSighting}</td>
-                                <td className='hide-on-mobile'>{sighting.description ?? "N/A"}</td>
-                                <td>{sighting.latitude}, {sighting.longitude}</td>
-                                <td>{sighting.whaleSpecies.species}</td>
-                                <td>{sighting.imageUrl ? <button className="view-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
-                                <td className='hide-on-mobile'>{sighting.status}</td>
+                                <td className='info-td'>{sighting.dateOfSighting}</td>
+                                <td className='hide-on-mobile info-td'>{sighting.description ?? "N/A"}</td>
+                                <td className='hide-on-mobile info-td'>{sighting.latitude}, {sighting.longitude}</td>
+                                <td className='info-td'> {sighting.whaleSpecies.species}</td>
+                                <td className='hide-on-small-mobile info-td'>{sighting.imageUrl ? <button className="view-user-photo-button" onClick={() => handleClickShowImage(sighting.imageUrl)}>View</button> : <p>No Image Available</p>}</td>
+                                <td className='hide-on-mobile info-td'>{sighting.status}</td>
                             </tr>
                         ))}
                     </tbody>

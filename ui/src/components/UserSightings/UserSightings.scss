@@ -1,17 +1,6 @@
 @import "../../styles/Constants";
 
-body {
-    background-color: $whiteBackground;
-    font-family: $fontFamily;
-    color: $fontColor;
-}
-
-#root {
-    width: 100vw;
-    padding: 0;
-}
-
-.header {
+.table-name-header {
     color: $blueBackground;
     padding-top: 20px;
 }
@@ -39,45 +28,32 @@ body {
     padding: 5px 0;
     color: whitesmoke;
     white-space: normal;
-    td{
-        white-space: normal;
-    }
-}
-
-.narrow-col {
-    width: 20%;
-}
-
-.wide-col {
-    width: 60%;
-}
-
-th {
-    padding: 10px 0;
     border: 1pt solid whitesmoke;
 }
 
-td {
+.header-th {
+    background-color: $blueBackground;
+    padding: 15px 0;
+    border: 1pt solid whitesmoke;
+}
+
+.info-td {
     border: 1pt solid whitesmoke;
     padding: 10px;
     text-align: center;
+    white-space: normal;
 }
 
 table tr:nth-of-type(even) {
     background-color: $lightBlueBackground;
 }
 
-.info-message {
-    color: $blueBackground;
-    font-size: 1.25em;
-    width: 50vw;
-}
 
-
-.view-photo-button {
+.view-user-photo-button {
     @include primaryButton;
-    width: fit-content;
+    width: 100px;
     background-color: $blueBackground;
+    border: 2pt solid $tealBackground;
     cursor: pointer;
     color: whitesmoke;
     font-size: 1rem;
@@ -120,29 +96,6 @@ table tr:nth-of-type(even) {
     cursor: pointer;
 }
 
-
-
-@media (max-width: 750px) {
-    .narrow-col {
-        width: 25%;
-    }
-
-    .wide-col {
-        width: 50%;
-    }
-}
-
-@media (max-width: 600px) {
-    .leaderboard {
-        width: 100vw;
-    }
-
-    table {
-        width: 90vw;
-    }
-
-}
-
 @media (max-width: 430px) {
     .info-message {
         font-size: 1em;
@@ -155,8 +108,17 @@ table tr:nth-of-type(even) {
     }
 }
 
-@media (max-height: 600px) {
-    .leaderboard {
-        height: 100vh;
+@media (max-width: 375px) {
+    .info-message {
+        font-size: 1em;
+    }
+    .header {
+        padding-top: 0;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+    .hide-on-small-mobile {
+        display: none;
     }
 }
