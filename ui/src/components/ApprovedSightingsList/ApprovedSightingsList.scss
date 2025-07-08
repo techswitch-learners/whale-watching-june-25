@@ -35,10 +35,11 @@ body {
 th {
     background-color: $tealBackground;
     padding: 10px 0;
+    color: $whiteBackground;
     border: 1pt solid whitesmoke;
 }
 
-td {
+.approved-sightings-table td {
     border: 1pt solid whitesmoke;
     padding: 5px 5px 5px 0;
     color: black;
