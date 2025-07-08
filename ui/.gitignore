@@ -24,5 +24,11 @@ dist-ssr
 *.sln
 *.sw?
 
+<<<<<<< HEAD
+#Env files
+*.env
+
+=======
 #Environment files
 .env
+>>>>>>> 9113f45d2d451ba64ce84eef8b709f15773a6862

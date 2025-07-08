@@ -1,21 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap');
 
 $orangeBackground: #FF8A5B;
 $blueBackground: #254E70;
 $tealBackground: #22AAA1;
 $whiteBackground: #F8F7F9;
-$lightBlueBackground: #E9F1F7;
+$lightBlueBackground: #E9F1F7;  
 
 $fontFamily: 'Lato', sans-serif;
 $fontColor: black;
+$headerFontFamily: 'Sniglet' ;
 
 
 $buttonBackground: #254e70;
 
 $errorFontColor: red;
 
+$spacing-small: 10px;
+$spacing-medium: 20px;
+
 @mixin font($font-size, $line-height, $color) {
   font-family: $fontFamily;
+  font-size: $font-size;
+  line-height: $line-height;
+  color: $color;
+  text-decoration: none;
+}
+
+@mixin headerFont($font-size, $line-height, $color) {
+  font-family: $headerFontFamily;
   font-size: $font-size;
   line-height: $line-height;
   color: $color;
@@ -47,5 +60,17 @@ $errorFontColor: red;
 }
 
 @mixin header(){
-     @include font(40px, 1, $fontColor);
+     @include headerFont(40px, 1.5, $whiteBackground);
+}
+
+@mixin homeLinkFont() {
+  @include font(40px, 2, $whiteBackground);
+}
+
+@mixin navFont() {
+  @include font(21px, 2, $whiteBackground);
+}
+
+@mixin h1font() {
+  @include font(40px, 2, $fontColor);
 }

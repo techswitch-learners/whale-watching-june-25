@@ -1,15 +1,24 @@
 @import "../../styles/Constants";
 
+$header-height: 56px;
+$nav-height: 48px;
+$footer-height: 34px;
+$header-height: 56px;
+$nav-height: 48px;
+$footer-height: 34px;
 
 body {
   background-color: $lightBlueBackground;
 
  .main {
+    text-align: center;
     box-sizing: border-box;
+    min-height: calc(100vh - #{$header-height} - #{$nav-height} - #{$footer-height});
   }  
 }
 
 .page {
+    background-color: $lightBlueBackground;
     @include font(17px, 1, $fontColor);
     border-radius: 20px;
 }
