@@ -84,7 +84,12 @@ label{
     border-radius: 5px;
     padding: 6px 3px;
     border: 2px solid rgb(226, 226, 226);
+
+    .form-input-select-species:focus {
+        border: 2px solid $tealBackground;
+    }
 }
+
 
 .error {    
     @include error;  
@@ -190,5 +195,14 @@ label{
 
 }
 
+@media (prefers-color-scheme: dark) {
+  .form-input {
+    background:white;
+  }
 
+  .form-input-select-species {
+    background:white;
+    color: black;
+  }
+}
 
