@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import "./SightingsMap.scss";
 import { useEffect, useState } from "react";
@@ -24,10 +24,30 @@ export default function SightingsMap() {
           })}, [species]);
        
     const coordinates: LatLngExpression[] = sightings.map(({latitude, longitude}) => [latitude, longitude]);
-    const speciesDropDown = [...new Set(dropDownList)];    
-        
+    const speciesDropDown = [...new Set(dropDownList)];   
+       
+    
 
-    return (
+  function ResponsiveZoom() {
+    const map = useMap();   
+    const [zoom, setZoom] = useState(window.innerWidth < 768 ? 1 : 2);
+
+    useEffect(() => {
+      map.setZoom(zoom);
+
+      const handleResize = () => {
+        const newZoom = window.innerWidth < 768 ? 1 : 2;  
+        setZoom(newZoom);
+       };
+
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+      }, [map, zoom]);
+
+   return null;
+  }     
+  
+  return (
       <div className="map-container">
         <div className="map">
           <MapContainer
@@ -43,6 +63,7 @@ export default function SightingsMap() {
                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
+            <ResponsiveZoom />  
           </MapContainer>
           <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
           <option value="" disabled>Select a species</option>
