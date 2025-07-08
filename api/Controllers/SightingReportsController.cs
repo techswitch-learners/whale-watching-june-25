@@ -38,10 +38,11 @@ namespace WhaleSpottingBackend.Controllers
             try
             {
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (userId != null)
+                if (userId == null)
                 {
-                    _sightingReportsService.CreateReport(newReport, userId);
+                    return Unauthorized("User Id not found");
                 }
+                 _sightingReportsService.CreateReport(newReport, userId);
             }
             catch (Exception ex)
             {
