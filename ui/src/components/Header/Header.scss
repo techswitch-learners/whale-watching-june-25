@@ -1,0 +1,148 @@
+@import "../../styles/Constants.scss";
+body, #root {
+  all: unset;
+  padding: 0;
+}
+ .menu-text {
+  display: none;
+ }
+
+.header {    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $tealBackground;
+  height: 80px;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  color: $whiteBackground;
+  font-weight: 800; 
+  width: auto;   
+  .home-link {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    @include header();
+  }
+}
+
+#whale-museum-logo{
+  height: 85px;
+}
+
+.navbar {
+  height: 60px;
+  background-color: $tealBackground;
+  padding: 0 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-elements ul {
+  all: unset;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  border-top: solid 2px $whiteBackground;
+  padding-top: 2px
+}
+
+.nav-elements ul a {
+  @include navFont();  
+   font-weight: bold;
+}
+
+.nav-elements ul a.active {
+  position: relative;
+}
+
+.menu-icon {
+  display: none;
+}
+
+#whale-museum-logo-navbar{
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .header {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .menu-icon {
+      position: absolute;
+      z-index: 100;
+      top: 13px;
+      right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      width: 30px;
+      height: 30px;
+      border: none;
+      color: $blueBackground;
+      background: none;
+  }
+
+    .icon-x {
+      color: $blueBackground;
+      font-size: 1.6rem;
+      font-weight: 900;
+    }
+
+    .icon-bars {
+      color: $blueBackground;
+      padding-top: 3px;
+      font-size: 2.6rem;
+      font-weight: 900;
+    }
+
+  .nav-elements {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background-color: $tealBackground;
+    width: 0px;
+    height: calc(100vh - 60px);
+    transition: all 0.3s ease-in;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .nav-elements.active {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .menu-text {
+    display: block;
+    @include header();
+    font-size: 1.5rem;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    margin-block-start:0;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .nav-elements ul {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-elements ul li {
+    margin: 22px 20px 0 20px;
+    padding-left: 2px;
+    padding-top: 30px;
+    border-bottom: 1px solid $whiteBackground;
+  }
+
+  #whale-museum-logo-navbar{
+    display: none;
+  }
+}

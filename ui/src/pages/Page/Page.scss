@@ -1,19 +1,76 @@
 @import "../../styles/Constants";
 
+$header-height: 56px;
+$nav-height: 48px;
+$footer-height: 34px;
+$header-height: 56px;
+$nav-height: 48px;
+$footer-height: 34px;
 
 body {
   background-color: $lightBlueBackground;
 
  .main {
+    text-align: center;
     box-sizing: border-box;
+    min-height: calc(100vh - #{$header-height} - #{$nav-height} - #{$footer-height});
   }  
 }
 
 .page {
-    background-color: $whiteBackground;
+    background-color: $lightBlueBackground;
     @include font(17px, 1, $fontColor);
+    border-radius: 20px;
 }
 
+.title {
+    padding: 0;
+}
+
+
+label{
+    @include labelFormInput;
+    margin-bottom: 5px;
+}
+
+input  {
+    @include labelFormInput;
+    margin: 0;
+    border-radius: 3px;
+}
+
+input {
+  border: 1px solid grey;
+}
+
+input:focus {
+    outline: 3px solid $tealBackground;
+    box-shadow: 0 0 10px $tealBackground;
+  }
+
+  form {      
+  padding: 0 80px;
+}
+
+label {
+  @include labelFormInput;
+  margin: 10px 0;
+}
+
+input {
+  margin: 0;
+  width: 100%;
+}
+
+@media (max-width: 525px) {
+  form {
+    padding: 0;
+  }
+
+  input {
+    height: 32px;
+  }
+}
 
 
 
