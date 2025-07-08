@@ -1,0 +1,141 @@
+@import "../../styles/Constants";
+
+body {
+    background-color: $whiteBackground;
+    font-family: $fontFamily;
+}
+
+#sightings-list-header {
+    color: $blueBackground;
+}
+
+.no-results-header {
+    color: $blueBackground;
+}
+
+.sighting-list-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.approved-sightings-table {
+    width: 60vw;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: $whiteBackground;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.approved-sightings-table-header {
+    background-color: $tealBackground;
+    padding: 5px 0;
+}
+
+th {
+    background-color: $tealBackground;
+    padding: 10px 0;
+    border: 1pt solid whitesmoke;
+}
+
+td {
+    border: 1pt solid whitesmoke;
+    padding: 5px 5px 5px 0;
+    color: black;
+    text-align: center;
+}
+
+.approved-sightings-table tr:nth-of-type(even) {
+    background-color: $lightBlueBackground;
+}
+
+.view-photo-button {
+    @include primaryButton;
+    width: fit-content;
+    background-color: $blueBackground;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+
+.sighting-report-photo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sighting-report-photo-wrapper {
+    position: relative;
+}
+
+.sighting-report-photo {
+    display: block;
+    width: 40vw;
+    max-width: 40vw;
+    height: auto;
+    border: 30px solid white;
+}
+
+.sighting-report-photo-exit-button {
+    all: unset;
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    color: black;
+    z-index: 20;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 1440px) {
+    .approved-sightings-table {
+        width: 75vw;
+    }
+}
+
+@media (max-width: 1024px) {
+    .sighting-list-container {
+        font-size: 0.85rem;
+    }
+    th {
+    padding: 10px 10px;
+    }
+}
+
+@media (max-width: 974px) {
+    .sighting-list-container {
+        font-size: 0.8rem;
+    }
+    .approved-sightings-table {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .sighting-list-container {
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 532px) {
+    .sighting-list-container {
+        font-size: 0.7rem;
+    }
+    .approved-sightings-table {
+        width: 90vw;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+}
