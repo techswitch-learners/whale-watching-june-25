@@ -1,8 +1,20 @@
+const geonamesUsername = import.meta.env.VITE_GEONAMES_USERNAMES;
+
 export interface ListResponse<T> {
 
     items: T[];
 }
-
+export interface SightingReport {
+    id: number;
+    description: string;
+    dateOfSighting: Date;
+    longitude: number;
+    latitude: number;
+    species: string;
+    userName: string;  
+    status: string;
+    imageUrl: string;
+}
 
 export interface WhaleSighting {
     date: string;
@@ -13,6 +25,7 @@ export interface WhaleSighting {
     imageUrl: string;
     userId: number;  
 }
+
 export interface Species {
     id: number;
     speciesGroup: string;
@@ -32,6 +45,19 @@ export interface NewUser {
     password: string;
 }
 
+export interface SightingReport {
+    id: number;
+    description: string;
+    dateOfSighting: Date;
+    longitude: number;
+    latitude: number;
+    species: string;
+    userId: number;  
+    status: string;
+}
+
+
+
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
@@ -44,7 +70,6 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     if (!response.ok) {
         throw new Error(await response.json())
     }
-
 }
 
 export async function fetchSpecies(): Promise<ListResponse<Species>> {
@@ -52,7 +77,6 @@ export async function fetchSpecies(): Promise<ListResponse<Species>> {
     const response = await fetch(`https://localhost:5067/species`);
     return await response.json();
 }
-
 
 export async function createUser(newUser: NewUser) {
     const response = await fetch(`http://localhost:5067/users`, {
@@ -68,6 +92,24 @@ export async function createUser(newUser: NewUser) {
     }
 }
 
+export async function fetchSightings(): Promise<SightingReport[]> {
+    const response = await fetch(`http://localhost:5067/sightingreports/all`);
+    const data = await response.json();
+    return data;
+}
+
+
+
+export async function fetchSeaLocation(latitude: number, longitude:number){
+    const response = await fetch(`http://api.geonames.org/oceanJSON?lat=${latitude}&lng=${longitude}&username=${geonamesUsername}`);
+        if (response.ok)
+        {
+            const data = await response.json();
+            return data?.ocean?.name || "Unknown";
+        } else {
+            return "Unknown";
+        }
+}
 export async function login(email: string, password: string) {
 
     if (!email || !password) {
@@ -90,8 +132,28 @@ export async function login(email: string, password: string) {
         } catch {
             errorMessage = response.statusText || errorMessage;
         }
+
         throw new Error(errorMessage);
     }
     
     return response.json();
 }
+
+export async function deleteWhaleSighting(id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
+        method: "DELETE"
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
+export async function approveWhaleSighting(id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
+        method: "PATCH"
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
