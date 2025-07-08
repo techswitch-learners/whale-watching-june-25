@@ -1,29 +1,10 @@
 @import "../../styles/Constants";
 
-form {      
-  padding: 0 80px;
-}
-
-label {
-  @include labelFormInput;
-  margin: 10px 0;
-}
-
-input {
-  margin: 0;
-  width: 200px;
-}
-
-input:focus {
-    outline: 3px solid $tealBackground;
-    box-shadow: 0 0 10px $tealBackground;
-  }
 
 button {
-  margin: 24px auto;
+  margin: 20px auto;
   justify-content: center;
   width: 100%;
-  background-color: $blueBackground;    
 }
 
 .error-message {    
@@ -41,14 +22,4 @@ button {
 
 .password {
   margin-bottom: 0;
-}
-
-@media (max-width: 425px) {
-  form {
-    padding: 0;
-  }
-
-  input {
-    height: 32px;
-  }
 }
