@@ -37,7 +37,7 @@ export function Navbar() {
             <div className={`nav-elements  ${showNavbar ? ' active' : ''}`}>
             <ul>
             <li><NavLink className="nav-link" to="/" onClick={handleShowNavbar}>Home</NavLink></li>
-            <li><NavLink className="nav-link" to="/admin" onClick={handleShowNavbar}>Dashboard</NavLink></li>
+                {loginContext.isUserAdmin ? (<li><NavLink className="nav-link" to="/admin" onClick={handleShowNavbar}>Admin Dashboard</NavLink></li>): (<></>)}
             <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={handleShowNavbar} >Report Sighting</NavLink></li>
             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Info</NavLink></li>
                 {loginContext.isLoggedIn ? (<li> <NavLink className="nav-link" to="/login" onClick={() => {loginContext.logOut?.();handleShowNavbar}}>Logout</NavLink></li>) :(<li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li>)}
