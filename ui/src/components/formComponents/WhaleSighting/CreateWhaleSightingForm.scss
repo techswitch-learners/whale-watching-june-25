@@ -1,6 +1,7 @@
 @import "../../../styles/Constants.scss";
 
 h1 {
+    @include h1font;
     @include header;  
 }
 
@@ -35,12 +36,18 @@ h1 {
 
 input {
     margin-left: 0;
+    flex-flow: column;    
+    align-content: center;
+    justify-content: center;
+    align-items: center
 }
 
 label{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
+    flex-grow: 1;
+    align-items: center;
     justify-content: space-between;
     gap: 4px;
     margin-bottom: 5px;
@@ -51,6 +58,8 @@ label{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
+    flex-grow: 1;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
     border-radius: 5px;
@@ -85,6 +94,15 @@ label{
     padding: 6px 3px;
     border: 2px solid rgb(226, 226, 226);
     appearance: none;
+}
+
+.submit-button {
+    @include primaryButton;    
+    align-self: center;
+    margin-top: 10px;
+    width: fit-content;
+    padding: 10px 10px;
+            
 }
 
 .form-input-select-species:focus {

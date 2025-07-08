@@ -35,6 +35,7 @@ builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 builder.Services.AddAuthorization();
 
 builder
@@ -60,6 +61,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowCredentials());
 });
+
 
 var app = builder.Build();
 
