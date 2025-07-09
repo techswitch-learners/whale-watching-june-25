@@ -71,5 +71,5 @@ $spacing-medium: 20px;
 }
 
 @mixin h1font() {
-  @include font(40px, 2, $fontColor);
+  @include font(40px, 2, $blueBackground);
 }

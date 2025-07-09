@@ -19,7 +19,10 @@ export default function SightingsMap() {
      <div className="map">
    <MapContainer
       center={[25, 0]} 
-      zoom={2}    
+      zoom={2}
+      maxBounds={[[-90,-180],[90,180]]}
+      maxBoundsViscosity={1.0}
+      minZoom={1}    
     >
       {coordinates.map((pos, index) => (
       <Marker key={index} position={pos}>

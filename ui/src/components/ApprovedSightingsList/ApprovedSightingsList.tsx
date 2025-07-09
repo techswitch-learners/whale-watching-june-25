@@ -46,7 +46,6 @@ export function ApprovedSightingsList() {
     return (
      <>
     <div className="sighting-list-container">
-    <h2 id="sightings-list-header">Sightings</h2>
      {sightings.length > 0 ? (
         <>
             <div className="sighting-container">
