@@ -46,7 +46,7 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
 
             if (count ===props.QuestionSet.Questions.length){
                 setIsCompleted(true);
-                let result = findResult(findMax());
+                const result = findResult(findMax());
                 if (result != undefined) {
                     setWhale(result);
                 }
@@ -69,8 +69,8 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
     };
 
     function resetRadio() {
-        var radio = null;
-        for (var i = 0; i < 4; i++) {
+        let radio = null;
+        for (let i = 0; i < 4; i++) {
             radio = document.getElementById(`answerOption-${i}`);
             (radio as HTMLInputElement).checked = false;
         }
