@@ -24,7 +24,7 @@ export function Navbar() {
             return (
             <>
             <nav className="navbar">
-            <p className="menu-text">Whale Watching</p>
+            <p className="menu-text"><a href="/">Whale Watching</a></p>
             <div className="menu-icon" onClick={handleShowNavbar}>
                 {showNavbar
                     ? <span className="icon-x">✕</span>
@@ -34,6 +34,7 @@ export function Navbar() {
             <ul>
             <li><NavLink className="nav-link" to="/" onClick={handleShowNavbar}>Home</NavLink></li>
             <li><NavLink className="nav-link" to="/dashboard" onClick={handleShowNavbar}>Dashboard</NavLink></li>
+            <li><NavLink className="nav-link" to="/sightings" onClick={handleShowNavbar}>All Sightings</NavLink></li>
             <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={handleShowNavbar} >Report Sighting</NavLink></li>
             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Info</NavLink></li>
             {/* <li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li> */}
@@ -42,7 +43,7 @@ export function Navbar() {
             </ul>
             <img id="whale-museum-logo-navbar" src={logo} alt="whale-museum-logo"></img>
             </div>
-        </nav>
+            </nav>
         </>
             )
         
