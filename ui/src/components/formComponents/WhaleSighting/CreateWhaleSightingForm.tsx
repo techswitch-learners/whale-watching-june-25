@@ -89,7 +89,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
     );
   }
   return (
-    <div>
+    <div className="create-whale-sighting-form">
         {imageUploaded ? (
           <div>
             <CheckCircle size={36}/>
@@ -100,7 +100,6 @@ export function CreateWhaleSightingForm(): JSX.Element {
         )}
 
     <form
-      className="create-whale-sighting-form"
       onSubmit={handleSubmit(submitForm)}
     >
       <div>

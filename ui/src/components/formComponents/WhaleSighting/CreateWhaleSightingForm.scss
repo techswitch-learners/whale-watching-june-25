@@ -4,12 +4,9 @@ h1 {
     @include h1font;
 }
 
-.create-whale-sighting-form {      
-    display: flex;
-    flex-flow: column;    
-    align-content: center;
-    justify-content: center;
-    align-items: center
+.create-whale-sighting-form {
+    width: 80%;
+    margin: 0 auto;
 }
 
 label{
@@ -48,4 +45,10 @@ label{
 .required {
     color: $errorFontColor;
    
+}
+
+@media (min-width: 1024px) {
+    .create-whale-sighting-form {
+        max-width: 340px;
+    }
 }

@@ -1,9 +1,9 @@
 import {NavLink} from "react-router-dom";
 import './Header.scss';
 import "../../styles/Constants.scss";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../../assets/Images/wm-logo-sm.webp";
-
+import { LoginContext } from "../Login/LoginManager/LoginContext";
 
 export function Header() {
     return (
@@ -14,9 +14,9 @@ export function Header() {
 }
 
 export function Navbar() {
-   
     const [showNavbar, setShowNavbar] = useState(false);
-
+    const loginContext = useContext(LoginContext);
+    
      function handleShowNavbar() {
         setShowNavbar(!showNavbar);
         }
@@ -33,13 +33,15 @@ export function Navbar() {
             <div className={`nav-elements  ${showNavbar ? ' active' : ''}`}>
             <ul>
             <li><NavLink className="nav-link" to="/" onClick={handleShowNavbar}>Home</NavLink></li>
-            <li><NavLink className="nav-link" to="/dashboard" onClick={handleShowNavbar}>Dashboard</NavLink></li>
+                {loginContext.isUserAdmin ? 
+            (<li><NavLink className="nav-link" to="/admin" onClick={handleShowNavbar}>Admin Dashboard</NavLink></li>): 
+            (<></>)}
             <li><NavLink className="nav-link" to="/sightings" onClick={handleShowNavbar}>All Sightings</NavLink></li>
             <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={handleShowNavbar} >Report Sighting</NavLink></li>
             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Info</NavLink></li>
-            {/* <li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li> */}
-             {/* <li> <NavLink className="nav-link" to="/sign-up" onClick={handleShowNavbar} >Register</NavLink></li> */}
-             <li> <NavLink className="nav-link" to="/home" onClick={handleShowNavbar}>Logout</NavLink></li>
+                {loginContext.isLoggedIn ? 
+            (<li> <NavLink className="nav-link" to="/" onClick={() => {loginContext.logOut?.();handleShowNavbar();}}>Logout</NavLink></li>) :
+            (<li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li>)}
             </ul>
             <img id="whale-museum-logo-navbar" src={logo} alt="whale-museum-logo"></img>
             </div>
@@ -49,3 +51,4 @@ export function Navbar() {
         
 
 }
+
