@@ -7,6 +7,7 @@ namespace WhaleSpottingBackend.Repositories
     public interface IWhaleSpeciesRepository
     {
         Task<IEnumerable<WhaleSpecies>> GetWhaleSpecies();
+        // WhaleSpecies GetWhaleSpeciesByName(string newSpecies);
     }
 
     public class WhaleSpeciesRepository : IWhaleSpeciesRepository
@@ -22,5 +23,16 @@ namespace WhaleSpottingBackend.Repositories
         {
             return await _context.WhaleSpecies.ToListAsync();
         }
+
+        // public WhaleSpecies GetWhaleSpeciesByName(string newSpecies)
+        // {
+        //     var whaleReport = _context.WhaleSpecies
+        //                             .FirstOrDefault(whale => whale.Species == newSpecies);
+        //     if (whaleReport == null)
+        //     {
+        //         throw new Exceptions.NotFoundException($"Sighting report with name {newSpecies} not found");
+        //     }
+        //     return whaleReport;
+        // }
     };
 }

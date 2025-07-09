@@ -5,6 +5,7 @@ using WhaleSpottingBackend.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
 using System.Security.Claims;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -53,7 +54,7 @@ namespace WhaleSpottingBackend.Controllers
         }
 
         //To include when fixed 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpPatch("{id}")]
         public IActionResult ApproveSighting(int id)
         {
@@ -74,8 +75,29 @@ namespace WhaleSpottingBackend.Controllers
         }
         
         //To include when fixed 
+        //[Authorize(Roles = "Admin")]
+        [HttpPatch("edit/{id}")]
+        public IActionResult EditSpecies(int id,[FromBody] JsonPatchDocument<CreateSightingReportRequest> patchDocument )
+        {
+            try
+            {
+                _sightingReportsService.EditSpecies(id);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Something went wrong!!! Please try again later" });
+            }
+            return Ok(new { message = "Species successfully edited" });
 
-        [Authorize(Roles = "Admin")]
+        }
+        
+        //To include when fixed 
+
+        // [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id) {
 

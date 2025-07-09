@@ -1,14 +1,17 @@
-import React, {useState, useEffect } from "react";
+import React, {useState, useEffect, ChangeEvent } from "react";
 import "./ListPendingSightings.scss";
-import { fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting } from "../../api/ApiClient";
+import { Species, fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting, fetchSpecies, editWhaleSpecies } from "../../api/ApiClient";
 import {format} from 'date-fns';
+import {PencilSquare} from 'react-bootstrap-icons';
 
 export function ListPendingSightings() {
 
     const [sightings, setSightings] = useState<SightingReport[]>([]);
     const [seaData, setSeaData] = useState<Map<number, string>>(new Map());
     const [ sightingImage, setsightingImage ] = useState<string>();
-    const [ showSightingImage, setShowSightingImage ] = useState(false)
+    const [ showSightingImage, setShowSightingImage ] = useState(false);
+    const [speciesNames, setSpeciesNames] = useState<Species[]>([]);
+    const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);
 
     useEffect(() => {
         fetchSightings().then((response) => {
@@ -52,6 +55,9 @@ export function ListPendingSightings() {
         setSightings(pendingSightings);
     }
 
+    const speciesList: string[] = ["beluga", "Blue whale"];
+
+
      function handleClickShowImage(imageUrl: string) {
         setsightingImage(imageUrl);
         setShowSightingImage(true);
@@ -60,6 +66,29 @@ export function ListPendingSightings() {
     function handleClickHideImage(){
         setShowSightingImage(false);
     }
+    
+  
+const [isEditing, setIsEditing] = useState<boolean>();
+const [selectedValue, setSelectedValue] = useState<string>("");
+
+    
+const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log("inside handle select change")
+  const newValue = e.target.value;
+  setSelectedValue(newValue);
+//setSelectedSpecies(newValue);
+//   onChange(); // Notify parent
+  setIsEditing(false); // Exit edit mode
+    // editWhaleSpecies(newValue, id)
+};
+
+function editSpecies(whaleSpecies: number, id: number) {
+    editWhaleSpecies(whaleSpecies, id);
+}
+
+
+console.log(isEditing);
+
     
     return (
      <>
@@ -88,7 +117,29 @@ export function ListPendingSightings() {
                             <>
                                 <tr key={sightingReport.id}>
                                     <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
-                                    <td>{sightingReport.species}</td>
+                                    <td onClick={() => {setIsEditing(true); setSelectedValue(sightingReport.species);}}>
+                                         {isEditing ? (
+                                             <select
+                                             value={selectedValue}
+                                             onChange={() => {handleSelectChange;
+                                             editSpecies(2, sightingReport.id)}}
+                                                
+//                                             onBlur={() => setIsEditing(false)}
+                                            autoFocus
+                                                      >
+                                        {/* {editSpecies(selectedValue, sightingReport.id)} */}
+                                      {speciesList.map((opt) => (
+                                                 <option key={opt} value={opt}>
+                                                     {opt}
+                                                     </option>
+                                                      ))}
+                                      </select>
+                                     ) : (
+                                           <>
+                                             {sightingReport.species}<PencilSquare size={20}/>
+                                        </>
+                                         )}
+                                    </td>
                                     <td>{seaData.get(sightingReport.id)}</td>
                                     <td className="hide-on-mobile">{sightingReport.latitude}</td>
                                     <td className="hide-on-mobile">{sightingReport.longitude}</td>
@@ -149,4 +200,4 @@ export function ListPendingSightings() {
     </div>
         </>
         );
-    }
+}

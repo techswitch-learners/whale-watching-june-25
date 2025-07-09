@@ -158,3 +158,16 @@ export async function approveWhaleSighting(id: number): Promise<void> {
     }
 }
 
+export async function editWhaleSpecies(newSpeciesId:number, id: number): Promise<void> {
+    const response = await fetch(`http://localhost:5067/sightingreports/edit/${id}`, {
+        method: "PATCH",
+        headers: {
+        'Content-Type': 'application/json'},
+        credentials: "include",
+        body: JSON.stringify({whaleSpeciesId: newSpeciesId}),
+    });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
