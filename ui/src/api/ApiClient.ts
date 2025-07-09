@@ -23,7 +23,6 @@ export interface WhaleSighting {
     description?: string; 
     whaleSpeciesId: number; 
     imageUrl: string;
-    userId: string;  
 }
 
 export interface Species {
@@ -59,8 +58,10 @@ export interface SightingReport {
 
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
+
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
+        credentials: "include",
         headers: {
             "Content-Type": "application/json"
         },
@@ -110,7 +111,7 @@ export async function fetchSeaLocation(latitude: number, longitude:number){
             return "Unknown";
         }
 }
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string): Promise<{isAdmin: boolean}> {
 
     if (!email || !password) {
         throw new Error("Email and password are required");
@@ -121,7 +122,7 @@ export async function login(email: string, password: string) {
         headers: {
         'Content-Type': 'application/json'},
         credentials: "include",
-        body: JSON.stringify( {email, password})
+        body: JSON.stringify({email, password})
     })
     
     if (!response.ok) {

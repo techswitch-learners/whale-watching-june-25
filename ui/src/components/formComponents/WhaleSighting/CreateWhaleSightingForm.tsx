@@ -32,9 +32,8 @@ export function CreateWhaleSightingForm(): JSX.Element {
       latitude: 0,
       longitude: 0,
       description: "",
-      whaleSpeciesId: 1,
-      imageUrl: "",
-      userId: "1de3e0a8-b72e-4445-aa07-e681df22d168",
+      whaleSpeciesId: 0,
+      imageUrl: ""
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
@@ -88,7 +87,6 @@ export function CreateWhaleSightingForm(): JSX.Element {
       date: new Date(data.date).toISOString().split('T')[0],
       userId: "7627a0c2-3af2-4bdb-8939-8cd85b53bc2c",
     };
-    
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))
       .catch(() => setStatus("ERROR"));

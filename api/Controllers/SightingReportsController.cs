@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WhaleSpottingBackend.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
+using System.Security.Claims;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -26,6 +27,7 @@ namespace WhaleSpottingBackend.Controllers
             return allSightings;
         }
 
+        [Authorize]
         [HttpPost("create")]
         public IActionResult Create([FromBody] CreateSightingReportRequest newReport)
         {
@@ -33,10 +35,14 @@ namespace WhaleSpottingBackend.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             try
             {
-                _sightingReportsService.CreateReport(newReport);
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (userId == null)
+                {
+                    return Unauthorized("User Id not found");
+                }
+                 _sightingReportsService.CreateReport(newReport, userId);
             }
             catch (Exception ex)
             {
@@ -46,8 +52,6 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Your sighting report has been successfully submitted and is pending review." });
         }
 
-        //To include when fixed 
-        [Authorize(Roles = "Admin")]
         [HttpPatch("{id}")]
         public IActionResult ApproveSighting(int id)
         {
@@ -66,10 +70,7 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Sighting Report Approved" });
 
         }
-
-        //To include when fixed 
-
-        [Authorize(Roles = "Admin")]
+        
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {

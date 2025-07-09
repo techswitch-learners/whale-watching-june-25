@@ -35,7 +35,7 @@ const Login: React.FC = (): JSX.Element =>  {
         try{
         const result = await login(email, password);
         loginContext.logIn(result.isAdmin);
-        navigate("/home");
+        navigate("/");
         } catch (err) {
             setapiError(`Login failed. ${err}`)
         }
@@ -45,14 +45,14 @@ const Login: React.FC = (): JSX.Element =>  {
         <div>
             <form className="login-form">
                 <div>
-                    <label>Email:</label>
+                    <label>Email</label>
                     
                     <input name="email" type='email' value={email} onChange={handleChange} required />
                     {FormError && <p className='error'>{FormError}</p>}
                 </div>
                 <br />
                 <div>
-                    <label>Password:</label>
+                    <label>Password</label>
                     <input name="password" type = 'password' onChange={handleChange} required value = {password} />
                 </div>
                 <br />
