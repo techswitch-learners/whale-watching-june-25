@@ -50,6 +50,14 @@
 }
 
 .stat-bubble {
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  flex: 1 1 220px;
+  max-width: 100%;
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
   border-radius: 13px;
   margin: 0 1rem;
 }
@@ -61,16 +69,4 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
-}
-
-.stat-bubble {
-  background: white;
-  padding: 1.1rem 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.1rem;
-  flex: 1 1 220px;
-  max-width: 100%;
-  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.3);
 }
