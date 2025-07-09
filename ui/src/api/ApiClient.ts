@@ -52,7 +52,7 @@ export interface UserSighting {
     longitude: number;
     latitude: number;
     whaleSpeciesId: number
-    whaleSpecies: whaleSpecies
+    whaleSpecies: WhaleSpecies
     userId: string;
     user:{
         username: string;
@@ -62,7 +62,7 @@ export interface UserSighting {
     rejectedReason?: string;
 }
 
-export interface whaleSpecies {
+export interface WhaleSpecies {
     id: number;
     speciesGroup: string,
     species: string;
