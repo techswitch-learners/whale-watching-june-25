@@ -39,7 +39,7 @@ export function Navbar() {
             <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={handleShowNavbar} >Report Sighting</NavLink></li>
             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Info</NavLink></li>
                 {loginContext.isLoggedIn ? 
-            (<li> <NavLink className="nav-link" to="/login" onClick={() => {loginContext.logOut?.();handleShowNavbar();}}>Logout</NavLink></li>) :
+            (<li> <NavLink className="nav-link" to="/" onClick={() => {loginContext.logOut?.();handleShowNavbar();}}>Logout</NavLink></li>) :
             (<li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li>)}
             </ul>
             <img id="whale-museum-logo-navbar" src={logo} alt="whale-museum-logo"></img>
