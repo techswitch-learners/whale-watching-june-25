@@ -14,7 +14,7 @@ namespace WhaleSpottingBackend.Repositories
         Task<List<SightingReport>> GetAllSightings();
         SightingReport GetSightingById(int sightingId);
         void UpdateSighting(SightingReport sightingData);
-        void DeleteReport(SightingReport report); 
+        void DeleteReport(SightingReport report);
 
     }
 

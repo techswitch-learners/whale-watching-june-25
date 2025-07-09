@@ -66,12 +66,13 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Sighting Report Approved" });
 
         }
-        
+
         //To include when fixed 
 
         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public IActionResult DeleteById(int id) {
+        public IActionResult DeleteById(int id)
+        {
 
             try
             {

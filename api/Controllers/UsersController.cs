@@ -51,8 +51,8 @@ namespace WhaleSpottingBackend.Controllers
                     return BadRequest("Email already exists in the system.");
 
                 }
-              
-                    var result = await _userManager.CreateAsync(user, newUser.Password!);      
+
+                var result = await _userManager.CreateAsync(user, newUser.Password!);
 
 
                 if (result.Succeeded == false)
@@ -77,6 +77,6 @@ namespace WhaleSpottingBackend.Controllers
 
             return StatusCode(StatusCodes.Status201Created, "User created successfully");
         }
-        
+
     }
 }

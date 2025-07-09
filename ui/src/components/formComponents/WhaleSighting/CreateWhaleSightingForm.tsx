@@ -178,8 +178,8 @@ export function CreateWhaleSightingForm(): JSX.Element {
               center={{ lat: 51.553124, lng: -0.142594 }}
               maxBounds={[[-90,-180],[90,180]]}
               maxBoundsViscosity={1.0}
-              zoom={1}
               minZoom={1}
+              zoom={1}
               scrollWheelZoom={true}>
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

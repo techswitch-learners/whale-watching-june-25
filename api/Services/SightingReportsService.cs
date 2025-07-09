@@ -55,7 +55,7 @@ public class SightingReportsService : ISightingReportsService
             Status = sighting.Status
         }).ToList();
     }
-    
+
     public void EditSightingReportStatus(int sightingId)
     {
         SightingReport sightingData = _sightingReports.GetSightingById(sightingId);
