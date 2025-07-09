@@ -111,7 +111,7 @@ export async function fetchSeaLocation(latitude: number, longitude:number){
             return "Unknown";
         }
 }
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string): Promise<{isAdmin: boolean}> {
 
     if (!email || !password) {
         throw new Error("Email and password are required");
@@ -122,7 +122,7 @@ export async function login(email: string, password: string) {
         headers: {
         'Content-Type': 'application/json'},
         credentials: "include",
-        body: JSON.stringify( {email, password})
+        body: JSON.stringify({email, password})
     })
     
     if (!response.ok) {

@@ -35,7 +35,7 @@ const Login: React.FC = (): JSX.Element =>  {
         try{
         const result = await login(email, password);
         loginContext.logIn(result.isAdmin);
-        navigate("/home");
+        navigate("/");
         } catch (err) {
             setapiError(`Login failed. ${err}`)
         }
