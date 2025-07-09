@@ -3,8 +3,7 @@
 
 li {
     list-style-type: none; 
-    // padding: 0; 
-    // margin: 0; 
+
   }
 
   #Question {
@@ -18,11 +17,6 @@ li {
   .Question {
     background-color: $lightBlueBackground;
   }
-
-//   fieldset {
-//       overflow: hidden;
-//       border: none;
-//     }
     
     .Answer {
      display: flex;
@@ -33,9 +27,7 @@ li {
     label {
       font-size: 25px;
       text-align: left;
-      //float: left;
       clear: none;
-      //display: block;
       padding: 0px 1em 0px 8px;
       padding-left: 20px;
     }

@@ -101,6 +101,7 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
         setIsCompleted(false);
         setSelectedAnswer(null);
         setWhale(null);
+        setIsVisible(false);
     }
 
     if (!isCompleted) {
@@ -109,18 +110,18 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
             <p className='QuizSubtitle'>Dive into this playful quiz and discover your inner whale based on your personality and lifestyle!</p>
             <div className="Question">
                 <p id="Question">{count}. {props.QuestionSet.Questions[currentQuestion].Question}</p>
-                {/* <fieldset> */}
                 <div className='Answer'>
                 <ul>{props.QuestionSet.Questions[currentQuestion].Options.map((answerOption: Option, optionIndex: number) => (
-                    <li list-style-type="none" key={`li-${optionIndex}`}>
+                    <li key={`li-${optionIndex}`} >
                     <input type="radio" name={`question-${currentQuestion}`} id={`answerOption-${optionIndex}`} onChange={() => {setSelectedAnswer(answerOption); setIsVisible(false)}} />
-                    <label className = "label-answer" key={`label-${optionIndex}`} htmlFor={`answerOption-${optionIndex}`}>                        {answerOption.Text}
+                    <label className = "label-answer" key={`label-${optionIndex}`} htmlFor={`answerOption-${optionIndex}`} style={{
+            border: selectedAnswer === answerOption ? "2px solid #22AAA1" : "",
+            boxShadow: selectedAnswer === answerOption ? "2px 2px 2px rgba(0,0,0,0.4)" : ""}}>                        {answerOption.Text}
                     </label>
                     
                     </li>
                 ))} </ul>
                 </div>
-                {/* </fieldset> */}
             </div>
             <button onClick={handleNextButtonClick} className="next-button">
             Next
