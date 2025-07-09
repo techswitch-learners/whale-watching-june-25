@@ -103,7 +103,6 @@ export async function getUserSightings() : Promise<UserSighting[]> {
         throw new Error(errorText || "Failed to fetch user sightings")
     }
     const data: UserSighting[] = await response.json();
-    console.log("fetched data:", data)
     return data;
 }
 
