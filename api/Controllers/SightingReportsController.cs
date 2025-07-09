@@ -56,7 +56,7 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Your sighting report has been successfully submitted and is pending review." });
         }
 
-        [HttpGet("my-posts")]
+        [HttpGet("my-sightings")]
         [Authorize]
         public async Task<ActionResult<List<SightingReport>>> GetMySightings()
         {
