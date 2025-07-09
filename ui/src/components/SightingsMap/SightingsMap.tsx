@@ -54,8 +54,9 @@ export default function SightingsMap() {
   
   return (
       <div className="map-container">
+        <span className="filter-label-text">Filter by Species</span>
         <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
-          <option value="" disabled>Select a species</option>
+          <option value="">Select</option>
           {speciesDropDown.map((element, index) => (
             <option key = {index} value={element}>{element}</option>
           ))}
