@@ -23,6 +23,8 @@
     flex-direction: column;
     text-align: center;
     text-justify: left;
+    background-color: $tealBackground;
+    border: 2px solid $whiteBackground;
 }
 .no-photo {
     font-weight: bold;
@@ -34,6 +36,7 @@
     border-radius: 0.3rem;
     padding: 0.1em;
     flex-shrink: 3;
+    border: 2px solid $whiteBackground;
 
     
 }

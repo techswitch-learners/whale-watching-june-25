@@ -44,7 +44,7 @@ export default function SightingsMap() {
       </br>
         <b>Species:</b> {sightings[index].species}
         <br></br>
-        
+        <br></br>
         {sightings[index].imageUrl ? <img className="map-sighting-image" src={sightings[index].imageUrl} ></img> : <p className="no-photo">No photo available</p>}
           </Popup>
       </Marker>
