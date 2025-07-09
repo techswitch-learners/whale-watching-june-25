@@ -1,12 +1,13 @@
+@import "../../styles/Constants";
 
 #QuizBgImage {
-    background-size: auto; /* Ensures the image covers the entire element */
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    width: 100%; /* Full width */
-    height: 100vh; /* Full viewport height */
-    position: absolute; /* Ensures it covers the entire screen */
-    z-index: -1; /* Sends it behind other elements */
+    background-size: auto; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 100vh; 
+    position: absolute; 
+    z-index: -1; 
     left:0px;
   }
   
@@ -15,7 +16,7 @@
     font-size: 35px;
     text-align: center;
     padding: 20px 0 10px;
-    color: black;
+    color: $blueBackground;
   }
   
   .QuizTitle{
@@ -23,7 +24,7 @@
     font-size: 45px;
     text-align: center;
     padding: 30px 0 10px;
-    color: black;
+    color: $blueBackground;
   }
 
   @media (max-width: 1100px) {
