@@ -9,6 +9,7 @@ $footer-height: 34px;
 
 body {
   background-color: $lightBlueBackground;
+  margin: 0;
 
  .main {
     text-align: center;
@@ -18,7 +19,6 @@ body {
 }
 
 .page {
-    background-color: $lightBlueBackground;
     @include font(17px, 1, $fontColor);
     border-radius: 20px;
 }
@@ -47,11 +47,7 @@ input:focus {
     outline: 3px solid $tealBackground;
     box-shadow: 0 0 10px $tealBackground;
   }
-
-  form {      
-  padding: 0 80px;
-}
-
+  
 label {
   @include labelFormInput;
   margin: 10px 0;
@@ -59,7 +55,7 @@ label {
 
 input {
   margin: 0;
-  width: 100%;
+  width: 75%;
 }
 
 @media (max-width: 525px) {
@@ -72,6 +68,11 @@ input {
   }
 }
 
+@media (min-width: 1024px) {
+  input, button {
+    width: 240px;
+  }
+}
 
 
   
