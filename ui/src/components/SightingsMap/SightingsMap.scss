@@ -12,8 +12,11 @@
 }
 
 .species-filter {
-    font-size: small;
+    font-size: medium;
     appearance: none;
+    height:auto;
+    width:200px;
+    margin-bottom: 5px;
 }
 
 .species-filter:focus {

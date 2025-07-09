@@ -22,10 +22,15 @@ export default function SightingsMap() {
           setSightings(approvedSightings)
              }
           })}, [species]);
+          
+    const clampLatitude = (lat: number): number => {
+     const MAX_LAT = 84; 
+     return Math.max(Math.min(lat, MAX_LAT), -MAX_LAT);
+    };          
        
-    const coordinates: LatLngExpression[] = sightings.map(({latitude, longitude}) => [latitude, longitude]);
-    const speciesDropDown = [...new Set(dropDownList)];   
-       
+    const coordinates: LatLngExpression[] = sightings.map(({latitude, longitude}) => [clampLatitude(latitude), longitude]);
+    console.log(coordinates);
+    const speciesDropDown = [...new Set(dropDownList)];         
     
 
   function ResponsiveZoom() {
@@ -49,6 +54,12 @@ export default function SightingsMap() {
   
   return (
       <div className="map-container">
+        <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
+          <option value="" disabled>Select a species</option>
+          {speciesDropDown.map((element, index) => (
+            <option key = {index} value={element}>{element}</option>
+          ))}
+          </select>
         <div className="map">
           <MapContainer
            center={[25, 0]} 
@@ -65,12 +76,7 @@ export default function SightingsMap() {
               />
             <ResponsiveZoom />  
           </MapContainer>
-          <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
-          <option value="" disabled>Select a species</option>
-          {speciesDropDown.map((element, index) => (
-            <option key = {index} value={element}>{element}</option>
-          ))}
-          </select>
+          
        </div>
      </div>
   );
