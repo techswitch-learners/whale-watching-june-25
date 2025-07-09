@@ -40,6 +40,7 @@ body {
 .approved-sightings-table-header {
     background-color: $tealBackground;
     padding: 5px 0;
+    color: $whiteBackground;
 }
 
 th {
@@ -109,7 +110,6 @@ td {
     display: flex;
     gap: 20px;
     padding: 20px 20px;
-    background-color: $lightBlueBackground;
     flex-wrap: wrap;
 }
 
@@ -122,7 +122,6 @@ td {
 }
 
 .filter-heading {
-    background-color: $lightBlueBackground;
     text-align: left;
     padding-left: 20px;
     padding-top: 20px;

@@ -106,7 +106,7 @@ export function ApprovedSightingsList() {
 
             </div>
             <div className="sighting-list-container">
-                <h2 id="sightings-list-header">Whale Sightings</h2>
+                <h2 id="sightings-list-header"></h2>
                 {sightings.length > 0 ? (
                     <>
                         <div className="sighting-container">
