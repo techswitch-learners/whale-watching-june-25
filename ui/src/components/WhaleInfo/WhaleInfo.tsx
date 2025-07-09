@@ -28,7 +28,7 @@ function WhaleInfo(): JSX.Element {
     return (
 
             <div className="species-info">
-                <h2 className="species-info-subtitle">Tips for finding whales by Species:</h2>
+                <h2 className="species-info-subtitle">Tips for finding whales by species:</h2>
                 <label id='choose-a-species-label' htmlFor="species">Choose a species: </label>
                 <select
                     id="species"

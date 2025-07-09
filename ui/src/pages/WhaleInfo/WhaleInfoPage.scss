@@ -66,11 +66,12 @@ body{
     display: flex;
     flex-direction: column;
     width: 45.6vw;
+    width: 34vw;
     justify-self: center;
     justify-content: center;
     color: black;
     background-color: rgb(255, 255, 255);
-    margin: 33px auto 45px auto;
+    margin: 33px auto 100px auto;
     padding: 50px;
     border-radius: 13px;
 }
@@ -106,7 +107,7 @@ body{
     // width: 25vw;
     // max-width: 800px;
         img{
-        width: 15vw;
+        width: auto;
         padding: 0;
         border-radius: 13px;
         max-height: 300px;
