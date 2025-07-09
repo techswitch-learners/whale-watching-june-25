@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
 using WhaleSpottingBackend.Models.Database;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace WhaleSpottingBackend.Controllers
 {
@@ -30,6 +31,7 @@ namespace WhaleSpottingBackend.Controllers
             return allSightings;
         }
 
+        [Authorize]
         [HttpPost("create")]
         public IActionResult Create([FromBody] CreateSightingReportRequest newReport)
         {
@@ -37,10 +39,14 @@ namespace WhaleSpottingBackend.Controllers
             {
                 return BadRequest(ModelState);
             }
-
             try
             {
-                _sightingReportsService.CreateReport(newReport);
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (userId == null)
+                {
+                    return Unauthorized("User Id not found");
+                }
+                 _sightingReportsService.CreateReport(newReport, userId);
             }
             catch (Exception ex)
             {

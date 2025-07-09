@@ -7,7 +7,7 @@ namespace WhaleSpottingBackend.Services;
 
 public interface ISightingReportsService
 {
-    void CreateReport(CreateSightingReportRequest newReport);
+    void CreateReport(CreateSightingReportRequest newReport, string userId);
     Task<List<SightingReportResponse>> GetAllSightingsResponse();
     void EditSightingReportStatus(int sightingId);
     void DeleteReport(int id);
@@ -23,7 +23,7 @@ public class SightingReportsService : ISightingReportsService
         _sightingReports = sightingReports;
     }
 
-    public void CreateReport(CreateSightingReportRequest newReport)
+    public void CreateReport(CreateSightingReportRequest newReport, string userId)
     {
         SightingReport report = new SightingReport
         {
@@ -32,7 +32,7 @@ public class SightingReportsService : ISightingReportsService
             Longitude = newReport.Longitude,
             Latitude = newReport.Latitude,
             WhaleSpeciesId = Convert.ToInt32(newReport.WhaleSpeciesId),
-            UserId = newReport.UserId,
+            UserId = userId,
             ImageUrl = newReport.ImageUrl,
             Status = "Pending",
             RejectedReason = null
