@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      ConnectionStrings__WhaleSpottingDb: "Host=db;Database=whale_spotting;Username=whale_spotting;Password=whale_spotting"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: whale_spotting
+      POSTGRES_PASSWORD: whale_spotting
+      POSTGRES_DB: whale_spotting
+    ports:
+      - "5432:5432"
+

@@ -5,6 +5,7 @@ using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Helpers;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -68,10 +69,11 @@ using (var serviceScope = app.Services.CreateScope())
 {
     var serviceProvider = serviceScope.ServiceProvider;
     var dbContext = serviceProvider.GetRequiredService<WhaleSpottingDbContext>();
+    dbContext.Database.Migrate();
 
     if (!dbContext.WhaleSpecies.Any())
     {
-        var csvFilePath = "../api/Database/Data/SpeciesData.csv";
+        var csvFilePath = "./api/Database/Data/SpeciesData.csv";
         var Whales = WhaleSpeciesReader.ReadWhalesFromCsv(csvFilePath);
         dbContext.WhaleSpecies.AddRange(Whales);
         dbContext.SaveChanges();
@@ -96,10 +98,11 @@ app.UseCors("AllowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 
-
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
 app.MapControllers();
 
-//app.MapIdentityApi<User>();
+app.MapFallbackToFile("index.html");
 
 app.Run();
