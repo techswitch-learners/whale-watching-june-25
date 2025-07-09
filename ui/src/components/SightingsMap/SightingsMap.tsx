@@ -24,9 +24,9 @@ export default function SightingsMap() {
           })}, [species]);
           
     const clampLatitude = (lat: number): number => {
-     const MAX_LAT = 84; 
-     return Math.max(Math.min(lat, MAX_LAT), -MAX_LAT);
-    };          
+      const MAX_LAT = 84;
+      return Math.max(Math.min(lat, MAX_LAT), -MAX_LAT);
+    };
        
     const coordinates: LatLngExpression[] = sightings.map(({latitude, longitude}) => [clampLatitude(latitude), longitude]);
     console.log(coordinates);
