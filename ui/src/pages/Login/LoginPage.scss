@@ -5,9 +5,9 @@
 }
 
 .login-page {
-    background-color: white;
-    border-radius: 20px;
-    padding: 10px;
+    background-color: $whiteBackground;
+    border-radius: 13px;
+    padding: 10px 0 30px;
     width: 50%;
     margin: 32px auto;
 }
@@ -36,4 +36,20 @@ button {
 
 .required {
     color: $errorFontColor;
+}
+
+@media (max-width: 600px) {
+    .login-page {
+        width: 90vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login-form {
+        max-width: 340px;
+    }
+
+    .login-page {
+        max-width: 700px;
+    }
 }

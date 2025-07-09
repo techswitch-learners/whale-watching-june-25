@@ -30,16 +30,22 @@ body {
 label{
     @include labelFormInput;
     margin-bottom: 5px;
+    text-align: left;
 }
 
 input  {
     @include labelFormInput;
-    margin: 0;
+    margin: 0 auto;
     border-radius: 3px;
 }
 
 input {
   border: 1px solid grey;
+  width: 100%;
+}
+
+button {
+  width: 100%;
 }
 
 input:focus {
@@ -52,11 +58,6 @@ label {
   margin: 10px 0;
 }
 
-input {
-  margin: 0;
-  width: 75%;
-}
-
 @media (max-width: 525px) {
   form {
     padding: 0;
@@ -66,12 +67,5 @@ input {
     height: 32px;
   }
 }
-
-@media (min-width: 1024px) {
-  input, button {
-    width: 240px;
-  }
-}
-
 
   

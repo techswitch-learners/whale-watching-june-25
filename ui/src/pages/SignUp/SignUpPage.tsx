@@ -5,9 +5,11 @@ import "./SignUpPage.scss";
 
 export function SignUp(): JSX.Element {
   return (
-    <Page containerClassName="sign-up-form">
-      <h1 className="title">Sign Up</h1>
-      <SignUpForm />
+    <Page>
+      <div className="sign-up-page">
+        <h1 className="title">Sign Up</h1>
+        <SignUpForm />
+      </div>
     </Page>
   );
 }

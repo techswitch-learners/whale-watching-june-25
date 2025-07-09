@@ -139,7 +139,7 @@ export function SignUpForm(): JSX.Element {
     }
 
     return (
-            <form onSubmit={validateForm}>
+            <form className="sign-up-form" onSubmit={validateForm}>
                 <label className="label" htmlFor="username">Username*
                 <input
                     value={formInput.username}
