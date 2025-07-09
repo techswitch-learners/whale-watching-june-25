@@ -1,8 +1,7 @@
-.title {
-    padding: 0;
-}
+@import "../../styles/Constants";
 
-.page {
-    padding: 40px;
+.sign-up-form {
+    background-color: $whiteBackground;
+    padding: 10px;
     border-radius: 20px;
 }

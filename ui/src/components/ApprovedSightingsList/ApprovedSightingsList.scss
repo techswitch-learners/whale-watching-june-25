@@ -1,27 +1,35 @@
 @import "../../styles/Constants";
 
 body {
-    background-color: $whiteBackground;
     font-family: $fontFamily;
 }
 
 #sightings-list-header {
+    width: 75vw;
     color: $blueBackground;
+    text-align: center;
 }
 
 .no-results-header {
     color: $blueBackground;
+    text-align: center;
 }
 
 .sighting-list-container {
+    width: 75vw;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center;
+}
+
+.sighting-container {
+    margin: 0 auto;
+
 }
 
 .approved-sightings-table {
-    width: 60vw;
+    width: 75vw;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: $whiteBackground;
@@ -31,6 +39,7 @@ body {
 .approved-sightings-table-header {
     background-color: $tealBackground;
     padding: 5px 0;
+    color: $whiteBackground;
 }
 
 th {
@@ -96,6 +105,27 @@ td {
     cursor: pointer;
 }
 
+.filter {
+    display: flex;
+    gap: 20px;
+    padding: 20px 20px;
+    flex-wrap: wrap;
+}
+
+.input-filter {
+    font-size: 0.95rem;
+    border: 1px solid $tealBackground;
+    flex: 1 1 0;
+    max-width: 100%;
+    height: 25px
+}
+
+.filter-heading {
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 20px;
+    font-weight: bold;
+}
 
 
 @media (max-width: 1440px) {
@@ -108,8 +138,9 @@ td {
     .sighting-list-container {
         font-size: 0.85rem;
     }
+
     th {
-    padding: 10px 10px;
+        padding: 10px 10px;
     }
 }
 
@@ -117,8 +148,16 @@ td {
     .sighting-list-container {
         font-size: 0.8rem;
     }
-    .approved-sightings-table {
+
+    .approved-sightings-table,
+    .sighting-list-container,
+    .sighting-container,
+    #sightings-list-header {
         width: 90vw;
+    }
+
+    .input-filter {
+        font-size: 10px;
     }
 }
 
@@ -126,15 +165,21 @@ td {
     .sighting-list-container {
         font-size: 0.72rem;
     }
+
+    .input-filter {
+        font-size: 8px;
+    }
 }
 
-@media (max-width: 532px) {
+@media (max-width: 675px) {
     .sighting-list-container {
         font-size: 0.7rem;
     }
+
     .approved-sightings-table {
         width: 90vw;
     }
+
     .hide-on-mobile {
         display: none;
     }
