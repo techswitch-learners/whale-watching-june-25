@@ -52,18 +52,7 @@ export interface UserSighting {
     longitude: number;
     latitude: number;
     whaleSpeciesId: number
-    whaleSpecies: {
-        id: number;
-        speciesGroup: string,
-        species: string;
-        latinName: string;
-        habitat: string;
-        maxLengthMeters: number;
-        maxWeightTons: number;
-        conservationStatus: string;
-        maxAge: number;
-        food: string;
-    }
+    whaleSpecies: whaleSpecies
     userId: string;
     user:{
         username: string;
@@ -71,6 +60,19 @@ export interface UserSighting {
     imageUrl: string
     status: "approved" | "pending" | "rejected";
     rejectedReason?: string;
+}
+
+export interface whaleSpecies {
+    id: number;
+    speciesGroup: string,
+    species: string;
+    latinName: string;
+    habitat: string;
+    maxLengthMeters: number;
+    maxWeightTons: number;
+    conservationStatus: string;
+    maxAge: number;
+    food: string;
 }
 
 export interface SightingReport {
