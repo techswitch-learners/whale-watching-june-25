@@ -1,5 +1,62 @@
+@import "../../styles/Constants";
+
+
+
 .map {
     width: 60vw;
     justify-self: center;
     padding: 20px;
 }
+
+
+.sighting-pop-up {
+    @include font(calc(5px + 1vh),1,#0000);  
+    flex-shrink: 3;
+    text-align: center;
+    
+}
+
+
+
+.leaflet-popup-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-justify: left;
+}
+.no-photo {
+    font-weight: bold;
+}
+
+.map-sighting-image {
+    width:10vw;
+    height: 10vh;
+    border-radius: 0.3rem;
+    padding: 0.1em;
+    flex-shrink: 3;
+
+    
+}
+
+@media (orientation: portrait) {
+    .map-sighting-image {
+        width: 25vw;
+        height: 10vh;
+        text-align: center;
+        text-justify: left;
+    }}
+
+    @media (orientation: portrait) {
+        .sighting-pop-up {
+            width: 35vw;
+            height: 12vw;
+            @include font(calc(5px + 0.5vh),1,#0000);
+
+        }
+    }
+
+    @media (max-width: 1700){
+        .sighting-pop-up {
+            @include font(1.5vw,1, #0000);
+       ;}
+    }
