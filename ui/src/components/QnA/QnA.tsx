@@ -26,7 +26,6 @@ interface QuestionProps {
 };
 
 const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
-    const [noOfQuestions, setNoOfQuestion] = useState(props.QuestionSet.Questions.length);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [selectedAnswers, setSelectedAnswers] = useState<Record<string, number>>({});
     const [selectedAnswer, setSelectedAnswer] = useState<Option | null>(null);
@@ -45,7 +44,7 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
             [selectedAnswer.Species]: (prev[selectedAnswer.Species] || 0) + 1
             }));  
 
-            if (count ===noOfQuestions){
+            if (count ===props.QuestionSet.Questions.length){
                 setIsCompleted(true);
                 let result = findResult(findMax());
                 if (result != undefined) {
@@ -109,28 +108,24 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
         <div>
             <p className='QuizSubtitle'>Dive into this playful quiz and discover your inner whale based on your personality and lifestyle!</p>
             <div className="Question">
-                <br/>
-                <p>{count}. {props.QuestionSet.Questions[currentQuestion].Question}</p>
-                <br/>
-                <fieldset>
+                <p id="Question">{count}. {props.QuestionSet.Questions[currentQuestion].Question}</p>
+                {/* <fieldset> */}
                 <div className='Answer'>
                 <ul>{props.QuestionSet.Questions[currentQuestion].Options.map((answerOption: Option, optionIndex: number) => (
                     <li list-style-type="none" key={`li-${optionIndex}`}>
-                    <label key={`label-${optionIndex}`}>
                     <input type="radio" name={`question-${currentQuestion}`} id={`answerOption-${optionIndex}`} onChange={() => {setSelectedAnswer(answerOption); setIsVisible(false)}} />
-                        {answerOption.Text}
+                    <label className = "label-answer" key={`label-${optionIndex}`} htmlFor={`answerOption-${optionIndex}`}>                        {answerOption.Text}
                     </label>
+                    
                     </li>
                 ))} </ul>
                 </div>
-                </fieldset>
-                <br/>
+                {/* </fieldset> */}
             </div>
             <button onClick={handleNextButtonClick} className="next-button">
             Next
             </button>
-                <br/>
-                {isVisible && <p>{message} </p>}
+                {isVisible && <p className='ErrorMessage'>{message} </p>}
                 <br/>
         </div>
     );
@@ -139,7 +134,7 @@ else {
     return (
         <div className="FinalResult">
             <br/>
-            <h3>{whale?.Title}</h3>
+            <h1>{whale?.Title}</h1>
             <h2>{whale?.Description}</h2>
             <br/>
             <h3>Thank you for your participation!</h3>
