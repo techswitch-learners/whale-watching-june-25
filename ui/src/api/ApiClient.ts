@@ -88,7 +88,10 @@ export interface SightingReport {
 
 
 
+
+
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
+    console.log(whaleSighting);
 
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
@@ -147,6 +150,7 @@ export async function createUser(newUser: NewUser) {
     }
 }
 
+
 export async function fetchSightings(): Promise<SightingReport[]> {
     const response = await fetch(`http://localhost:5067/sightingreports/all`);
     const data = await response.json();
@@ -189,14 +193,14 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
         }
 
         throw new Error(errorMessage);
-    }
-    
+    }    
     return response.json();
 }
 
 export async function deleteWhaleSighting(id: number): Promise<void> {
     const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        credentials: "include"
     });
     if (!response.ok) {
         throw new Error(await response.text());
@@ -205,7 +209,8 @@ export async function deleteWhaleSighting(id: number): Promise<void> {
 
 export async function approveWhaleSighting(id: number): Promise<void> {
     const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
-        method: "PATCH"
+        method: "PATCH",
+        credentials: "include"
     });
     if (!response.ok) {
         throw new Error(await response.text());

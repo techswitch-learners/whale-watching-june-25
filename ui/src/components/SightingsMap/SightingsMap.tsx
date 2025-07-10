@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { fetchSightings, SightingReport } from "../../api/ApiClient";
 
 export default function SightingsMap() {
- 
   const [sightings, setSightings] = useState<SightingReport[]>([]);
   const [dropDownList,setDropDownList] = useState([""]);
   const [species, setSpecies] = useState("");
@@ -65,18 +64,37 @@ export default function SightingsMap() {
            center={[25, 0]} 
            zoom={window.innerWidth < 768 ? 1 : 2}    
            >
-           {coordinates.map((pos, index) => (
-             <Marker key={index} position={pos}>
-             <Popup>Whale sighting {index + 1}</Popup>               
-             </Marker>
-            ))}
-              <TileLayer
+      {coordinates.map((pos, index) => (
+      <Marker key={index} position={pos}>
+        <Popup className="sighting-pop-up" offset={[0, -10]}>
+              <b>User:</b> {sightings[index].userName}
+              <br></br>
+              <b>Date:</b>{" "}
+              {new Date(sightings[index].dateOfSighting).toLocaleDateString()}
+              <br></br>
+              <b>Description:</b> {sightings[index].description}
+              <br></br>
+              <b>Species:</b> {sightings[index].species}
+              <br></br>
+              <br></br>
+              {sightings[index].imageUrl ? (
+                <img
+                  className="map-sighting-image"
+                  src={sightings[index].imageUrl}></img>
+              ) : (
+                <p className="no-photo">No photo available</p>
+              )}
+            </Popup>
+          </Marker>
+        ))}
+
+
+ <TileLayer
                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
             <ResponsiveZoom />  
           </MapContainer>
-          
        </div>
      </div>
   );
