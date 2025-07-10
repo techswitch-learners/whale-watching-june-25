@@ -201,7 +201,7 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
 
 export async function deleteWhaleSighting(id: number): Promise<void> {
     const response = await fetch(`${baseUrl}/sightingreports/${id}`, {
-        method: "DELETE"
+        method: "DELETE",
         credentials: "include"
     });
     if (!response.ok) {
@@ -211,7 +211,7 @@ export async function deleteWhaleSighting(id: number): Promise<void> {
 
 export async function approveWhaleSighting(id: number): Promise<void> {
     const response = await fetch(`${baseUrl}/sightingreports/${id}`, {
-        method: "PATCH"
+        method: "PATCH",
         credentials: "include"
     });
     if (!response.ok) {
