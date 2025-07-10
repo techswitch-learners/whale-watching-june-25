@@ -1,5 +1,5 @@
-const geonamesUsername = import.meta.env.VITE_GEONAMES_USERNAMES;
-const baseUrl = import.meta.env.BACKEND_API_BASE_URL;
+const geonamesUsername = import.meta.env.REACT_APP_VITE_GEONAMES_USERNAMES;
+const baseUrl = import.meta.env.REACT_APP_BACKEND_API_BASE_URL;
 
 export interface ListResponse<T> {
 
