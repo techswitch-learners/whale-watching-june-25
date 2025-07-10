@@ -19,5 +19,5 @@ public class WhaleSpottingDbContext : IdentityDbContext<User>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseNpgsql(_configuration["ConnectionStrings:WhaleSpottingDb"]);
-    }   
+    }
 }

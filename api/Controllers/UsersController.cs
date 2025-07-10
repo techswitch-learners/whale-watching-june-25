@@ -1,9 +1,6 @@
-using System.Net;
-using System.Runtime.CompilerServices;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore;
 using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Models.Request;
@@ -43,29 +40,33 @@ namespace WhaleSpottingBackend.Controllers
 
                 if (await _userManager.FindByNameAsync(newUser.UserName!) != null)
                 {
-
                     return BadRequest("Username is taken.");
                 }
                 else if (await _userManager.FindByEmailAsync(newUser.Email!) != null)
                 {
                     return BadRequest("Email already exists in the system.");
-
                 }
-              
-                    var result = await _userManager.CreateAsync(user, newUser.Password!);      
 
+                var result = await _userManager.CreateAsync(user, newUser.Password!);
 
                 if (result.Succeeded == false)
                 {
-                    return BadRequest
-                    ("Password rules do not comply - Should contain 6 characters with atleast 1 uppercase, 1 lowercase, 1 non-alphanumeric and 1 number ");
+                    return BadRequest(
+                        "Password rules do not comply - Should contain 6 characters with atleast 1 uppercase, 1 lowercase, 1 non-alphanumeric and 1 number "
+                    );
                 }
 
-                if (result.Succeeded && !string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase))
+                if (
+                    result.Succeeded
+                    && !string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase)
+                )
                 {
                     await _userManager.AddToRoleAsync(user, "User");
                 }
-                else if (result.Succeeded && string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase))
+                else if (
+                    result.Succeeded
+                    && string.Equals(newUser.Role, "Admin", StringComparison.OrdinalIgnoreCase)
+                )
                 {
                     await _userManager.AddToRoleAsync(user, "Admin");
                 }
@@ -77,5 +78,6 @@ namespace WhaleSpottingBackend.Controllers
 
             return StatusCode(StatusCodes.Status201Created, "User created successfully");
         }
+
     }
 }

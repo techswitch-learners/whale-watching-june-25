@@ -46,7 +46,7 @@ namespace WhaleSpottingBackend.Controllers
                 {
                     return Unauthorized("User Id not found");
                 }
-                 _sightingReportsService.CreateReport(newReport, userId);
+                _sightingReportsService.CreateReport(newReport, userId);
             }
             catch (Exception ex)
             {
@@ -91,8 +91,10 @@ namespace WhaleSpottingBackend.Controllers
 
         }
         
+         [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
-        public IActionResult DeleteById(int id) {
+        public IActionResult DeleteById(int id)
+        {
 
             try
             {
@@ -112,5 +114,6 @@ namespace WhaleSpottingBackend.Controllers
             }
             return Ok(new { message = "Your report has been sucessfully rejected and deleted from the table." });
         }
+        
     }
 }
