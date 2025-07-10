@@ -1,0 +1,122 @@
+@import "../../styles/Constants";
+
+.table-name-header {
+    color: $blueBackground;
+    padding-top: 20px;
+}
+
+.user-sightings-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.user-sightings-table {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px 0 40px;
+    background-color: $whiteBackground;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+    table-layout: fixed;
+}
+
+.table-header {
+    background-color: $blueBackground;
+    padding: 5px 0;
+    color: whitesmoke;
+    white-space: normal;
+    border: 1pt solid whitesmoke;
+}
+
+.header-th {
+    background-color: $tealBackground;
+    padding: 15px 0;
+    border: 1pt solid whitesmoke;
+}
+
+.info-td {
+    border: 1pt solid whitesmoke;
+    padding: 10px;
+    text-align: center;
+    white-space: normal;
+}
+
+table tr:nth-of-type(even) {
+    background-color: $lightBlueBackground;
+}
+
+
+.view-user-photo-button {
+    @include primaryButton;
+    width: 100px;
+    background-color: $blueBackground;
+    cursor: pointer;
+    color: whitesmoke;
+    font-size: 1rem;
+}
+
+
+.user-sighting-photo-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-sighting-photo-wrapper {
+    position: relative;
+}
+
+.user-sighting-photo {
+    display: block;
+    width: 40vw;
+    max-width: 40vw;
+    height: auto;
+    border: 30px solid white;
+}
+
+.user-sighting-photo-exit-button {
+    all: unset;
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    color: black;
+    z-index: 20;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media (max-width: 430px) {
+    .info-message {
+        font-size: 1em;
+    }
+    .header {
+        padding-top: 0;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 375px) {
+    .info-message {
+        font-size: 1em;
+    }
+    .header {
+        padding-top: 0;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+    .hide-on-small-mobile {
+        display: none;
+    }
+}
