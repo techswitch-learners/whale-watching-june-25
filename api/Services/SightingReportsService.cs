@@ -11,6 +11,7 @@ public interface ISightingReportsService
     Task<List<SightingReportResponse>> GetAllSightingsResponse();
     void EditSightingReportStatus(int sightingId);
     void DeleteReport(int id);
+    Task<List<SightingReport>> GetSightingsByUserId(string userId);
 }
 
 public class SightingReportsService : ISightingReportsService
@@ -56,6 +57,11 @@ public class SightingReportsService : ISightingReportsService
         }).ToList();
     }
 
+    public async Task<List<SightingReport>> GetSightingsByUserId(string userId)
+    {
+        return await _sightingReports.GetSightingsByUserId(userId);
+    }
+    
     public void EditSightingReportStatus(int sightingId)
     {
         SightingReport sightingData = _sightingReports.GetSightingById(sightingId);

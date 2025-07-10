@@ -1,6 +1,7 @@
 
 using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure.Internal;
 using WhaleSpottingBackend.Database;
 using WhaleSpottingBackend.Exceptions;
 using WhaleSpottingBackend.Models.Database;
@@ -15,6 +16,7 @@ namespace WhaleSpottingBackend.Repositories
         SightingReport GetSightingById(int sightingId);
         void UpdateSighting(SightingReport sightingData);
         void DeleteReport(SightingReport report);
+        Task<List<SightingReport>> GetSightingsByUserId(string userId);
 
     }
 
@@ -50,6 +52,15 @@ namespace WhaleSpottingBackend.Repositories
                 throw new NotFoundException($"Sighting report with id {sightingId} not found");
             }
             return sightingReport;
+        }
+
+        public async Task<List<SightingReport>> GetSightingsByUserId(string userId)
+        {
+            return await _context.SightingReports
+                        .Include(s => s.User)
+                        .Include(s => s.WhaleSpecies)
+                        .Where(s => s.UserId == userId)
+                        .ToListAsync();
         }
 
         public void UpdateSighting(SightingReport sightingData)

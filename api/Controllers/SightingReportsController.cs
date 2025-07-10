@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using WhaleSpottingBackend.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
+using WhaleSpottingBackend.Models.Database;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
 namespace WhaleSpottingBackend.Controllers
@@ -13,10 +15,12 @@ namespace WhaleSpottingBackend.Controllers
     public class SightingReportsController : ControllerBase
     {
         private readonly ISightingReportsService _sightingReportsService;
+        private readonly UserManager<User> _userManager;
 
-        public SightingReportsController(ISightingReportsService sightingReports)
+        public SightingReportsController(ISightingReportsService sightingReports, UserManager<User> userManager)
         {
             _sightingReportsService = sightingReports;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -52,6 +56,22 @@ namespace WhaleSpottingBackend.Controllers
             return Ok(new { message = "Your sighting report has been successfully submitted and is pending review." });
         }
 
+        [HttpGet("my-sightings")]
+        [Authorize]
+        public async Task<ActionResult<List<SightingReport>>> GetMySightings()
+        {
+            var userId = _userManager.GetUserId(User);
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var userSightings = await _sightingReportsService.GetSightingsByUserId(userId);
+            return Ok(userSightings);
+
+        }
+
+        [Authorize(Roles = "Admin")]
         [HttpPatch("{id}")]
         public IActionResult ApproveSighting(int id)
         {
