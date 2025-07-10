@@ -1,16 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap');
 
-$orangeBackground: #FF8A5B;
 $blueBackground: #254E70;
 $tealBackground: #22AAA1;
-$whiteBackground: #F8F7F9;
+$whiteBackground: #FFFFFF;
 $lightBlueBackground: #E9F1F7;  
 
 $fontFamily: 'Lato', sans-serif;
 $fontColor: black;
-$headerFontFamily: 'Sniglet' ;
-
 
 $buttonBackground: #254e70;
 
@@ -28,7 +25,7 @@ $spacing-medium: 20px;
 }
 
 @mixin headerFont($font-size, $line-height, $color) {
-  font-family: $headerFontFamily;
+  font-family: $fontFamily;
   font-size: $font-size;
   line-height: $line-height;
   color: $color;
@@ -48,7 +45,6 @@ $spacing-medium: 20px;
   border-radius: 5px;
   background-color: $buttonBackground;
   cursor: pointer; 
-  width: 100%;  
 }
 
 @mixin labelFormInput(){
@@ -68,9 +64,9 @@ $spacing-medium: 20px;
 }
 
 @mixin navFont() {
-  @include font(21px, 2, $whiteBackground);
+  @include font(18px, 2, $whiteBackground);
 }
 
 @mixin h1font() {
-  @include font(40px, 2, $fontColor);
+  @include font(40px, 2, $blueBackground);
 }

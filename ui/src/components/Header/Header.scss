@@ -1,6 +1,5 @@
 @import "../../styles/Constants.scss";
 body, #root {
-  all: unset;
   padding: 0;
 }
  .menu-text {
@@ -37,6 +36,8 @@ body, #root {
   padding: 0 60px;
   display: flex;
   flex-direction: column;
+  position: relative;
+  z-index: 2;
 }
 
 .nav-elements ul {
@@ -61,17 +62,18 @@ body, #root {
   display: none;
 }
 
-#whale-museum-logo-navbar{
+#navbar-footer {
   display: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 950px) {
   .header {
     display: none;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 950px) {
+
   .menu-icon {
       position: absolute;
       z-index: 100;
@@ -111,6 +113,7 @@ body, #root {
     transition: all 0.3s ease-in;
     overflow: hidden;
     height: 100vh;
+    text-align: left;
   }
 
   .nav-elements.active {
@@ -130,19 +133,36 @@ body, #root {
     letter-spacing: 1px;
   }
 
+  .menu-text a {
+    text-decoration: none;
+    color: white;
+  }
+
   .nav-elements ul {
     display: flex;
     flex-direction: column;
   }
 
   .nav-elements ul li {
-    margin: 22px 20px 0 20px;
+    margin: 16px 20px 0 20px;
     padding-left: 2px;
-    padding-top: 30px;
+    padding-top: 10px;
     border-bottom: 1px solid $whiteBackground;
   }
 
+    #navbar-footer {
+    display: block;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    padding: 0 0 80px 15px;
+    p {
+      font-size: 0.65rem;
+      color: $whiteBackground;
+    }
+  }
+
   #whale-museum-logo-navbar{
-    display: none;
+      height: 30px;
   }
 }

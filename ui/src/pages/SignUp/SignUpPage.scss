@@ -1,7 +1,30 @@
 @import "../../styles/Constants";
 
-.sign-up-form {
+.sign-up-page {
     background-color: $whiteBackground;
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 13px;
+    width: 50%;
+    margin: 32px auto;
+}
+
+.sign-up-form {
+    padding: 0 30px 30px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .sign-up-page {
+        width: 90vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sign-up-form {
+        max-width: 340px;
+    }
+
+    .sign-up-page {
+        max-width: 700px;
+    }
 }

@@ -28,7 +28,7 @@ function WhaleInfo(): JSX.Element {
     return (
 
             <div className="species-info">
-                <h2 className="subtitle">Tips for finding whales by Species:</h2>
+                <h2 className="species-info-subtitle">Tips for finding whales by species:</h2>
                 <label id='choose-a-species-label' htmlFor="species">Choose a species: </label>
                 <select
                     id="species"
@@ -46,26 +46,27 @@ function WhaleInfo(): JSX.Element {
                 </select>
 
             {showPopUp && (
-            <div className='pop-up-section'>
-                <h2>Tips on how to find a {selectedSpecies.Species}</h2>
-                <div className='image-of-species'>
-                    <img src={selectedSpecies.Img} alt={selectedSpecies.Species} />
-                    <p></p>
-                </div>
-                <div>
-                    <h3>Description:</h3>
-                    <div>{selectedSpecies.Description}</div>
-                    <h3>Tips to spot this species:</h3>
-                    <div>{selectedSpecies.HowToFind}</div>
-                    <h3>The best time and places to find {selectedSpecies.Species}s:</h3>
-                                        {selectedSpecies.WhenNWhereToSee.map((place, idx) => (
-                                            <div key={idx}>
-                                                {place.Where} ({place.When})
-                                            </div>
-                                        ))}
-                    
-                </div>
-            </div>
+                <>
+                    <div className='pop-up-section'>
+                                                <div className='image-of-species-container'>
+                            <img src={selectedSpecies.Img} alt={selectedSpecies.Species} />
+                        </div>
+                        <h2 className="species-subtitle">Tips on how to find a {selectedSpecies.Species}</h2>
+                        <div>
+                            <h3 className='species-info-header'>Description:</h3>
+                            <div className='species-info-text'>{selectedSpecies.Description}</div>
+                            <h3 className='species-info-header'>Tips to spot this species:</h3>
+                            <div className='species-info-text'>{selectedSpecies.HowToFind}</div>
+                            <h3 className='species-info-header'>The best time and places to find {selectedSpecies.Species}s:</h3>
+                            {selectedSpecies.WhenNWhereToSee.map((place, idx) => (
+                                <div className='species-info-text' key={idx}>
+                                    {place.Where} ({place.When})
+                                </div>
+                            ))}
+
+                        </div>
+                    </div>
+                </>
             )}
             
         </div>

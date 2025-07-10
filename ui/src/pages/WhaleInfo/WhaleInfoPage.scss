@@ -1,63 +1,208 @@
+@import '../../styles/Constants.scss';
+
 body{
-    background-color: #E9F1F7;
+    background-color: whitesmoke;
     color: black;
+}
+
+.whale-info-title {
+    @include font(1.7rem, 1, $fontColor);
+    color: $blueBackground;
+    margin: 50px auto;
+    font-weight: bold;
+}
+
+.image-container { 
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0;
+    width: 67vw;
+    max-width: 800px;
+    img{
+        width: 100%;
+        padding: 0;
+        border-radius: 13px;
+    }
+}
+
+.subtitle {
+    @include font(1.15rem, 1, $fontColor);
+    text-align: center;
+    max-width: 850px;
+    margin: 50px auto;
+    line-height: 30px;
+    color: $blueBackground;
+    font-weight: bold;
+}
+
+.general-tips-list{
+    @include font(1rem, 1, $fontColor);
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px 0;
+    border-bottom: 1.5px solid $blueBackground;
+    border-top: 1.5px solid $blueBackground;
+    width: 60%;
+}
+
+.general-tips-list li {
+    margin: 1rem auto;
+    padding: 4px;
+    border-radius: 13px;
+    max-width: 800px;
+    width: 55vw;
+    line-height: 2rem;
+    color: $blueBackground;
+    font-weight: bold;
+    text-align: left;
+    font-weight: 200;
+    color: black;
+}
+
+.list-number {
+    font-size: 1.1rem;
+}
+
+.species-info-subtitle {
+    margin: 100px auto 30px auto;
+    color: $blueBackground;
 }
 
 .pop-up-section {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 55vw;
     justify-self: center;
     justify-content: center;
     color: black;
-    background-color: white;
-    margin-top: 20px;
+    background-color: $whiteBackground;
+    margin: 33px auto 100px auto;
     padding: 50px;
+    border-radius: 13px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.title{
+    .general-container{
+    display: flex;
+    justify-content: center;
     margin-bottom: 50px;
-}
-.subtitle{
-    margin-bottom: 50px;
-}
-
-.general-container{
- display: flex;
- align-items: center;
- justify-content: center;
- margin-bottom: 50px;
-}
-
-.text-container{
-margin-right: 20px;
-margin-left: 20px;
-}
-
-.image-container{ 
- max-width: 50%;
- img{
-    max-width: 90%;
- }
-}
-
-
-.general-tips-list{
-    padding-left: 1.5rem;
-    margin: 0;
-}
-
-.general-tips-list li{
-    margin-bottom: 1rem;
-    list-style-position: 'outside';
-}
+    }
 
 #choose-a-species-label{
+    @include font(1.15rem, 1, $fontColor);
+    font-weight: bold;
+    color: $blueBackground;
     align-items: center;
 }
 
-@media (max-width: 768px){
-    .general-container{
-        flex-direction: column;
+#species {
+    margin: 15px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    @include font(0.8rem, 1, $fontColor);
+    border: 1px solid rgb(201, 201, 201);
+}
+
+.image-of-species-container{
+    padding-bottom: 35px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+        img{
+        width: auto;
+        padding: 0;
+        border-radius: 13px;
+        max-height: 300px;
+    }
+}
+
+.species-subtitle{
+    margin: 0 auto;
+    color: $blueBackground;
+
+}
+
+.species-info-header {
+    @include font(1.2rem, 1, $fontColor);
+    font-weight: bold;
+    color: $blueBackground;
+    margin: 40px auto 20px auto;
+}
+
+.species-info-text {
+    @include font(1rem, 1, $fontColor);
+    padding: 0 30px;
+    line-height: 30px;
+    font-weight: 200;
+}
+
+@media (max-width: 1025px) {
+    .subtitle {
+        max-width: 750px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .subtitle {
+        max-width: 80%;
+        font-size: 1rem;
+    }
+    
+    .general-tips-list {
+        width: 70%;
+    }
+
+    .pop-up-section {
+        width: 70%;
+    }
+}
+
+@media (max-width: 426px){
+    .subtitle {
+        @include font(0.9rem, 1, $blueBackground);
+        line-height: 20px;
+        margin: 40px auto;
+    }
+
+    .image-container { 
+        width: 80vw;
+    }
+    .general-tips-list {
+        width: 90%;
+    }
+
+    .general-tips-list li {
+        width: 75%;
+        font-size: 0.9rem;
+        line-height: 20px;
+    }
+
+    .pop-up-section {
+        padding: 30px 0;
+        margin: 20px 0 35px 0;
+        width: 94%;
+        font-size: 0.85rem;
+    }
+
+    .species-info-text {
+        padding: 0 24px;
+        font-size: 0.8rem;
+        line-height: 24px;
+    }
+
+    .species-info-subtitle {
+        margin-top: 70px;
+        max-width: 87%;
+        line-height: 30px;
+    }
+
+    .species-info-header {
+        font-size: 1.1rem;
+        max-width: 90%;
+        line-height: 24px;
+        margin-top: 28px;
     }
 }

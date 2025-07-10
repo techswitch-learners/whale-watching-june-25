@@ -45,7 +45,7 @@ export function Leaderboard() {
   if (topUsers.length === 0) {
     return (
       <div className="leaderboard">
-        <h2 className="header">Top 3 Whale Watchers</h2>
+        <h2 className="leaderboard-header">Top 3 Whale Watchers</h2>
         <p className="info-message">
           Whale, isn&#8217;t this fin-teresting? Looks like no one&#8217;s seen
           any whales yet...
@@ -55,8 +55,8 @@ export function Leaderboard() {
   }
   return (
     <div className="leaderboard">
-      <h2 className="header">Top 3 Whale Watchers</h2>
-      <table>
+      <h2 className="leaderboard-header">Top 3 Whale Watchers</h2>
+      <table className="leaderboard-table">
         <colgroup>
           <col className="narrow-col" />
           <col className="wide-col" />

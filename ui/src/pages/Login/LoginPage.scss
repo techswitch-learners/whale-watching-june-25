@@ -6,8 +6,15 @@
 
 .login-page {
     background-color: $whiteBackground;
-    border-radius: 20px;
-    padding: 10px;
+    border-radius: 13px;
+    padding: 10px 0 30px;
+    width: 50%;
+    margin: 32px auto;
+}
+
+.login-form {
+    width: 80%;
+    margin: 0 auto;
 }
 
 .label-text{
@@ -18,7 +25,6 @@ button {
     @include primaryButton;
     display:flex;
     margin-top: 10px;
-    width: fit-content;
     padding: 10px 10px;
     margin-left: 5px;
 }
@@ -30,4 +36,20 @@ button {
 
 .required {
     color: $errorFontColor;
+}
+
+@media (max-width: 600px) {
+    .login-page {
+        width: 90vw;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login-form {
+        max-width: 340px;
+    }
+
+    .login-page {
+        max-width: 700px;
+    }
 }

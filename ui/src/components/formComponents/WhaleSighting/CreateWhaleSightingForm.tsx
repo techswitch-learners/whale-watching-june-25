@@ -90,7 +90,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
 
   if (status === "FINISHED") {
     return (
-      <div>
+      <div className="sighting-report-sucess-container">
         <h2 className="report-sighting-header">Report Sighting</h2>
         <p>Your whale sighting has been submitted and is pending approval!</p>
       </div>

@@ -1,10 +1,12 @@
 @import "../../styles/Constants";
 
 .QuizSubtitle {
-  font-size: 30px;
+  font-size: 1.2rem;
   text-align: center;
-  padding-bottom: 50px ;
+  padding-bottom: 30px ;
   color: $blueBackground;
+  max-width: 60vw;
+  margin: 32px auto;
 }
 
 .QuizTitle {
@@ -12,9 +14,16 @@
   text-align: center;
   color: $blueBackground;
   margin: 0 auto;
-  padding-top: 20px;
+  padding-top: 40px;
 }
 
+.FinalResult h1 {
+  color: $blueBackground; 
+}
+
+.FinalResult h2 {
+  padding: 20px;
+}
 
 @media (max-width: 770px) {
   .QuizSubtitle {
@@ -49,5 +58,12 @@
   .QuizTitle {
     font-size: 18px;
     padding: 20px 0 5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .QuizSubtitle {
+    max-width: 60vw;
+    margin: 32px auto;
   }
 }

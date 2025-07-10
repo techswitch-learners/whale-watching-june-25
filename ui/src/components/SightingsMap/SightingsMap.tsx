@@ -52,6 +52,7 @@ export default function SightingsMap() {
   
   return (
       <div className="map-container">
+        <h2 className="map-header">Sightings Map</h2>
         <span className="filter-label-text">Filter by Species</span>
         <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
           <option value="">Select</option>
@@ -59,10 +60,13 @@ export default function SightingsMap() {
             <option key = {index} value={element}>{element}</option>
           ))}
           </select>
-        <div className="map">
+        <div id="map-home-page" className="map">
           <MapContainer
            center={[25, 0]} 
-           zoom={window.innerWidth < 768 ? 1 : 2}    
+           zoom={window.innerWidth < 768 ? 1 : 2}
+      maxBounds={[[-90,-180],[90,180]]}
+      maxBoundsViscosity={1.0}
+      minZoom={1}    
            >
       {coordinates.map((pos, index) => (
       <Marker key={index} position={pos}>

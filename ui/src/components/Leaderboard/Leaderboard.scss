@@ -6,25 +6,28 @@ body {
     color: $fontColor;
 }
 
-#root {
-    width: 100vw;
-    padding: 0;
-}
-
-.header {
-    color: $blueBackground;
-    padding-top: 20px;
+.leaderboard-header {
+  @include font(1.5rem, 2rem, $blueBackground);
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  text-shadow: $lightBlueBackground;
 }
 
 .leaderboard {
-    width: 60vw;
+    width: 80vw;
     height: 340px;
-    margin: 0 auto;
+    margin: 40px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: $lightBlueBackground;
+    background-color: $whiteBackground;
+    border-radius: 13px;
+    box-shadow: 0 4px 24px rgba(37, 78, 112, 0.10);
+}
+
+.leaderboard-table {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 table {
@@ -32,7 +35,7 @@ table {
     border-collapse: collapse;
     margin: 20px 0 40px;
     background-color: $whiteBackground;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+
 }
 
 .table-header {
@@ -82,11 +85,11 @@ table tr:nth-of-type(even) {
 
 @media (max-width: 600px) {
     .leaderboard {
-        width: 100vw;
+        width: 90vw;
     }
 
     table {
-        width: 90vw;
+        width: 85vw;
     }
 
 }
@@ -104,4 +107,11 @@ table tr:nth-of-type(even) {
     .leaderboard {
         height: 100vh;
     }
+}
+
+
+@media (min-width: 1024px) {
+  .leaderboard {
+      width: 60vw;
+  }
 }

@@ -24,7 +24,7 @@ body {
 }
 
 .sighting-container {
-    margin: 0 auto;
+    margin: 0 auto 55px auto;
 
 }
 
@@ -33,7 +33,6 @@ body {
     border-collapse: collapse;
     margin: 20px 0;
     background-color: $whiteBackground;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .approved-sightings-table-header {
@@ -45,10 +44,11 @@ body {
 th {
     background-color: $tealBackground;
     padding: 10px 0;
+    color: $whiteBackground;
     border: 1pt solid whitesmoke;
 }
 
-td {
+.approved-sightings-table td {
     border: 1pt solid whitesmoke;
     padding: 5px 5px 5px 0;
     color: black;
@@ -110,6 +110,8 @@ td {
     gap: 20px;
     padding: 20px 20px;
     flex-wrap: wrap;
+    max-width: 55vw;
+    margin: 0 auto;
 }
 
 .input-filter {
@@ -121,16 +123,21 @@ td {
 }
 
 .filter-heading {
-    text-align: left;
-    padding-left: 20px;
+    text-align: center;
     padding-top: 20px;
     font-weight: bold;
 }
 
 
+
+
 @media (max-width: 1440px) {
     .approved-sightings-table {
         width: 75vw;
+    }
+
+    .sighting-container {
+        width: 90vw;
     }
 }
 
@@ -149,13 +156,6 @@ td {
         font-size: 0.8rem;
     }
 
-    .approved-sightings-table,
-    .sighting-list-container,
-    .sighting-container,
-    #sightings-list-header {
-        width: 90vw;
-    }
-
     .input-filter {
         font-size: 10px;
     }
@@ -164,6 +164,7 @@ td {
 @media (max-width: 768px) {
     .sighting-list-container {
         font-size: 0.72rem;
+        width: 90vw;
     }
 
     .input-filter {

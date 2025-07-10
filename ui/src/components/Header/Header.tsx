@@ -25,7 +25,7 @@ export function Navbar() {
             return (
             <>
             <nav className="navbar">
-            <p className="menu-text">Whale Watching</p>
+            <p className="menu-text"><a href="/">Whale Watching</a></p>
             <div className="menu-icon" onClick={handleShowNavbar}>
                 {showNavbar
                     ? <span className="icon-x">✕</span>
@@ -37,6 +37,7 @@ export function Navbar() {
                 {loginContext.isUserAdmin ? 
             (<li><NavLink className="nav-link" to="/admin" onClick={handleShowNavbar}>Admin Dashboard</NavLink></li>): 
             (<></>)}
+            <li><NavLink className="nav-link" to="/sightings" onClick={handleShowNavbar}>All Sightings</NavLink></li>
             <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={handleShowNavbar} >Report Sighting</NavLink></li>
             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Info</NavLink></li>
             {loginContext.isLoggedIn ? 
@@ -47,9 +48,12 @@ export function Navbar() {
             (<li> <NavLink className="nav-link" to="/" onClick={() => {loginContext.logOut?.();handleShowNavbar();}}>Logout</NavLink></li>) :
             (<li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li>)}
             </ul>
+            <div id="navbar-footer">
             <img id="whale-museum-logo-navbar" src={logo} alt="whale-museum-logo"></img>
+            <p>&nbsp; &copy; {new Date().getFullYear()} Whale Watching. All rights reserved.</p>      
             </div>
-        </nav>
+            </div>
+            </nav>
         </>
             )
         

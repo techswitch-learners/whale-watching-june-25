@@ -1,21 +1,25 @@
 @import "../../styles/Constants.scss";
 
+
+html, body {
+max-width: 100%;
+}
+
 .list-header{
     color: $blueBackground;
     text-align: center;
 }
 
 .pending-list-container {
-    width: 100vw;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sighting-container {
+.admin-sighting-container {
     max-width: 100%;
-     overflow-x: auto;
+    overflow-x: auto;
 }
 
 .pending-sightings-table {
@@ -23,12 +27,10 @@
     border-collapse: collapse;
     margin: 20px 0;
     background-color: $whiteBackground;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);  
-    color: white; 
+   
 }
 
 .pending-sightings-table-header {
-    background-color: $orangeBackground;
     padding: 5px 0;
 }
 
@@ -38,7 +40,7 @@ th {
     border: 1pt solid $tealBackground;
 }
 
-td {
+.pending-sightings-table td {
     border: 1pt solid #e6faf9;
     background-color: #e6faf9;
     padding: 5px 5px 5px 0;
