@@ -16,7 +16,7 @@ li {
 }
 
 .Question {
-  margin-left : 100px
+  margin-left: 100px
 }
 
 .Answer {
@@ -49,7 +49,11 @@ input[type=radio] {
 button {
   font-size: 25px;
   width: 20%;
-  margin-bottom: 3vh;
+  margin-bottom: 9vh;
+}
+
+.tryagain-button {
+  margin-bottom: 17vh;
 }
 
 .ErrorMessage {
@@ -78,11 +82,11 @@ ul {
   }
 
   .Question {
-  margin-left : auto
-}
+    margin-left: auto
+  }
 
   label {
-    font-size: 15px;
+    font-size: 10px;
     align-items: start;
   }
 
@@ -94,6 +98,10 @@ ul {
     font-size: 15px;
   }
 
+  .tryagain-button {
+    margin-bottom: 5vh;
+  }
+
   .ErrorMessage {
     font-size: 15px;
   }
@@ -103,18 +111,31 @@ ul {
   button {
     font-size: 15px;
     margin-bottom: 20vh;
-}
-
   }
+
+  .tryagain-button {
+    margin-bottom: 19vh;
+    font-size: 12px;
+    width: auto;
+  }
+
+}
 
 @media (max-width: 430px) {
   #Question {
     font-size: 15px;
     padding-left: 15px;
   }
-    .Question {
-  margin-left : auto
-}
+
+  .Question {
+    margin-left: auto
+  }
+
+  .tryagain-button {
+    margin-bottom: 22vh;
+    font-size: 10px;
+    width: auto;
+  }
 
   label {
     font-size: 13px;

@@ -54,7 +54,7 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
             else {
                 setCount(count+1);
                 setCurrentQuestion(count);
-                resetRadio();
+                resetSelectedOption();
             }
             setSelectedAnswer(null);
         }
@@ -68,7 +68,7 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
         resetStatus();
     };
 
-    function resetRadio() {
+    function resetSelectedOption() {
         let radio = null;
         for (let i = 0; i < 4; i++) {
             radio = document.getElementById(`answerOption-${i}`);
@@ -138,7 +138,7 @@ else {
             <h2>{whale?.Description}</h2>
             <br/>
             <h3>Thank you for your participation!</h3>
-            <button onClick={handleTryAgainButtonClick} className="submit-button">
+            <button onClick={handleTryAgainButtonClick} className="tryagain-button">
             Try Again
             </button>
         </div>
