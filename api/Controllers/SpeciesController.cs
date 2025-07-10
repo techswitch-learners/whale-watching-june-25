@@ -15,6 +15,13 @@ public class SpeciesController : ControllerBase
         _whaleSpeciesRepository = whaleSpeciesRepository;
     }
 
+    public async Task<ActionResult<IEnumerable<WhaleSpecies>>> GetWhales()
+    {
+        var result = await _whaleSpeciesRepository.GetWhaleSpecies();
+
+        return Ok(result);
+    }
+
     
     [HttpGet("by-name/{species}")]
     public async Task<ActionResult<WhaleSpecies>> GetWhalesBySpecies(string species)
