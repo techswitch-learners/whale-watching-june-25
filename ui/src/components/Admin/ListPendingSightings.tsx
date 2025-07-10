@@ -67,33 +67,33 @@ export function ListPendingSightings() {
     }
 
     const handleEdit = (rowId: number) => {
-        setEditingRowId(rowId);  
+        setEditingRowId(rowId);  
     };
 
     const handleSave = async(rowId: number) => {
         const updatedSpecies = editedValues[rowId] ;
         await editWhaleSpecies(updatedSpecies, rowId);                  
         setSightings(prev =>
-            prev.map(report =>
-            report.id === rowId
-             ? { ...report, species: editedValues[rowId] }
-            : report
-                ));
+            prev.map(report =>
+            report.id === rowId
+             ? { ...report, species: editedValues[rowId] }
+            : report
+                ));
         setEditedValues((prev) => ({
-        ...prev,
-        [rowId]: updatedSpecies,
-        }));
-        setIsEditing(false);        
-    };
+        ...prev,
+        [rowId]: updatedSpecies,
+        }));
+        setIsEditing(false);        
+    };
 
 
     const handleCancel = (rowId: number) => {
-        setEditedValues((prev) => {    
+        setEditedValues((prev) => {    
         const updated = { ...prev };
-        delete updated[rowId];
-        return updated;
-        });
-        setEditingRowId(0);
+        delete updated[rowId];
+        return updated;
+        });
+        setEditingRowId(0);
      };
 
     useEffect(() => {
@@ -122,6 +122,7 @@ export function ListPendingSightings() {
                             <th>Username:  </th>
                             <th className="hide-on-mobile">Description: </th>
                             <th className="hide-on-mobile">Photo: </th>
+                            <th colSpan={8}>Actions: </th>
                         </tr>
 
                     </thead>
@@ -136,16 +137,16 @@ export function ListPendingSightings() {
                                         handleEdit(sightingReport.id);
                                                         setIsEditing(true);
                                                         ;}}>
-                                         {editingRowId === sightingReport.id && isEditing ? (
-                                             <>
+                                         {editingRowId === sightingReport.id && isEditing ? (
+                                             <>
                                                 <select id="species-edit-dropdown"                                                  
                                                     value={editedValues[sightingReport.id] || sightingReport.species}
-                                                    onChange={(e) =>                                                        
+                                                    onChange={(e) =>                                                        
                                                         setEditedValues((prev) => ({
-                                                               ...prev,
-                                                      [sightingReport.id]: e.target.value,
-                                                             }))
-                                                        }                                           
+                                                               ...prev,
+                                                      [sightingReport.id]: e.target.value,
+                                                             }))
+                                                        }                                           
                                                     autoFocus
                                                 >
                                                     {selectedSpecies.map((opt) => (
@@ -158,11 +159,11 @@ export function ListPendingSightings() {
                                                 <button id="save" onClick={(e) => {e.stopPropagation(); handleSave(sightingReport.id)}}><Check size={20} /></button>
                                                 <button id="cancel" onClick={(e) => {e.stopPropagation(); handleCancel(sightingReport.id)}}><X size={20} /></button>  
                                                 </div> </>
-                                                   ) : (
-                                                <>
-                                             {sightingReport.species}<PencilSquare size={15}/>
+                                                   ) : (
+                                                <>
+                                             {sightingReport.species}<PencilSquare className="edit-icon" size={15}/>
                                         </>
-                                         )}
+                                         )}
                                     </td>
                                     <td>{seaData.get(sightingReport.id)}</td>
                                     <td className="hide-on-mobile">{sightingReport.latitude}</td>
@@ -170,8 +171,6 @@ export function ListPendingSightings() {
                                     <td>{sightingReport.userName}</td>
                                     <td className="hide-on-mobile">{sightingReport.description}</td>
                                     <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
-                                </tr>
-                                <tr>
                                     <td className="accept-delete-button hide-on-mobile" colSpan={4} >
                                         <button
                                             className="delete-sighting-btn"
@@ -205,6 +204,9 @@ export function ListPendingSightings() {
                                         </button>
                                     </td>
                                 </tr>
+                                {/* <tr>
+                                    
+                                </tr> */}
                             </>
                         </React.Fragment>
                         )}

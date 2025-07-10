@@ -1,15 +1,5 @@
 @import "../../styles/Constants.scss";
 
-
-html, body {
-background-color: $lightBlueBackground;
-width: 100%;
-}
-
-#root {
-    all: unset;
-}
-
 .list-header{
     color: $blueBackground;
     text-align: center;
@@ -33,8 +23,7 @@ width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: $whiteBackground;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
-   
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);   
 }
 
 .pending-sightings-table-header {
@@ -70,26 +59,26 @@ td {
     border-radius: 5px;
     padding: 6px 3px;
     border: 2px solid rgb(226, 226, 226);
-    appearance: none;
-    font-family: $fontFamily;
-    
+    @include font(17px, 1, $fontColor);    
 }
 
-#species-edit-dropdown {
+#species-edit-dropdown:focus {
   outline: 2px solid $tealBackground;
 }
 
 .edit-buttons {
     display: flex;
-    gap: 2px;
-    // padding-top: 30px;
-    
+    gap: 2px;       
 }
 
 #save, #cancel{
-    width: 30%;
-    
-    
+    width: 30%;  
+    height:10%   
+}
+
+.edit-icon{
+    margin-top: 2px;
+    margin-left: 10px;
 }
 
 
@@ -132,16 +121,9 @@ td {
     display: none;
 }
 
-.delete-sighting-btn {
-    margin-left: auto;
-    margin-right: 50px;
-    width: 220px;
-}
-
-.accept-sighting-btn {
-    margin-left: 50px;
-    margin-right: auto;
-    width: 220px;
+.delete-sighting-btn, .accept-sighting-btn {
+    width: 75px;
+    margin-left: 2px;
 }
 
 @media (max-width: 1440px) {
@@ -157,6 +139,13 @@ td {
     th {
     padding: 10px 10px;
     }
+    .delete-sighting-btn, .accept-sighting-btn {
+        width: 50px;
+        font-size: 0.85rem;
+    }
+    #species-edit-dropdown {
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 974px) {
@@ -166,10 +155,24 @@ td {
     .pending-sightings-table {
         width: 90vw;
     }
+    .delete-sighting-btn, .accept-sighting-btn {
+        width: 50px;
+        font-size: 0.8rem;
+    }
+    #species-edit-dropdown {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 768px) {
     .pending-list-container {
+        font-size: 0.72rem;
+    }
+    .delete-sighting-btn, .accept-sighting-btn {
+        width: 50px;
+        font-size: 0.72rem;
+    }
+    #species-edit-dropdown {
         font-size: 0.72rem;
     }
 }
@@ -184,15 +187,19 @@ td {
     .hide-on-mobile {
         display: none;
     }
-    .accept-delete-button {
-        column-span: 1;
-        border: 1px red solid;
+    .delete-sighting-btn-mobile, .accept-sighting-btn-mobile {
+        width: 50px;
+        font-size: 0.7rem;
+
     }
     .show-on-mobile {
         display: table-cell;
     }
-    .accept-delete-button {
-        width: 50%;
+    #species-edit-dropdown {
+        font-size: 0.7rem;
     }
-}
+        
+   
+    
+ }
 
