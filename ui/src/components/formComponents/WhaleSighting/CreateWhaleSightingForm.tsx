@@ -1,4 +1,4 @@
-import { JSX, useContext, useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../WhaleSighting/CreateWhaleSightingForm.scss";
 import {
