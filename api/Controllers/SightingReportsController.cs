@@ -113,7 +113,7 @@ namespace WhaleSpottingBackend.Controllers
         }
         
         
-         [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {
