@@ -23,7 +23,8 @@
     border-collapse: collapse;
     margin: 20px 0;
     background-color: $whiteBackground;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);   
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);  
+    color: white; 
 }
 
 .pending-sightings-table-header {
@@ -73,7 +74,8 @@ td {
 
 #save, #cancel{
     width: 30%;  
-    height:10%   
+    height:10% ;  
+    margin: 5px auto;
 }
 
 .edit-icon{
@@ -121,9 +123,10 @@ td {
     display: none;
 }
 
-.delete-sighting-btn, .accept-sighting-btn {
+.delete-sighting-btn, .accept-sighting-btn, .view-photo-button {
     width: 75px;
-    margin-left: 2px;
+    font-size: 0.8rem;
+    
 }
 
 @media (max-width: 1440px) {
