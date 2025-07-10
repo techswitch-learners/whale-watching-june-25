@@ -1,4 +1,5 @@
 const geonamesUsername = import.meta.env.VITE_GEONAMES_USERNAMES;
+const baseUrl = import.meta.env.BACKEND_API_BASE_URL;
 
 export interface ListResponse<T> {
 
@@ -93,7 +94,7 @@ export interface SightingReport {
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     console.log(whaleSighting);
 
-    const response = await fetch(`http://localhost:5067/sightingreports/create`, {
+    const response = await fetch(`${baseUrl}/sightingreports/create`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -108,7 +109,7 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
 }
 
 export async function getUserSightings() : Promise<UserSighting[]> {
-    const response = await fetch(`http://localhost:5067/sightingreports/my-sightings`, {
+    const response = await fetch(`${baseUrl}/sightingreports/my-sightings`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -126,7 +127,7 @@ export async function getUserSightings() : Promise<UserSighting[]> {
 
 export async function fetchSpecies(): Promise<Species[]> {
 
-    const response = await fetch(`http://localhost:5067/species`);
+    const response = await fetch(`${baseUrl}/species`);
     return await response.json();
 }
 
@@ -137,7 +138,7 @@ export async function fetchSpeciesBySpeciesName(species: string): Promise<Specie
 }
 
 export async function createUser(newUser: NewUser) {
-    const response = await fetch(`http://localhost:5067/users`, {
+    const response = await fetch(`${baseUrl}/users`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -152,7 +153,7 @@ export async function createUser(newUser: NewUser) {
 
 
 export async function fetchSightings(): Promise<SightingReport[]> {
-    const response = await fetch(`http://localhost:5067/sightingreports/all`);
+    const response = await fetch(`${baseUrl}/sightingreports/all`);
     const data = await response.json();
     return data;
 }
@@ -175,7 +176,7 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
         throw new Error("Email and password are required");
     }
 
-     const response = await fetch('http://localhost:5067/accounts/login', {
+     const response = await fetch('${baseUrl}/accounts/login', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'},
@@ -198,8 +199,8 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
 }
 
 export async function deleteWhaleSighting(id: number): Promise<void> {
-    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
-        method: "DELETE",
+    const response = await fetch(`${baseUrl}/sightingreports/${id}`, {
+        method: "DELETE"
         credentials: "include"
     });
     if (!response.ok) {
@@ -208,8 +209,8 @@ export async function deleteWhaleSighting(id: number): Promise<void> {
 }
 
 export async function approveWhaleSighting(id: number): Promise<void> {
-    const response = await fetch(`http://localhost:5067/sightingreports/${id}`, {
-        method: "PATCH",
+    const response = await fetch(`${baseUrl}/sightingreports/${id}`, {
+        method: "PATCH"
         credentials: "include"
     });
     if (!response.ok) {
