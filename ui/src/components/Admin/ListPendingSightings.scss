@@ -63,6 +63,35 @@ td {
  border: 1pt solid $whiteBackground;
 }
 
+#species-edit-dropdown {
+    align-items: flex-start;
+    margin-right: 0;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 6px 3px;
+    border: 2px solid rgb(226, 226, 226);
+    appearance: none;
+    font-family: $fontFamily;
+    
+}
+
+#species-edit-dropdown {
+  outline: 2px solid $tealBackground;
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 2px;
+    // padding-top: 30px;
+    
+}
+
+#save, #cancel{
+    width: 30%;
+    
+    
+}
+
 
 .sighting-report-photo-container {
     position: fixed;

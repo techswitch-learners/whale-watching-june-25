@@ -2,7 +2,7 @@ import React, {useState, useEffect } from "react";
 import "./ListPendingSightings.scss";
 import { Species, fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting, fetchSpecies, editWhaleSpecies } from "../../api/ApiClient";
 import {format} from 'date-fns';
-import {PencilSquare} from 'react-bootstrap-icons';
+import {PencilSquare, Check, X} from 'react-bootstrap-icons';
 
 export function ListPendingSightings() {
 
@@ -13,7 +13,6 @@ export function ListPendingSightings() {
     const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);    
     const [isEditing, setIsEditing] = useState<boolean>();
     const [editingRowId, setEditingRowId] = useState<number>();
-    const [originalValues, setOriginalValues] = useState<{ [key: number]: string }>({});
     const [editedValues, setEditedValues] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
@@ -67,22 +66,12 @@ export function ListPendingSightings() {
         setShowSightingImage(false);
     }
 
-    const handleEdit = (rowId: number, currentSpecies: string) => {
+    const handleEdit = (rowId: number) => {
         setEditingRowId(rowId);  
-        setOriginalValues((prev) => ({
-        ...prev,
-        [rowId]: currentSpecies,
-        }));
-//         setEditedValues((prev) => ({
-//         ...prev,
-//         [rowId]: currentSpecies,
-//         }));
     };
 
     const handleSave = async(rowId: number) => {
-        console.log("Inside save");  
         const updatedSpecies = editedValues[rowId] ;
-        console.log(updatedSpecies);
         await editWhaleSpecies(updatedSpecies, rowId);                  
         setSightings(prev =>
             prev.map(report =>
@@ -94,9 +83,8 @@ export function ListPendingSightings() {
         ...prev,
         [rowId]: updatedSpecies,
         }));
-        console.log(`Saving ${rowId}: ${updatedSpecies}`);       
-        setIsEditing(false);        
-        };
+        setIsEditing(false);        
+    };
 
 
     const handleCancel = (rowId: number) => {
@@ -115,13 +103,6 @@ export function ListPendingSightings() {
          })
       .catch((err) => console.error(err));
     }, [isEditing]);
-
-    
-useEffect(() => {  
-  console.log("Original Values:", originalValues);
-  console.log("Edited Values:", editedValues);
-}, [editedValues, originalValues]);
-
     
     return (
      <>
@@ -151,13 +132,13 @@ useEffect(() => { 
                                 <tr key={sightingReport.id}>
                                     <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
                                     
-                                    <td onClick={() => {console.log(sightingReport.species);
-                                        handleEdit(sightingReport.id, sightingReport.species );
+                                    <td onClick={() => {
+                                        handleEdit(sightingReport.id);
                                                         setIsEditing(true);
                                                         ;}}>
                                          {editingRowId === sightingReport.id && isEditing ? (
                                              <>
-                                                <select                                                     
+                                                <select id="species-edit-dropdown"                                                  
                                                     value={editedValues[sightingReport.id] || sightingReport.species}
                                                     onChange={(e) =>                                                        
                                                         setEditedValues((prev) => ({
@@ -172,12 +153,14 @@ useEffect(() => { 
                                                             {opt.species}
                                                         </option>
                                                     ))}
-                                                </select>                                                
-                                                <button onClick={(e) => {e.stopPropagation(); handleSave(sightingReport.id)}}>Save</button>
-                                                <button onClick={(e) => {e.stopPropagation(); handleCancel(sightingReport.id)}}>Cancel</button></>   
+                                                </select>  
+                                                <div className="edit-buttons">                                              
+                                                <button id="save" onClick={(e) => {e.stopPropagation(); handleSave(sightingReport.id)}}><Check size={20} /></button>
+                                                <button id="cancel" onClick={(e) => {e.stopPropagation(); handleCancel(sightingReport.id)}}><X size={20} /></button>  
+                                                </div> </>
                                                    ) : (
                                                 <>
-                                             {sightingReport.species}<PencilSquare size={20}/>
+                                             {sightingReport.species}<PencilSquare size={15}/>
                                         </>
                                          )}
                                     </td>
