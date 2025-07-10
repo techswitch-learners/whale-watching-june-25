@@ -53,6 +53,7 @@ export default function SightingsMap() {
   
   return (
       <div className="map-container">
+        <h2 className="map-header">Sightings Map</h2>
         <span className="filter-label-text">Filter by Species</span>
         <select aria-label="Select a species" id="species-filter-dropdpwn" className="species-filter" value={species} onChange = {(event) => setSpecies(event.target.value)}>
           <option value="">Select</option>

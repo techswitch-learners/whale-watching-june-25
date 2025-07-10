@@ -7,7 +7,7 @@ body {
 }
 
 .leaderboard-header {
-  @include font(2rem, 2rem, $blueBackground);
+  @include font(1.5rem, 2rem, $blueBackground);
   margin-bottom: 1.5rem;
   letter-spacing: 1px;
   text-shadow: $lightBlueBackground;
@@ -26,12 +26,16 @@ body {
     box-shadow: 0 4px 24px rgba(37, 78, 112, 0.10);
 }
 
+.leaderboard-table {
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
 table {
     width: 50vw;
     border-collapse: collapse;
     margin: 20px 0 40px;
     background-color: $whiteBackground;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
+
 }
 
 .table-header {

@@ -17,7 +17,7 @@ max-width: 100%;
     align-items: center;
 }
 
-.sighting-container {
+.admin-sighting-container {
     max-width: 100%;
     overflow-x: auto;
 }
@@ -27,7 +27,6 @@ max-width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     background-color: $whiteBackground;
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
    
 }
 

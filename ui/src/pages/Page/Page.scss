@@ -78,4 +78,32 @@ label {
   }
 }
 
-  
+h2 {
+  color: $blueBackground;
+  padding: 10px;
+}
+
+.welcome-message-header {
+  padding: 80px 0 0 0;
+}
+
+.welcome-message {
+  @include font(17px, 1.5, $fontColor);
+  max-width: 50vw;
+  margin: 0 auto;
+  padding: 20px 0 50px 0;
+  border-bottom: 1px solid $blueBackground;
+  margin-bottom: 60px;
+
+}
+
+@media (max-width: 426px) {
+.welcome-message-header {
+    max-width: 80%;
+    margin: 0 auto;
+}
+  .welcome-message {
+    max-width: 80vw;
+  }
+
+}

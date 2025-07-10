@@ -56,7 +56,7 @@ export function Leaderboard() {
   return (
     <div className="leaderboard">
       <h2 className="leaderboard-header">Top 3 Whale Watchers</h2>
-      <table>
+      <table className="leaderboard-table">
         <colgroup>
           <col className="narrow-col" />
           <col className="wide-col" />

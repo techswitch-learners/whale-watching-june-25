@@ -23,7 +23,7 @@
   }
 }
 .statistics-title {
-  @include font(2rem, 2rem, $blueBackground);
+  @include font(1.5rem, 2rem, $blueBackground);
   margin-bottom: 1.5rem;
   letter-spacing: 1px;
   text-shadow: $lightBlueBackground;

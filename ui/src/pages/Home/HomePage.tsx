@@ -7,7 +7,8 @@ const HomePage = () => {
     return (
         <Page>
         <div>
-            <h1 className="title">Home Page</h1>
+            <h2 className="welcome-message-header">Join our global community of whale watchers!</h2>
+            <p className="welcome-message">Whether you&rsquo;re planning your first trip or you&rsquo;re a seasoned spotter, you can use our platform to report sightings, discover different species and where to find them, and share your love of whales with fellow members of the community.</p>
             <SightingsMap />
             <Statistics />
             <Leaderboard/>

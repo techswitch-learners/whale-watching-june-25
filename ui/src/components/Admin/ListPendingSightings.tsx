@@ -68,7 +68,7 @@ export function ListPendingSightings() {
     <div className="pending-list-container">
      {sightings.length > 0 ? (
         <>
-            <div className="sighting-container">
+            <div className="admin-sighting-container">
                 <table className= "pending-sightings-table">
                     <thead className="pending-sightings-table-header">
                          <tr>
