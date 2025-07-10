@@ -55,6 +55,36 @@ th {
  border: 1pt solid $whiteBackground;
 }
 
+#species-edit-dropdown {
+    align-items: flex-start;
+    margin-right: 0;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 6px 3px;
+    border: 2px solid rgb(226, 226, 226);
+    @include font(17px, 1, $fontColor);    
+}
+
+#species-edit-dropdown:focus {
+  outline: 2px solid $tealBackground;
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 2px;       
+}
+
+#save, #cancel{
+    width: 30%;  
+    height:10% ;  
+    margin: 5px auto;
+}
+
+.edit-icon{
+    margin-top: 2px;
+    margin-left: 10px;
+}
+
 
 .sighting-report-photo-container {
     position: fixed;
@@ -95,16 +125,10 @@ th {
     display: none;
 }
 
-.delete-sighting-btn {
-    margin-left: auto;
-    margin-right: 50px;
-    width: 220px;
-}
-
-.accept-sighting-btn {
-    margin-left: 50px;
-    margin-right: auto;
-    width: 220px;
+.delete-sighting-btn, .accept-sighting-btn, .view-photo-button {
+    width: 75px;
+    font-size: 0.8rem;
+    
 }
 
 @media (max-width: 1440px) {
@@ -120,6 +144,13 @@ th {
     th {
     padding: 10px 10px;
     }
+    .delete-sighting-btn, .accept-sighting-btn {
+        width: 50px;
+        font-size: 0.85rem;
+    }
+    #species-edit-dropdown {
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 974px) {
@@ -129,10 +160,24 @@ th {
     .pending-sightings-table {
         width: 90vw;
     }
+    .delete-sighting-btn, .accept-sighting-btn {
+        width: 50px;
+        font-size: 0.8rem;
+    }
+    #species-edit-dropdown {
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 768px) {
     .pending-list-container {
+        font-size: 0.72rem;
+    }
+    .delete-sighting-btn, .accept-sighting-btn {
+        width: 50px;
+        font-size: 0.72rem;
+    }
+    #species-edit-dropdown {
         font-size: 0.72rem;
     }
 }
@@ -147,15 +192,19 @@ th {
     .hide-on-mobile {
         display: none;
     }
-    .accept-delete-button {
-        column-span: 1;
-        border: 1px red solid;
+    .delete-sighting-btn-mobile, .accept-sighting-btn-mobile {
+        width: 50px;
+        font-size: 0.7rem;
+
     }
     .show-on-mobile {
         display: table-cell;
     }
-    .accept-delete-button {
-        width: 50%;
+    #species-edit-dropdown {
+        font-size: 0.7rem;
     }
-}
+        
+   
+    
+ }
 

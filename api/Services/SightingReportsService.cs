@@ -2,6 +2,8 @@ using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Models.Request;
 using WhaleSpottingBackend.Models.Response;
+using WhaleSpottingBackend.Models;
+
 
 namespace WhaleSpottingBackend.Services;
 
@@ -11,16 +13,19 @@ public interface ISightingReportsService
     Task<List<SightingReportResponse>> GetAllSightingsResponse();
     void EditSightingReportStatus(int sightingId);
     void DeleteReport(int id);
+    void EditSpecies(int id, EditWhaleSpeciesRequest updatedSpecies);
     Task<List<SightingReport>> GetSightingsByUserId(string userId);
 }
 
-public class SightingReportsService : ISightingReportsService
+    public class SightingReportsService : ISightingReportsService
 {
     private readonly ISightingReportsRepo _sightingReports;
+    private readonly IWhaleSpeciesRepository _whaleSpecies;
 
-    public SightingReportsService(ISightingReportsRepo sightingReports)
+    public SightingReportsService(ISightingReportsRepo sightingReports, IWhaleSpeciesRepository whaleSpecies)
     {
         _sightingReports = sightingReports;
+        _whaleSpecies = whaleSpecies;
     }
 
     public void CreateReport(CreateSightingReportRequest newReport, string userId)
@@ -81,6 +86,14 @@ public class SightingReportsService : ISightingReportsService
             throw new ArgumentException($"Sighting {id} has already been approved");
         }
     }
+
+        public void EditSpecies(int id, EditWhaleSpeciesRequest updatedSpecies)        
+      {
+        SightingReport sightingData = _sightingReports.GetSightingById(id);
+        WhaleSpecies whale = _whaleSpecies.GetWhaleSpeciesById(updatedSpecies.WhaleSpeciesId);
+        sightingData.WhaleSpeciesId = whale.Id;
+        _sightingReports.UpdateSighting(sightingData);
+      }
 
 
 }
