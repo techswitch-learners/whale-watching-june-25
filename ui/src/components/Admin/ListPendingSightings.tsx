@@ -157,8 +157,8 @@ export function ListPendingSightings() {
                                                     ))}
                                                 </select>  
                                                 <div className="edit-buttons">                                              
-                                                <button id="save" onClick={(e) => {e.stopPropagation(); handleSave(sightingReport.id)}}><Check size={10} /></button>
-                                                <button id="cancel" onClick={(e) => {e.stopPropagation(); handleCancel(sightingReport.id)}}><X size={10} /></button>  
+                                                <button id="save" onClick={(e) => {e.stopPropagation(); handleSave(sightingReport.id)}}><Check size={15} /></button>
+                                                <button id="cancel" onClick={(e) => {e.stopPropagation(); handleCancel(sightingReport.id)}}><X size={15} /></button>  
                                                 </div> </>
                                                    ) : (
                                                 <>
