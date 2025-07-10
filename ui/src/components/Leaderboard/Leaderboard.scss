@@ -12,8 +12,10 @@ body {
 }
 
 .leaderboard-header {
-    color: $blueBackground;
-    padding-top: 20px;
+  @include font(2rem, 2rem, $blueBackground);
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  text-shadow: $lightBlueBackground;
 }
 
 .leaderboard {
