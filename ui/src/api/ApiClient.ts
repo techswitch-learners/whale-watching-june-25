@@ -44,6 +44,37 @@ export interface NewUser {
     password: string;
 }
 
+
+export interface UserSighting {
+    id: number;
+    description?: string;
+    dateOfSighting: string;
+    longitude: number;
+    latitude: number;
+    whaleSpeciesId: number
+    whaleSpecies: WhaleSpecies
+    userId: string;
+    user:{
+        username: string;
+    }
+    imageUrl: string
+    status: "approved" | "pending" | "rejected";
+    rejectedReason?: string;
+}
+
+export interface WhaleSpecies {
+    id: number;
+    speciesGroup: string,
+    species: string;
+    latinName: string;
+    habitat: string;
+    maxLengthMeters: number;
+    maxWeightTons: number;
+    conservationStatus: string;
+    maxAge: number;
+    food: string;
+}
+
 export interface SightingReport {
     id: number;
     description: string;
@@ -58,6 +89,7 @@ export interface SightingReport {
 
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
+    console.log(whaleSighting);
 
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
@@ -71,6 +103,23 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     if (!response.ok) {
         throw new Error(await response.json())
     }
+}
+
+export async function getUserSightings() : Promise<UserSighting[]> {
+    const response = await fetch(`http://localhost:5067/sightingreports/my-sightings`, {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    
+    })
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Failed to fetch user sightings")
+    }
+    const data: UserSighting[] = await response.json();
+    return data;
 }
 
 export async function fetchSpecies(): Promise<Species[]> {
@@ -135,8 +184,7 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
         }
 
         throw new Error(errorMessage);
-    }
-    
+    }    
     return response.json();
 }
 

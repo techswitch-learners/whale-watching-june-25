@@ -9,7 +9,6 @@ export function CreateWhaleSightingPage(): JSX.Element {
   if (loginContext.isLoggedIn){  return (
     
     <Page containerClassName="create-whale-sighting-page">
-      <h1 className="title">Submit Whale Sighting</h1>
       <CreateWhaleSightingForm />
     </Page>
   );
