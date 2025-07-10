@@ -7,7 +7,6 @@ const Quiz: React.FunctionComponent = () => {
 
     return (
         <div>
-            <p id="QuizBgImage"></p>
             <p className='QuizTitle'>🐋 What Whale Are You?</p>
             <QnA QuestionSet={WhaleQuiz}/>
         </div>

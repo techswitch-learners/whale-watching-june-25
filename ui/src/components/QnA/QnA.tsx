@@ -127,7 +127,6 @@ const QnA: React.FC<QuestionProps> = (props: QuestionProps) => {
             Next
             </button>
                 {isVisible && <p className='ErrorMessage'>{message} </p>}
-                <br/>
         </div>
     );
 }
@@ -139,7 +138,6 @@ else {
             <h2>{whale?.Description}</h2>
             <br/>
             <h3>Thank you for your participation!</h3>
-            <br/>
             <button onClick={handleTryAgainButtonClick} className="submit-button">
             Try Again
             </button>
