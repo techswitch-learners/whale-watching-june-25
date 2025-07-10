@@ -1,6 +1,5 @@
 @import "../../styles/Constants";
 
-
 .QuizSubtitle {
   font-size: 30px;
   text-align: center;
@@ -12,19 +11,10 @@
   font-size: 35px;
   text-align: center;
   color: $blueBackground;
+  margin: 0 auto;
+  padding-top: 20px;
 }
 
-@media (max-width: 1100px) {
-  .QuizSubtitle {
-    font-size: 25px;
-    padding: 20px 0 10px;
-  }
-
-  .QuizTitle {
-    font-size: 35px;
-    padding: 30px 0 10px;
-  }
-}
 
 @media (max-width: 770px) {
   .QuizSubtitle {
