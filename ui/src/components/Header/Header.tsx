@@ -42,7 +42,8 @@ export function Navbar() {
             {loginContext.isLoggedIn ? 
             (<li><NavLink className="nav-link" to="/my-sightings" onClick={handleShowNavbar}>My Sightings</NavLink></li>): 
             (<></>)}
-                {loginContext.isLoggedIn ? 
+            <li> <NavLink className="nav-link" to="/quiz" onClick={handleShowNavbar} >Whale Quiz</NavLink></li>
+            {loginContext.isLoggedIn ? 
             (<li> <NavLink className="nav-link" to="/" onClick={() => {loginContext.logOut?.();handleShowNavbar();}}>Logout</NavLink></li>) :
             (<li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li>)}
             </ul>
