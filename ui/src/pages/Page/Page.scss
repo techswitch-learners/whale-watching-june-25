@@ -12,33 +12,34 @@ body {
   text-align: center;
 
 
- .main {
+  .main {
     text-align: center;
     box-sizing: border-box;
-    min-height: calc(100vh - #{$header-height} - #{$nav-height} - #{$footer-height});
-  }  
+    min-height: calc(
+      100vh - #{$header-height} - #{$nav-height} - #{$footer-height}
+    );
+  }
 }
 
 .page {
-    background-color: $lightBlueBackground;
-    @include font(17px, 1, $fontColor);
-    border-radius: 20px;
+  background-color: $lightBlueBackground;
+  @include font(17px, 1, $fontColor);
+  border-radius: 20px;
 }
 
 .title {
-    padding: 0;
+  padding: 0;
 }
 
-
-label{
-    @include labelFormInput;
-    margin-bottom: 5px;
+label {
+  @include labelFormInput;
+  margin-bottom: 5px;
 }
 
-input  {
-    @include labelFormInput;
-    margin: 0;
-    border-radius: 3px;
+input {
+  @include labelFormInput;
+  margin: 0;
+  border-radius: 3px;
 }
 
 input {
@@ -46,11 +47,11 @@ input {
 }
 
 input:focus {
-    outline: 3px solid $tealBackground;
-    box-shadow: 0 0 10px $tealBackground;
-  }
+  outline: 3px solid $tealBackground;
+  box-shadow: 0 0 10px $tealBackground;
+}
 
-  form {      
+form {
   padding: 0 80px;
 }
 
@@ -73,7 +74,3 @@ input {
     height: 32px;
   }
 }
-
-
-
-  

@@ -62,7 +62,7 @@ export function ApprovedSightingsList() {
     function handleClickShowImage(imageUrl: string) {
         setsightingImage(imageUrl);
         setShowSightingImage(true);
-    }
+    };
 
     function handleClickHideImage() {
         setShowSightingImage(false);
