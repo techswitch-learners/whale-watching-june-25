@@ -130,6 +130,12 @@ export async function fetchSpecies(): Promise<Species[]> {
     return await response.json();
 }
 
+export async function fetchSpeciesBySpeciesName(species: string): Promise<Species> {
+
+    const response = await fetch(`http://localhost:5067/species/by-name/${species}`);
+    return await response.json();
+}
+
 export async function createUser(newUser: NewUser) {
     const response = await fetch(`http://localhost:5067/users`, {
         method: "POST",
@@ -206,6 +212,21 @@ export async function approveWhaleSighting(id: number): Promise<void> {
         method: "PATCH",
         credentials: "include"
     });
+    if (!response.ok) {
+        throw new Error(await response.text());
+    }
+}
+
+export async function editWhaleSpecies(newSpeciesName:string, id: number): Promise<void> {
+    const species = await fetchSpeciesBySpeciesName(newSpeciesName);    
+    const response = await fetch(`http://localhost:5067/sightingreports/edit/${id}`, {
+        method: "PATCH",
+        headers: {
+        'Content-Type': 'application/json'},
+        credentials: "include",
+        body: JSON.stringify({"WhaleSpeciesId": species.id}),
+    });
+    
     if (!response.ok) {
         throw new Error(await response.text());
     }

@@ -1,14 +1,19 @@
 import React, {useState, useEffect } from "react";
 import "./ListPendingSightings.scss";
-import { fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting } from "../../api/ApiClient";
+import { Species, fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting, fetchSpecies, editWhaleSpecies } from "../../api/ApiClient";
 import {format} from 'date-fns';
+import {PencilSquare, Check, X} from 'react-bootstrap-icons';
 
 export function ListPendingSightings() {
 
     const [sightings, setSightings] = useState<SightingReport[]>([]);
     const [seaData, setSeaData] = useState<Map<number, string>>(new Map());
     const [ sightingImage, setsightingImage ] = useState<string>();
-    const [ showSightingImage, setShowSightingImage ] = useState(false)
+    const [ showSightingImage, setShowSightingImage ] = useState(false);
+    const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);    
+    const [isEditing, setIsEditing] = useState<boolean>();
+    const [editingRowId, setEditingRowId] = useState<number>();
+    const [editedValues, setEditedValues] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
         fetchSightings().then((response) => {
@@ -53,7 +58,7 @@ export function ListPendingSightings() {
         setSightings(pendingSightings);
     }
 
-     function handleClickShowImage(imageUrl: string) {
+    function handleClickShowImage(imageUrl: string) {
         setsightingImage(imageUrl);
         setShowSightingImage(true);
     }
@@ -61,6 +66,44 @@ export function ListPendingSightings() {
     function handleClickHideImage(){
         setShowSightingImage(false);
     }
+
+    const handleEdit = (rowId: number) => {
+        setEditingRowId(rowId);  
+    };
+
+    const handleSave = async(rowId: number) => {
+        const updatedSpecies = editedValues[rowId] ;
+        await editWhaleSpecies(updatedSpecies, rowId);                  
+        setSightings(prev =>
+            prev.map(report =>
+            report.id === rowId
+             ? { ...report, species: editedValues[rowId] }
+            : report
+                ));
+        setEditedValues((prev) => ({
+        ...prev,
+        [rowId]: updatedSpecies,
+        }));
+        setIsEditing(false);        
+    };
+
+
+    const handleCancel = (rowId: number) => {
+        setEditedValues((prev) => {    
+        const updated = { ...prev };
+        delete updated[rowId];
+        return updated;
+        });
+        setEditingRowId(0);
+     };
+
+    useEffect(() => {
+        fetchSpecies()
+        .then((response) => {
+        setSelectedSpecies(response);
+         })
+      .catch((err) => console.error(err));
+    }, [isEditing]);
     
     return (
      <>
@@ -80,6 +123,7 @@ export function ListPendingSightings() {
                             <th>Username:  </th>
                             <th className="hide-on-mobile">Description: </th>
                             <th className="hide-on-mobile">Photo: </th>
+                            <th colSpan={8}>Actions: </th>
                         </tr>
 
                     </thead>
@@ -89,31 +133,45 @@ export function ListPendingSightings() {
                             <>
                                 <tr key={sightingReport.id}>
                                     <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
-                                    <td>{sightingReport.species}</td>
+                                    
+                                    <td onClick={() => {
+                                        handleEdit(sightingReport.id);
+                                                        setIsEditing(true);
+                                                        ;}}>
+                                         {editingRowId === sightingReport.id && isEditing ? (
+                                             <>
+                                                <select id="species-edit-dropdown"                                                  
+                                                    value={editedValues[sightingReport.id] || sightingReport.species}
+                                                    onChange={(e) =>                                                        
+                                                        setEditedValues((prev) => ({
+                                                               ...prev,
+                                                      [sightingReport.id]: e.target.value,
+                                                             }))
+                                                        }                                           
+                                                    autoFocus
+                                                >
+                                                    {selectedSpecies.map((opt) => (
+                                                        <option key={opt.id} value={opt.species}>
+                                                            {opt.species}
+                                                        </option>
+                                                    ))}
+                                                </select>  
+                                                <div className="edit-buttons">                                              
+                                                <button id="save" onClick={(e) => {e.stopPropagation(); handleSave(sightingReport.id)}}><Check size={15} /></button>
+                                                <button id="cancel" onClick={(e) => {e.stopPropagation(); handleCancel(sightingReport.id)}}><X size={15} /></button>  
+                                                </div> </>
+                                                   ) : (
+                                                <>
+                                             {sightingReport.species}<PencilSquare className="edit-icon" size={15}/>
+                                        </>
+                                         )}
+                                    </td>
                                     <td>{seaData.get(sightingReport.id)}</td>
                                     <td className="hide-on-mobile">{sightingReport.latitude}</td>
                                     <td className="hide-on-mobile">{sightingReport.longitude}</td>
                                     <td>{sightingReport.userName}</td>
                                     <td className="hide-on-mobile">{sightingReport.description}</td>
-                                    <td className="hide-on-mobile">{sightingReport.imageUrl !== null && sightingReport.imageUrl !== "" ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
-                                </tr>
-                                <tr>
-                                    <td className="accept-delete-button hide-on-mobile" colSpan={4} >
-                                        <button
-                                            className="delete-sighting-btn"
-                                            onClick={() => handleDeleteSubmit(sightingReport.id)}
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
-                                    <td className="accept-delete-button-mobile show-on-mobile" colSpan={2} >
-                                        <button
-                                            className="delete-sighting-btn-mobile"
-                                            onClick={() => handleDeleteSubmit(sightingReport.id)}
-                                        >
-                                            Delete
-                                        </button>
-                                    </td>
+                                    <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
                                     <td className="accept-delete-button hide-on-mobile" colSpan={4} >
                                         <button
                                             className="accept-sighting-btn"
@@ -130,8 +188,24 @@ export function ListPendingSightings() {
                                             Accept
                                         </button>
                                     </td>
+                                    <td className="accept-delete-button hide-on-mobile" colSpan={4} >
+                                        <button
+                                            className="delete-sighting-btn"
+                                            onClick={() => handleDeleteSubmit(sightingReport.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                    <td className="accept-delete-button-mobile show-on-mobile" colSpan={2} >
+                                        <button
+                                            className="delete-sighting-btn-mobile"
+                                            onClick={() => handleDeleteSubmit(sightingReport.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>                                    
                                 </tr>
-                            </>
+                             </>
                         </React.Fragment>
                         )}
                     </tbody>
@@ -150,4 +224,4 @@ export function ListPendingSightings() {
     </div>
         </>
         );
-    }
+}

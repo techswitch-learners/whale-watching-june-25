@@ -91,7 +91,29 @@ namespace WhaleSpottingBackend.Controllers
 
         }
         
-         [Authorize(Roles = "Admin")]
+        
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("edit/{id}")]
+        public IActionResult EditSpecies(int id,[FromBody] EditWhaleSpeciesRequest updatedSpecies)
+        {
+            try
+            {
+                _sightingReportsService.EditSpecies(id, updatedSpecies);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(new { error = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Something went wrong!!! Please try again later" });
+            }
+            return Ok(new { message = "Species successfully edited" });
+
+        }
+        
+        
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteById(int id)
         {

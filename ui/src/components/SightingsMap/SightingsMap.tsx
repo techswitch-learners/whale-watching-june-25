@@ -28,7 +28,6 @@ export default function SightingsMap() {
     };
        
     const coordinates: LatLngExpression[] = sightings.map(({latitude, longitude}) => [clampLatitude(latitude), longitude]);
-    console.log(coordinates);
     const speciesDropDown = [...new Set(dropDownList)];         
     
 
