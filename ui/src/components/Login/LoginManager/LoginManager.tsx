@@ -21,7 +21,6 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
         sessionStorage.setItem("isAdmin","false");
         setIsLoggedIn(false);
         setIsUserAdmin(false);
-        
     }
 
     function generateContextObject() {

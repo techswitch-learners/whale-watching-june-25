@@ -89,6 +89,7 @@ export interface SightingReport {
 
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
+    console.log(whaleSighting);
 
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
@@ -183,8 +184,7 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
         }
 
         throw new Error(errorMessage);
-    }
-    
+    }    
     return response.json();
 }
 
