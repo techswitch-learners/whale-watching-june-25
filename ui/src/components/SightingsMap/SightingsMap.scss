@@ -1,4 +1,4 @@
-@import "../../styles/Constants";
+@import "../../styles/Constants.scss";
 
 .map {
   width: 60vw;
@@ -59,3 +59,65 @@
     @include font(2.8vw, 1, #000000);
   }
 }
+
+.map-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.filter-label-text {
+    margin-bottom: 3px;
+    font-size: 1rem;
+    font-family: $fontFamily; 
+}
+
+.species-filter {    
+    font-family: $fontFamily;
+    font-size: 1rem;
+    margin-right: 0;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 6px 3px;
+    border: 2px solid rgb(226, 226, 226); 
+}
+
+.species-filter:focus {
+    outline: 2px solid $tealBackground;
+}
+
+
+@media (max-width: 755px) {    
+    .filter-label-text {
+        font-size: 0.8rem;
+    }
+    .species-filter {
+         font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .filter-label-text {
+        font-size: 0.6rem;
+    }
+    .species-filter{
+         font-size: 0.6rem;
+    }
+}
+
+
+@media (max-width: 320px) {
+    .filter-label-text {
+        font-size: 0.4rem;
+    }
+    .species-filter {
+        font-size: 0.4rem;
+    }
+}
+
+
+
+
+
