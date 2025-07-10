@@ -88,6 +88,8 @@ export interface SightingReport {
 
 
 
+
+
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     console.log(whaleSighting);
 
@@ -141,6 +143,7 @@ export async function createUser(newUser: NewUser) {
         throw new Error(await response.json())
     }
 }
+
 
 export async function fetchSightings(): Promise<SightingReport[]> {
     const response = await fetch(`http://localhost:5067/sightingreports/all`);
