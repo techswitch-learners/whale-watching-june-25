@@ -112,7 +112,7 @@ export async function fetchSeaLocation(latitude: number, longitude:number){
             return "Unknown";
         }
 }
-export async function login(email: string, password: string): Promise<{isAdmin: boolean, userId: string}> {
+export async function login(email: string, password: string): Promise<{isAdmin: boolean}> {
 
     if (!email || !password) {
         throw new Error("Email and password are required");
