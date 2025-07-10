@@ -95,7 +95,7 @@ const baseUrl = import.meta.env.REACT_APP_BACKEND_API_BASE_URL === undefined ? i
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     console.log(whaleSighting);
 
-    const response = await fetch(`${baseUrl}/sightingreports/create`, {
+    const response = await fetch(`sightingreports/create`, {
         method: "POST",
         credentials: "include",
         headers: {
