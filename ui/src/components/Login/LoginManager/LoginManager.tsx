@@ -1,4 +1,4 @@
-import { JSX, ReactNode, useState } from "react";
+import { JSX, ReactNode, useEffect, useState } from "react";
 import { LoginContext } from "./LoginContext";
 
 interface LoginManagerProps {
@@ -9,9 +9,18 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
     const [, setIsLoggedIn] = useState(false)
     const [, setIsUserAdmin] = useState(false)
 
+    useEffect(() => {
+        const loggedIn = sessionStorage.getItem("loggedIn") === "true";
+        const admin = sessionStorage.getItem("isAdmin") === "true";
+        setIsLoggedIn(loggedIn);
+        setIsUserAdmin(admin);
+    }, []);
+    
     function logIn(userAdmin: boolean) {
         sessionStorage.setItem("loggedIn", "true");
         sessionStorage.setItem("isAdmin",JSON.stringify(userAdmin));
+        setIsLoggedIn(true);
+        setIsUserAdmin(userAdmin);
         setIsLoggedIn(true);
         setIsUserAdmin(userAdmin);
     }

@@ -10,11 +10,13 @@ $footer-height: 34px;
 body {
   margin: 0;
 
- .main {
+  .main {
     text-align: center;
     box-sizing: border-box;
-    min-height: calc(100vh - #{$header-height} - #{$nav-height} - #{$footer-height});
-  }  
+    min-height: calc(
+      100vh - #{$header-height} - #{$nav-height} - #{$footer-height}
+    );
+  }
 }
 
 .page {
@@ -23,7 +25,7 @@ body {
 }
 
 .title {
-    padding: 0;
+  padding: 0;
 }
 
 .link-style {

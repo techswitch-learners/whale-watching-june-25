@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import logo from "../../assets/Images/wm-logo-sm.webp";
 import { LoginContext } from "../Login/LoginManager/LoginContext";
 
+
 export function Header() {
     return (
         <header className="header">           
