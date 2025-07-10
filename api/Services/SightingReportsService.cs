@@ -14,6 +14,7 @@ public interface ISightingReportsService
     void EditSightingReportStatus(int sightingId);
     void DeleteReport(int id);
     void EditSpecies(int id, EditWhaleSpeciesRequest updatedSpecies);
+    Task<List<SightingReport>> GetSightingsByUserId(string userId);
 }
 
     public class SightingReportsService : ISightingReportsService
@@ -59,6 +60,11 @@ public interface ISightingReportsService
             ImageUrl = sighting.ImageUrl,
             Status = sighting.Status
         }).ToList();
+    }
+
+    public async Task<List<SightingReport>> GetSightingsByUserId(string userId)
+    {
+        return await _sightingReports.GetSightingsByUserId(userId);
     }
     
     public void EditSightingReportStatus(int sightingId)

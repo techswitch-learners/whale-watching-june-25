@@ -40,6 +40,7 @@ export function ListPendingSightings() {
     }, [sightings]);
 
     async function handleDeleteSubmit(id: number) {
+
         await deleteWhaleSighting(id);
         const response = await fetchSightings();
         const pendingSightings = response
