@@ -3,6 +3,8 @@ using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Models.Request;
 using WhaleSpottingBackend.Models.Response;
 using WhaleSpottingBackend.Models;
+using Microsoft.AspNetCore.JsonPatch;
+using Newtonsoft.Json.Converters;
 
 
 namespace WhaleSpottingBackend.Services;
@@ -13,18 +15,18 @@ public interface ISightingReportsService
     Task<List<SightingReportResponse>> GetAllSightingsResponse();
     void EditSightingReportStatus(int sightingId);
     void DeleteReport(int id);
-    void EditSpecies(int id);
+    void EditSpecies(int id, EditWhaleSpeciesRequest updatedSpecies);
 }
 
     public class SightingReportsService : ISightingReportsService
 {
     private readonly ISightingReportsRepo _sightingReports;
-    // private readonly IWhaleSpeciesRepository _whaleReports;
+    private readonly IWhaleSpeciesRepository _whaleSpecies;
 
-    public SightingReportsService(ISightingReportsRepo sightingReports)
+    public SightingReportsService(ISightingReportsRepo sightingReports, IWhaleSpeciesRepository whaleSpecies)
     {
         _sightingReports = sightingReports;
-        // _whaleReports = whaleReports;
+        _whaleSpecies = whaleSpecies;
     }
 
     public void CreateReport(CreateSightingReportRequest newReport, string userId)
@@ -81,15 +83,13 @@ public interface ISightingReportsService
         }
     }
 
-        public void EditSpecies(int id)
-
-        
-    {
+        public void EditSpecies(int id, EditWhaleSpeciesRequest updatedSpecies)        
+      {
         SightingReport sightingData = _sightingReports.GetSightingById(id);
-       // WhaleSpecies whale = _whaleReports.GetWhaleSpeciesByName(newSpecies);
-        sightingData.WhaleSpeciesId = newSpeciesId;
+        WhaleSpecies whale = _whaleSpecies.GetWhaleSpeciesById(updatedSpecies.WhaleSpeciesId);
+        sightingData.WhaleSpeciesId = whale.Id;
         _sightingReports.UpdateSighting(sightingData);
-    }
+      }
 
 
 }

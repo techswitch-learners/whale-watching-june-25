@@ -77,11 +77,11 @@ namespace WhaleSpottingBackend.Controllers
         //To include when fixed 
         //[Authorize(Roles = "Admin")]
         [HttpPatch("edit/{id}")]
-        public IActionResult EditSpecies(int id,[FromBody] JsonPatchDocument<CreateSightingReportRequest> patchDocument )
+        public IActionResult EditSpecies(int id,[FromBody] EditWhaleSpeciesRequest updatedSpecies)
         {
             try
             {
-                _sightingReportsService.EditSpecies(id);
+                _sightingReportsService.EditSpecies(id, updatedSpecies);
             }
             catch (NotFoundException ex)
             {

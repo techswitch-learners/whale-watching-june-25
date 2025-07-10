@@ -22,4 +22,13 @@ public class SpeciesController : ControllerBase
 
         return Ok(result);
     }
+
+    
+    [HttpGet("by-name/{species}")]
+    public async Task<ActionResult<WhaleSpecies>> GetWhalesBySpecies(string species)
+    {
+        var result = await _whaleSpeciesRepository.GetWhaleSpeciesByName(species);
+
+        return Ok(result);
+    }
 }

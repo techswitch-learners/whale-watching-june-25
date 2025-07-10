@@ -1,4 +1,4 @@
-import React, {useState, useEffect, ChangeEvent } from "react";
+import React, {useState, useEffect } from "react";
 import "./ListPendingSightings.scss";
 import { Species, fetchSightings, SightingReport, fetchSeaLocation, deleteWhaleSighting, approveWhaleSighting, fetchSpecies, editWhaleSpecies } from "../../api/ApiClient";
 import {format} from 'date-fns';
@@ -10,12 +10,10 @@ export function ListPendingSightings() {
     const [seaData, setSeaData] = useState<Map<number, string>>(new Map());
     const [ sightingImage, setsightingImage ] = useState<string>();
     const [ showSightingImage, setShowSightingImage ] = useState(false);
-    const [speciesNames, setSpeciesNames] = useState<Species[]>([]);
     const [selectedSpecies, setSelectedSpecies] = useState<Species[]>([]);    
     const [isEditing, setIsEditing] = useState<boolean>();
-    const [selectedValue, setSelectedValue] = useState<string>("");
     const [editingRowId, setEditingRowId] = useState<number>();
-    const [originalValues, setOriginalValues] = useState<{ [key: string]: string }>({});
+    const [originalValues, setOriginalValues] = useState<{ [key: number]: string }>({});
     const [editedValues, setEditedValues] = useState<{ [key: string]: string }>({});
 
     useEffect(() => {
@@ -69,74 +67,46 @@ export function ListPendingSightings() {
         setShowSightingImage(false);
     }
 
-// const handleEditClick = (row: SightingReport) => {
-//   setEditingRowId(row.id);
-//   setEditedValues((prev) => ({
-//     ...prev,
-//     [row.id]: row.species,
-//   }));
-// };
+    const handleEdit = (rowId: number, currentSpecies: string) => {
+        setEditingRowId(rowId);  
+        setOriginalValues((prev) => ({
+        ...prev,
+        [rowId]: currentSpecies,
+        }));
+//         setEditedValues((prev) => ({
+//         ...prev,
+//         [rowId]: currentSpecies,
+//         }));
+    };
+
+    const handleSave = async(rowId: number) => {
+        console.log("Inside save");  
+        const updatedSpecies = editedValues[rowId] ;
+        console.log(updatedSpecies);
+        await editWhaleSpecies(updatedSpecies, rowId);                  
+        setSightings(prev =>
+            prev.map(report =>
+            report.id === rowId
+             ? { ...report, species: editedValues[rowId] }
+            : report
+                ));
+        setEditedValues((prev) => ({
+        ...prev,
+        [rowId]: updatedSpecies,
+        }));
+        console.log(`Saving ${rowId}: ${updatedSpecies}`);       
+        setIsEditing(false);        
+        };
 
 
-const handleEdit = (rowId: number, currentValue: string) => {
-  setEditingRowId(rowId);  
-
-  setOriginalValues((prev) => ({
-    ...prev,
-    [rowId]: currentValue,
-  }));
-
-  setEditedValues((prev) => ({
-    ...prev,
-    [rowId]: currentValue,
-  }));
-};
-
-
-const handleSave = (rowId: number) => {
-   console.log("Inside save");   
-  const newValue = editedValues[rowId];
-  // TODO: Implement your update logic here, e.g., API call or state update
-  console.log(`Saving ${rowId}: ${newValue}`);
-  setEditingRowId(0);
-};
-
-
-const handleCancel = (rowId: number) => {
-  setEditedValues((prev) => ({
-    ...prev,
-    [rowId]: originalValues[rowId],
-  }));
-  setEditingRowId(0);
-};
-
-
-
-
-
-// const handleSelectChange = (e: { target: { value: any; }; }, sightingReport.species: string) => {
-//   const newValue = e.target.value;
-//   setEditedValues((prev) => ({
-//     ...prev,
-//     [sightingReport.species]: newValue,
-//   }));
-// };
-
-
-// const handleSave = (rowId: number) => {
-// //   const newValue = editedValues[rowId];
-// //   editSpecies(newValue, rowId); // Your update logic
-//   setEditingRowId(0); // Exit edit mode
-// };
-
-
-
-    
-//     const handleSave = () => {
-// //         editSpecies(editedValue, rowId);
-//          setEditingRowId(0);
-//          setIsEditing(false);
-//     };
+    const handleCancel = (rowId: number) => {
+        setEditedValues((prev) => {    
+        const updated = { ...prev };
+        delete updated[rowId];
+        return updated;
+        });
+        setEditingRowId(0);
+     };
 
     useEffect(() => {
         fetchSpecies()
@@ -145,6 +115,13 @@ const handleCancel = (rowId: number) => {
          })
       .catch((err) => console.error(err));
     }, [isEditing]);
+
+    
+useEffect(() => {  
+  console.log("Original Values:", originalValues);
+  console.log("Edited Values:", editedValues);
+}, [editedValues, originalValues]);
+
     
     return (
      <>
@@ -173,24 +150,21 @@ const handleCancel = (rowId: number) => {
                             <>
                                 <tr key={sightingReport.id}>
                                     <td>{format(new Date(sightingReport.dateOfSighting), 'dd-MM-yyyy')}</td>
-                                    <td onClick={() => {handleEdit(sightingReport.id, sightingReport.species );
+                                    
+                                    <td onClick={() => {console.log(sightingReport.species);
+                                        handleEdit(sightingReport.id, sightingReport.species );
                                                         setIsEditing(true);
                                                         ;}}>
                                          {editingRowId === sightingReport.id && isEditing ? (
                                              <>
-                                                <select
-                                                    // value={selectedValue}
-                                                    value={editedValues[sightingReport.species]}
-                                                    onChange={(e) =>
-                                                        setEditedValues({
-                                                             ...editedValues,
-                                                             [sightingReport.species]: e.target.value,
-                                                              })
+                                                <select                                                     
+                                                    value={editedValues[sightingReport.id] || sightingReport.species}
+                                                    onChange={(e) =>                                                        
+                                                        setEditedValues((prev) => ({
+                                                               ...prev,
+                                                      [sightingReport.id]: e.target.value,
+                                                             }))
                                                         }                                           
-                                                    onBlur={() => {
-//                                                     editSpecies(selectedValue, sightingReport.id);
-                                                       setIsEditing(false);
-                                                        }}    
                                                     autoFocus
                                                 >
                                                     {selectedSpecies.map((opt) => (
@@ -198,9 +172,9 @@ const handleCancel = (rowId: number) => {
                                                             {opt.species}
                                                         </option>
                                                     ))}
-                                                </select>
-                                                <button onClick={() => handleSave(sightingReport.id)}>Save</button>
-                                                <button onClick={() => handleCancel(sightingReport.id)}>Cancel</button></>   
+                                                </select>                                                
+                                                <button onClick={(e) => {e.stopPropagation(); handleSave(sightingReport.id)}}>Save</button>
+                                                <button onClick={(e) => {e.stopPropagation(); handleCancel(sightingReport.id)}}>Cancel</button></>   
                                                    ) : (
                                                 <>
                                              {sightingReport.species}<PencilSquare size={20}/>

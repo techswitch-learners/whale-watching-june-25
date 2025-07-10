@@ -7,7 +7,9 @@ namespace WhaleSpottingBackend.Repositories
     public interface IWhaleSpeciesRepository
     {
         Task<IEnumerable<WhaleSpecies>> GetWhaleSpecies();
-        // WhaleSpecies GetWhaleSpeciesByName(string newSpecies);
+        WhaleSpecies GetWhaleSpeciesById(int newSpeciesId);
+        Task<WhaleSpecies> GetWhaleSpeciesByName(string speciesName);
+
     }
 
     public class WhaleSpeciesRepository : IWhaleSpeciesRepository
@@ -24,15 +26,26 @@ namespace WhaleSpottingBackend.Repositories
             return await _context.WhaleSpecies.ToListAsync();
         }
 
-        // public WhaleSpecies GetWhaleSpeciesByName(string newSpecies)
-        // {
-        //     var whaleReport = _context.WhaleSpecies
-        //                             .FirstOrDefault(whale => whale.Species == newSpecies);
-        //     if (whaleReport == null)
-        //     {
-        //         throw new Exceptions.NotFoundException($"Sighting report with name {newSpecies} not found");
-        //     }
-        //     return whaleReport;
-        // }
+        public WhaleSpecies GetWhaleSpeciesById(int newSpeciesId)
+        {
+            var whale = _context.WhaleSpecies
+                                    .FirstOrDefault(whale => whale.Id == newSpeciesId);
+            if (whale == null)
+            {
+                throw new Exceptions.NotFoundException($"Whale with {newSpeciesId} id not found");
+            }
+            return whale;
+        }
+
+        public async Task<WhaleSpecies> GetWhaleSpeciesByName(string speciesName)
+        {
+            var whale = await _context.WhaleSpecies
+                                    .FirstOrDefaultAsync(whale => whale.Species == speciesName);
+            if (whale == null)
+            {
+                throw new Exceptions.NotFoundException($"Whale with {speciesName} speciesName not found");
+            }
+            return whale;
+        }
     };
 }
