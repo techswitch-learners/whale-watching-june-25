@@ -21,6 +21,8 @@ export function LoginManager(props: LoginManagerProps): JSX.Element {
         sessionStorage.setItem("isAdmin",JSON.stringify(userAdmin));
         setIsLoggedIn(true);
         setIsUserAdmin(userAdmin);
+        setIsLoggedIn(true);
+        setIsUserAdmin(userAdmin);
     }
 
     function logOut() {

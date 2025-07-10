@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import logo from "../../assets/Images/wm-logo-sm.webp";
 import { LoginContext } from "../Login/LoginManager/LoginContext";
 
+
 export function Header() {
     return (
         <header className="header">           
@@ -38,6 +39,9 @@ export function Navbar() {
             (<></>)}
             <li> <NavLink className="nav-link" to="/add-new-sighting" onClick={handleShowNavbar} >Report Sighting</NavLink></li>
             <li> <NavLink className="nav-link" to="/info" onClick={handleShowNavbar} >Info</NavLink></li>
+            {loginContext.isLoggedIn ? 
+            (<li><NavLink className="nav-link" to="/my-sightings" onClick={handleShowNavbar}>My Sightings</NavLink></li>): 
+            (<></>)}
                 {loginContext.isLoggedIn ? 
             (<li> <NavLink className="nav-link" to="/" onClick={() => {loginContext.logOut?.();handleShowNavbar();}}>Logout</NavLink></li>) :
             (<li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li>)}
