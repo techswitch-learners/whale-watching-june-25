@@ -60,7 +60,6 @@ label{
     flex-direction: column;
     align-items: flex-start;
     flex-grow: 1;
-    // align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
     border-radius: 5px;
@@ -120,12 +119,14 @@ label{
    
 }
 
-.leaflet-container {
-  width: 600px;
+.map-container .leaflet-container {
+  width: 99.8%;
   height: 350px;
   display: flex;
   margin: 10px 1px;
   border-radius: 5px;
+  position: relative;
+  z-index: 0;
 }
 
 
@@ -157,12 +158,12 @@ label{
 }
 
 
-@media (max-width: 755px) {    
+@media (max-width: 768px) {    
     .report-sighting-header {
     font-size: 1rem;
     }
 
-    .leaflet-container {
+    .map-container .leaflet-container {
         width:100.5%;
     }    
 
@@ -187,7 +188,7 @@ label{
         width: 97%;
     }
 
-    .leaflet-container {
+    .map-container .leaflet-container {
         width: 99.5%;
         height: 200px;
     } 
@@ -213,7 +214,7 @@ label{
         height: 17px;
     }
 
-    .leaflet-container {
+    .map-container .leaflet-container {
         width: 98.8%;
     } 
 

@@ -61,7 +61,7 @@ export default function SightingsMap() {
             <option key = {index} value={element}>{element}</option>
           ))}
           </select>
-        <div className="map">
+        <div id="map-home-page" className="map">
           <MapContainer
            center={[25, 0]} 
            zoom={window.innerWidth < 768 ? 1 : 2}
