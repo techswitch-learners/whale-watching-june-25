@@ -46,7 +46,10 @@ export function Navbar() {
             (<li> <NavLink className="nav-link" to="/" onClick={() => {loginContext.logOut?.();handleShowNavbar();}}>Logout</NavLink></li>) :
             (<li> <NavLink className="nav-link" to="/login" onClick={handleShowNavbar} >Login</NavLink></li>)}
             </ul>
+            <div id="navbar-footer">
             <img id="whale-museum-logo-navbar" src={logo} alt="whale-museum-logo"></img>
+            <p>&nbsp; &copy; {new Date().getFullYear()} Whale Watching. All rights reserved.</p>      
+            </div>
             </div>
             </nav>
         </>

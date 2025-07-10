@@ -7,7 +7,7 @@
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.15);
   padding: 1.5rem 0 2rem;
   margin: 2.5rem auto;
-  width: 90vw;
+  width: 80vw;
   text-align: center;
   font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
 }
@@ -76,3 +76,9 @@
       width: 60vw;
   }
 }
+
+@media (max-width: 600px) {
+    .statistics-card {
+        width: 90vw;
+    }
+  }

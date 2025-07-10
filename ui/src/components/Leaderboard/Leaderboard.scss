@@ -6,11 +6,6 @@ body {
     color: $fontColor;
 }
 
-#root {
-    width: 100vw;
-    padding: 0;
-}
-
 .leaderboard-header {
   @include font(2rem, 2rem, $blueBackground);
   margin-bottom: 1.5rem;
@@ -19,7 +14,7 @@ body {
 }
 
 .leaderboard {
-    width: 60vw;
+    width: 80vw;
     height: 340px;
     margin: 40px auto;
     display: flex;
@@ -108,4 +103,11 @@ table tr:nth-of-type(even) {
     .leaderboard {
         height: 100vh;
     }
+}
+
+
+@media (min-width: 1024px) {
+  .leaderboard {
+      width: 60vw;
+  }
 }

@@ -62,7 +62,7 @@ body, #root {
   display: none;
 }
 
-#whale-museum-logo-navbar{
+#navbar-footer {
   display: none;
 }
 
@@ -146,11 +146,23 @@ body, #root {
   .nav-elements ul li {
     margin: 22px 20px 0 20px;
     padding-left: 2px;
-    padding-top: 30px;
+    padding-top: 10px;
     border-bottom: 1px solid $whiteBackground;
   }
 
+    #navbar-footer {
+    display: block;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    padding: 0 0 80px 15px;
+    p {
+      font-size: 0.65rem;
+      color: $whiteBackground;
+    }
+  }
+
   #whale-museum-logo-navbar{
-    display: none;
+      height: 30px;
   }
 }

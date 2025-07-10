@@ -8,8 +8,6 @@ $lightBlueBackground: #E9F1F7;
 
 $fontFamily: 'Lato', sans-serif;
 $fontColor: black;
-$headerFontFamily: 'Sniglet' ;
-
 
 $buttonBackground: #254e70;
 
@@ -27,7 +25,7 @@ $spacing-medium: 20px;
 }
 
 @mixin headerFont($font-size, $line-height, $color) {
-  font-family: $headerFontFamily;
+  font-family: $fontFamily;
   font-size: $font-size;
   line-height: $line-height;
   color: $color;
@@ -66,7 +64,7 @@ $spacing-medium: 20px;
 }
 
 @mixin navFont() {
-  @include font(21px, 2, $whiteBackground);
+  @include font(18px, 2, $whiteBackground);
 }
 
 @mixin h1font() {

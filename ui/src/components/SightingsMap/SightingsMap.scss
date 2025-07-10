@@ -37,7 +37,7 @@
     font-family: $fontFamily;
     font-size: 1rem;
     margin-right: 0;
-    margin-bottom: 5px;
+    margin-bottom: 16px;
     border-radius: 5px;
     padding: 6px 3px;
     border: 2px solid rgb(226, 226, 226); 
@@ -66,17 +66,11 @@
     }
 }
 
-
-@media (max-width: 320px) {
-    .filter-label-text {
-        font-size: 0.4rem;
-    }
-    .species-filter {
-        font-size: 0.4rem;
+@media (max-width: 600px) {
+    .leaflet-container {
+        width: 90vw;
     }
 }
-
-
 
 
 
