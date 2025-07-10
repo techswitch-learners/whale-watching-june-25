@@ -24,7 +24,7 @@ export default function App(): ReactElement {
                  <Routes>
                      <Route path='/' element={<HomePage/>}/>
                      <Route path='/login' element={<LoginPage/>}/>
-                     <Route path='/profile' element={<UserProfilePage/>}/>
+                     <Route path='/my-sightings' element={<UserProfilePage/>}/>
                      <Route path="/add-new-sighting" element={<CreateWhaleSightingPage/>}/>
                      <Route path="/sign-up" element={<SignUp/>}/>            
                      <Route path='/info' element={<WhaleInfoPage />}></Route>

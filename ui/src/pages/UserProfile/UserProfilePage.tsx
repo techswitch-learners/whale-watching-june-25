@@ -4,7 +4,7 @@ import './UserProfilePage.scss';
 const UserProfilePage = () => {
   return (
     <div className = "user-profile">
-        <h1> My Profile</h1>
+        <h1> My Sightings</h1>
         <UserSightings/>
     </div>
   );

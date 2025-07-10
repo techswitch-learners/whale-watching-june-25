@@ -105,7 +105,7 @@ export async function createWhaleSighting(whaleSighting: WhaleSighting) {
 }
 
 export async function getUserSightings() : Promise<UserSighting[]> {
-    const response = await fetch(`http://localhost:5067/sightingreports/my-posts`, {
+    const response = await fetch(`http://localhost:5067/sightingreports/my-sightings`, {
         method: "GET",
         credentials: "include",
         headers: {
