@@ -1,4 +1,4 @@
-import { JSX, useEffect, useState } from "react";
+import { JSX, useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import "../WhaleSighting/CreateWhaleSightingForm.scss";
 import {
@@ -13,9 +13,6 @@ import { LocationMarker } from "../../LocationMarker/LocationMarker.tsx";
 import { MapContainer, TileLayer } from 'react-leaflet'
 import { latLng, LatLng } from 'leaflet'
 import "leaflet/dist/leaflet.css";
-
-
-
 
 type FormStatus = "READY" | "SUBMITTING" | "ERROR" | "FINISHED";  
 
@@ -33,7 +30,7 @@ export function CreateWhaleSightingForm(): JSX.Element {
       longitude: 0,
       description: "",
       whaleSpeciesId: 0,
-      imageUrl: ""
+      imageUrl: "", 
     },
   });
   const [status, setStatus] = useState<FormStatus>("READY");
@@ -85,7 +82,6 @@ export function CreateWhaleSightingForm(): JSX.Element {
       ...data,
       imageUrl: url,
       date: new Date(data.date).toISOString().split('T')[0],
-      userId: "7627a0c2-3af2-4bdb-8939-8cd85b53bc2c",
     };
     createWhaleSighting(sightingData)
       .then(() => setStatus("FINISHED"))

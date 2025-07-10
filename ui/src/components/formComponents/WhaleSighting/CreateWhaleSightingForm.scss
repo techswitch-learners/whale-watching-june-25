@@ -20,8 +20,9 @@ h1 {
     padding: 8px 15px 40px 15px;
     background-color: white;
     border-radius: 11px;
-    margin: 50px 0;
+    margin: 50px auto;
     overflow: hidden;
+    max-width: 665px;
 }
 
 
@@ -32,6 +33,7 @@ h1 {
     padding: 0 30px;
     font-family: $fontFamily;
     max-width: 800px;
+    margin: 0 auto;
 }
 
 input {
@@ -39,7 +41,7 @@ input {
     flex-flow: column;    
     align-content: center;
     justify-content: center;
-    align-items: center
+    align-items: center;
 }
 
 label{
@@ -47,7 +49,6 @@ label{
     flex-direction: column;
     align-items: flex-start;
     flex-grow: 1;
-    align-items: center;
     justify-content: space-between;
     gap: 4px;
     margin-bottom: 5px;
@@ -59,7 +60,7 @@ label{
     flex-direction: column;
     align-items: flex-start;
     flex-grow: 1;
-    align-items: center;
+    // align-items: center;
     justify-content: space-between;
     margin-bottom: 5px;
     border-radius: 5px;
@@ -76,7 +77,6 @@ label{
 .form-label {
     padding-bottom: 3px;
     font-size: 1rem;
-
 }
 
 .label-text{
@@ -161,10 +161,6 @@ label{
         width:100.5%;
     }    
 
-    .report-sighting-form-container{
-        width: 70vw;
-    }
-
     .form-label, .form-input{
         font-size: 0.8rem;
     }
@@ -173,12 +169,17 @@ label{
 
 @media (max-width: 425px) {
     .form-input {
-        width: 95.1%;
+        width: 96.4%;
         padding-bottom: 1px;
+        height: 19px;
     }
 
     .image-upload-sucessful-container p {
     font-size: 0.8rem;
+    }
+
+    .form-input {
+        width: 97%;
     }
 
     .leaflet-container {
@@ -202,8 +203,9 @@ label{
         padding: 0 15px;
     }
     .form-input {
-        width: 94.1%;
+        width: 96%;
         padding-bottom: 0;
+        height: 17px;
     }
 
     .leaflet-container {

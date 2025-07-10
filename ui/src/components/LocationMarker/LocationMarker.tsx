@@ -13,7 +13,7 @@ type LocationMarkerProps = {
     description: string;
     whaleSpeciesId: number;
     imageUrl: string;
-    userId: string;}>;
+    }>;
 }
 
 export function LocationMarker( locationMarkerProps: LocationMarkerProps) {

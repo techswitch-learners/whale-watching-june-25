@@ -58,6 +58,7 @@ export interface SightingReport {
 
 
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
+    console.log(whaleSighting);
 
     const response = await fetch(`http://localhost:5067/sightingreports/create`, {
         method: "POST",
@@ -111,7 +112,7 @@ export async function fetchSeaLocation(latitude: number, longitude:number){
             return "Unknown";
         }
 }
-export async function login(email: string, password: string): Promise<{isAdmin: boolean}> {
+export async function login(email: string, password: string): Promise<{isAdmin: boolean, userId: string}> {
 
     if (!email || !password) {
         throw new Error("Email and password are required");
@@ -135,8 +136,7 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
         }
 
         throw new Error(errorMessage);
-    }
-    
+    }    
     return response.json();
 }
 
