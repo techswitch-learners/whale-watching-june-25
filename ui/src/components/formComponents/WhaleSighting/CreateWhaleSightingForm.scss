@@ -63,7 +63,7 @@ label{
     justify-content: space-between;
     margin-bottom: 5px;
     border-radius: 5px;
-    width:98.5%;
+    width:98.35%;
     padding: 3px 3px;
     border: 2px solid rgb(226, 226, 226);
     font-size: 1rem;
@@ -99,7 +99,7 @@ label{
     @include primaryButton;    
     align-self: center;
     margin-top: 10px;
-    width: fit-content;
+    //width: fit-content;
     padding: 10px 10px;
             
 }
@@ -164,18 +164,22 @@ label{
     }
 
     .map-container .leaflet-container {
-        width:100.5%;
+        width:100%;
     }    
 
     .form-label, .form-input{
         font-size: 0.8rem;
     }
+
+    .form-input {
+        width: 97%;
+    }
 }
 
 
-@media (max-width: 425px) {
+@media (max-width: 426px) {
     .form-input {
-        width: 96.4%;
+        width: 94%;
         padding-bottom: 1px;
         height: 19px;
     }

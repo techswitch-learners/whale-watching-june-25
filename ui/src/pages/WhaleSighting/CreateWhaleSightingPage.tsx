@@ -17,7 +17,9 @@ export function CreateWhaleSightingPage(): JSX.Element {
 } else {
   return (
     <Page>
+      <div className="login-prompt-container">
       <p className="login-prompt"><a href="/login" className="link-style">Log in</a> to report a sighting</p>
+      </div>
     </Page>
   );
 }
