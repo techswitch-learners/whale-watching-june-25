@@ -40,7 +40,8 @@ public class AccountsLoginController : ControllerBase
         }
         bool isAdmin = false;
         var roles = await _userManager.GetRolesAsync(user);
-        if (roles.Contains("Admin")) {
+        if (roles.Contains("Admin"))
+        {
             isAdmin = true;
         }
         return Ok(new { message = "Login successful", isAdmin });

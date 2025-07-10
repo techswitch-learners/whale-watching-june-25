@@ -10,7 +10,6 @@ export function CreateWhaleSightingPage(): JSX.Element {
     
     <Page>
       <div  className="create-whale-sighting-page">
-        <h1 className="title">Submit Whale Sighting</h1>
         <CreateWhaleSightingForm />
       </div>
     </Page>
