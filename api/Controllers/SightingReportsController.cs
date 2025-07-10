@@ -5,7 +5,6 @@ using WhaleSpottingBackend.Models.Response;
 using Microsoft.AspNetCore.Authorization;
 using WhaleSpottingBackend.Exceptions;
 using System.Security.Claims;
-using Microsoft.AspNetCore.JsonPatch;
 
 namespace WhaleSpottingBackend.Controllers
 {

@@ -3,8 +3,6 @@ using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Models.Request;
 using WhaleSpottingBackend.Models.Response;
 using WhaleSpottingBackend.Models;
-using Microsoft.AspNetCore.JsonPatch;
-using Newtonsoft.Json.Converters;
 
 
 namespace WhaleSpottingBackend.Services;

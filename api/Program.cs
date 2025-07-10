@@ -5,8 +5,6 @@ using WhaleSpottingBackend.Models.Database;
 using WhaleSpottingBackend.Repositories;
 using WhaleSpottingBackend.Services;
 using WhaleSpottingBackend.Helpers;
-using Microsoft.AspNetCore.JsonPatch;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +26,6 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
-// builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddScoped<IWhaleSpeciesRepository, WhaleSpeciesRepository>();
 builder.Services.AddScoped<ISightingReportsRepo, SightingReportsRepo>();
 builder.Services.AddScoped<ISightingReportsService, SightingReportsService>();
