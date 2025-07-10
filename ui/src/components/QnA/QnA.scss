@@ -1,0 +1,155 @@
+@import "../../styles/Constants";
+
+
+li {
+  list-style-type: none;
+
+}
+
+#Question {
+  font-size: 22px;
+  text-align: left;
+  padding-left: 50px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+
+.Question {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $whiteBackground;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 13px;
+  box-shadow: 02px 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.Answer {
+  display: flex;
+  justify-content: left;
+  padding-left: 50px;
+}
+
+label {
+  font-size: 20px;
+  text-align: left;
+  align-items: start;
+  clear: none;
+  padding: 0px 1em 0px 8px;
+  padding-left: 20px;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+input[type=radio] {
+  float: left;
+  margin: 2px 0 0 2px;
+  width: 15px;
+  height: 15px;
+}
+
+button {
+  font-size: 15px;
+  width: 10vw;
+}
+
+
+.ErrorMessage {
+  color: $errorFontColor;
+  font-size: 30px;
+}
+
+ul {
+  padding-left: 10px;
+}
+
+.label-answers {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.FinalResult {
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  #Question {
+    font-size: 20px;
+    padding-left: 20px;
+  }
+
+  .Question {
+    margin-left: auto
+  }
+
+  label {
+    font-size: 18px;
+    align-items: start;
+  }
+
+  .Answer {
+    padding-left: 20px;
+  }
+
+  button {
+    font-size: 15px;
+  }
+
+
+  .ErrorMessage {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 766px) {
+  button {
+    font-size: 15px;
+  }
+
+}
+
+@media (max-width: 485px) {
+  #Question {
+    font-size: 15px;
+    padding-left: 15px;
+  }
+
+  .Question {
+    margin-left: auto;
+  }
+
+  .tryagain-button {
+    margin-bottom: 22vh;
+    font-size: 10px;
+    width: auto;
+  }
+
+  label {
+    font-size: 13px;
+    padding-left: 15px;
+    align-items: start;
+  }
+
+  button {
+    font-size: 15px;
+  }
+
+  input[type=radio] {
+    width: 5%;
+
+  }
+}
+
+@media (min-width: 1024px) {
+  .Question {
+    max-width: 50vw;
+    margin: 0 auto;
+  }
+}

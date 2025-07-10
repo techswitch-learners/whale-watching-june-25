@@ -12,6 +12,7 @@ import {LoginManager } from './components/Login/LoginManager/LoginManager'
 import WhaleInfoPage from './pages/WhaleInfo/WhaleInfoPage'
 import { Sightings } from './pages/Sightings/Sightings'
 import { Footer } from './components/Footer/Footer';
+import Quiz from './pages/Quiz/Quiz';
 
 
 export default function App(): ReactElement {
@@ -29,7 +30,8 @@ export default function App(): ReactElement {
                      <Route path="/sign-up" element={<SignUp/>}/>            
                      <Route path='/info' element={<WhaleInfoPage />}></Route>
                      <Route path="/sightings" element={<Sightings/>}/>
-                     <Route path="/admin" element={<AdminDashboardPage />}/>    
+                     <Route path="/admin" element={<AdminDashboardPage />}/> 
+                     <Route path="/quiz" element={<Quiz/>}/>    
                   </Routes>
                   <Footer />      
          </BrowserRouter>

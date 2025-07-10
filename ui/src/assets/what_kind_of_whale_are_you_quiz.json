@@ -1,0 +1,251 @@
+{
+  "Questions": [
+    {
+      "Question": "What kind of music do you enjoy most?",
+      "Options": [
+        {
+          "Text": "I like rhythmic and expressive tunes",
+          "Species": "Humpback"
+        },
+        {
+          "Text": "I like calm and ambient sounds",
+          "Species": "Blue"
+        },
+        {
+          "Text": "I like energetic and fast-paced beats",
+          "Species": "Minke"
+        },
+        {
+          "Text": "I like playful and cheerful melodies",
+          "Species": "Beluga"
+        }
+      ]
+    },
+    {
+      "Question": "What role do you usually take in a group project?",
+      "Options": [
+        {
+          "Text": "I like leading and organizing the team",
+          "Species": "Orca"
+        },
+        {
+          "Text": "I like supporting quietly from the background",
+          "Species": "Beaked"
+        },
+        {
+          "Text": "I like keeping the mood light and fun",
+          "Species": "Short-finned Pilot"
+        },
+        {
+          "Text": "I like contributing creative ideas",
+          "Species": "Humpback"
+        }
+      ]
+    },
+    {
+      "Question": "What\u2019s your favorite time of day?",
+      "Options": [
+        {
+          "Text": "I like early mornings when it's peaceful",
+          "Species": "Blue"
+        },
+        {
+          "Text": "I like late nights when I can reflect",
+          "Species": "Beaked"
+        },
+        {
+          "Text": "I like afternoons when I\u2019m most productive",
+          "Species": "Orca"
+        },
+        {
+          "Text": "I like evenings when I can socialize",
+          "Species": "Beluga"
+        }
+      ]
+    },
+    {
+      "Question": "What motivates you the most?",
+      "Options": [
+        {
+          "Text": "I like achieving goals with my team",
+          "Species": "Orca"
+        },
+        {
+          "Text": "I like expressing myself creatively",
+          "Species": "Humpback"
+        },
+        {
+          "Text": "I like discovering new things",
+          "Species": "Beaked"
+        },
+        {
+          "Text": "I like making others smile",
+          "Species": "Beluga"
+        }
+      ]
+    },
+    {
+      "Question": "What is your ideal weekend activity?",
+      "Options": [
+        {
+          "Text": "Exploring new places with friends",
+          "Species": "Orca"
+        },
+        {
+          "Text": "Singing, dancing, or performing",
+          "Species": "Humpback"
+        },
+        {
+          "Text": "Relaxing somewhere quiet and peaceful",
+          "Species": "Blue"
+        },
+        {
+          "Text": "Speeding through a challenge or race",
+          "Species": "Minke"
+        }
+      ]
+    },
+    {
+      "Question": "How do you usually communicate?",
+      "Options": [
+        {
+          "Text": "I am expressive and love to talk",
+          "Species": "Beluga"
+        },
+        {
+          "Text": "I am quiet but observant",
+          "Species": "Beaked"
+        },
+        {
+          "Text": "I am strategic and only speak when needed",
+          "Species": "Orca"
+        },
+        {
+          "Text": "I am playful and love group chats",
+          "Species": "Short-finned Pilot"
+        }
+      ]
+    },
+    {
+      "Question": "What is your dream travel destination?",
+      "Options": [
+        {
+          "Text": "A tropical island with deep blue waters",
+          "Species": "Blue"
+        },
+        {
+          "Text": "A remote, icy coastline",
+          "Species": "Beluga"
+        },
+        {
+          "Text": "A vibrant coastal city",
+          "Species": "Orca"
+        },
+        {
+          "Text": "Somewhere mysterious and hard to reach",
+          "Species": "Beaked"
+        }
+      ]
+    },
+    {
+      "Question": "What is your biggest strength?",
+      "Options": [
+        {
+          "Text": "Creativity and expression",
+          "Species": "Humpback"
+        },
+        {
+          "Text": "Intelligence and teamwork",
+          "Species": "Orca"
+        },
+        {
+          "Text": "Calmness and grace",
+          "Species": "Blue"
+        },
+        {
+          "Text": "Curiosity and adaptability",
+          "Species": "Beluga"
+        }
+      ]
+    },
+    {
+      "Question": "How do you handle challenges?",
+      "Options": [
+        {
+          "Text": "I dive deep and think things through",
+          "Species": "Beaked"
+        },
+        {
+          "Text": "I face them head-on with energy",
+          "Species": "Orca"
+        },
+        {
+          "Text": "I rely on my instincts and experience",
+          "Species": "Blue"
+        },
+        {
+          "Text": "I stay calm and go with the flow",
+          "Species": "Beluga"
+        }
+      ]
+    },
+    {
+      "Question": "What is your social style?",
+      "Options": [
+        {
+          "Text": "I love being in a group or pod",
+          "Species": "Short-finned Pilot"
+        },
+        {
+          "Text": "I enjoy solo time but stay connected",
+          "Species": "Beaked"
+        },
+        {
+          "Text": "I am a leader in my circle",
+          "Species": "Orca"
+        },
+        {
+          "Text": "I am shy but loyal to my close friends",
+          "Species": "Blue"
+        }
+      ]
+    }
+  ],
+  "Results": [{
+    
+      "Species": "Orca",
+      "Title": "You are an Orca!",
+      "Description": "Smart, strategic, and fiercely loyal. You thrive in teams and always know how to get what you want."
+    },
+    {
+      "Species": "Humpback",
+      "Title": "You are a Humpback Whale!",
+      "Description": "You are expressive, creative, and love to make a splash. Just like the humpback, your songs and stories captivate everyone around you."
+    },
+    {
+    "Species": "Blue" ,
+      "Title": "You are a Blue Whale!",
+      "Description": "You are calm, majestic, and the gentle giant of your group. You carry great wisdom and move through life with grace."
+    },
+    {
+      "Species": "Beluga",
+      "Title": "You are a Beluga!",
+      "Description": "Playful, social, and full of charm. You love connecting with others and bringing joy to your pod."
+    },
+    {
+      "Species": "Beaked",
+      "Title": "You are a Beaked Whale!",
+      "Description": "Mysterious and elusive, you prefer the quiet depths. You are observant, thoughtful, and full of surprises."
+    },
+    {
+    "Species":"Short-finned Pilot",
+      "Title": " You are a Short-finned Pilot Whale!",
+      "Description": "You are social, loyal, and love being part of a close-knit group. You thrive in community and value strong bonds."
+    },
+    {"Species": "Minke",
+      "Title": "You are a Minke Whale!",
+      "Description": "Fast, agile, and always on the move. You are quick-witted and love a good challenge."
+    }
+  
+  ]
+}
