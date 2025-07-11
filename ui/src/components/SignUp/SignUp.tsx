@@ -1,8 +1,7 @@
-import { FormEvent, JSX, useContext, useState} from "react";
+import { FormEvent, JSX, useState} from "react";
 import "./SignUp.scss";
 import { createUser } from "../../api/ApiClient";
 import { Navigate } from 'react-router-dom';
-import { LoginContext } from "../Login/LoginManager/LoginContext";
 
 
 enum FormStatusEnum 
@@ -17,7 +16,6 @@ enum FormStatusEnum
 
 
 export function SignUpForm(): JSX.Element {
-    const loginContext = useContext(LoginContext);
     const [status, setStatus] = useState<FormStatusEnum>(FormStatusEnum.Ready);
     const [formInput, setFormInput] = useState({
         username: "",
@@ -132,8 +130,6 @@ export function SignUpForm(): JSX.Element {
         }
         createUser(newUser)
             .then(() => {
-                const isUserAdmin = false;
-                loginContext.logIn(isUserAdmin)
                 setStatus(FormStatusEnum.Finished)
             })
             .catch(() => setStatus(FormStatusEnum.Error));
@@ -141,7 +137,7 @@ export function SignUpForm(): JSX.Element {
 
     if (status === "FINISHED") {
          
-        return <Navigate to="/add-new-sighting" replace />;
+        return <Navigate to="/login" replace />;
     }
 
     return (
