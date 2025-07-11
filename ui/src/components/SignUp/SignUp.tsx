@@ -132,8 +132,6 @@ export function SignUpForm(): JSX.Element {
         }
         createUser(newUser)
             .then(() => {
-                const isUserAdmin = false;
-                loginContext.logIn(isUserAdmin)
                 setStatus(FormStatusEnum.Finished)
             })
             .catch(() => setStatus(FormStatusEnum.Error));
