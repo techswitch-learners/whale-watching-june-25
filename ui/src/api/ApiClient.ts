@@ -92,7 +92,7 @@ const baseUrl = import.meta.env.VITE === undefined ? import.meta.env.VITE_BACKEN
 export async function createWhaleSighting(whaleSighting: WhaleSighting) {
     console.log(whaleSighting);
 
-    const response = await fetch(`sightingreports/create`, {
+    const response = await fetch(`${baseUrl}/sightingreports/create`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -131,7 +131,7 @@ export async function fetchSpecies(): Promise<Species[]> {
 
 export async function fetchSpeciesBySpeciesName(species: string): Promise<Species> {
 
-    const response = await fetch(`http://localhost:5067/species/by-name/${species}`);
+    const response = await fetch(`${baseUrl}/species/by-name/${species}`);
     return await response.json();
 }
 
@@ -151,7 +151,7 @@ export async function createUser(newUser: NewUser) {
 
 
 export async function fetchSightings(): Promise<SightingReport[]> {
-    const response = await fetch(`sightingreports/all`);
+    const response = await fetch(`${baseUrl}/sightingreports/all`);
     const data = await response.json();
     return data;
 }
@@ -159,7 +159,7 @@ export async function fetchSightings(): Promise<SightingReport[]> {
 
 
 export async function fetchSeaLocation(latitude: number, longitude:number){
-    const response = await fetch(`http://api.geonames.org/oceanJSON?lat=${latitude}&lng=${longitude}&username=${geonamesUsername}`);
+    const response = await fetch(`https://api.geonames.org/oceanJSON?lat=${latitude}&lng=${longitude}&username=${geonamesUsername}`);
         if (response.ok)
         {
             const data = await response.json();
@@ -174,7 +174,7 @@ export async function login(email: string, password: string): Promise<{isAdmin: 
         throw new Error("Email and password are required");
     }
 
-     const response = await fetch('${baseUrl}/accounts/login', {
+     const response = await fetch(`${baseUrl}/accounts/login`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'},
@@ -218,7 +218,7 @@ export async function approveWhaleSighting(id: number): Promise<void> {
 
 export async function editWhaleSpecies(newSpeciesName:string, id: number): Promise<void> {
     const species = await fetchSpeciesBySpeciesName(newSpeciesName);    
-    const response = await fetch(`http://localhost:5067/sightingreports/edit/${id}`, {
+    const response = await fetch(`${baseUrl}/sightingreports/edit/${id}`, {
         method: "PATCH",
         headers: {
         'Content-Type': 'application/json'},

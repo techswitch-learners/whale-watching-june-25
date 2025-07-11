@@ -9,21 +9,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
-{
-    if (builder.Environment.IsDevelopment())
-    {
-        options.AddDefaultPolicy(policy =>
-        {
-            policy
-                .WithOrigins("http://localhost:5173")
-                .AllowAnyMethod()
-                .AllowCredentials()
-                .AllowAnyHeader();
-        });
-    }
-});
-
 // Add services to the container.
 builder.Services.AddDbContext<WhaleSpottingDbContext>();
 builder.Services.AddControllers();
