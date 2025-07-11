@@ -25,7 +25,7 @@
     "WhenNWhereToSee": [{"Where": "Vancouver Island, Canada", "When":"Jul-Sep"}, {"Where": "Quebec, Canada", "When":"Jun-early Oct"},{"Where":"Iceland","When":"May-Aug"},{ "Where":"Baja California, Mexico","When":"Occasional, mostly in winter"}, {"Where":"Scotland","When":"May-Sep"}],
     "HowToFind": "Look for their small dorsal fins and watch for their quick movements. They can often be seen feeding near the surface and are known for their elusive nature."
     },
-    {    "Species": "Blue",
+    {    "Species": "Blue Whale",
     "Img": "/images/Blue.jpg",
     "Description": "Blue whales are the largest animals on Earth, known for their immense size and deep blue coloration. They are baleen whales that feed on small shrimp-like animals called krill.",
     "WhenNWhereToSee": [{"Where": "Quebec, Canada", "When":"Jun-Sep"}, {"Where": "Iceland", "When":"Jul"}, {"Where": "Baja California, Mexico", "When":"Feb-Mar"},{"Where": "Azores", "When":"Apr-May"},{ "Where": "Sri Lanka", "When":"Nov-Apr"}],
@@ -43,7 +43,7 @@
     "WhenNWhereToSee": [{"Where": "Quebec, Canada", "When":"May-Oct"}],
     "HowToFind": "Listen for their vocalizations and look for their white coloration. They can often be seen swimming near the surface and are known for their playful behavior."
     },
-    {    "Species": "Sperm",
+    {    "Species": "Sperm Whale",
     "Img": "/images/Sperm.jpg",
     "Description": "Sperm whales are the largest toothed whales and are known for their deep dives and large heads. They have a distinctive block-shaped head and can be found in deep ocean waters.",
     "WhenNWhereToSee": [{"Where": "Iceland", "When":"Jun-Aug"}, {"Where": "Dominica", "When":"Oct-Mar"}, {"Where": "Baja California, Mexico", "When":"Feb-Apr"  }, {"Where": "Scotland", "When":"Jun-Aug"}, {"Where": "Azores", "When":"year-round"}, {"Where": "Sri Lanka", "When":"Nov-Apr"}],

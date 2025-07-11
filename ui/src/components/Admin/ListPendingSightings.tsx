@@ -171,7 +171,7 @@ export function ListPendingSightings() {
                                     <td className="hide-on-mobile">{sightingReport.longitude}</td>
                                     <td>{sightingReport.userName}</td>
                                     <td className="hide-on-mobile">{sightingReport.description}</td>
-                                    <td className="hide-on-mobile">{sightingReport.imageUrl != null ? <button className="view-photo-button" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
+                                    <td className="hide-on-mobile">{sightingReport.imageUrl != null && sightingReport.imageUrl !== "" ? <button className="view-photo-admin" onClick={() => handleClickShowImage(sightingReport.imageUrl)}>View</button> : <p>No photo available</p>}</td>
                                     <td className="accept-delete-button hide-on-mobile" colSpan={4} >
                                         <button
                                             className="accept-sighting-btn"

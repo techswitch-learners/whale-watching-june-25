@@ -54,10 +54,10 @@ export function ApprovedSightingsList() {
                 seaData.get(sighting.id)?.toLowerCase().includes(oceanFilter.toLowerCase())
         );
         setFiltered(filteredResults);
-        if (filtered.length === 0 && sightings.length > 0) {
+        if (filteredResults.length === 0 && sightings.length > 0) {
             setHeaderMessage("No matches")
         }
-    }, [sightings, speciesFilter, userNameFilter, dateFilter, oceanFilter, seaData, filtered])
+    }, [sightings, speciesFilter, userNameFilter, dateFilter, oceanFilter, seaData])
 
     function handleClickShowImage(imageUrl: string) {
         setsightingImage(imageUrl);
