@@ -86,7 +86,7 @@ export interface SightingReport {
 
 
 const geonamesUsername = import.meta.env.REACT_APP_VITE_GEONAMES_USERNAMES;
-const baseUrl = import.meta.env.REACT_APP_BACKEND_API_BASE_URL === undefined ? import.meta.env.REACT_APP_BACKEND_API_BASE_URL : null;
+const baseUrl = import.meta.env.REACT_APP_BACKEND_API_BASE_URL === "" ? import.meta.env.REACT_APP_BACKEND_API_BASE_URL : null;
 
 
 
