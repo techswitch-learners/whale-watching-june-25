@@ -21,7 +21,7 @@ export function ApprovedSightingsList() {
     useEffect(() => {
         fetchSightings().then((response) => {
             const approvedSightings = response.filter(sighting => sighting.status.toLowerCase() === 'approved')
-                .sort((a, b) => new Date(b.dateOfSighting).getDate() - new Date(a.dateOfSighting).getDate());
+                .sort((a, b) => new Date(b.dateOfSighting).getTime() - new Date(a.dateOfSighting).getTime());
             setSightings(approvedSightings);
             if (approvedSightings.length === 0) {
                 setHeaderMessage("No approved sightings");
