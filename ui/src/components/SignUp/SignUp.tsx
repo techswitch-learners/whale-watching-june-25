@@ -1,4 +1,4 @@
-import { FormEvent, JSX, useContext, useState} from "react";
+import { FormEvent, JSX, useState} from "react";
 import "./SignUp.scss";
 import { createUser } from "../../api/ApiClient";
 import { Navigate } from 'react-router-dom';
