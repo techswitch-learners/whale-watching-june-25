@@ -154,7 +154,7 @@ export async function createUser(newUser: NewUser) {
 
 
 export async function fetchSightings(): Promise<SightingReport[]> {
-    const response = await fetch(`${baseUrl}/sightingreports/all`);
+    const response = await fetch(`sightingreports/all`);
     const data = await response.json();
     return data;
 }
