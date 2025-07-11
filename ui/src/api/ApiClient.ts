@@ -159,7 +159,7 @@ export async function fetchSightings(): Promise<SightingReport[]> {
 
 
 export async function fetchSeaLocation(latitude: number, longitude:number){
-    const response = await fetch(`https://api.geonames.org/oceanJSON?lat=${latitude}&lng=${longitude}&username=${geonamesUsername}`);
+    const response = await fetch(`${baseUrl}/ocean?lat=${latitude}&lng=${longitude}`);
         if (response.ok)
         {
             const data = await response.json();
