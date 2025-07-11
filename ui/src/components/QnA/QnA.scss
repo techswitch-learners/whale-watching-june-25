@@ -85,6 +85,10 @@ ul {
   text-align: center;
 }
 
+ .tryagain-button {
+  width: 7rem;
+}
+
 @media (max-width: 1100px) {
   #Question {
     font-size: 20px;
@@ -108,6 +112,9 @@ ul {
     font-size: 15px;
   }
 
+  .tryagain-button {
+  width: 7rem;
+}
 
   .ErrorMessage {
     font-size: 15px;
@@ -118,6 +125,9 @@ ul {
   button {
     font-size: 15px;
   }
+   .tryagain-button {
+  width: 7rem;
+}
 
 }
 
