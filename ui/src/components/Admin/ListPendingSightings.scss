@@ -42,17 +42,14 @@ th {
 
 .pending-sightings-table td {
     border: 1pt solid #e6faf9;
-    background-color: #e6faf9;
     padding: 5px 5px 5px 0;
     color: black;
     text-align: center;
     padding: 5px 0;
 }
 
-.pending-sightings-table tr:nth-child(4n+1) td, 
-.pending-sightings-table tr:nth-child(4n+2) td {
- background-color: $whiteBackground;
- border: 1pt solid $whiteBackground;
+.pending-sightings-table tr:nth-of-type(even) {
+    background-color: $lightBlueBackground;
 }
 
 #species-edit-dropdown {
@@ -125,10 +122,13 @@ th {
     display: none;
 }
 
-.delete-sighting-btn, .accept-sighting-btn, .view-photo-button {
+.delete-sighting-btn, .accept-sighting-btn, .view-photo-admin {
     width: 75px;
     font-size: 0.8rem;
     
+}
+.delete-sighting-btn{
+    background-color: $errorFontColor;
 }
 
 @media (max-width: 1440px) {
@@ -144,10 +144,14 @@ th {
     th {
     padding: 10px 10px;
     }
-    .delete-sighting-btn, .accept-sighting-btn {
+    .delete-sighting-btn, .accept-sighting-btn,.view-photo-admin {
         width: 50px;
         font-size: 0.85rem;
     }
+
+    .delete-sighting-btn{
+    background-color: $errorFontColor;
+}
     #species-edit-dropdown {
         font-size: 0.85rem;
     }
@@ -160,10 +164,14 @@ th {
     .pending-sightings-table {
         width: 90vw;
     }
-    .delete-sighting-btn, .accept-sighting-btn {
+    .delete-sighting-btn, .accept-sighting-btn, .view-photo-admin {
         width: 50px;
         font-size: 0.8rem;
     }
+
+    .delete-sighting-btn{
+    background-color: $errorFontColor;
+}
     #species-edit-dropdown {
         font-size: 0.8rem;
     }
@@ -173,7 +181,7 @@ th {
     .pending-list-container {
         font-size: 0.72rem;
     }
-    .delete-sighting-btn, .accept-sighting-btn {
+    .delete-sighting-btn, .accept-sighting-btn, .view-photo-admin {
         width: 50px;
         font-size: 0.72rem;
     }
@@ -197,6 +205,10 @@ th {
         font-size: 0.7rem;
 
     }
+
+    .delete-sighting-btn{
+    background-color: $errorFontColor;
+}
     .show-on-mobile {
         display: table-cell;
     }

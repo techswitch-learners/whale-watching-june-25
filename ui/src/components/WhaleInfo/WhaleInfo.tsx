@@ -27,28 +27,30 @@ function WhaleInfo(): JSX.Element {
 
     return (
 
-            <div className="species-info">
-                <h2 className="species-info-subtitle">Tips for finding whales by species:</h2>
-                <label id='choose-a-species-label' htmlFor="species">Choose a species: </label>
-                <select
-                    id="species"
-                    onChange={(e) => {
-                        const selected = species.find((whale) => whale.Species === e.target.value);
-                        if (selected) handleSpeciesClick(selected);
-                    }}
-                    value={selectedSpecies ? selectedSpecies.Species : ""}
-                >
-                    {species.map((whale) => (
+        <div className="species-info">
+            <h2 className="species-info-subtitle">Tips for finding whales by species:</h2>
+            <label id='choose-a-species-label' htmlFor="species">Choose a species: </label>
+            <select
+                id="species"
+                onChange={(e) => {
+                    const selected = species.find((whale) => whale.Species === e.target.value);
+                    if (selected) handleSpeciesClick(selected);
+                }}
+                value={selectedSpecies ? selectedSpecies.Species : ""}
+            >
+                {[...species]
+                    .sort((a, b) => a.Species.localeCompare(b.Species))
+                    .map((whale) => (
                         <option className="species" value={whale.Species} key={whale.Species}>
                             {whale.Species}
                         </option>
                     ))}
-                </select>
+            </select>
 
             {showPopUp && (
                 <>
                     <div className='pop-up-section'>
-                                                <div className='image-of-species-container'>
+                        <div className='image-of-species-container'>
                             <img src={selectedSpecies.Img} alt={selectedSpecies.Species} />
                         </div>
                         <h2 className="species-subtitle">Tips on how to find a {selectedSpecies.Species}</h2>
@@ -68,7 +70,7 @@ function WhaleInfo(): JSX.Element {
                     </div>
                 </>
             )}
-            
+
         </div>
     );
 }
