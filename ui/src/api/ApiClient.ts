@@ -85,7 +85,6 @@ export interface SightingReport {
 }
 
 
-const geonamesUsername = import.meta.env.VITE_GEONAMES_USERNAMES;
 const baseUrl = import.meta.env.VITE === undefined ? import.meta.env.VITE_BACKEND_API_BASE_URL : "";
 
 
