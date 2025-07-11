@@ -19,7 +19,7 @@ public class OceanController : ControllerBase
     public async Task<IActionResult> GetOcean(double lat, double lng)
     {
         var username = _configuration["GeonamesUsername"];
-        var url = $"https://api.geonames.org/oceanJSON?lat={lat}&lng={lng}&username={username}";
+        var url = $"http://api.geonames.org/oceanJSON?lat={lat}&lng={lng}&username={username}";
 
         var response = await _httpClient.GetAsync(url);
         if (!response.IsSuccessStatusCode)
